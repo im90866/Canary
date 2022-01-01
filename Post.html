@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body{
+	font-family:arial;
+}
+	
+.horizontal-nav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #F9B73d;
+}
+
+.horizontal a {
+  float: right;
+  display: block; 
+  color: #fff;
+  text-align: center;
+  padding: 10px 10px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+  background-color: #e0a21c;
+}
+	
+.vertical-nav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 20%;
+  background-color: #F4B238;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+}
+
+.vertical a {
+  display: block;
+  color: #fff;
+  padding: 16px 16px;
+  text-decoration: none;
+}
+
+.search-container {
+  float: right;
+}
+
+input[type=text] {
+  padding: 4px;
+  margin-top: 8px;
+  font-size: 12px;
+  border: none;
+}
+
+.search-container button {
+  padding: 4px 6px;
+  margin-right: 100px;
+  background: #ddd;
+  font-size: 12px;
+  border: none;
+  cursor: pointer;
+}
+
+.search-container button:hover {
+  background: #ccc;
+}
+.active {
+  background-color: #e7a60f;
+}
+</style>
+</head>
+<body>
+
+<ul class="horizontal-nav">
+  <li class="horizontal"><a href="Messages.html">Messages</a></li>
+  <li class="horizontal"><a class="active" href="Post.html">Add Post</a></li>
+  <li class="horizontal"><a href="profile.html">Profile</a></li>
+  <li class="horizontal"><a href="homepage.html">Home</a></li>
+
+ <li> <div class="search-container">
+    <input type="text" placeholder="Search" name="search">
+    <button type="submit">Enter</button>
+	 </div></li>
+	<li class="horizontal" style="float:left; font-size: 20px;"><strong><a>Canary</a></strong></li>
+</ul>
+
+<ul class="vertical-nav">
+  <li class="vertical"><a href="#">Explore</a></li>
+  <li class="vertical"><a href="#">Notifications</a></li>
+  <li class="vertical"><a href="#">Settings</a></li>
+  <li class="vertical"><a href="login.html">Sign Out</a></li>
+</ul>
+</body>
+</html>
+
+

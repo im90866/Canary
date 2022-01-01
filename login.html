@@ -5,17 +5,19 @@
 <title> Login Page </title>
 <style> 
 Body {
-    background-color: #facf78;
+    background-color: #FFF7DD;
+	color:#F7B53B;
 }
 button { 
        background-color: #f7aa02; 
        color: white; 
        padding: 10px;
        border: 0; 
+       margin-left: 15%;
        } 
  
  input[type=text], input[type=password] { 
-        width: 100%; 
+        width: 40%; 
         padding: 10px 20px; 
         display: inline-block; 
         border: 2px solid green; 
@@ -25,15 +27,17 @@ button {
 </style> 
 </head>  
 <body>  
-    <center> <h1> CANARY </h1> </center> 
-    <form>
-        <div class="container"> 
-            <label>Username : </label> 
+    
+    <form style="margin-left: 35%;">
+        <div class="container"> <br>
+            <h1 style="margin-left:10%"> CANARY </h1>
             <input type="text" placeholder="Enter Username" name="username" required>
-            <label>Password : </label> 
+           <br><br>
             <input type="password" placeholder="Enter Password" name="password" required>
-            <button type="submit">Login</button> 
-            <a href="#"> Forgot Password? </a>
+			<br><br>
+            <a href="#" style="margin-left: 25%;"> Forgot Password? </a> <br><br>
+            <button type="submit"><a href="homepage.html">Login </a></button> <br><br>
+            <h4 style="margin-left: 17%;">or</h4>
             <button type="submit">Sign Up</button>
         </div> 
     </form>   
