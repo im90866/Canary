@@ -1,0 +1,5 @@
+Run the following to start the application:
+
+npm install 
+npm i react-router-dom
+npm start
