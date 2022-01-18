@@ -1,5 +1,33 @@
 Run the following to start the application:
-
+------------------------------------------------------------
 npm install 
 npm i react-router-dom
+npm i universal-cookie
+npm i axios
 npm start
+------------------------------------------------------------
+
+------------------------------------------------------------
+ONLY DO THE FOLLOWING IF YOUR DJANGO FILES ARE MISSING:
+------------------------------------------------------------
+To install Django(Have python3 and pip installed) and then:
+    pip install Django
+Then:
+    django-admin startproject Canary
+To add any of your apps(No need to do this):
+    python manage.py startapp <your_app_name>
+------------------------------------------------------------
+
+------------------------------------------------------------
+To start the Django server, do the following:
+------------------------------------------------------------
+First have python and pip installed. 
+Then install the following through pip:
+    pip install pymongo
+    pip install djangorestframework
+    pip install django-cors-headers
+
+After the above is done,
+To run the Django server:
+    python Canary/manage.py runserver <port_number(OPTIONAL. if not specified, default is 8000)>
+------------------------------------------------------------
