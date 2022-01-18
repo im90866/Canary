@@ -1,0 +1,20 @@
+Body {
+    background-color: #FFF7DD;
+	color:#F7B53B;
+}
+button { 
+       background-color: #f7aa02; 
+       color: white; 
+       padding: 10px 20px;
+       margin-left: 15%;
+       border: 0; 
+       } 
+ 
+ input[type=text], input[type=password] { 
+        width: 40%; 
+        padding: 10px 20px; 
+        display: inline-block; 
+        border: 2px solid green; 
+        box-sizing: border-box; 
+    }
+ 
