@@ -1,4 +1,5 @@
-Run the following to start the application:
+------------------------------------------------------------
+Run the following to start the application(if node modules do not exist):
 ------------------------------------------------------------
 npm install 
 npm i react-router-dom
