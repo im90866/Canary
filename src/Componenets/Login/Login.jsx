@@ -63,7 +63,7 @@ function Login() {
         {submitted && !values.password ? <span id="password-error">Please enter your password</span> :null }
         
        <br></br> <button className="form-field" type="submit">
-          <Link to="/canary/home">
+          <Link to="/home">
         Login
        </Link>
         </button>
@@ -75,8 +75,8 @@ function Login() {
         <h4>or</h4>
         
       </form>
-      <button className="sign" type="submit">
-        <Link to="/canary/signup">
+      <button className="sign">
+        <Link to="/signup">
         Sign Up
         </Link> 
         </button>

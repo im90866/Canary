@@ -1,12 +1,12 @@
 
 import './App.css';
- import { Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 // import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
 // import { Container } from 'react-bootstrap';
 // import { Form, FormControl } from 'react-bootstrap';
 // import { Button } from 'react-bootstrap';
 // import "bootswatch/dist/spacelab/bootstrap.min.css";
- import Home from './Componenets/Home/Home';
+import Home from './Componenets/Home/Home';
 import Login from "./Componenets/Login/Login"
 import Signup from './Componenets/Signup/Signup';
 
@@ -49,12 +49,12 @@ function App() {
           </Navbar.Collapse>
         </Container>
       </Navbar> */}
-   <Routes>
-<Route path="/canary" element={<Login />}></Route>
-<Route path="/canary/home" element={<Home />}></Route>
- <Route path="/canary/signup" element={<Signup />}></Route>
-</Routes> 
-    </div> 
+      <Routes>
+        <Route path="/" element={<Login />}></Route>
+        <Route path="/home" element={<Home />}></Route>
+        <Route path="/signup" element={<Signup />}></Route>
+      </Routes>
+    </div>
   );
 }
 
