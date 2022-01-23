@@ -1,6 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
 
+import Upload from './Upload';
+
 import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { Container } from 'react-bootstrap';
 import { Form, FormControl } from 'react-bootstrap';
@@ -33,6 +35,7 @@ function App() {
               <Nav.Link href="#" disabled>
                 Link
               </Nav.Link>
+              <Upload/>
             </Nav>
             <Form className="d-flex">
               <FormControl
