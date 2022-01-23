@@ -1,0 +1,47 @@
+.project-container{
+    display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 16rem));
+  gap: 0rem;
+  justify-content: center;
+}
+.project{
+    margin-top: 100px;
+    background-color: #F7B53B;
+    height: 100%;
+    width:100%;
+    
+}
+.existing-projects{
+    padding: 20px;
+    margin-bottom: 30px;
+}
+.title{
+    color: white;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+.projectlist{
+    padding: 20px;
+    margin-bottom: 40px;
+    
+}
+.projectlistname{
+    padding-bottom:20px;
+    padding-top: 20px;
+    list-style: none;
+    color: white;
+    font-weight: 700;
+    padding-left: 5px;
+    display: flex;
+}
+.project-icon{
+    font-size: 20px;
+    margin-left: 60px;
+
+}
+.project-delete{
+    margin-left: 20px;
+    font-size: 20px;
+    
+}

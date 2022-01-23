@@ -11,25 +11,34 @@
   top: 0 ;
   margin-top: auto ;
   z-index: 999 ;
-
+  position: fixed;
 }
 .navbar-left {
   flex: 3;
 }
+.menu-bars{
+  color: white;
+  margin-left: 20px;
+  font-size: 25px;
+  margin-top: 10px;
+}
+.menu-bars a{
+  text-decoration: none;
+}
 
 .navbar-logo {
+  margin-top: 10px;
   font-size: 30px;
-  margin-left: auto;
+  margin-left: 10px;
   font-weight: bold;
   color: white;
   cursor: pointer;
-  padding-left: 5px;
-   margin-right: 100px;
 }
 .navbar-logo a{
   text-decoration: none;
   color: white;
-  margin-left: 0px;
+  margin-left: 10px;
+
 }
 .navbar-center {
   flex: 5;
@@ -104,5 +113,112 @@
   cursor: pointer;
  bottom: 50%;
 
+  
+}
+.navbar-left {
+  background-color: #f7b53b;
+  height: 50px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  position: sticky;
+}
+.menu-bars {
+  margin-left: 2rem;
+  margin-top: 1.2rem;
+  margin-bottom: 1.25rem;
+  font-size: 1.5rem;
+  background: none;
+}
+.nav-menu {
+  background-color: #f7b53b;
+  width: 250px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+   left: -100%; 
+  transition: 850ms;
+  
+} 
+.nav-menu.active {
+  left: 0;
+  transition: 350ms;
+} 
+/* .nav-text {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  font-weight: 500;
+  list-style: none;
+  height: 100px;
+  color: #f5f5f5;
+  padding-top: 35px;
+} */
 
+/* .nav-text a {
+  text-decoration: none;
+  color: #f5f5f5;
+  font-size: 20px;
+  width: 95%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  border-radius: 4px;
+} */
+/* .nav-text  */
+
+/* .nav-text a:hover {
+  background-color: #ffdb70;
+  color: #f7b53b;
+} */
+
+
+.navbar-toggle {
+  background-color:#f7b53b;
+
+  height: 80px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+
+}
+
+
+
+.d-flex{
+    align-items: center;
+    margin-left: 350px;
+}
+
+.sidenav-text{
+  display: flex;
+  padding: 0px;
+  margin-left: 10px;
+  top: 5px;
+  margin: 0px;
+  font-size: 10px;
+}
+.sidenav {
+ 
+width: 80px;
+flex: 3;
+height: calc(100vh - 50px);
+
+position: fixed;
+top: 50px;
+z-index: 1;
+
+ }
+
+ ::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgb(179, 179, 179);
 }

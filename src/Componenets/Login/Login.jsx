@@ -29,8 +29,7 @@ function Login() {
       <>
         <div className="form-container">
       <form className="register-form" onSubmit={handleSubmit}>
-        {/* Uncomment the next line to show the success message */}
-        {/* {submitted  && valid ?  <div class="success-message">Success! Thank you for registering</div> :null} */}
+      
         <div className="logo">
             <h2>Canary</h2>
         </div>
@@ -45,7 +44,7 @@ function Login() {
           name="username"
         />
        
-        {/* Uncomment the next line to show the error message */}
+      
         {submitted && !values.username ? <span id="user-name-error">Please enter your username</span> :null} 
         
     
@@ -59,7 +58,7 @@ function Login() {
           name="password"
         />
       
-        {/* Uncomment the next line to show the error message */}
+      
         {submitted && !values.password ? <span id="password-error">Please enter your password</span> :null }
         
        <br></br> <button className="form-field" type="submit">
