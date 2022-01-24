@@ -1,10 +1,11 @@
 import React from "react";
 import "./Login.css"
 import { useState} from 'react';
- import{Link }from 'react-router-dom'
+ import{Link, useNavigate}from 'react-router-dom'
 import axios from 'axios';
 
 function Login() {
+    let navigate = useNavigate();
     const[values,setValues]=useState({
        
         username:"",
@@ -29,71 +30,73 @@ function Login() {
             })
             .then((res) => {
               if(res.data["success"]) { 
-                console.log("It's correct");
+                console.log("Correct password");
                 setValid(true);
+                navigate('/home')
               }
               else  
-                console.log("its WRONG");
+                console.log("Wrong password");
             })
         }
+        
         setSubmitted(true);
     }
+
   return (
-      <>
-        <div className="form-container">
-      <form className="register-form" onSubmit={handleSubmit}>
-      
-        <div className="logo">
-            <h2>Canary</h2>
-        </div>
-    
-        <input
-          id="user-name"
-          onChange={handleUserNameInputChange}
-          value={values.username}
-          className="form-field"
-          type="text"
-          placeholder="username"
-          name="username"
-        />
-       
-      
-        {submitted && !values.username ? <span id="user-name-error">Please enter your username</span> :null} 
+    <>
+      <div className="form-container">
+        <form className="register-form" onSubmit={handleSubmit} >
+          <div className="logo">
+              <h2>Canary</h2>
+          </div>
+
+          <input
+            id="user-name"
+            onChange={handleUserNameInputChange}
+            value={values.username}
+            className="form-field"
+            type="text"
+            placeholder="username"
+            name="username"
+          />
         
-    
-        <input
-          id="email"
-          onChange={handlePasswordInputChange}
-          value={values.password}
-        className="form-field"
-          type="password"
-          placeholder="password"
-          name="password"
-        />
+          {submitted && !values.username ? <span id="user-name-error">Please enter your username</span> :null} 
       
-      
-        {submitted && !values.password ? <span id="password-error">Please enter your password</span> :null }
+          <input
+            id="email"
+            onChange={handlePasswordInputChange}
+            value={values.password}
+            className="form-field"
+            type="password"
+            placeholder="password"
+            name="password"
+          />
         
-       <br></br> <button className="form-field" type="submit">
-          <Link to="/home">
-        Login
-       </Link>
+          {submitted && !values.password ? <span id="password-error">Please enter your password</span> :null }
+          
+          {submitted && values.password && !valid ? <span id="password-error">Incorrect username or password</span> :null }
+
+          <br></br> 
+          <button className="form-field" type="submit"  >
+            Login
+          </button>
+
+          <div className="forgot-password">
+            <Link to="/"> 
+              <h3>Forgot Password?</h3>
+            </Link>
+          </div>
+          <h4>or</h4>
+
+        </form>
+
+        <button className="sign" type="submit">
+          <Link to="/signup">
+            Sign Up
+          </Link> 
         </button>
-        <div className="forgot-password">
-       <Link to="/"> 
-            <h3>Forgot Password?</h3>
-         </Link>
-            </div>
-        <h4>or</h4>
-        
-      </form>
-      <button className="sign" type="submit">
-        <Link to="/signup">
-        Sign Up
-        </Link> 
-        </button>
-    </div>
-   </>
+      </div>
+    </>
   );
 }
 
