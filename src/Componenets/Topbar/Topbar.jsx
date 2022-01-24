@@ -46,7 +46,7 @@ export default function Topbar() {
             <div className="navbar-IconItem">
               <Link to="/home"><img src="/images/avatar.png" alt="" className="topbarImg" /></Link>
             </div>
-            <div className="navbar-right">
+            {/* <div className="navbar-right">
               <div className="navbar-icons">
                 <div className="navbar-IconItem">
                   <Link to="/home"><FaHome /></Link>
@@ -62,7 +62,7 @@ export default function Topbar() {
                   <Link to="/home"><img src="../images/avatar.png" alt="" className="topbarImg" /></Link>
                 </div>
               </div>
-            </div>
+            </div> */}
 
           </div>
 
