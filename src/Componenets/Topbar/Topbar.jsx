@@ -46,7 +46,7 @@ export default function Topbar() {
             <div className="navbar-IconItem">
               <Link to="/home"><img src="/images/avatar.png" alt="" className="topbarImg" /></Link>
             </div>
-            <div className="navbar-right">
+            {/* <div className="navbar-right">
               <div className="navbar-icons">
                 <div className="navbar-IconItem">
                   <Link to="/home"><FaHome /></Link>
@@ -62,7 +62,7 @@ export default function Topbar() {
                   <Link to="/home"><img src="../images/avatar.png" alt="" className="topbarImg" /></Link>
                 </div>
               </div>
-            </div>
+            </div> */}
 
           </div>
 
@@ -83,25 +83,25 @@ export default function Topbar() {
               <li className="sidenav-item">
                 <MdExplore className="sidenav-icon" />
                 <Link to="/home">
-                  <span className="sidenav-text">Explore</span>
+                   <span className="sidenav-text">Explore</span> 
                 </Link>
               </li>
               <li className="sidenav-item">
                 <MdNotificationsActive className="sidenav-icon" />
                 <Link to="/home">
-                  <span className="sidenav-text">Notifications</span>
+                  <span className="sidenav-text">Notifications</span> 
                 </Link>
               </li>
               <li className="sidenav-item">
                 <MdSettings className="sidenav-icon" />
                 <Link to="/home">
-                  <span className="sidenav-text">Settings</span>
+                 <span className="sidenav-text">Settings</span> 
                 </Link>
               </li>
               <li className="sidenav-item">
                 <GoSignOut className="sidenav-icon" />
                 <Link to="/">
-                  <span className="sidenav-text">LogOut</span>
+                  <span className="sidenav-text">LogOut</span> 
                 </Link>
               </li>
             </ul>

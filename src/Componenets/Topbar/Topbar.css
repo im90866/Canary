@@ -222,3 +222,32 @@ z-index: 1;
 ::-webkit-scrollbar-thumb {
   background-color: rgb(179, 179, 179);
 }
+.sidenav-icon {
+  margin-right: 15px;
+  cursor: pointer;
+  position: absolute;
+  font-size: 30px;
+  margin-top: 30px;
+  margin-left: 5px;
+  padding-bottom: 40px;
+  color: white;
+  padding-bottom: 30px;
+
+}
+.sidenav-item {
+ 
+  align-items: center;
+  margin-bottom: 20px;
+} 
+
+
+
+.sidenav-text{
+    font-size: 10px;
+    margin-bottom: 20px;
+    padding-top: 80px;
+    color: white;
+    font-weight: bold;
+    margin-left: 5px;
+ position:relative ;
+}
