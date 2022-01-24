@@ -1,18 +1,20 @@
-import logo from './logo.svg';
+
 import './App.css';
-
-import Upload from './Upload';
-
+import { Route, Routes } from 'react-router-dom';
 import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { Container } from 'react-bootstrap';
 import { Form, FormControl } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
 import "bootswatch/dist/spacelab/bootstrap.min.css";
+import Home from './Componenets/Home/Home';
+import Login from "./Componenets/Login/Login"
+import Signup from './Componenets/Signup/Signup';
+
 
 function App() {
   return (
     <div className="App">
-      <Navbar bg="light" expand="lg">
+      { <Navbar bg="light" expand="lg">
         <Container fluid>
           <Navbar.Brand href="#">Canary</Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
@@ -35,7 +37,7 @@ function App() {
               <Nav.Link href="#" disabled>
                 Link
               </Nav.Link>
-              <Upload/>
+              
             </Nav>
             <Form className="d-flex">
               <FormControl
@@ -48,8 +50,13 @@ function App() {
             </Form>
           </Navbar.Collapse>
         </Container>
-      </Navbar>
-    </div>
+      </Navbar> }
+   <Routes>
+<Route path="/canary" element={<Login />}></Route>
+<Route path="/canary/home" element={<Home />}></Route>
+ <Route path="/canary/signup" element={<Signup />}></Route>
+</Routes> 
+    </div> 
   );
 }
 
