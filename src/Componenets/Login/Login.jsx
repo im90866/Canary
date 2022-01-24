@@ -2,6 +2,7 @@ import React from "react";
 import "./Login.css"
 import { useState} from 'react';
  import{Link }from 'react-router-dom'
+import axios from 'axios';
 
 function Login() {
     const[values,setValues]=useState({
@@ -22,6 +23,18 @@ function Login() {
         event.preventDefault();
         if( values.username && values.password){
             setValid(true);
+            axios.post("http://localhost:8000/login/", {
+              'username': String(values.username),
+              'password': String(values.password),
+            })
+            .then((res) => {
+              if(res.data["success"]) { 
+                console.log("It's correct");
+                setValid(true);
+              }
+              else  
+                console.log("its WRONG");
+            })
         }
         setSubmitted(true);
     }
@@ -29,8 +42,7 @@ function Login() {
       <>
         <div className="form-container">
       <form className="register-form" onSubmit={handleSubmit}>
-        {/* Uncomment the next line to show the success message */}
-        {/* {submitted  && valid ?  <div class="success-message">Success! Thank you for registering</div> :null} */}
+      
         <div className="logo">
             <h2>Canary</h2>
         </div>
@@ -45,7 +57,7 @@ function Login() {
           name="username"
         />
        
-        {/* Uncomment the next line to show the error message */}
+      
         {submitted && !values.username ? <span id="user-name-error">Please enter your username</span> :null} 
         
     
@@ -59,16 +71,16 @@ function Login() {
           name="password"
         />
       
-        {/* Uncomment the next line to show the error message */}
+      
         {submitted && !values.password ? <span id="password-error">Please enter your password</span> :null }
         
        <br></br> <button className="form-field" type="submit">
-          <Link to="/canary/home">
+          <Link to="/home">
         Login
        </Link>
         </button>
         <div className="forgot-password">
-       <Link to="/canary"> 
+       <Link to="/"> 
             <h3>Forgot Password?</h3>
          </Link>
             </div>
@@ -76,7 +88,7 @@ function Login() {
         
       </form>
       <button className="sign" type="submit">
-        <Link to="/canary/signup">
+        <Link to="/signup">
         Sign Up
         </Link> 
         </button>

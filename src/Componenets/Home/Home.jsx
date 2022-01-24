@@ -1,6 +1,7 @@
 import React from 'react'
+import Feed from '../Feed/Feed'
 
-import Post from '../Post/Post'
+// import Post from '../Post/Post'
 import Sidebar from '../Sidebar/Sidebar'
 import Topbar from '../Topbar/Topbar'
 
@@ -9,9 +10,9 @@ function Home() {
     return (
         <div>
             <div className="home-container">
-          <Topbar/>
-              <Sidebar/> 
-              <Post/>
+      <Topbar/> 
+           {/* <Sidebar/>   */}
+              <Feed/>   
           </div>
         </div>
     )
