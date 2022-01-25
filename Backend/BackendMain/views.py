@@ -51,15 +51,13 @@ class SignupView(APIView):
                     if len(password) < 6:
                         return Response({ 'error': 'Password must be at least 6 characters' })
                     else:
-                        password = hashlib.sha256(request['password'].encode())
-
+                        password = hashlib.sha256(password.encode()).hexdigest()
                         user_info = {
-                            'username' : username,
-                            'password' : password,
+                            "username" : username,
+                            "password" : password,
                         }
 
                         collection.insert_one(user_info)
-
                         return Response({ 'success': 'User created successfully' })
             else:
                 return Response({ 'error': 'Passwords do not match' })
@@ -72,26 +70,28 @@ class LoginView(APIView):
 
     @csrf_exempt
     def post(self, request, format=None):
-        print('s')
         data = self.request.data
 
         username = data['username']
         password = data['password']
 
-        try:
-            collection = CLIENT_DATABASE['userInfo']
+        collection = CLIENT_DATABASE['userInfo']
+        
+        password = hashlib.sha256(password.encode()).hexdigest()
+        valid = False
+        
 
-            password = hashlib.sha256(password.encode()).hexdigest()
-            valid = False
+        for x in collection.find():
+            if x['username'] == username:
+                if x['password'] == password:
+                    valid = True      
+        if valid:
+            return Response({ 'success': 'User authenticated' })
+        else:
+            return Response({ 'error': 'Error Authenticating' })
 
-            for x in collection.find():
-                if x['username'] == username:
-                    if x['password'] == password:
-                        valid = True      
+def deleteAll(request):
+    pass
 
-            if valid:
-                return Response({ 'success': 'User authenticated' })
-            else:
-                return Response({ 'error': 'Error Authenticating' })
-        except:
-            return Response({ 'error': 'Something went wrong when logging in' })
+def printAll(request):
+    pass

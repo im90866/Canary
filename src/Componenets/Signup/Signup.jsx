@@ -1,10 +1,11 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState} from "react"
 import "./Signup.css"
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { Form } from "react-bootstrap"
+import {Link, useNavigate} from 'react-router-dom'
+import {Form} from "react-bootstrap"
+import axios from 'axios';
 
 export default function Signup() {
+    let navigate = useNavigate()
 
     const [fName, setfName] = useState("")
     const [lName, setlName] = useState("")
@@ -14,20 +15,41 @@ export default function Signup() {
     const [password2, setPassword2] = useState("")
 
     const [validate, setValidate] = useState(false)
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        
+        axios.post("http://localhost:8000/signup/", {
+              'username': String(username),
+              'password': String(password1),
+              're_password': String(password2),
+              'fname': String(fName),
+              'lname': String(lName),
+              'email': String(email),
+            })
+            .then((res) => {
+              if(res.data["success"]) { 
+                console.log('sucess')
+                navigate('/')
+              }
+              else  
+                console.log("Error "+res.data["error"])
+            })
+    }
+
     useEffect(() => setValidate(
         fName !== "" &&
         lName !== "" &&
         email !== "" &&
         username !== "" &&
-        password1 !== "" &&
-        username.length > 5 &&
-        password1 === password2
+        password1 !== "" 
     ), [username, password1, password2, fName, lName, email])
+
 
     return (
         <>
             <div className="form-container">
-                <Form className="register-form">
+                <Form className="register-form" onSubmit={handleSubmit}>
                     <div className="logo">
                         <h2>Canary</h2>
                     </div>
@@ -53,8 +75,8 @@ export default function Signup() {
                     />
 
                     <input
-                        onChange={event => setEmail(event.target.value)}
-                        value={email}
+                        onChange={event => setUsername(event.target.value)}
+                        value={username}
                         id="user-name"
                         className="form-field"
                         type="text"
@@ -64,8 +86,8 @@ export default function Signup() {
 
 
                     <input
-                        onChange={event => setUsername(event.target.value)}
-                        value={username}
+                        onChange={event => setEmail(event.target.value)}
+                        value={email}
                         id="email"
                         className="form-field"
                         type="email"
@@ -94,11 +116,10 @@ export default function Signup() {
                     />
 
                     <br></br>
-                    <Link to="/">
-                        <button className="form-field" type="submit" disabled={!validate}>
-                            Sign Up
-                        </button>
-                    </Link>
+                    <button className="form-field" type="submit" >
+                        Sign Up
+                    </button>
+
                     <div className="forgot-password">
                         Already Registered?
                         <Link to="/">

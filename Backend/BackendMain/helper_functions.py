@@ -13,6 +13,8 @@ def ifExists(value, identity):
     collection = db['userInfo']
 
     for x in collection.find():
+        print(x[identity])
+        print(x['password'])
         if x[identity] == value:
-            return False
-    return True
+            return True
+    return False

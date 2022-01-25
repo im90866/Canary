@@ -1,18 +1,18 @@
 import React from "react";
 import "./Login.css"
-import { useState} from 'react';
+import {useState} from 'react';
  import{Link, useNavigate}from 'react-router-dom'
 import axios from 'axios';
 
 function Login() {
-    let navigate = useNavigate();
+    let navigate = useNavigate()
     const[values,setValues]=useState({
        
         username:"",
         password:"",
     });
-    const[submitted,setSubmitted]=useState(false);
-    const[valid,setValid]=useState(false);
+    const[submitted,setSubmitted]=useState(false)
+    const[valid,setValid]=useState(false)
   
     const handleUserNameInputChange=(e)=>{
         setValues({...values,username:e.target.value})
@@ -21,21 +21,22 @@ function Login() {
         setValues({...values,password:e.target.value})
     }
     const handleSubmit=event=>{
-        event.preventDefault();
+        event.preventDefault()
         if( values.username && values.password){
+            
             setValid(true);
             axios.post("http://localhost:8000/login/", {
               'username': String(values.username),
               'password': String(values.password),
             })
             .then((res) => {
+              console.log("hel")
               if(res.data["success"]) { 
-                console.log("Correct password");
-                setValid(true);
+                console.log('Succesfully logged in')
                 navigate('/home')
               }
               else  
-                console.log("Wrong password");
+                console.log("Error: " + res.data["error"])
             })
         }
         
