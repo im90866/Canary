@@ -2350,10 +2350,6 @@
   "resolved" "https://registry.npmjs.org/axe-core/-/axe-core-4.3.5.tgz"
   "version" "4.3.5"
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> cd21a434f1bf8918ada6b4d02459010b36a00a64
 "axios@^0.25.0":
   "integrity" "sha512-cD8FOb0tRH3uuEe6+evtAbgJtfxr7ly3fQjYcMcuPlgkwVS9xboaVIpcDV+cYQe+yGykgwZCs1pzjntcGa6l5g=="
   "resolved" "https://registry.npmjs.org/axios/-/axios-0.25.0.tgz"
@@ -2361,8 +2357,6 @@
   dependencies:
     "follow-redirects" "^1.14.7"
 
-<<<<<<< HEAD
-=======
 "axobject-query@^2.2.0":
   "integrity" "sha512-Td525n+iPOOyUQIeBfcASuG6uJsDOITl7Mds5gFyerkWiX7qhUTdYUBlSgNMyVqtSJqwpt1kXGLdUt6SykLMRA=="
   "resolved" "https://registry.npmjs.org/axobject-query/-/axobject-query-2.2.0.tgz"
@@ -2373,19 +2367,6 @@
   "resolved" "https://registry.npmjs.org/babel-jest/-/babel-jest-27.4.5.tgz"
   "version" "27.4.5"
   dependencies:
-=======
->>>>>>> cd21a434f1bf8918ada6b4d02459010b36a00a64
-"axobject-query@^2.2.0":
-  "integrity" "sha512-Td525n+iPOOyUQIeBfcASuG6uJsDOITl7Mds5gFyerkWiX7qhUTdYUBlSgNMyVqtSJqwpt1kXGLdUt6SykLMRA=="
-  "resolved" "https://registry.npmjs.org/axobject-query/-/axobject-query-2.2.0.tgz"
-  "version" "2.2.0"
-
-"babel-jest@^27.4.2", "babel-jest@^27.4.5":
-  "integrity" "sha512-3uuUTjXbgtODmSv/DXO9nZfD52IyC2OYTFaXGRzL0kpykzroaquCrD5+lZNafTvZlnNqZHt5pb0M08qVBZnsnA=="
-  "resolved" "https://registry.npmjs.org/babel-jest/-/babel-jest-27.4.5.tgz"
-  "version" "27.4.5"
-  dependencies:
->>>>>>> 5b809c70fd67251217b8d6d6ce1278c6e696d437
     "@jest/transform" "^27.4.5"
     "@jest/types" "^27.4.2"
     "@types/babel__core" "^7.1.14"
@@ -4281,23 +4262,10 @@
   "resolved" "https://registry.npmjs.org/flatted/-/flatted-3.2.4.tgz"
   "version" "3.2.4"
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> cd21a434f1bf8918ada6b4d02459010b36a00a64
 "follow-redirects@^1.0.0", "follow-redirects@^1.14.7":
   "integrity" "sha512-+hbxoLbFMbRKDwohX8GkTataGqO6Jb7jGwpAlwgy2bIz25XtRm7KEzJM76R1WiNT5SwZkX4Y75SwBolkpmE7iQ=="
   "resolved" "https://registry.npmjs.org/follow-redirects/-/follow-redirects-1.14.7.tgz"
   "version" "1.14.7"
-<<<<<<< HEAD
-=======
-=======
-"follow-redirects@^1.0.0":
-  "integrity" "sha512-fhUl5EwSJbbl8AR+uYL2KQDxLkdSjZGR36xy46AO7cOMTrCMON6Sa28FmAnC2tRTDbd/Uuzz3aJBv7EBN7JH8A=="
-  "resolved" "https://registry.npmjs.org/follow-redirects/-/follow-redirects-1.14.6.tgz"
-  "version" "1.14.6"
->>>>>>> 5b809c70fd67251217b8d6d6ce1278c6e696d437
->>>>>>> cd21a434f1bf8918ada6b4d02459010b36a00a64
 
 "fork-ts-checker-webpack-plugin@^6.5.0":
   "integrity" "sha512-cS178Y+xxtIjEUorcHddKS7yCMlrDPV31mt47blKKRfMd70Kxu5xruAFE2o9sDY6wVC5deuob/u/alD04YYHnw=="

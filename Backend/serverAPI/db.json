@@ -1,0 +1,26 @@
+{
+  "allProjects": [
+    {
+      "id": 1,
+      "projectName": "Project1",
+      "type": "individual",
+      "members": {
+        "member1": "Joe",
+        "member2": "Ann",
+        "member3": "Fred",
+        "member4": "Mary"
+      }
+    },
+    {
+      "id": 2,
+      "projectName": "Project2",
+      "type": "Group",
+      "members": {
+        "member1": "Joe1",
+        "member2": "Ann1",
+        "member3": "Fred1",
+        "member4": "Mary1"
+      }
+    }
+  ]
+}
