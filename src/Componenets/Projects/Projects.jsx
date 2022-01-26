@@ -1,6 +1,4 @@
 import React from 'react';
-import Cardone from "../Cardone/Cardone";
-import Cardtwo from "../Cardtwo/Cardtwo";
 import Topbar from '../Topbar/Topbar';
 import api from '../../API/projects'
 import { useState, useEffect } from 'react';
@@ -11,7 +9,7 @@ import { BsFillTrashFill } from "react-icons/bs";
 function Projects() {
 
   const [projects, setProjects] = useState([])
-  const[update, setUpdate] = useState(false)
+  const [update, setUpdate] = useState(false)
 
   const getProjects = async () => {
     const response = await api.get("/allProjects")
@@ -37,6 +35,14 @@ function Projects() {
     member4: ""
   })
 
+  const handleMembers = e => {
+    const { name, value } = e.target
+    setMembers(member => ({
+      ...member,
+      [name]: value
+    }))
+  }
+
   const addProject = async (project) => {
     console.log(project)
     const request = {
@@ -46,13 +52,21 @@ function Projects() {
 
     const response = await api.post("/allProjects", request)
     console.log(response)
-    // setProjects([...project, response.data])
 
     const getAll = async () => {
       const allProjects = await getProjects()
       setProjects(allProjects)
     }
-    getAll();
+    getAll()
+    setId("")
+    setProjectName("")
+    setType("")
+    setMembers({
+      member1: "",
+      member2: "",
+      member3: "",
+      member4: ""
+    })
   }
 
   const removeProject = async (id) => {
@@ -63,9 +77,9 @@ function Projects() {
     setProjects(newProjectList)
   }
 
-  const editProject = async(id) => {
+  const editProject = async (id) => {
     const response = await api.get(`/allProjects/${id}`)
-    const {projectName, type, members} = response.data
+    const { projectName, type, members } = response.data
     setId(id)
     setProjectName(projectName)
     setType(type)
@@ -73,12 +87,12 @@ function Projects() {
     setUpdate(true)
   }
 
-  const updateProject = async (project) =>{
+  const updateProject = async (project) => {
     const response = await api.put(`/allProjects/${project.id}`, project)
-    const {id, projectName, type, members} = response.data
+    const { id } = response.data
     setProjects(
-      projects.map((project) =>{
-        return project.id === id ? {...response.data} : project
+      projects.map((project) => {
+        return project.id === id ? { ...response.data } : project
       })
     )
     setId("")
@@ -97,10 +111,6 @@ function Projects() {
     <div>
       <Topbar />
       <div className="project-container">
-        {/* <Cardone />
-        <Cardtwo /> */}
-
-
         <div className="project">
           <div className="existing-projects">
             <span className="title">Existing Projects</span>
@@ -119,11 +129,10 @@ function Projects() {
         </div>
 
         <div className="create-project">
-          {/* <form onSubmit={add}> */}
           <div className="create-projecttitle">
             <span class="cptitle">Create Project</span>
           </div>
-          <input type="text" value={id} hidden/>
+          <input type="text" value={id} hidden />
           <div className="project-form">
             <input type="text"
               className='field'
@@ -143,41 +152,39 @@ function Projects() {
             <input type="text"
               className='field'
               placeholder="Member Name"
-              name=" Member Name"
+              name="member1"
               value={members.member1}
-              onChange={event => setMembers(event.target.value)}
+              onChange={handleMembers}
             />
             <input type="text"
               className='field'
               placeholder="Member Name"
-              name="Member Name"
+              name="member2"
               value={members.member2}
-              onChange={event => setMembers(event.target.value)}
+              onChange={handleMembers}
             />
             <input type="text"
               className='field'
               placeholder="Member Name"
-              name="Member Name"
+              name="member3"
               value={members.member3}
-              onChange={event => setMembers(event.target.value)}
+              onChange={handleMembers}
             />
             <input type="text"
               className='field'
               placeholder="Member Name"
-              name="Member Name"
+              name="member4"
               value={members.member4}
-              onChange={event => setMembers(event.target.value)}
+              onChange={handleMembers}
             />
           </div>
           {
             update !== true
-            ?
-            <button className='hero-btn' onClick={() => addProject({ projectName, type, members })}>Create project</button>
-            :
-            <button className='hero-btn' onClick={() => updateProject({ id, projectName, type, members })}>Update project</button>
+              ?
+              <button className='hero-btn' onClick={() => addProject({ projectName, type, members })}>Create project</button>
+              :
+              <button className='hero-btn' onClick={() => updateProject({ id, projectName, type, members })}>Update project</button>
           }
-          
-          {/* </form> */}
         </div>
 
       </div>
