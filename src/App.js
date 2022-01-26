@@ -10,7 +10,8 @@ import Workspace from './Componenets/Workspace/Workspace';
 import { useEffect } from "react"
 import axios from "axios"
 import Projects from './Componenets/Projects/Projects';
-
+import Profile from './Componenets/Profile/Profile';
+import Profilepost from './Componenets/Profileposts/Profilepost';
 function App() {
   useEffect(() => {
     //axios.get("http://localhost:8000/delete")
@@ -25,6 +26,8 @@ function App() {
       <Route path="/projects" element={<Projects />}></Route>
       <Route path="/update" element={<Update/>}></Route>
       <Route path="/workspace" element={<Workspace/>}></Route>
+      <Route path="/profile" element={<Profile/>}></Route>
+ <Route path="/profileposts" element={<Profilepost/>}></Route>
     </Routes>
 
   );
