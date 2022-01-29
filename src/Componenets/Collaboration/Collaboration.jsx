@@ -1,14 +1,11 @@
 import React from 'react';
 import Profile from '../Profile/Profile';
-import {Link } from "react-router-dom" ;
+import {Link} from "react-router-dom"
 import {BsFillBookmarkFill } from "react-icons/bs";
-import "./Profilepost.css"
-function Profilepost() {
-  return(
-    <>
-   <div>
-    <Profile/>
-    <div className="card-container">
+function Collaboration() {
+  return <div>
+      <Profile/>
+      <div className="card-container">
     <div className="card">
       <div className="card__body">
         <div className="img">
@@ -52,9 +49,7 @@ function Profilepost() {
         </div>
         </div>
         </div>
-  </div>
-  </>
-  );
+  </div>;
 }
 
-export default Profilepost;
+export default Collaboration;
