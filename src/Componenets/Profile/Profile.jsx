@@ -13,7 +13,7 @@ function Profile() {
       <div className="profile">
         <h4 className='profile-name'>Nashwa Abdul</h4>
         
-     <button className='btn'>Edit Profile</button>
+        <Link to="/editprofile"><button className='btn'>Edit Profile</button></Link>
         </div>
         
      
