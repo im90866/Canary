@@ -26,24 +26,24 @@
 //             </div>
 //         )
 //     }
-    
+
 // }
 
 // export default Upload;
-    
+
 import React from 'react';
-import {FaSearch,FaHome} from 'react-icons/fa'
+import { FaSearch, FaHome } from 'react-icons/fa'
 
 import { Link } from "react-router-dom";
-import {FaBackspace,FaHistory } from 'react-icons/fa';
+import { FaBackspace, FaHistory } from 'react-icons/fa';
 
-import { MdSettings,MdAddBox} from "react-icons/md"
-import {GoGraph} from "react-icons/go"
+import { MdSettings, MdAddBox } from "react-icons/md"
+import { GoGraph } from "react-icons/go"
 
-import {AiFillEdit,AiFillFolderAdd } from "react-icons/ai";
+import { AiFillEdit, AiFillFolderAdd } from "react-icons/ai";
 import { RiTeamFill } from "react-icons/ri";
 import "./Workspace.css"
-import {RiChatSmile2Fill} from  "react-icons/ri"
+import { RiChatSmile2Fill } from "react-icons/ri"
 import { BsImageFill } from "react-icons/bs";
 import { BsThreeDots } from "react-icons/bs";
 import Modal from "../Modal/Modal"
@@ -54,36 +54,36 @@ function Workspace() {
   return <div>
        <div className="navbar-container">
         <div className="navbar-left">
-        {/* <Link to='#' className='menu-bars'>
+          {/* <Link to='#' className='menu-bars'>
             <FaBars onClick={showSidebar} />
           </Link> */}
         <span className="navbar-logo"><Link to="/home">Canary</Link></span>
         </div>
         <div className="navbar-center">
           <div className="navbar-search">
-          <FaSearch className="search"/>
+            <FaSearch className="search" />
             <input
-            placeholder="Search for friend, post or video"
-            className="searchInput"
-          />
+              placeholder="Search for friend, post or video"
+              className="searchInput"
+            />
           </div>
         </div>
         <div className="navbar-right">
           <div className="navbar-icons">
-          <div className="navbar-IconItem">
-      <Link to="/"><span className='project-text'>Project Name</span></Link>
-          </div>
-          <div className="navbar-IconItem">
-         
-          <Link to="/"><span className='project-text' >Save</span></Link>
-          </div>
-          <div className="navbar-IconItem">
-          <Link to="/"><span className='project-text'>Share</span></Link>
-          </div>
-         
+            <div className="navbar-IconItem">
+              <Link to="/"><span className='project-text'>Project Name</span></Link>
+            </div>
+            <div className="navbar-IconItem">
+
+              <Link to="/"><span className='project-text' >Save</span></Link>
+            </div>
+            <div className="navbar-IconItem">
+              <Link to="/"><span className='project-text'>Share</span></Link>
+            </div>
+
           </div>
         </div>
-      
+
       </div>
       <div className="sidenav">
                 <div className="sidenav-container">
@@ -145,6 +145,9 @@ function Workspace() {
         <BsThreeDots className='three-dots'/>
         </div> 
         </div>
+
+      </div>
+      <div className="folder">
         <div className="folders">
         <Link to="/mainspace"><BsImageFill className='folder-icon'/></Link> 
         <div className="folder-info">

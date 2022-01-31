@@ -1,0 +1,47 @@
+{
+  "allProjects": [
+    {
+      "id": 1,
+      "projectName": "Project1",
+      "type": "group",
+      "members": {
+        "member1": "Joe",
+        "member2": "Ann",
+        "member3": "Fred",
+        "member4": "Mary"
+      }
+    },
+    {
+      "id": 2,
+      "projectName": "Project2",
+      "type": "Group",
+      "members": {
+        "member1": "Joe1",
+        "member2": "Ann1",
+        "member3": "Fred1",
+        "member4": "Mary1"
+      }
+    },
+    {
+      "id": "1300130e-6b2b-49c0-98cd-18421136eac3",
+      "projectName": "eeee1",
+      "type": "group",
+      "members": {
+        "member1": "qq",
+        "member2": "ww",
+        "member3": "ee",
+        "member4": "rr"
+      }
+    }
+  ],
+  "images": [
+    {
+      "id": "1300130e-6b2b-49c0-98cd-18421136ea22",
+      "imageFile": "something.jpg"
+    },
+    {
+      "imageFile": "Image_created_with_a_mobile_phone.png",
+      "id": "-PeytoG"
+    }
+  ]
+}
