@@ -9,7 +9,6 @@ from PIL import Image
 import cv2
   
 # path
-"""
 uri = "mongodb+srv://zinasktest.uxarp.mongodb.net/myFirstDatabase?authSource=%24external&authMechanism=MONGODB-X509&retryWrites=true&w=majority"
 client = pymongo.MongoClient(uri,
                     tls=True,
@@ -19,10 +18,6 @@ db = client['imageList']
 collection = db['images1']
 fs = gridfs.GridFS(db)
 
-
-image = cv2.imread('Backend/BackendMain/blade.jpg')
-cv2.imshow('image', image) 
-imageString = image.tobytes()
 
 # store the image
 imageID = fs.put(imageString, encoding='utf-8')
@@ -39,7 +34,7 @@ meta = {
     ]
 }
 
-"""
+
 
 """
 

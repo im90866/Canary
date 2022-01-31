@@ -30,7 +30,6 @@ function Login() {
               'password': String(values.password),
             })
             .then((res) => {
-              console.log("hel")
               if(res.data["success"]) { 
                 console.log('Succesfully logged in')
                 navigate('/home')

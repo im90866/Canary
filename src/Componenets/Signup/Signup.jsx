@@ -34,7 +34,7 @@ export default function Signup() {
               }
               else  
                 console.log("Error "+res.data["error"])
-            })
+        })
     }
 
     useEffect(() => setValidate(

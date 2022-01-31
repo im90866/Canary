@@ -6,6 +6,7 @@ import Login from "./Componenets/Login/Login"
 import Post from './Componenets/Post/Post';
 import Signup from './Componenets/Signup/Signup'
 import Update from './Componenets/Update/Update';
+import Upload from './Upload';
 import Workspace from './Componenets/Workspace/Workspace';
 import { useEffect } from "react"
 import axios from "axios"
@@ -27,7 +28,7 @@ function App() {
       <Route path="/update" element={<Update/>}></Route>
       <Route path="/workspace" element={<Workspace/>}></Route>
       <Route path="/profile" element={<Profile/>}></Route>
- <Route path="/profileposts" element={<Profilepost/>}></Route>
+      <Route path="/profileposts" element={<Profilepost/>}></Route>
     </Routes>
 
   );
