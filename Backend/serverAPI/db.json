@@ -33,5 +33,15 @@
         "member4": "rr"
       }
     }
+  ],
+  "images": [
+    {
+      "id": "1300130e-6b2b-49c0-98cd-18421136ea22",
+      "imageFile": "something.jpg"
+    },
+    {
+      "imageFile": "Image_created_with_a_mobile_phone.png",
+      "id": "-PeytoG"
+    }
   ]
 }

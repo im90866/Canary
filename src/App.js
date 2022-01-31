@@ -12,7 +12,11 @@ import axios from "axios"
 import Projects from './Componenets/Projects/Projects';
 import Profile from './Componenets/Profile/Profile';
 import Profilepost from './Componenets/Profileposts/Profilepost';
+<<<<<<< Updated upstream
 import Collaboration from './Componenets/Collaboration/Collaboration';
+=======
+import Upload from './Upload'
+>>>>>>> Stashed changes
 function App() {
   useEffect(() => {
     //axios.get("http://localhost:8000/delete")
@@ -28,9 +32,14 @@ function App() {
       <Route path="/update" element={<Update/>}></Route>
       <Route path="/workspace" element={<Workspace/>}></Route>
       <Route path="/profile" element={<Profile/>}></Route>
+<<<<<<< Updated upstream
       <Route path="/profileposts" element={<Profilepost/>}></Route>
       <Route path="/collaboration" element={<Collaboration/>}></Route>
  
+=======
+ <Route path="/profileposts" element={<Profilepost/>}></Route>
+ <Route path="/upload" element={<Upload/>}></Route>
+>>>>>>> Stashed changes
     </Routes>
 
   );

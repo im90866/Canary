@@ -21,7 +21,7 @@ class Upload extends Component {
     render() {
         return (
             <div className="Upload">
-                <input type="file" onChange={this.fileSelect}/>
+                <input type="file" accept="image/*" onChange={this.fileSelect}/>
                 <button onClick={this.fileUpload}>Upload</button>
             </div>
         )
