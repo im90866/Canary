@@ -1,4 +1,3 @@
-
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Home from './Componenets/Home/Home';
@@ -16,7 +15,6 @@ import Profilepost from './Componenets/Profileposts/Profilepost';
 import Collaboration from './Componenets/Collaboration/Collaboration';
 import Editprofile from './Componenets/Editprofile/Editprofile';
 import ChangePassword from './Componenets/ChangePassword/ChangePassword';
-
 
 function App() {
   useEffect(() => {
