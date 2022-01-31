@@ -45,55 +45,19 @@ import { RiTeamFill } from "react-icons/ri";
 import "./Workspace.css"
 import { RiChatSmile2Fill } from "react-icons/ri"
 import { BsImageFill } from "react-icons/bs";
-import { useState } from 'react';
-import api from '../../API/projects'
+import { BsThreeDots } from "react-icons/bs";
+import Modal from "../Modal/Modal"
+import {useState} from "react"
 
 function Workspace() {
-
-  const [image, setImage] = useState({
-    selectedFile: null,
-    imageFile: null
-  });
-
-  const fileSelect = async (event) => {
-    setImage({
-      selectedFile: event.target.files[0],
-      imageFile: URL.createObjectURL(event.target.files[0])
-    })
-
-    const request = {
-      imageFile: event.target.files[0].name
-    }
-
-    const response = await api.post("/images", request)
-
-    console.log(event.target.files[0].name);
-    console.log(response)
-  }
-
-  const fileUpload = async () => {
-    const fd = new FormData();
-    const request = {
-      imageFile: image.selectedFile.name
-    }
-
-    const response = await api.post("/allProjects", request)
-
-
-    console.log(image.selectedFile.name)
-    // fd.append('image', image.selectedFile, image.selectedFile.name);
-    // Axios.post('', fd);
-    await api.post('/images', response)
-  }
-
-  return (
-    <div>
-      <div className="navbar-container">
+  const [openModal ,setOpenModal] =useState(false);
+  return <div>
+       <div className="navbar-container">
         <div className="navbar-left">
           {/* <Link to='#' className='menu-bars'>
             <FaBars onClick={showSidebar} />
           </Link> */}
-          <span className="navbar-logo"><Link to="/home">Canary</Link></span>
+        <span className="navbar-logo"><Link to="/home">Canary</Link></span>
         </div>
         <div className="navbar-center">
           <div className="navbar-search">
@@ -122,80 +86,93 @@ function Workspace() {
 
       </div>
       <div className="sidenav">
-        <div className="sidenav-container">
+                <div className="sidenav-container">
+            
+                    <ul className="sidenav-list">
+                        <li className="sidenav-item">
+                        <FaBackspace className="sidenav-project"/>
+                        <Link to="/projects">
+                        <span className="sidenav-text">Back</span> 
+                            </Link>
+                        </li>
+                       <li className="sidenav-item">
+                        <AiFillEdit className="sidenav-project"/>
+                        <Link to="/home">
+                          <span className="sidenav-text">Editor</span> 
+                        </Link>
+                        </li>
+                      <li className="sidenav-item">
+                        <RiTeamFill className="sidenav-project"/>
+                        <Link to="/home">
+                             <span className="sidenav-text">Team</span> 
+                            </Link>
+                        </li>
+                       <li className="sidenav-item">
+                        <RiChatSmile2Fill  className="sidenav-project"/>
+                        <Link to="/">
+                             <span className="sidenav-text">Chat</span> 
+                        </Link>
+                        </li>
+                        <li className="sidenav-item">
+                        <FaHistory  className="sidenav-project"/>
+                        <Link to="/">
+                             <span className="sidenav-text">History</span> 
+                        </Link>
+                        </li>
 
-          <ul className="sidenav-list">
-            <li className="sidenav-item">
-              <FaBackspace className="sidenav-project" />
-              <Link to="/projects">
-                <span className="sidenav-text">Back</span>
-              </Link>
-            </li>
-            <li className="sidenav-item">
-              <AiFillEdit className="sidenav-project" />
-              <Link to="/home">
-                <span className="sidenav-text">Editor</span>
-              </Link>
-            </li>
-            <li className="sidenav-item">
-              <RiTeamFill className="sidenav-project" />
-              <Link to="/home">
-                <span className="sidenav-text">Team</span>
-              </Link>
-            </li>
-            <li className="sidenav-item">
-              <RiChatSmile2Fill className="sidenav-project" />
-              <Link to="/">
-                <span className="sidenav-text">Chat</span>
-              </Link>
-            </li>
-            <li className="sidenav-item">
-              <FaHistory className="sidenav-project" />
-              <Link to="/">
-                <span className="sidenav-text">History</span>
-              </Link>
-            </li>
-
-            <li className="sidenav-item">
-              <GoGraph className="sidenav-project" />
-              <Link to="/">
-                <span className="sidenav-text">Satistics</span>
-              </Link>
-            </li>
-            <li className="sidenav-item">
-              <MdSettings className="sidenav-project" />
-              <Link to="/">
-                <span className="sidenav-text">Settings</span>
-              </Link>
-            </li>
-
-          </ul>
+                        <li className="sidenav-item">
+                        <GoGraph  className="sidenav-project"/>
+                        <Link to="/">
+                             <span className="sidenav-text">Satistics</span> 
+                        </Link>
+                        </li>
+                        <li className="sidenav-item">
+                        <MdSettings  className="sidenav-project"/>
+                        <Link to="/">
+                             <span className="sidenav-text">Settings</span> 
+                        </Link>
+                        </li> 
+                    
+                     </ul>
+                </div> 
+          
+           </div>    
+        <div className="folder">
+        <div className="folders">
+       <Link to="/mainspace"> <BsImageFill className='folder-icon'/></Link>
+       <div className="folder-info">
+        <h3 className='folder-text'>Folder 1</h3>
+        <BsThreeDots className='three-dots'/>
+        </div> 
         </div>
 
       </div>
       <div className="folder">
         <div className="folders">
-          <BsImageFill className='folder-icon' />
-          <h3 className='folder-text'>Folder 1</h3>
+        <Link to="/mainspace"><BsImageFill className='folder-icon'/></Link> 
+        <div className="folder-info">
+        <h3 className='folder-text'>Folder 2</h3>
+        <BsThreeDots className='three-dots'/>
+        </div>
+        </div>
+        <div className="folders">
+        <Link to="/mainspace"> <BsImageFill className='folder-icon'/></Link> 
+        <div className="folder-info">
+        <h3 className='folder-text'>Folder 3</h3>
+        <BsThreeDots className='three-dots'/>
+        </div>
+        </div>
+        <div className="folders">
+       <button className='add' onClick={()=>
+      setOpenModal(true)}>+</button>
+        <h3 className='folder-add'>Add new Folder</h3>
+       
+        </div>
+        
 
         </div>
-        <div className="folders">
-          <BsImageFill className='folder-icon' />
-          <h3 className='folder-text'>Folder 2</h3>
-        </div>
-        <div className="folders">
-          <BsImageFill className='folder-icon' />
-          <h3 className='folder-text'>Folder 3</h3>
-        </div>
-        <div className="folders">
-          <MdAddBox className='folder-icon new' type='file' />
-          <input type="file" accept='image/*' onChange={fileSelect} />
-          <button onClick={fileUpload}>Upload</button>
-        </div>
-      </div>
-
-    </div>
-  )
+        {openModal && <Modal closeModal={setOpenModal}/>}
+  </div>;
 }
 
 export default Workspace;

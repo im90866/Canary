@@ -1,0 +1,59 @@
+
+  .modalContainer {
+    width: 400px;
+    height: 300px;
+    border-radius: 12px;
+    background-color: #FFF7DD;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    margin-left: 450px;
+  }
+  
+  .modalContainer .title {
+    display: inline-block;
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  .titleCloseBtn {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .titleCloseBtn button {
+    background-color: transparent;
+    border: none;
+    font-size: 25px;
+    cursor: pointer;
+  }
+  .folder-name{
+      border:none ;
+      padding: 12px 50px;
+      width: 70%;
+  }
+  
+  .modalContainer .body {
+  
+  
+    justify-content: center;
+    align-items: center;
+    font-size: 1.7rem;
+    text-align: center;
+    padding-bottom: 250px;
+  }
+  .title{
+      color: black;
+  }
+  
+
+ 
+  .cross{
+      color: black;
+  }
+  .folder-btn{
+      width: 50%;
+ margin-top: 50px;
+      position: relative;
+  }
