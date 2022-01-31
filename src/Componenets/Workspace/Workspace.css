@@ -5,7 +5,7 @@
     padding-bottom: 100px;
 }
 .project-text a{
-    text-decoration: none;
+ text-decoration: none;
    
 }
 .sidenav-project{
@@ -23,6 +23,18 @@
     margin-top: 100px;
    font-size: 150px;
 }
+.folder-icon a{
+    color: black;
+    text-decoration: none;
+}
+.folder-info{
+    display: flex;
+}
+.three-dots{
+    margin-left: 30px;
+    color: #f7b53b;
+    font-size: 20px;
+}
 .new{
     color:#f7b53b;
    
@@ -31,6 +43,13 @@
     color:#f7b53b ;
     font-size: 15px;
     margin-left: 15px;
+
+}
+.folder-add{
+    color:#f7b53b ;
+    font-size: 15px;
+    margin-left: 10px;
+    margin-top: 15px;
 }
 .folder-settings{
     display: flex;
@@ -39,4 +58,11 @@
     font-weight: 700;
     margin-left: 100px;
     margin-top: 5px;
+}
+.add{
+    border: none;
+    padding: 15px 32px;
+  font-size: 80px;
+    border-radius: 10px;
+    margin-top: 110px;
 }

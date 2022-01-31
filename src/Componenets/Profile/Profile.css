@@ -1,81 +1,56 @@
 .profile-container{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(12rem, 16rem));
-    gap: 2rem;
-    justify-content: center;
-    margin-top: 1.5rem;
-    margin-left: 50px;
-    margin-right: 600px;
+    margin-top: 100px !important;
 }
-.profile-pic{
-    width:160px;
-    height:160px;
-    border-radius: 80px;
-    float: left;
-    position: sticky;
- 
-    
-}
-.profile-name{
-    text-overflow: clip;
-    color: black;
-    font-size: 25px;
-    white-space: nowrap;
-    margin-left: 70px;
-    margin-top: 100px;
-
-    position: absolute;
-}
-.edit-profile{
-    padding: 10px;
-    border-radius: 5px;
-    white-space: nowrap;
-    text-overflow: clip;
-    border: none;
-    margin-bottom: 100px;
+.profile-image{
     margin-left: 300px;
-    margin-top: 100px;
-    
+    position: sticky;
 }
 .profile-info{
-display: flex;
-align-items: center;
-justify-content: space-around;
-padding-left: 20px;
-
-border-bottom: 1px solid gray;
-  
-}
-.profile-info2{
-padding: 0;
-margin: auto;
-position: sticky;
-}
-.info{
-    font-size: 20px;
-    color: black;
-   font-weight: 700;
-    text-overflow: clip;
-    white-space: nowrap; 
+    margin-right:300px;
     text-align: right;
-    float: left;
-    margin-right: 50px;
-    margin-left: 50px;
- 
-    margin-top: auto;
-    margin-top: 5px;
+    margin-top: 50px;
+    padding-right: 300px;
    
-    
 }
-.btns{
+.profile-name{
+    display: flex;
+    font-size: 30px;
+    color: #000000;
+    margin-left: 100px;
+    white-space: nowrap;
+    text-overflow: clip;
+}
+ .follow-info{
+    padding-top: 25px;
+    font-size: 25px;
+    padding-left: 100px;
+} 
+.info{
+    white-space: nowrap;
+    text-overflow: clip;
+    margin-left: 20px;
+}
+.profile{
     display: flex;
 }
-.post-btn{
+.btn{
+    margin-left: 50px;
     border: none;
-    width: 60%;
-    padding: 10px 5px;
-    margin-top: 25px;
-    margin-left: 100px;
+    white-space: nowrap;
+    text-overflow: clip;
     border-radius: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
     
+}
+.profile-posts{
+    margin-left: 500px;
+    display: flex;
+}
+.display{
+    margin-left: 30px;
+    margin-right: 20px;
+    font-size: 15px;
+    border-radius: 5px;
+    border: none;
 }

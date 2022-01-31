@@ -45,14 +45,19 @@ import { RiTeamFill } from "react-icons/ri";
 import "./Workspace.css"
 import {RiChatSmile2Fill} from  "react-icons/ri"
 import { BsImageFill } from "react-icons/bs";
+import { BsThreeDots } from "react-icons/bs";
+import Modal from "../Modal/Modal"
+import {useState} from "react"
+
 function Workspace() {
+  const [openModal ,setOpenModal] =useState(false);
   return <div>
        <div className="navbar-container">
         <div className="navbar-left">
         {/* <Link to='#' className='menu-bars'>
             <FaBars onClick={showSidebar} />
           </Link> */}
-          <span className="navbar-logo"><Link to="/home">Canary</Link></span>
+        <span className="navbar-logo"><Link to="/home">Canary</Link></span>
         </div>
         <div className="navbar-center">
           <div className="navbar-search">
@@ -126,31 +131,44 @@ function Workspace() {
                         <Link to="/">
                              <span className="sidenav-text">Settings</span> 
                         </Link>
-                        </li>
-                      
-                    </ul>
+                        </li> 
+                    
+                     </ul>
                 </div> 
           
-           </div>
+           </div>    
         <div className="folder">
         <div className="folders">
-        <BsImageFill className='folder-icon'/>
+       <Link to="/mainspace"> <BsImageFill className='folder-icon'/></Link>
+       <div className="folder-info">
         <h3 className='folder-text'>Folder 1</h3>
-        
+        <BsThreeDots className='three-dots'/>
+        </div> 
         </div>
         <div className="folders">
-        <BsImageFill className='folder-icon'/>
+        <Link to="/mainspace"><BsImageFill className='folder-icon'/></Link> 
+        <div className="folder-info">
         <h3 className='folder-text'>Folder 2</h3>
+        <BsThreeDots className='three-dots'/>
+        </div>
         </div>
         <div className="folders">
-        <BsImageFill className='folder-icon'/>
+        <Link to="/mainspace"> <BsImageFill className='folder-icon'/></Link> 
+        <div className="folder-info">
         <h3 className='folder-text'>Folder 3</h3>
+        <BsThreeDots className='three-dots'/>
+        </div>
         </div>
         <div className="folders">
-        <MdAddBox className='folder-icon new'/>
+       <button className='add' onClick={()=>
+      setOpenModal(true)}>+</button>
+        <h3 className='folder-add'>Add new Folder</h3>
+       
         </div>
+        
+
         </div>
-          
+        {openModal && <Modal closeModal={setOpenModal}/>}
   </div>;
 }
 

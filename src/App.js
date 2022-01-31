@@ -13,6 +13,9 @@ import axios from "axios"
 import Projects from './Componenets/Projects/Projects';
 import Profile from './Componenets/Profile/Profile';
 import Profilepost from './Componenets/Profileposts/Profilepost';
+import Collaboration from './Componenets/Collaboration/Collaboration';
+import Editprofile from './Componenets/Editprofile/Editprofile';
+import ChangePassword from './Componenets/ChangePassword/ChangePassword';
 function App() {
   useEffect(() => {
     //axios.get("http://localhost:8000/delete")
@@ -29,6 +32,10 @@ function App() {
       <Route path="/workspace" element={<Workspace/>}></Route>
       <Route path="/profile" element={<Profile/>}></Route>
       <Route path="/profileposts" element={<Profilepost/>}></Route>
+      <Route path="/collaboration" element={<Collaboration/>}></Route>
+      <Route path="/editprofile" element={<Editprofile/>}></Route>
+      <Route path="/changepassword" element={<ChangePassword/>}></Route>
+ 
     </Routes>
 
   );
