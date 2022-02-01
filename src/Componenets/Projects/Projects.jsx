@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { BiEdit } from "react-icons/bi";
 import { BsFillTrashFill } from "react-icons/bs";
+import { Link } from 'react-router-dom';
 
 function Projects() {
 
@@ -13,14 +14,16 @@ function Projects() {
   const [update, setUpdate] = useState(false)
 
   const getProjects = async () => {
-    const response = axios.get("http://localhost:8000/getproject/" + String(getCookie('username')))
-    .then((res) => {
-      if(res.data["success"]) { 
-        return res.data['projectList']
-      }
-      else  
-        console.log("Error: " + res.data["error"])
-    })
+    // const response = axios.get("http://localhost:8000/getproject/" + String(getCookie('username')))
+    // .then((res) => {
+    //   if(res.data["success"]) { 
+    //     return res.data['projectList']
+    //   }
+    //   else  
+    //     console.log("Error: " + res.data["error"])
+    // })
+    const response = await api.get("/allProjects")
+    return response.data
   }
 
   useEffect(() => {
@@ -53,16 +56,23 @@ function Projects() {
   const addProject = async (project) => {
     console.log(project)
 
+    // const request = {
+    //   'projectName' : "project1",
+    //   'projectAdmin' : String(getCookie('username')),
+    // }
+
+    // const response = axios.post("http://localhost:8000/createproject/", request).then((res) => {
+    //   if(res.data["error"]) { 
+    //     console.log(res.data['error'])
+    //   }
+    // })
+    
     const request = {
-      'projectName' : "project1",
-      'projectAdmin' : String(getCookie('username')),
+      id: uuidv4(),
+      ...project
     }
 
-    const response = axios.post("http://localhost:8000/createproject/", request).then((res) => {
-      if(res.data["error"]) { 
-        console.log(res.data['error'])
-      }
-    })
+    const response = await api.post("/allProjects", request)
 
     const getAll = async () => {
         const allProjects = await getProjects()
@@ -129,7 +139,7 @@ function Projects() {
               {
                 projects.map(project =>
                   <div className="projectlistname" key={project.id}>
-                    <li >{project.projectName}</li>
+                    <Link to={`/workspace/${project.id}`}><li>{project.projectName}</li></Link>
                     <BiEdit className="project-icon" onClick={() => editProject(project.id)} />
                     <BsFillTrashFill className="project-delete" onClick={() => removeProject(project.id)} />
                   </div>
@@ -141,7 +151,7 @@ function Projects() {
 
         <div className="create-project">
           <div className="create-projecttitle">
-            <span class="cptitle">Create Project</span>
+            <span className="cptitle">Create Project</span>
           </div>
           <input type="text" value={id} hidden />
           <div className="project-form">
@@ -152,13 +162,13 @@ function Projects() {
               value={projectName}
               onChange={event => setProjectName(event.target.value)}
             /><br></br>
-            <label for="project-type " className='type'>Project Type</label>
+            <label htmlFor="project-type " className='type'>Project Type</label>
             <select id="project-type" name="project-type" className='project-type' value={type} onChange={event => setType(event.target.value)}>
               <option value="individual">Individual Project</option>
               <option value="group">Group Project</option>
             </select><br></br>
             <br></br>
-            <label for="members-names" className='members'>Names of the members</label><br></br>
+            <label htmlFor="members-names" className='members'>Names of the members</label><br></br>
 
             <input type="text"
               className='field'

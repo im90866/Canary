@@ -3,9 +3,7 @@ import pymongo
 # Helper functions
 def getClient():
     uri = "mongodb+srv://zinasktest.uxarp.mongodb.net/myFirstDatabase?authSource=%24external&authMechanism=MONGODB-X509&retryWrites=true&w=majority"
-    client = pymongo.MongoClient(uri,
-                        tls=True,
-                        tlsCertificateKeyFile='Backend/BackendMain/X509-cert-7626596970333998897.pem')
+    client = pymongo.MongoClient("mongodb+srv://User2:password1234@zinasktest.uxarp.mongodb.net/mainDB?retryWrites=true&w=majority")
     return client
 
 # Checks if a value is there in a given collection
