@@ -14,9 +14,9 @@ function Upload() {
         base64(file)
         setImage({
             selectedFile: file, 
-            imageFile: null,
-            //imageFile: URL.createObjectURL(event.target.files[0])
-            image64: null
+            imageFile: URL.createObjectURL(event.target.files[0]),
+            image64: null,
+            imageReturn: null
         })                
     }
 
@@ -26,24 +26,21 @@ function Upload() {
             setImage({
                 image64: String(reader.result)
             })
-            console.log(image.image64)
         }
         reader.readAsDataURL(file);
     }
 
     const fileUpload = () => {
-        const fd = new FormData();
-        fd.append('image',image.selectedFile, image.selectedFile.name);
-
-        var images = new Image();
-        images.src = image.image64
-        setImage({
-            imageFile: images
-        })
+        const fd = {
+            'link' : image.image64
+        }
 
         //const base64 = await convertToBase64(file);
-        axios.post('http://localhost:8000/store/', fd).then((res) => {
-            console.log("somethinggggg")
+        axios.post('http://localhost:8000/returnImage/', fd).then((res) => {
+            console.log(res.data['link'])
+            setImage({
+                imageReturn : res.data['link']
+            }) 
         });
     }
 
@@ -51,7 +48,7 @@ function Upload() {
         <div className="Upload">
             <input type="file" onChange={fileSelect}/>
             <button onClick={fileUpload}>Upload</button>
-            <img src={image.imageFile} width="600" height="400"></img>
+            <img src={image.imageReturn} width="600" height="400"></img>
         </div>
     )
 }

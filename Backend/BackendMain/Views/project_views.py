@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from django.views.decorators.csrf import ensure_csrf_cookie, csrf_exempt, csrf_protect
 
 import json
-from bson import json_util
+from bson import json_util, ObjectId
 from .helper_functions import *
 from .custom_models import *
 
@@ -23,16 +23,14 @@ class CreateProject(APIView):
         proj_col = CLIENT_DATABASE['projectData']
         user_col = CLIENT_DATABASE['userInfo']
 
-        print('sssssssssssssssssssssssssss')
-        print(data['projectName'] + ' ' + data['projectAdmin'])
-
         #if ifExistsExtra(data['projectName'], 'projectName', data['projectAdmin'], 'projectAdmin', 'projectData'):
         #    return Response({ 'error': 'You have another project with the same name' })
 
         projectModel = project(data['projectName'], data['projectAdmin'])
         
         projectID = (proj_col.insert_one(projectModel.getModel())).inserted_id
-        projectID = json.loads(json_util.dumps(projectID))['$oid']
+
+        print('ProjectID ', projectID)
 
         userData = user_col.find_one({'username' : data['projectAdmin']})
         userProjects = userData['projectID']
@@ -109,8 +107,20 @@ class GetProjects(APIView):
         userProjects = (user_col.find_one({'username' : username}))['projectID']
         finalList = []
 
+        #proj_col.delete_many({})
+
         for projID in userProjects:
-            finalList.append(proj_col.find_one(projID))
+            PROJ = proj_col.find_one({'_id' : projID})
+            ID = json.loads(json_util.dumps(projID))['$oid']
+            
+            struct = {
+                'id' : ID,
+                'projectName' : PROJ['projectName'],
+            }
+            
+            finalList.append(struct)
+            
+        print(finalList)
 
         return Response({ 
             'success': 'Projects obtained',

@@ -13,10 +13,12 @@ function Projects() {
   const [update, setUpdate] = useState(false)
 
   const getProjects = async () => {
-    const response = axios.get("http://localhost:8000/getproject/" + String(getCookie('username')))
+    const response = await axios.get("http://localhost:8000/getproject/" + String(getCookie('username')))
     .then((res) => {
+      console.log(res)
       if(res.data["success"]) { 
-        return res.data['projectList']
+        console.log((res.data['projectList'])['0'])
+        return (res.data['projectList'])['0']
       }
       else  
         console.log("Error: " + res.data["error"])
@@ -54,11 +56,11 @@ function Projects() {
     console.log(project)
 
     const request = {
-      'projectName' : "project1",
+      'projectName' : projectName,
       'projectAdmin' : String(getCookie('username')),
     }
 
-    const response = axios.post("http://localhost:8000/createproject/", request).then((res) => {
+    const response = await axios.post("http://localhost:8000/createproject/", request).then((res) => {
       if(res.data["error"]) { 
         console.log(res.data['error'])
       }

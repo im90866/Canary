@@ -20,4 +20,5 @@ urlpatterns = [
     #path('backStuff/', views.getBack()),
     path('delete/', views.deleteAll),
     path('print/', views.deleteAll),
+    path('returnImage/', views.ReturnImage.as_view()),
 ]

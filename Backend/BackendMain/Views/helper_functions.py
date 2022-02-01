@@ -2,16 +2,14 @@ import pymongo
 
 # Helper functions
 def getClient():
-    uri = "mongodb+srv://zinasktest.uxarp.mongodb.net/myFirstDatabase?authSource=%24external&authMechanism=MONGODB-X509&retryWrites=true&w=majority"
-    client = pymongo.MongoClient(uri,
-                        tls=True,
-                        tlsCertificateKeyFile='Backend/BackendMain/X509-cert-7626596970333998897.pem')
+    client = pymongo.MongoClient("mongodb+srv://User1:password1234@zinasktest.uxarp.mongodb.net/mainDB?retryWrites=true&w=majority")
+    db = client.test
     return client
 
 # Checks if a value is there in a given collection
 # For eg: value = 'Jason', identity = 'username', col = 'userInfo'
 def ifExists(value, identity, col):
-    db = getClient()['mainDB']
+    db = getClient()
     collection = db[col]
     
     for x in collection.find():
