@@ -26,7 +26,7 @@ function Upload() {
             setImage({
                 image64: String(reader.result)
             })
-            console.log(image.images64)
+            console.log(image.image64)
         }
         reader.readAsDataURL(file);
     }

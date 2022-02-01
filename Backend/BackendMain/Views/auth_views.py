@@ -23,18 +23,18 @@ class SignupView(APIView):
         username = data['username']
         password = data['password']
         userDetails = data['userDetails']
+        
+        if ifExists(username, "username", 'userInfo'):
+            return Response({ 'error': 'Username already exists' })
+        else:
+            userModel = userInfo(data['username'], data['password'], data['userDetails'])
+            
+            user_info = userModel.getModel()
 
-        try:
-            if ifExists(username, "username"):
-                return Response({ 'error': 'Username already exists' })
-            else:
-                userModel = userInfo(username, password, userDetails)
-                user_info = userModel.getModel()
-
-                collection.insert_one(user_info)
-                return Response({ 'success': 'User created successfully' })
-        except:
-                return Response({ 'error': 'Something went wrong when registering account' })
+            collection.insert_one(user_info)
+            return Response({ 'success': 'User created successfully' })
+    
+            return Response({ 'error': 'Something went wrong when registering account' })
 
 
 class LoginView(APIView):
@@ -55,6 +55,9 @@ class LoginView(APIView):
         query = {
             'username' : username
         }
+
+        for x in collection.find():
+            print(x)
 
         for x in collection.find(query):
             if x['password'] == password:

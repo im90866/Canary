@@ -15,7 +15,8 @@ class userInfo():
         self._userDetails = details
 
     # Creates model without checks. Use when JSON object is taken from database
-    def __init__(self, jsonFile):
+    @classmethod
+    def otherInit(self, jsonFile):
         self.setAuth(jsonFile['username'], jsonFile['password'])
         self._profilePictureID = jsonFile['profilePictureID']
         self._userDetails = jsonFile['userDetails']
@@ -96,9 +97,9 @@ class project():
     def __init__(self, name, admin):
         self._projectName = name
         self._projectAdmin = admin
-        pass
+        self._projectMembers = [admin]
 
-    def __init__(self, jsonFile):
+    def otherInit(self, jsonFile):
         self._projectName = jsonFile['projectName']
         self._projectAdmin = jsonFile['projectAdmin']
         self._projectMembers = jsonFile['projectMembers']

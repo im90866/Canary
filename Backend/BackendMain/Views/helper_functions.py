@@ -13,7 +13,7 @@ def getClient():
 def ifExists(value, identity, col):
     db = getClient()['mainDB']
     collection = db[col]
-
+    
     for x in collection.find():
         if x[identity] == value:
             return True
