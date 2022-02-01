@@ -44,7 +44,7 @@ export default function Topbar() {
               <Link to="/projects"><BsFillPlusCircleFill /></Link>
             </div>
             <div className="navbar-IconItem">
-              <Link to="/home"><img src="/images/avatar.png" alt="" className="topbarImg" /></Link>
+              <Link to="/profile"><img src="/images/avatar.png" alt="" className="topbarImg" /></Link>
             </div>
             {/* <div className="navbar-right">
               <div className="navbar-icons">

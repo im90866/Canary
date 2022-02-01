@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "json-server -p 3005 -w db.json"
+    "start" : "json-server -p 3005 -w db.json"
   },
+  "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {

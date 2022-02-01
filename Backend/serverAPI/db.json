@@ -1,36 +1,36 @@
 {
   "allProjects": [
     {
-      "id": 1,
-      "projectName": "Project1",
-      "type": "group",
+      "id": "9cbd8cfb-5c84-436b-8e1d-879de542c898",
+      "projectName": "HelloS",
+      "type": "",
       "members": {
-        "member1": "Joe",
-        "member2": "Ann",
-        "member3": "Fred",
-        "member4": "Mary"
+        "member1": "",
+        "member2": "",
+        "member3": "",
+        "member4": ""
       }
     },
     {
-      "id": 2,
-      "projectName": "Project2",
-      "type": "Group",
+      "id": "2bc4936d-f450-4287-b30c-eaee6408df22",
+      "projectName": "",
+      "type": "",
       "members": {
-        "member1": "Joe1",
-        "member2": "Ann1",
-        "member3": "Fred1",
-        "member4": "Mary1"
+        "member1": "",
+        "member2": "",
+        "member3": "",
+        "member4": ""
       }
     },
     {
-      "id": "1300130e-6b2b-49c0-98cd-18421136eac3",
-      "projectName": "eeee1",
-      "type": "group",
+      "id": "12dbc39a-35c7-44eb-9f3f-bea2e354def2",
+      "projectName": "",
+      "type": "",
       "members": {
-        "member1": "qq",
-        "member2": "ww",
-        "member3": "ee",
-        "member4": "rr"
+        "member1": "",
+        "member2": "",
+        "member3": "",
+        "member4": ""
       }
     }
   ]

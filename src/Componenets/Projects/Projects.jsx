@@ -1,6 +1,7 @@
 import React from 'react';
 import Topbar from '../Topbar/Topbar';
 import api from '../../API/projects'
+import axios from 'axios'
 import { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { BiEdit } from "react-icons/bi";
@@ -12,8 +13,14 @@ function Projects() {
   const [update, setUpdate] = useState(false)
 
   const getProjects = async () => {
-    const response = await api.get("/allProjects")
-    return response.data
+    const response = axios.get("http://localhost:8000/getproject/" + String(getCookie('username')))
+    .then((res) => {
+      if(res.data["success"]) { 
+        return res.data['projectList']
+      }
+      else  
+        console.log("Error: " + res.data["error"])
+    })
   }
 
   useEffect(() => {
@@ -45,23 +52,27 @@ function Projects() {
 
   const addProject = async (project) => {
     console.log(project)
+
     const request = {
-      id: uuidv4(),
-      ...project
+      'projectName' : "project1",
+      'projectAdmin' : String(getCookie('username')),
     }
 
-    const response = await api.post("/allProjects", request)
-    console.log(response)
+    const response = axios.post("http://localhost:8000/createproject/", request).then((res) => {
+      if(res.data["error"]) { 
+        console.log(res.data['error'])
+      }
+    })
 
     const getAll = async () => {
-      const allProjects = await getProjects()
-      setProjects(allProjects)
-    }
-    getAll()
-    setId("")
-    setProjectName("")
-    setType("")
-    setMembers({
+        const allProjects = await getProjects()
+        setProjects(allProjects)
+      }
+      getAll()
+      setId("")
+      setProjectName("")
+      setType("")
+      setMembers({
       member1: "",
       member2: "",
       member3: "",
@@ -191,6 +202,17 @@ function Projects() {
     </div>
 
   );
+}
+
+function getCookie(name) {
+  var nameEQ = name + "=";
+  var ca = document.cookie.split(';');
+  for(var i=0;i < ca.length;i++) {
+      var c = ca[i];
+      while (c.charAt(0)==' ') c = c.substring(1,c.length);
+      if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+  }
+  return null;
 }
 
 export default Projects;

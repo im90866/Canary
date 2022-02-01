@@ -23,9 +23,11 @@ export default function Signup() {
               'username': String(username),
               'password': String(password1),
               're_password': String(password2),
-              'fname': String(fName),
-              'lname': String(lName),
-              'email': String(email),
+              'userDetails': {
+                'fname' : String(fName),
+                'lname': String(lName),
+                'email': String(email),
+              }
             })
             .then((res) => {
               if(res.data["success"]) { 
@@ -34,7 +36,7 @@ export default function Signup() {
               }
               else  
                 console.log("Error "+res.data["error"])
-            })
+        })
     }
 
     useEffect(() => setValidate(

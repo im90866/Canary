@@ -5,6 +5,8 @@ npm install
 npm i react-router-dom
 npm i universal-cookie
 npm i axios
+npm i crypto-js
+npm i react-icons
 npm start
 ------------------------------------------------------------
 

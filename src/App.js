@@ -1,4 +1,3 @@
-
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Home from './Componenets/Home/Home';
@@ -6,6 +5,7 @@ import Login from "./Componenets/Login/Login"
 import Post from './Componenets/Post/Post';
 import Signup from './Componenets/Signup/Signup'
 import Update from './Componenets/Update/Update';
+import Upload from './Upload';
 import Workspace from './Componenets/Workspace/Workspace';
 import { useEffect } from "react"
 import axios from "axios"
@@ -15,6 +15,7 @@ import Profilepost from './Componenets/Profileposts/Profilepost';
 import Collaboration from './Componenets/Collaboration/Collaboration';
 import Editprofile from './Componenets/Editprofile/Editprofile';
 import ChangePassword from './Componenets/ChangePassword/ChangePassword';
+
 function App() {
   useEffect(() => {
     //axios.get("http://localhost:8000/delete")
@@ -25,16 +26,13 @@ function App() {
       <Route path="/" element={<Login />}></Route>
       <Route path="/home" element={<Home />}></Route>
       <Route path="/signup" element={<Signup />}></Route>
-
+      
       <Route path="/projects" element={<Projects />}></Route>
       <Route path="/update" element={<Update/>}></Route>
       <Route path="/workspace" element={<Workspace/>}></Route>
       <Route path="/profile" element={<Profile/>}></Route>
       <Route path="/profileposts" element={<Profilepost/>}></Route>
-      <Route path="/collaboration" element={<Collaboration/>}></Route>
-      <Route path="/editprofile" element={<Editprofile/>}></Route>
- <Route path="/changepassword" element={<ChangePassword/>}></Route>
- 
+      <Route path="/upload" element={<Upload/>}></Route>
     </Routes>
 
   );
