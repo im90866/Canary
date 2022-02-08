@@ -1,8 +1,9 @@
 import pymongo
+import certifi
 
 # Helper functions
 def getClient():
-    client = pymongo.MongoClient("mongodb+srv://User1:password1234@zinasktest.uxarp.mongodb.net/mainDB?retryWrites=true&w=majority")
+    client = pymongo.MongoClient("mongodb+srv://User3:password1234@zinasktest.uxarp.mongodb.net/mainDB?retryWrites=true&w=majority")
     db = client.test
     return client
 

@@ -14,21 +14,21 @@ function Projects() {
   const [update, setUpdate] = useState(false)
 
   const getProjects = async () => {
-    // const response = axios.get("http://localhost:8000/getproject/" + String(getCookie('username')))
-    // .then((res) => {
-    //   if(res.data["success"]) { 
-    //     return res.data['projectList']
-    //   }
-    //   else  
-    //     console.log("Error: " + res.data["error"])
-    // })
-    const response = await api.get("/allProjects")
-    return response.data
+    const response = await axios.get("http://localhost:8000/getproject/" + String(getCookie('username')))
+    .then((res) => {
+      if(res.data["success"]) { 
+        console.log("something " + (res.data['projectList'])['0'])
+        return (res.data['projectList'])['0']
+      }
+      else  
+        console.log("Error: " + res.data["error"])
+    })
   }
 
   useEffect(() => {
     const getAll = async () => {
       const allProjects = await getProjects()
+      console.log(allProjects)
       if (allProjects)
         setProjects(allProjects)
     }

@@ -2,6 +2,7 @@ from rest_framework.views import APIView
 from rest_framework import permissions
 from rest_framework.response import Response
 from django.views.decorators.csrf import ensure_csrf_cookie, csrf_exempt, csrf_protect
+from django.utils.decorators import method_decorator
 
 from .helper_functions import *
 from .custom_models import *
@@ -13,18 +14,15 @@ CLIENT_DATABASE = CLIENT_SERVER['mainDB']
 # Views
 class SignupView(APIView):
     permission_classes = (permissions.AllowAny, )
+    something = 3
 
     @csrf_exempt
     def post(self, request, format=None):
         data = self.request.data
         
         collection = CLIENT_DATABASE['userInfo']
-
-        username = data['username']
-        password = data['password']
-        userDetails = data['userDetails']
         
-        if ifExists(username, "username", 'userInfo'):
+        if ifExists(data['username'], "username", 'userInfo'):
             return Response({ 'error': 'Username already exists' })
         else:
             userModel = userInfo(data['username'], data['password'], data['userDetails'])
@@ -40,7 +38,6 @@ class SignupView(APIView):
 class LoginView(APIView):
     permission_classes = (permissions.AllowAny, )
 
-    @csrf_exempt
     def post(self, request, format=None):
         data = self.request.data
 
@@ -67,3 +64,10 @@ class LoginView(APIView):
             return Response({ 'success': 'User authenticated' })
         else:
             return Response({ 'error': 'Error Authenticating' })
+
+@method_decorator(ensure_csrf_cookie, name='dispatch')
+class GetCSRFToken(APIView):
+    permission_classes = (permissions.AllowAny, )
+
+    def get(self, request, format=None):
+        return Response({ 'success': 'CSRF cookie set' })

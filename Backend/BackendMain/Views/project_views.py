@@ -5,6 +5,7 @@ from django.views.decorators.csrf import ensure_csrf_cookie, csrf_exempt, csrf_p
 
 import json
 from bson import json_util, ObjectId
+
 from .helper_functions import *
 from .custom_models import *
 
@@ -86,7 +87,7 @@ class UpdateProjectName(APIView):
         proj_col = CLIENT_DATABASE['projectData']
 
         try:
-            userProject = proj_col.find_one(data['projectID'])
+            userProject = proj_col.find_one({'_id' : data['projectID']})
             proj_col.update_one(userProject, {
                 '$set' : {
                             'projectName' : data['newProjectName']

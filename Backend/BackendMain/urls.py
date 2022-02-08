@@ -21,4 +21,5 @@ urlpatterns = [
     path('delete/', views.deleteAll),
     path('print/', views.deleteAll),
     path('returnImage/', views.ReturnImage.as_view()),
+    path('csrf/', GetCSRFToken.as_view()),
 ]

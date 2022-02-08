@@ -8,6 +8,7 @@ import Update from './Componenets/Update/Update';
 import Upload from './Upload';
 import Workspace from './Componenets/Workspace/Workspace';
 import { useEffect } from "react"
+import CSRFToken from './Componenets/Auth/CSRF.js'
 import axios from "axios"
 import Projects from './Componenets/Projects/Projects';
 import Profile from './Componenets/Profile/Profile';
@@ -23,19 +24,20 @@ function App() {
     //axios.get("http://localhost:8000/print")
   }, [])
   return (
+    <>
+    <CSRFToken />
     <Routes>
       <Route path="/" element={<Login />}></Route>
       <Route path="/home" element={<Home />}></Route>
       <Route path="/signup" element={<Signup />}></Route>
-      
+
       <Route path="/projects" element={<Projects />}></Route>
-      <Route path="/update" element={<Update/>}></Route>
-      <Route path="/workspace/:projectId" element={<Workspace/>}></Route>
-      <Route path="/profile" element={<Profile/>}></Route>
-      <Route path="/profileposts" element={<Profilepost/>}></Route>
-      <Route path="/upload" element={<Upload/>}></Route>
-      <Route path="/mainspace/:folderId" element={<Mainspace/>}></Route>
-    </Routes>
+      <Route path="/update" element={<Update />}></Route>
+      <Route path="/workspace" element={<Workspace />}></Route>
+      <Route path="/profile" element={<Profile />}></Route>
+      <Route path="/profileposts" element={<Profilepost />}></Route>
+      <Route path="/upload" element={<Upload />}></Route>
+    </Routes></>
 
   );
 }
