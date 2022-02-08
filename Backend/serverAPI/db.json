@@ -23,8 +23,8 @@
       }
     },
     {
-      "id": "bb83e200-8eab-4465-8450-6781a0e7d1d3",
-      "projectName": "",
+      "id": "cb5b4e42-4670-49bd-8454-9e3369ee6837",
+      "projectName": "wwww",
       "type": "",
       "members": {
         "member1": "",
@@ -32,17 +32,44 @@
         "member3": "",
         "member4": ""
       }
+    }
+  ],
+  "folders": [
+    {
+      "id": "22220",
+      "name": "folder 1",
+      "images": {
+        "photo1": "",
+        "photo2": ""
+      },
+      "projectId": "9cbd8cfb-5c84-436b-8e1d-879de542c898"
     },
     {
-      "id": "77ac0479-0ca3-4ff4-a0ae-ae2e4cc589ce",
-      "projectName": "",
-      "type": "",
-      "members": {
-        "member1": "",
-        "member2": "",
-        "member3": "",
-        "member4": ""
-      }
+      "name": "wwww",
+      "images": {
+        "image1": "",
+        "image2": ""
+      },
+      "id": "5K8zJ4K",
+      "projectId": "9cbd8cfb-5c84-436b-8e1d-879de542c898"
+    },
+    {
+      "name": "ccc",
+      "images": {
+        "image1": "",
+        "image2": ""
+      },
+      "id": "RkaitU2",
+      "projectId": "cb5b4e42-4670-49bd-8454-9e3369ee6837"
+    },
+    {
+      "name": "qaqa",
+      "images": {
+        "image1": "",
+        "image2": ""
+      },
+      "projectId": "cb5b4e42-4670-49bd-8454-9e3369ee6837",
+      "id": "_zBjWOn"
     }
   ]
 }

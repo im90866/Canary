@@ -1,26 +1,27 @@
 import React from 'react';
-import {FaSearch,FaHome} from 'react-icons/fa'
+import { FaSearch, FaHome } from 'react-icons/fa'
 
 import { Link } from "react-router-dom";
-import {FaBackspace,FaHistory } from 'react-icons/fa';
+import { FaBackspace, FaHistory } from 'react-icons/fa';
 
-import { MdSettings,MdAddBox} from "react-icons/md"
-import {GoGraph} from "react-icons/go"
+import { MdSettings, MdAddBox } from "react-icons/md"
+import { GoGraph } from "react-icons/go"
 
-import {AiFillEdit,AiFillFolderAdd } from "react-icons/ai";
+import { AiFillEdit, AiFillFolderAdd } from "react-icons/ai";
 import { RiTeamFill } from "react-icons/ri";
 
-import {RiChatSmile2Fill} from  "react-icons/ri"
+import { RiChatSmile2Fill } from "react-icons/ri"
 import { BsImageFill } from "react-icons/bs";
 import Upload from '../Upload/Upload';
 function Mainspace() {
-  return (<div>
-{/* <div className="navbar-container">
+  return (
+    <div>
+      {/* <div className="navbar-container">
         <div className="navbar-left">
         {/* <Link to='#' className='menu-bars'>
             <FaBars onClick={showSidebar} />
           </Link> */}
-         {/* <span className="navbar-logo"><Link to="/home">Canary</Link></span>
+      {/* <span className="navbar-logo"><Link to="/home">Canary</Link></span>
         </div>
         <div className="navbar-center">
           <div className="navbar-search">
@@ -97,13 +98,13 @@ function Mainspace() {
                         </li>
                       
                     </ul> */}
-                {/* </div> 
-                </div>   */} 
+      {/* </div> 
+                </div>   */}
 
-<div className="upload-container">
-    <Upload/>
-</div>
-  </div>
+      <div className="upload-container">
+        <Upload />
+      </div>
+    </div>
   );
 }
 

@@ -29,7 +29,6 @@ Then install the following through pip:
     pip install pymongo
     pip install djangorestframework
     pip install django-cors-headers
-    pip install opencv-python
 
 After the above is done,
 To run the Django server:
