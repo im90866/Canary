@@ -32,6 +32,7 @@ class CreateProject(APIView):
         projectID = (proj_col.insert_one(projectModel.getModel())).inserted_id
 
         userData = user_col.find_one({'username' : data['projectAdmin']})
+        print(userData)
         userProjects = userData['projectID']
         
         newProjectList = [projectID] + userProjects

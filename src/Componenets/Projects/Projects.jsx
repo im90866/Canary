@@ -14,15 +14,18 @@ function Projects() {
   const [update, setUpdate] = useState(false)
 
   const getProjects = async () => {
-    const response = await axios.get("http://localhost:8000/getproject/" + String(getCookie('username')))
+ 
+    await axios.get("http://localhost:8000/getproject/" + String(getCookie('username')))
     .then((res) => {
       if(res.data["success"]) { 
         console.log("something " + (res.data['projectList'])['0'])
-        return (res.data['projectList'])['0']
+        console.log(res)
+        return (res.data['projectList'])
       }
       else  
         console.log("Error: " + res.data["error"])
     })
+    // console.log(response)
   }
 
   useEffect(() => {
@@ -56,37 +59,17 @@ function Projects() {
   const addProject = async (project) => {
     console.log(project)
 
-    //    const request = {
-    //   'projectName' : "project1",
-    //   'projectAdmin' : String(getCookie('username')),
-    // }
-
-    // const response = axios.post("http://localhost:8000/createproject/", request).then((res) => {
-    //   if(res.data["error"]) { 
-    //     console.log(res.data['error'])
-    //   }
-    // })
-    
     const request = {
-      id: uuidv4(),
+      'projectName' : "project1",
+      'projectAdmin' : String(getCookie('username')),
+      'projectID' : uuidv4(),
       ...project
     }
 
-    const response = await api.post("/allProjects", request)
-
-    const getAll = async () => {
-        const allProjects = await getProjects()
-        setProjects(allProjects)
+    axios.post("http://localhost:8000/createproject/", request).then((res) => {
+      if(res.data["error"]) { 
+        console.log(res.data['error'])
       }
-      getAll()
-      setId("")
-      setProjectName("")
-      setType("")
-      setMembers({
-      member1: "",
-      member2: "",
-      member3: "",
-      member4: ""
     })
   }
 
@@ -219,8 +202,8 @@ function getCookie(name) {
   var ca = document.cookie.split(';');
   for(var i=0;i < ca.length;i++) {
       var c = ca[i];
-      while (c.charAt(0)==' ') c = c.substring(1,c.length);
-      if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+      while (c.charAt(0) ===' ') c = c.substring(1,c.length);
+      if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length,c.length);
   }
   return null;
 }

@@ -41,15 +41,16 @@ function Upload() {
             //imageFile: URL.createObjectURL(event.target.files[0])
             image64: null
         })
+        console.log(file)
     }
 
     const base64 = (file) => {
         var reader = new FileReader();
-        reader.onloadend = function () {
+        reader.onloadend = function (file) {
             setImage({
-                image64: String(reader.result)
+                image64: String(file.target.result)
             })
-            console.log(image.image64)
+            console.log(file.target.result)
         }
         reader.readAsDataURL(file);
     }
