@@ -31,8 +31,6 @@ class CreateProject(APIView):
         
         projectID = (proj_col.insert_one(projectModel.getModel())).inserted_id
 
-        print('ProjectID ', projectID)
-
         userData = user_col.find_one({'username' : data['projectAdmin']})
         userProjects = userData['projectID']
         

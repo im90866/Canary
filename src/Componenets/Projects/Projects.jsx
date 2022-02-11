@@ -56,7 +56,7 @@ function Projects() {
   const addProject = async (project) => {
     console.log(project)
 
-    // const request = {
+    //    const request = {
     //   'projectName' : "project1",
     //   'projectAdmin' : String(getCookie('username')),
     // }
