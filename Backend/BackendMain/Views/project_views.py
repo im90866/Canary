@@ -34,6 +34,7 @@ class CreateProject(APIView):
         print('ProjectID ', projectID)
 
         userData = user_col.find_one({'username' : data['projectAdmin']})
+        print(userData)
         userProjects = userData['projectID']
         
         newProjectList = [projectID] + userProjects
