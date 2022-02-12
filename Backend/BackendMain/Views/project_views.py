@@ -30,13 +30,15 @@ class CreateProject(APIView):
         projectModel = project(data['projectName'], data['projectAdmin'])
         
         projectID = (proj_col.insert_one(projectModel.getModel())).inserted_id
+        projectID = json.loads(json_util.dumps(projectID))['$oid']
 
         userData = user_col.find_one({'username' : data['projectAdmin']})
-        print(userData)
         userProjects = userData['projectID']
-        
+
+        #proj_col.delete_many({})
+        #newProjectList = []
+
         newProjectList = [projectID] + userProjects
-        print(newProjectList)
 
         user_col.update_one(userData, {
             '$set' : {
@@ -44,8 +46,10 @@ class CreateProject(APIView):
             }
         })
 
-        print('yay')
-        return Response({ 'success': 'Project Added' })
+        return Response({ 
+            'success': 'Project Added',
+            'projectID': projectID
+        })
 
 class DeleteProject(APIView):
     permission_classes = (permissions.AllowAny, )
@@ -107,12 +111,11 @@ class GetProjects(APIView):
         userProjects = (user_col.find_one({'username' : username}))['projectID']
         finalList = []
 
-        #proj_col.delete_many({})
-
         for projID in userProjects:
-            PROJ = proj_col.find_one({'_id' : projID})
-            ID = json.loads(json_util.dumps(projID))['$oid']
-            
+            PROJ = proj_col.find_one({'_id' : ObjectId(projID)})
+            #ID = json.loads(json_util.dumps(projID))['$oid']
+            ID = projID
+
             struct = {
                 'id' : ID,
                 'projectName' : PROJ['projectName'],

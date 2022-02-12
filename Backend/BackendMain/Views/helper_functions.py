@@ -2,7 +2,12 @@ import pymongo
 
 # Helper functions
 def getClient():
-    client = pymongo.MongoClient("mongodb+srv://User4:password1234@zinasktest.uxarp.mongodb.net/mainDB?retryWrites=true&w=majority")
+    try:
+        pymongo.MongoClient.admin.command('ping')
+    except:
+        print("Server not available")
+    client = pymongo.MongoClient("mongodb+srv://some:pass1234@zinasktest.uxarp.mongodb.net/mainDB?retryWrites=true&w=majority", 
+        serverSelectionTimeoutMS=3000)
     db = client.test
     return client
 
