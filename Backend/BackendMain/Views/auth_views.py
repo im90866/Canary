@@ -14,6 +14,7 @@ CLIENT_DATABASE = CLIENT_SERVER['mainDB']
 # Views
 class SignupView(APIView):
     permission_classes = (permissions.AllowAny, )
+    something = 3
 
     def post(self, request, format=None):
         data = self.request.data

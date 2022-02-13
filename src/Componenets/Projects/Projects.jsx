@@ -19,8 +19,7 @@ function Projects() {
     .then((res) => {
       if(res.data["success"]) { 
         console.log("something " + (res.data['projectList'])['0'])
-        console.log(res)
-        return (res.data['projectList'])
+        return (res.data['projectList'])['0']
       }
       else  
         console.log("Error: " + res.data["error"])
