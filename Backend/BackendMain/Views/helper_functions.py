@@ -1,5 +1,4 @@
 import pymongo
-import certifi
 
 # Helper functions
 def getClient():

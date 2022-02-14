@@ -12,21 +12,33 @@ function Projects() {
 
   const [projects, setProjects] = useState([])
   const [update, setUpdate] = useState(false)
+  const [id, setId] = useState("")
+  const [projectName, setProjectName] = useState("")
+  const [type, setType] = useState("")
+  const [members, setMembers] = useState({
+    member1: "",
+    member2: "",
+    member3: "",
+    member4: ""
+  })
 
   const getProjects = async () => {
- 
-    await axios.get("http://localhost:8000/getproject/" + String(getCookie('username')))
-    .then((res) => {
-      if(res.data["success"]) { 
-        console.log("something " + (res.data['projectList'])['0'])
-        return (res.data['projectList'])['0']
-      }
-      else  
-        console.log("Error: " + res.data["error"])
-    })
-    // console.log(response)
+
+    const response = await axios.get("http://localhost:8000/getproject/" + String(getCookie('username')))
+      .then((res) => {
+        if (res.data["success"]) {
+          console.log("something " + (res.data['projectList'])['0'])
+          console.log(res)
+          return (res.data['projectList'])
+        }
+        else
+          console.log("Error: " + res.data["error"])
+      })
+    setProjects(response)
+    console.log(response)
   }
 
+  // useEffect(() => (async () => setProjects(await getProjects()))(), [])
   useEffect(() => {
     const getAll = async () => {
       const allProjects = await getProjects()
@@ -37,15 +49,6 @@ function Projects() {
     getAll();
   }, [])
 
-  const [id, setId] = useState("")
-  const [projectName, setProjectName] = useState("")
-  const [type, setType] = useState("")
-  const [members, setMembers] = useState({
-    member1: "",
-    member2: "",
-    member3: "",
-    member4: ""
-  })
 
   const handleMembers = e => {
     const { name, value } = e.target
@@ -59,21 +62,25 @@ function Projects() {
     console.log(project)
 
     const request = {
-      'projectName' : "project1",
-      'projectAdmin' : String(getCookie('username')),
-      'projectID' : uuidv4(),
+      'projectName': "project1",
+      'projectAdmin': String(getCookie('username')),
+      'projectID': uuidv4(),
       ...project
     }
 
     axios.post("http://localhost:8000/createproject/", request).then((res) => {
-      if(res.data["error"]) { 
+      if (res.data["error"]) {
         console.log(res.data['error'])
       }
     })
   }
 
   const removeProject = async (id) => {
-    await api.delete(`/allProjects/${id}`)
+    await axios.delete("http://localhost:8000/createproject/", id).then((res) =>{
+      if (res.data["error"]) {
+        console.log(res.data['error'])
+      }
+    })
     const newProjectList = projects.filter((project) => {
       return project.id !== id
     })
@@ -199,10 +206,10 @@ function Projects() {
 function getCookie(name) {
   var nameEQ = name + "=";
   var ca = document.cookie.split(';');
-  for(var i=0;i < ca.length;i++) {
-      var c = ca[i];
-      while (c.charAt(0) ===' ') c = c.substring(1,c.length);
-      if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length,c.length);
+  for (var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+    if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
   }
   return null;
 }
