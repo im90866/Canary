@@ -5,8 +5,8 @@ from django.views.decorators.csrf import ensure_csrf_cookie, csrf_exempt, csrf_p
 
 import json
 
-from .Views.helper_functions import *
-from .Views.custom_models import *
+from .helper_functions import *
+from .custom_models import *
 
 import gridfs
 import hashlib

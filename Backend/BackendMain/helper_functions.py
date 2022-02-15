@@ -1,15 +1,16 @@
 import pymongo
 import certifi
 
+client = pymongo.MongoClient("mongodb+srv://User1:password1234@zinasktest.uxarp.mongodb.net/mainDB?retryWrites=true&w=majority", 
+        serverSelectionTimeoutMS=5000, maxPoolSize = 500)
+
 # Helper functions
 def getClient():
     try:
         pymongo.MongoClient.admin.command('ping')
     except:
         print("Server not available")
-    client = pymongo.MongoClient("mongodb+srv://some:pass1234@zinasktest.uxarp.mongodb.net/mainDB?retryWrites=true&w=majority", 
-        serverSelectionTimeoutMS=3000)
-    db = client.test
+    
     return client
 
 # Checks if a value is there in a given collection

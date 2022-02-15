@@ -6,8 +6,8 @@ from django.views.decorators.csrf import ensure_csrf_cookie, csrf_exempt, csrf_p
 import json
 from bson import json_util, ObjectId
 
-from .helper_functions import *
-from .custom_models import *
+from ..helper_functions import *
+from ..custom_models import *
 
 # Variables
 CLIENT_SERVER = getClient()

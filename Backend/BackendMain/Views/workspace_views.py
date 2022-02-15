@@ -3,8 +3,8 @@ from rest_framework import permissions
 from rest_framework.response import Response
 from django.views.decorators.csrf import ensure_csrf_cookie, csrf_exempt, csrf_protect
 
-from .helper_functions import *
-from .custom_models import *
+from ..helper_functions import *
+from ..custom_models import *
 
 import gridfs
 

@@ -4,8 +4,8 @@ from rest_framework.response import Response
 from django.views.decorators.csrf import ensure_csrf_cookie, csrf_exempt, csrf_protect
 from django.utils.decorators import method_decorator
 
-from .helper_functions import *
-from .custom_models import *
+from ..helper_functions import *
+from ..custom_models import *
 
 # Variables
 CLIENT_SERVER = getClient()
