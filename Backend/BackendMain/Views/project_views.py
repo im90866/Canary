@@ -17,7 +17,6 @@ CLIENT_DATABASE = CLIENT_SERVER['mainDB']
 class CreateProject(APIView):
     permission_classes = (permissions.AllowAny, )
 
-    @csrf_exempt
     def post(self, request, format=None):
         data = self.request.data
 
@@ -54,36 +53,31 @@ class CreateProject(APIView):
 class DeleteProject(APIView):
     permission_classes = (permissions.AllowAny, )
 
-    @csrf_exempt
     def post(self, request, format=None):
         data = self.request.data
 
         proj_col = CLIENT_DATABASE['projectData']
         user_col = CLIENT_DATABASE['userInfo']
 
-        userList = data['projectMembers']
+        userData = user_col.find_one({'username' : data['projectAdmin']})
+        userData['projectID'].remove(data['projectID'])
+        newProjectList = userData['projectID']
 
-        try:
-            proj_col.delete_one(data['projectID'])
+        proj_col.delete_one({'_id' : ObjectId(data['projectID'])})
 
-            for username in userList:
-                user = user_col.find(username)
-                newProjectList = user['projectID'].remove(data['projectID'])
-                user_col.update_one(user, {
-                    '$set' : {
-                        'projectID' : newProjectList
-                    }
-                })
-        except:
-            return Response({ 'error': 'Something went wrong' })
-            
+        newUser = user_col.find_one({'username' : data['projectAdmin']})
+
+        user_col.update_one(newUser, {
+            '$set' : {
+                'projectID' : newProjectList
+            }
+        })
+
         return Response({ 'success': 'Project Deleted' })
-
 
 class UpdateProjectName(APIView):
     permission_classes = (permissions.AllowAny, )
 
-    @csrf_exempt
     def post(self, request, format=None):
         data = self.request.data
 
@@ -103,11 +97,13 @@ class UpdateProjectName(APIView):
 
 class GetProjects(APIView):
     permission_classes = (permissions.AllowAny, )
-    @csrf_exempt
+
     def get(self, request, username, format=None):
         proj_col = CLIENT_DATABASE['projectData']
         user_col = CLIENT_DATABASE['userInfo']
 
+        userss = (user_col.find_one({'username' : username}))
+        print(userss)
         userProjects = (user_col.find_one({'username' : username}))['projectID']
         finalList = []
 
@@ -115,7 +111,7 @@ class GetProjects(APIView):
             PROJ = proj_col.find_one({'_id' : ObjectId(projID)})
             #ID = json.loads(json_util.dumps(projID))['$oid']
             ID = projID
-
+            print(PROJ)
             struct = {
                 'id' : ID,
                 'projectName' : PROJ['projectName'],

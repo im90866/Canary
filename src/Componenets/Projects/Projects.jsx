@@ -47,7 +47,7 @@ function Projects() {
         setProjects(allProjects)
     }
     getAll();
-  }, [])
+  }, [projects])
 
 
   const handleMembers = e => {
@@ -76,7 +76,12 @@ function Projects() {
   }
 
   const removeProject = async (id) => {
-    await axios.delete("http://localhost:8000/createproject/", id).then((res) =>{
+    const request = {
+      'projectAdmin': String(getCookie('username')),
+      'projectID': id,
+    }
+
+    await axios.post("http://localhost:8000/deleteproject/", request).then((res) =>{
       if (res.data["error"]) {
         console.log(res.data['error'])
       }

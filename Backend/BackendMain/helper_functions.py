@@ -15,10 +15,10 @@ def getClient():
 # Checks if a value is there in a given collection
 # For eg: value = 'Jason', identity = 'username', col = 'userInfo'
 def ifExists(value, identity, col):
-    db = getClient()
+    db = getClient()['mainDB']
     collection = db[col]
     
-    for x in collection.find():
+    for x in collection.find({}):
         if x[identity] == value:
             return True
     return False
