@@ -24,7 +24,7 @@ class StoreImage(APIView):
         proj_col = CLIENT_DATABASE['projectImage']
         user_col = CLIENT_DATABASE['userInfo']
 
-        authorList = data['authorList']
+        # authorList = data['authorList']
 
         FS = gridfs.GridFS(CLIENT_DATABASE)
 

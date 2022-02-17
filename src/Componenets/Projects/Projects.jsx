@@ -47,7 +47,7 @@ function Projects() {
         setProjects(allProjects)
     }
     getAll();
-  }, [projects])
+  }, [])
 
 
   const handleMembers = e => {
@@ -92,6 +92,7 @@ function Projects() {
     setProjects(newProjectList)
   }
 
+  //Remove edit and update
   const editProject = async (id) => {
     const response = await api.get(`/allProjects/${id}`)
     const { projectName, type, members } = response.data
