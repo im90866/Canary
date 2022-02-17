@@ -1,29 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
 import { useState } from 'react';
-import axios, { Axios } from 'axios'; 
+import axios from 'axios'; 
 
 
 
 export default function Upload() {
-    // const[image,setImage]=useState({
-    //    selectedFile: null,
-    //    imageFile: null
-    // });
-
-    // const fileSelect = (event) => {
-    //     setImage({
-    //         selectedFile: event.target.files[0], 
-    //         imageFile: URL.createObjectURL(event.target.files[0])
-    //     })
-    //     console.log(event.target.files[0]);
-    //    }
-
-    // const fileUpload = () => {
-    //     const fd = new FormData();
-    //     console.log(image.selectedFile)
-    //     fd.append('image',image.selectedFile, image.selectedFile.name);
-    //     // Axios.post('', fd);
-    // }
 
     const [image, setImage] = useState({
         selectedFile: null,
@@ -78,7 +59,7 @@ export default function Upload() {
         <div className="Upload">
             <input type="file" onChange={fileSelect} accept="image/*"/>
             <button onClick={fileUpload}>Upload</button>
-            <img src={image.image64} width="600" height="400" className></img>
+            <img src={image.image64} width="600" height="400" alt="" className></img>
         </div>
     )
 }

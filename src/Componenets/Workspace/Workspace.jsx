@@ -1,46 +1,13 @@
-// import React, { Component } from "react";
-// // import axios, { Axios } from 'axios'; 
-
-
-// class Upload extends Component {
-//     state = {
-//         selectedFile: null
-//     }
-//     fileSelect = event => {
-//         this.setState({
-//             selectedFile: event.target.files[0]
-//         })
-//         console.log(event.target.files[0]);
-//        }
-//     fileUpload = () => {
-//         const fd = new FormData();
-//         fd.append('image',this.state.selectedFile, this.state.selectedFile.name);
-//         // Axios.post('', fd);
-//     }
-
-//     render() {
-//         return (
-//             <div className="Upload">
-//                 <input type="file" onChange={this.fileSelect}/>
-//                 <button onClick={this.fileUpload}>Upload</button>
-//             </div>
-//         )
-//     }
-
-// }
-
-// export default Upload;
-
 import React from 'react';
-import { FaSearch, FaHome } from 'react-icons/fa'
+import { FaSearch } from 'react-icons/fa'
 
 import { Link, useParams } from "react-router-dom";
 import { FaBackspace, FaHistory } from 'react-icons/fa';
 
-import { MdSettings, MdAddBox } from "react-icons/md"
+import { MdSettings } from "react-icons/md"
 import { GoGraph } from "react-icons/go"
 
-import { AiFillEdit, AiFillFolderAdd } from "react-icons/ai";
+import { AiFillEdit } from "react-icons/ai";
 import { RiTeamFill } from "react-icons/ri";
 import "./Workspace.css"
 import { RiChatSmile2Fill } from "react-icons/ri"
@@ -48,7 +15,6 @@ import { BsImageFill } from "react-icons/bs";
 import { BsThreeDots } from "react-icons/bs";
 import Modal from "../Modal/Modal"
 import { useState, useEffect } from "react"
-import api from '../../API/projects'
 
 function Workspace() {
 
@@ -58,9 +24,9 @@ function Workspace() {
   const [folders, setFolders] = useState([])
 
   const getFolders = async () => {
-    const response = await api.get(`folders?projectId=${projectId}`)
-    console.log(response)
-    return response.data
+    // const response = await api.get(`folders?projectId=${projectId}`)
+    // console.log(response)
+    // return response.data
   }
   useEffect(() => {
     const getAll = async () => {
@@ -77,8 +43,9 @@ function Workspace() {
       ...folder
     }
 
-    const response = await api.post("/folders", request)
-    console.log(response)
+    // const response = await api.post("/folders", request)
+    // console.log(response)
+
     // setProjects([...project, response.data])
 
     const getAll = async () => {

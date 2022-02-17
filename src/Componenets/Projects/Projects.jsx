@@ -1,6 +1,5 @@
 import React from 'react';
 import Topbar from '../Topbar/Topbar';
-import api from '../../API/projects'
 import axios from 'axios'
 import { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
@@ -94,8 +93,8 @@ function Projects() {
 
   //Remove edit and update
   const editProject = async (id) => {
-    const response = await api.get(`/allProjects/${id}`)
-    const { projectName, type, members } = response.data
+    // const response = await api.get(`/allProjects/${id}`)
+    // const { projectName, type, members } = response.data
     setId(id)
     setProjectName(projectName)
     setType(type)
@@ -104,13 +103,13 @@ function Projects() {
   }
 
   const updateProject = async (project) => {
-    const response = await api.put(`/allProjects/${project.id}`, project)
-    const { id } = response.data
-    setProjects(
-      projects.map((project) => {
-        return project.id === id ? { ...response.data } : project
-      })
-    )
+    // const response = await api.put(`/allProjects/${project.id}`, project)
+    // const { id } = response.data
+    // setProjects(
+    //   projects.map((project) => {
+    //     return project.id === id ? { ...response.data } : project
+    //   })
+    // )
     setId("")
     setProjectName("")
     setType("")

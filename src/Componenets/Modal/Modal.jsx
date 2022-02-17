@@ -1,7 +1,6 @@
 import React from 'react';
 import "./Modal.css"
 import { useState, useEffect } from "react"
-import api from '../../API/projects'
 import { useParams } from 'react-router-dom';
 
 function Modal({ closeModal }) {
@@ -22,8 +21,8 @@ function Modal({ closeModal }) {
       projectId: projectId
     }
 
-    const response = await api.post("/folders", request)
-    console.log(response)
+    // const response = await api.post("/folders", request)
+    // console.log(response)
     closeModal(false)
   }
 

@@ -2,14 +2,10 @@ import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Home from './Componenets/Home/Home';
 import Login from "./Componenets/Login/Login"
-import Post from './Componenets/Post/Post';
 import Signup from './Componenets/Signup/Signup'
-import Update from './Componenets/Update/Update';
-import Upload from './Upload';
 import Workspace from './Componenets/Workspace/Workspace';
 import { useEffect } from "react"
 import CSRFToken from './Componenets/Auth/CSRF.js'
-import axios from "axios"
 import Projects from './Componenets/Projects/Projects';
 import Profile from './Componenets/Profile/Profile';
 import Profilepost from './Componenets/Profileposts/Profilepost';
@@ -32,11 +28,9 @@ function App() {
       <Route path="/signup" element={<Signup />}></Route>
       <Route path="/mainspace" element={<Mainspace />}></Route>
       <Route path="/projects" element={<Projects />}></Route>
-      <Route path="/update" element={<Update />}></Route>
       <Route path="/workspace/:id" element={<Workspace />}></Route>
       <Route path="/profile" element={<Profile />}></Route>
       <Route path="/profileposts" element={<Profilepost />}></Route>
-      <Route path="/upload" element={<Upload />}></Route>
     </Routes></>
 
   );
