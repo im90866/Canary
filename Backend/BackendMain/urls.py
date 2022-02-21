@@ -14,7 +14,8 @@ urlpatterns = [
     path('updateproject/', UpdateProjectName.as_view()),
     path('getproject/<str:username>', GetProjects.as_view()),
 
-    path('storeImageInWorkspace/', StoreImage.as_view()),
+    path('storeImageInWorkspace/', CreateImage.as_view()),
+    path('getWorkspace/<str:username>/<str:projectID>', GetProjects.as_view()),
 
     # debug functions
     #path('backStuff/', views.getBack()),

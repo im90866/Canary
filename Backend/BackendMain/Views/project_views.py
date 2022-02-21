@@ -22,20 +22,23 @@ class CreateProject(APIView):
 
         proj_col = CLIENT_DATABASE['projectData']
         user_col = CLIENT_DATABASE['userInfo']
+        folder_col = CLIENT_DATABASE['folder']
 
         #if ifExistsExtra(data['projectName'], 'projectName', data['projectAdmin'], 'projectAdmin', 'projectData'):
         #    return Response({ 'error': 'You have another project with the same name' })
 
-        projectModel = project(data['projectName'], data['projectAdmin'])
+        # Stores the created root folder, gets the ID and appends it to the new project
+        rootFolderID = folder_col.insert_one(folder("//root", 0).getModel()).inserted_id
+        rootFolderID = json.loads(json_util.dumps(rootFolderID))['$oid']
+
+        projectModel = project(data['projectName'], data['projectAdmin'], rootFolderID)
         
+        # Stores the project, gets the ID and appends it to the user
         projectID = (proj_col.insert_one(projectModel.getModel())).inserted_id
         projectID = json.loads(json_util.dumps(projectID))['$oid']
 
         userData = user_col.find_one({'username' : data['projectAdmin']})
         userProjects = userData['projectID']
-
-        #proj_col.delete_many({})
-        #newProjectList = []
 
         newProjectList = [projectID] + userProjects
 
@@ -102,29 +105,35 @@ class GetProjects(APIView):
         proj_col = CLIENT_DATABASE['projectData']
         user_col = CLIENT_DATABASE['userInfo']
 
-        userss = (user_col.find_one({'username' : username}))
-        print(userss)
-        userProjects = (user_col.find_one({'username' : username}))['projectID']
-        finalList = []
+        extraError = ""
 
-        for projID in userProjects:
-            PROJ = proj_col.find_one({'_id' : ObjectId(projID)})
-            #ID = json.loads(json_util.dumps(projID))['$oid']
-            ID = projID
-            print(PROJ)
-            struct = {
-                'id' : ID,
-                'projectName' : PROJ['projectName'],
-            }
-            
-            finalList.append(struct)
-            
-        print(finalList)
+        try:
+            if not(ifExists(username, "username", 'userInfo')):
+                raise ValueError("Wrong username sent. Something went wrong.")
 
-        return Response({ 
-            'success': 'Projects obtained',
-            'projectList': finalList
-        })
+            userProjects = (user_col.find_one({'username' : username}))['projectID']
+            finalList = []
+
+            for projID in userProjects:
+                PROJ = proj_col.find_one({'_id' : ObjectId(projID)})
+                #ID = json.loads(json_util.dumps(projID))['$oid']
+                ID = projID
+                print(PROJ)
+                struct = {
+                    'id' : ID,
+                    'projectName' : PROJ['projectName'],
+                }
+                
+                finalList.append(struct)
+                
+            print(finalList)
+
+            return Response({ 
+                'success': 'Projects obtained',
+                'projectList': finalList
+            })
+        except:
+            return Response({ 'error': 'Unable to retrieve projects'})
 
 
 

@@ -51,6 +51,29 @@ class userInfo():
 
         return model
 
+class folder():
+    _projectID = ""
+    _folderName = ""
+    _parentID = ""
+    _folderList = []    
+    _imageList = []
+
+    def __init__(self, name, parent): 
+        self._folderName = name
+        self._parentID = parent
+
+    def getModel(self):
+        model = {
+            "type" : 'folder',
+            "projectName" : self._folderName,
+            "parentID" : self._parentID,
+            "folderList" : self._folderList,
+            "imageList" : self._imageList
+        }
+
+        return model
+    
+
 class projectImage():
     _imageID = ""
     _projectID = ""
@@ -91,10 +114,10 @@ class project():
     _projectName = ""
     _projectAdmin = ""
     _projectMembers = []
-    _projectImages = []
+    _projectRoot = []
     _projectSettings = {}
 
-    def __init__(self, name, admin):
+    def __init__(self, name, admin, root):
         self._projectName = name
         self._projectAdmin = admin
         self._projectMembers = [admin]
@@ -103,11 +126,11 @@ class project():
         self._projectName = jsonFile['projectName']
         self._projectAdmin = jsonFile['projectAdmin']
         self._projectMembers = jsonFile['projectMembers']
-        self._projectImages = jsonFile['projectImages']
+        self._projecRoot = jsonFile['projectRoot']
         self._projectSettings = jsonFile['projectSettings']
 
-    def addImage(self, newImage):
-        newList = self._projectImages[:].append(newImage)
+    def addFolder(self, newImage):
+        newList = self._projectRoot[:].append(newImage)
         return newList
 
     def getModel(self):
@@ -115,7 +138,7 @@ class project():
             'projectName' : self._projectName,
             'projectAdmin' : self._projectAdmin,
             'projectMembers' : self._projectMembers,
-            'projectImages' : self._projectImages,
+            'projectRoot' : self._projectRoot,
             'projectSettings' : self._projectSettings
         }
 

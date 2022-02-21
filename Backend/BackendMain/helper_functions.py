@@ -32,3 +32,19 @@ def ifExistsExtra(value, identity, sec_value, sec_identity, col):
         if x[identity] == value and x[sec_identity] == sec_value:
             return True
     return False
+
+    #item['type'] == 'folder')
+
+def searchTree(curFolder, goalFolder):
+    if not len(curFolder) > 0:
+        return False
+    elif not next((item for item in curFolder if item["type"] == 'folder'), False):
+        return False
+    else:
+        result = next((item for item in curFolder if item["projectName"] == goalFolder), False)
+
+    for dict in curFolder:
+        if dict["projectName"] == goalFolder and dict["type"] == 'folder':
+            return dict
+
+          
