@@ -1,5 +1,3 @@
-from os import fpathconf
-from tkinter import W
 from rest_framework.views import APIView
 from rest_framework import permissions
 from rest_framework.response import Response
@@ -21,6 +19,7 @@ CLIENT_DATABASE = CLIENT_SERVER['mainDB']
 class CreateImage(APIView):
     permission_classes = (permissions.AllowAny, )
 
+    @csrf_exempt
     def post(self, request, format=None):
         data = self.request.data
 
@@ -62,6 +61,7 @@ class CreateImage(APIView):
 
             #image = FS.get(imageID)
         except:
+            print("shit happened")
             return Response({ 'Error' : 'Something went wrong'})
 
         return Response({ 'success' : 'Image properly stored' })
@@ -86,7 +86,7 @@ class GetFolder(APIView):
             targetFolder = searchFolders(root, folderName, folder_col)
 
 
-# Requires: projectName, projectID, curFolder
+# Requires: projectName, projectID, curFolder name
 class CreateFolder(APIView):
     permission_classes = (permissions.AllowAny, )
 

@@ -10,6 +10,7 @@ import Projects from './Componenets/Projects/Projects';
 import Profile from './Componenets/Profile/Profile';
 import Profilepost from './Componenets/Profileposts/Profilepost';
 import Mainspace from './Componenets/Mainspace/Mainspace'
+import Upload from './Componenets/Upload/Upload'
 import Collaboration from './Componenets/Collaboration/Collaboration';
 import Editprofile from './Componenets/Editprofile/Editprofile';
 import ChangePassword from './Componenets/ChangePassword/ChangePassword';
