@@ -1,0 +1,68 @@
+.workspace-container{
+    display: flex;
+    position:relative;
+    margin-top: 100px;
+   top: -200px;
+}
+.workspace-title{
+    display: flex;
+    margin-top: 100px;
+    
+}
+.wtitle{
+   
+        font-size: 24px;
+        font-weight: 300;
+        margin-top: -100px;
+       margin-right: 700px; 
+       margin-left: 200px;
+       position: relative;
+}
+.wbtn{
+    text-transform: none;
+    margin-top: -100px;
+    width: 150px;
+    height: 40px;
+    font-size: 16px;
+    white-space: nowrap;
+    position: relative;
+    /* margin-left: 1000px; */
+   
+
+    text-overflow: clip;
+}
+.folder{
+    
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 16rem));
+    gap: 1rem;
+    justify-content: center;
+    margin-left: 150px;
+  position: relative;
+/* margin-bottom: 500px; */
+top:-200px
+}
+.folder-icon{
+margin-top: 20px;
+   font-size: 150px;
+}
+.folder-icon a{
+    color: black;
+    text-decoration: none;
+}
+.folder-info{
+    display: flex;
+}
+.three-dots{
+    margin-left: 30px;
+    color: #f7b53b;
+    font-size: 20px;
+    margin-top: -10px;
+}
+.folder-text{
+    color:#f7b53b ;
+    font-size: 15px;
+    margin-left: 15px;
+  margin-top: -10px;
+
+}

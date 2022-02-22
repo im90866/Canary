@@ -1,0 +1,103 @@
+.modalBackground{
+
+margin-top: -550px;
+z-index: 9999;
+position: fixed;
+
+}
+  .modalContainer {
+    width: 380px;
+    height: 300px;
+    border-radius: 12px;
+    background-color: #Ffff;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    margin-left: 550px;
+   
+  
+   
+  }
+  
+  .modalContainer .title {
+    display: inline-block;
+    text-align: center;
+    margin-top: 10px;
+    color: #f7b53b;
+  }
+  
+  .titleCloseBtn {
+    display: flex;
+    justify-content: flex-end;
+    cursor: pointer;
+  }
+  
+  .titleCloseBtn button {
+    background-color: transparent;
+    border: none;
+    font-size: 15px;
+    cursor: pointer;
+    position: relative;
+    top:-20px;
+    right: -10px;
+  }
+  .folder-name{
+      border:none ;
+      padding: 12px 50px;
+      width: 70%;
+  }
+  
+  .modalContainer .body {
+  
+  
+    justify-content: center;
+    align-items: center;
+    font-size: 1.7rem;
+    text-align: center;
+    padding-bottom: 250px;
+  }
+  .title{
+      color: black;
+  }
+  .create-title{
+      font-size: 30px;
+      font-weight: 600;
+      color: black;
+      margin-top: -30px;
+      margin-left: 5px;
+   
+       text-overflow: clip;
+      white-space: nowrap;
+  }
+  
+
+ 
+  .cross{
+      color: black;
+      margin-right: -40px;
+  }
+  .folder-btn{
+      width: 100%;
+ margin-top: 25px;
+      position: relative;
+      border-radius: 10px;
+  }
+  
+  .change-text10{
+    border: none;
+    background-color: #efefef;
+    padding: 8px 20px;
+margin-right: 40px;
+    
+    border-radius: 5px;
+    width: 300px;
+    margin-top: 5px;
+  }
+  .folder-btn{
+      text-transform: none;
+  }
+  .p1name{
+    font-size: 16px;
+    margin-left: -165px;
+  }
