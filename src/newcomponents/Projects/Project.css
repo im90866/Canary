@@ -1,0 +1,93 @@
+ .project-container{
+     /* overflow-y:scroll ; */
+    margin-top: 120px;
+    /* display: flex;
+    position:relative;
+    
+   top: -500px;
+  left: 200px; */
+}
+.project{
+  
+     display: flex;
+    position:relative;
+    
+   top: -550px;
+  left: 200px; 
+}
+.project-title{
+    display: flex;
+ position: relative;
+top:50px;
+
+ 
+}
+ .title{
+    font-size: 24px;
+    font-weight: 300;
+ 
+ 
+ 
+   
+} 
+
+.hero-btn{
+    text-transform: none;
+position: relative;
+    width: 190px;
+    height: 50px;
+ right: -700px;
+    font-size: 16px;
+    white-space: nowrap;
+top:10px;
+    text-overflow: clip;
+    
+}
+ .project-list-container{
+   display: grid;
+    position: relative;
+     /* top:50px; */
+     left: 180px;
+     gap: 2rem;
+    
+     grid-template-columns: repeat(auto-fit, minmax(12rem, 16rem));
+    gap: 1rem;
+
+
+ }
+ .project-list{
+     display: flex;
+     position: relative;
+     top: -500px;
+     width: 250px;
+     height: 50px;
+     background-color: white;
+     border-radius: 5px;
+ }
+ .project-pic{
+     left: 20px;
+     width: 30px;
+     bottom: -10px;
+     position: relative;
+     height: 30px;
+     border-radius: 50%;
+     
+ }
+ .projectname{
+     position: relative;
+     left: 35px;
+     margin-top: 25px;
+     font-size: 14px;
+     position: relative;
+     top: -10px;
+     color: black;
+     
+ }
+ .dots{
+     position: relative;
+     left: 100px;
+     font-size: 14px;
+     color: black;
+     font-weight: 600;
+     top:15px
+ }

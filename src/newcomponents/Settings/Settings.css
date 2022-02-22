@@ -1,0 +1,266 @@
+.settings-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 16rem));
+    gap: 4rem;
+    justify-content: center;
+  
+    padding-top: 100px;
+    position: sticky;
+}
+.settings{
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, .2); 
+  
+ position: relative;
+ 
+ border-radius: 5px;
+    background-color: #fff;
+    height: 100%;
+    width:100%;
+  
+ margin-top: 300px;
+
+margin-left: -100px;
+
+}
+.settinglist{
+    padding: 30px;
+    margin-bottom: 60px;
+
+    
+}
+
+.settinglistname{
+    padding-bottom:30px;
+    padding-top: 20px;
+    list-style: none;
+    color: black;
+    font-weight: 400;
+    padding-left: 5px;
+    display: flex;
+}
+.settinglistname a{
+   font-size: 18px;
+}
+.settinglistname a:hover{
+    background-color: #efefef;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    
+}
+ .edit-profile{
+    
+
+    position: relative;
+    margin-bottom: 1000px;
+  
+ border-radius: 5px;
+    background-color: #fff;
+  
+    width:600px;
+    height: 500px;
+margin-top: 300px;
+margin-right: 150px;
+margin-left: -100px;
+
+
+}
+.existing-details{
+ display: flex;
+}
+
+ .profile-picture{
+    
+    border-radius: 50%;
+    height: 80px;
+    width: 80px;
+    margin-left: 20px;
+    margin-top: 10px;
+ }
+ .profile-username{
+   
+     padding-left: 40px;
+     justify-content: space-between;
+     font-size: 20px;
+     font-weight: 400;
+ }
+ .change{
+     color: #fff;
+     font-weight: 400;
+     font-size: 12px;
+text-transform: none;
+width: 180px;
+    height: 40px;
+border-radius: 20px;
+margin-left: 40px;
+margin-top: 50px;
+white-space: nowrap;
+margin-left: -160px;
+        text-overflow: clip;
+     
+ }
+ .change-details{
+ 
+     margin-top: 50px;
+ }
+ .fname{
+     margin-left: 50px;
+ }
+ .lname{
+     margin-left: 50px;
+ }
+ .change-text1{
+    border: none;
+    background-color: #efefef;
+    padding: 8px 20px;
+    margin-left: 27px;
+    border-radius: 5px;
+    width: 300px;
+ }
+ .change-text2{
+     margin-top: 20px;
+    border: none;
+    background-color: #efefef;
+    padding: 8px 20px;
+    margin-left: 27px;
+    border-radius: 5px;
+    width: 300px;
+}
+.user1{
+    margin-top:40px;
+    margin-left: 50px;
+}
+.username-change{
+    margin-top: 20px;
+}
+.change-text3{
+    border: none;
+    background-color: #efefef;
+    padding: 8px 20px;
+    margin-left: 29px;
+    border-radius: 5px;
+    width: 300px;
+}
+.emailID{
+    margin-left: 50px;
+    margin-top: 20px
+}
+.change-text4{
+    border: none;
+    background-color: #efefef;
+    padding: 8px 20px;
+    margin-left: 47px;
+    border-radius: 5px;
+    width: 300px;
+    margin-top: 20px;
+}
+.date{
+    margin-left: 50px;
+    margin-top: 20px;
+    
+}
+.change-text5{
+    border: none;
+    background-color: #efefef;
+    padding: 8px 20px;
+    margin-left: 10px;
+    border-radius: 5px;
+    width: 300px;
+    margin-top: 20px;
+}
+.submit-changes{
+margin-top: 30px;
+margin-left: 350px;
+text-transform: none;
+cursor: pointer;
+
+}
+.change-password{
+    
+    position: relative;
+    margin-bottom: 1000px;
+  
+ border-radius: 5px;
+    background-color: #fff;
+  
+    width:600px;
+    height: 400px;
+margin-top: 300px;
+margin-right: 150px;
+margin-left: -100px;
+}
+.cptitle{
+    font-weight: 400;
+    font-size: 30px;
+}
+.settings-container1{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 16rem));
+    gap: 4rem;
+    justify-content: center;
+  
+    padding-top: 50px;
+    position: sticky;
+}
+.change-text6{
+    border: none;
+    background-color: #efefef;
+    padding: 8px 20px;
+    margin-left: 10px;
+    border-radius: 5px;
+    width: 300px;
+    margin-top: 20px;
+}
+.change-text7{
+    border: none;
+    background-color: #efefef;
+    padding: 8px 20px;
+    margin-left: 75px;
+    border-radius: 5px;
+    width: 300px;
+    margin-top: 20px;
+}
+.change-text8{
+    border: none;
+    background-color: #efefef;
+    padding: 8px 20px;
+    margin-left: 82px;
+    border-radius: 5px;
+    width: 300px;
+    margin-top: 20px;
+}
+.block{
+    font-size: 14px;
+    margin-top: 20px;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+.change-text9{
+    border: none;
+    background-color: #efefef;
+    padding: 8px 20px;
+    margin-left: 60px;
+    border-radius: 5px;
+    width: 300px;
+    margin-top: 20px;
+}
+.btnn{
+    margin-top: 50px;
+    margin-right: -100px;
+}
+.change-password1{
+    position: relative;
+    margin-bottom: 1000px;
+  
+ border-radius: 5px;
+    background-color: #fff;
+  
+    width:600px;
+    height: 300px;
+margin-top: 300px;
+margin-right: 150px;
+margin-left: -100px;
+}
+.btnn1{
+    margin-bottom: 800px;
+    cursor: pointer;
+}

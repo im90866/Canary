@@ -1,0 +1,41 @@
+.ps-container{
+    margin-top: 120px;
+}
+.ps-box{
+    z-index: 1;
+    position: relative;
+    background-color: #fff;
+    width: 600px;
+    height: 500px;
+    left: 450px;
+    top: -350px;
+    border-radius: 10px;
+    overflow-y: scroll;
+}
+.ttitle{
+    font-size: 30px;
+  font-weight: 400;
+}
+.searchInput1{
+    background-color: #efefef; 
+    border: none;
+    width: 100%;
+}
+.searchbar1{
+    width: 75%;
+    height: 30px;
+    background-color: #efefef;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    margin-left: 70px;
+}
+.project-memberslist{
+    margin-top: 20px;
+}
+.members{
+    list-style: none;
+    padding-bottom: 15px;
+    word-spacing: 0.25rem;
+
+}

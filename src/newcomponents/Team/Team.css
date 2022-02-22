@@ -1,0 +1,43 @@
+.team-container{
+  margin-top: 120px;
+}
+
+.team-name{
+  z-index: 1;
+  position: relative;
+  background-color: #fff;
+  width: 600px;
+  height: 400px;
+  left: 450px;
+  top: -350px;
+  border-radius: 10px;
+
+}
+.psettings{
+
+  font-size: 24px;
+  font-weight: 400;
+}
+.project-settings{
+  padding-top: 10px;
+}
+.buttonss{
+  display: flex;
+  gap: 1rem;
+  margin-top: 60px;
+  margin-left: 100px;
+}
+.submit-changes1{
+  text-transform: none;
+}
+.submit-changes2{
+  text-transform: none;
+}
+.change-text12{
+  border: none;
+    background-color: #efefef;
+    padding: 8px 20px;
+    margin-left: 31px;
+    border-radius: 5px;
+    width: 300px;
+}
