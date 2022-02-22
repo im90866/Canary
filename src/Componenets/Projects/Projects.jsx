@@ -35,6 +35,7 @@ function Projects() {
       })
     setProjects(response)
     console.log(response)
+    console.log(String(getCookie('username')))
   }
 
   // useEffect(() => (async () => setProjects(await getProjects()))(), [])

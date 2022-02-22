@@ -24,9 +24,15 @@ function Workspace() {
   const [folders, setFolders] = useState([])
 
   const getFolders = async () => {
-    // const response = await api.get(`folders?projectId=${projectId}`)
-    // console.log(response)
-    // return response.data
+    await axios.get("http://localhost:8000/getFolders/" + projectId)
+      .then((res) => {
+        if (res.data["success"]) {
+          console.log(res)
+          return (res.data['folderList'])
+        }
+        else
+          console.log("Error: " + res.data["error"])
+      })
   }
   useEffect(() => {
     const getAll = async () => {
@@ -43,10 +49,11 @@ function Workspace() {
       ...folder
     }
 
-    // const response = await api.post("/folders", request)
-    // console.log(response)
-
-    // setProjects([...project, response.data])
+    axios.post("http://localhost:8000/createFolder/", request).then((res) => {
+      if (res.data["error"]) {
+        console.log(res.data['error'])
+      }
+    })
 
     const getAll = async () => {
       const allFolders = await getFolders()
