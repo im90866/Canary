@@ -6,8 +6,13 @@
 }
 .workspace-title{
     display: flex;
-    margin-top: 100px;
+
     
+}
+.btn-grp{
+    display: flex;
+    position: relative;
+    left: 100px;
 }
 .wtitle{
    
@@ -15,21 +20,37 @@
         font-weight: 300;
         margin-top: -100px;
        margin-right: 700px; 
-       margin-left: 200px;
+       margin-left: 230px;
        position: relative;
 }
 .wbtn{
+    position: relative;
+    left: -200px;
     text-transform: none;
-    margin-top: -100px;
+  top:-90px;
     width: 150px;
     height: 40px;
     font-size: 16px;
     white-space: nowrap;
     position: relative;
     /* margin-left: 1000px; */
-   
 
+border-radius: 5px;
     text-overflow: clip;
+}
+.wbtn1{
+    position: relative;
+    white-space: nowrap;
+    text-overflow: clip;
+    width: 150px;
+    height: 40px;
+    border-radius: 5px;
+    text-transform: none;
+    top:-90px;
+    left:-150px;
+    text-align: center;
+    font-size: 16px;
+    float: right;
 }
 .folder{
     
@@ -40,7 +61,7 @@
     margin-left: 150px;
   position: relative;
 /* margin-bottom: 500px; */
-top:-200px
+top:-300px
 }
 .folder-icon{
 margin-top: 20px;
@@ -65,4 +86,9 @@ margin-top: 20px;
     margin-left: 15px;
   margin-top: -10px;
 
+}
+.btn-text{
+    color: white;
+    font-size: 16px;
+    margin-left: -15px;
 }

@@ -34,7 +34,7 @@ function Login() {
 		<form action="#" onSubmit={handleSubmit}>
 			<h1 className='app-name'>Canary</h1>
 			
-			<input type="text" placeholder="Username"  onChange={handleUserNameInputChange}  value={values.username} className="username"/>
+			<input type="text" placeholder="Username"  onChange={handleUserNameInputChange}  value={values.username} className="username24"/>
 		{submitted && !values.username ?<span id="user-name-error">Please enter your username</span>:null}
 			<input type="password" placeholder="Password"  className="password"  onChange={handlePasswordInputChange}
             value={values.password}/>

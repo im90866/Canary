@@ -26,16 +26,14 @@
 
 
 .wrapper1 {
-  
-padding-bottom: 400px; 
-display: flex;
-  /* display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(12rem, 16rem));
-  gap: 2rem;
-  justify-content: center;
-  margin-top: 200px;
-margin-right: 30px; */
-margin-right: 30px;
+ overflow-x: hidden; 
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(12rem, 16rem));
+gap: 2rem;
+justify-content: center;
+position: relative;
+top:-300px;
+left: 80px;
 
 }
 

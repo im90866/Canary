@@ -35,7 +35,7 @@ setSubmitted(true);
         <h1 className='app-name'>Canary</h1>
         
        
-        <input type="text" placeholder="Username" onChange={handleUserNameInputChange}  value={values.username} className="username" />
+        <input type="text" placeholder="Username" onChange={handleUserNameInputChange}  value={values.username} className="username24" />
         
         {submitted && !values.username ?<span id="user-name-error">Please enter your username</span>:null}
         <input type="email" placeholder="Email" onChange={handleEmailInputChange}   className="email" value={values.email}/>
@@ -43,7 +43,7 @@ setSubmitted(true);
         <input type="password" placeholder="Password"  className="password" onChange={handlePasswordInputChange}
             value={values.password}/>
             	{submitted && !values.password?<span id="password-error">Please enter your password</span> :null}
-        <Link to="/registrationpage"><button className='btn' type="submit">Sign Up</button></Link>
+        <Link to="/registrationpage"><button  type="submit">Sign Up</button></Link>
     </form>
 </div>
 </div>

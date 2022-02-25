@@ -19,7 +19,7 @@ function Project() {
                     {/* {/* <button className='hero-btn' onClick={() =>
           setOpenModal(true)}>New Project</button> */}
           <button className="hero-btn"onClick={() =>
-          setOpenModal(true)}>New Project</button>
+          setOpenModal(true)}> New Project</button>
                     </div> 
 
                  

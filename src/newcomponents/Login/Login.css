@@ -12,6 +12,7 @@ body {
 	font-family: 'Montserrat', sans-serif;
 	height: 100vh;
 	margin: -20px 0 50px;
+	overflow-x:hidden;
 
 }
 
@@ -89,7 +90,7 @@ form {
 	text-align: center;
 }
 
-.username,.password,.email {
+.username24,.password,.email {
 	background-color: #eeee;
 	border: none;
 	padding: 12px 15px;

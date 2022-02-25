@@ -15,7 +15,7 @@ import Modal4 from "../Modal4/Modal4";
   return (
     <div className="topbarContainer">
       <div className="topbarLeft">
-        <Link to="/home"><span className="logo">Canary</span></Link>
+       <span className="logo"> <Link to="/home">Canary</Link></span>
       </div>
       <div className="topbarCenter">
         <div className="searchbar">

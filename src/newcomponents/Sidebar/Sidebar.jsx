@@ -19,7 +19,7 @@ export default function Sidebar() {
       <div className="sidebarWrapper">
         <ul className="sidebarList">
         
-          <li className="sidebarListItem" activeClassName="active">
+          <li className="sidebarListItem">
          <Link to="/home">
             <AiOutlineHome className="sidebarIcon" />
             <span className="sidebarListItemText">Home</span>

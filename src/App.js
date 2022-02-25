@@ -1,9 +1,8 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import Home from './Componenets/Home/Home';
-import Login from "./Componenets/Login/Login"
-import Signup from './Componenets/Signup/Signup'
-import Workspace from './Componenets/Workspace/Workspace';
+import Home from './newcomponents/Home/Home';
+
+import Workspace from './newcomponents/Workspace/Workspace';
 import { useEffect } from "react"
 import CSRFToken from './Componenets/Auth/CSRF.js'
 import Projects from './Componenets/Projects/Projects';
@@ -14,6 +13,7 @@ import Upload from './Componenets/Upload/Upload'
 import Collaboration from './Componenets/Collaboration/Collaboration';
 import Editprofile from './Componenets/Editprofile/Editprofile';
 import ChangePassword from './Componenets/ChangePassword/ChangePassword';
+import Overlay from "./newcomponents/Overlay/Overlay"
 
 function App() {
   useEffect(() => {
@@ -24,12 +24,12 @@ function App() {
     <>
     <CSRFToken />
     <Routes>
-      <Route path="/" element={<Login />}></Route>
+      <Route path="/" element={<Overlay/>}></Route>
       <Route path="/home" element={<Home />}></Route>
-      <Route path="/signup" element={<Signup />}></Route>
+      {/* <Route path="/signup" element={<Signup />}></Route> */}
       <Route path="/mainspace" element={<Mainspace />}></Route>
       <Route path="/projects" element={<Projects />}></Route>
-      <Route path="/workspace/:id" element={<Workspace />}></Route>
+      <Route path="/workspace" element={<Workspace />}></Route>
       <Route path="/profile" element={<Profile />}></Route>
       <Route path="/profileposts" element={<Profilepost />}></Route>
     </Routes></>
