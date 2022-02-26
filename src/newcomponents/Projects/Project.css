@@ -1,93 +1,77 @@
  .project-container{
-     /* overflow-y:scroll ; */
-    margin-top: 120px;
-    /* display: flex;
-    position:relative;
+     width: 100%;
+     height: 100%;
     
-   top: -500px;
-  left: 200px; */
-}
-.project{
-  
+     margin-top: 40px;
+ }
+ .project{
+     position: relative;
      display: flex;
-    position:relative;
-    
-   top: -550px;
-  left: 200px; 
-}
-.project-title{
-    display: flex;
- position: relative;
-top:50px;
-
- 
-}
- .title{
+     
+ }
+ .project-title{
+     position: relative;
+     display: flex;
+     justify-content: space-between;
+     top:-200px; 
+    left:200px;
+ }
+.title{
     font-size: 24px;
-    font-weight: 300;
- 
- 
- 
-   
-} 
-
-.hero-btn{
-    text-transform: none;
-position: relative;
-    width: 190px;
-    height: 50px;
- right: -700px;
-    font-size: 16px;
-    white-space: nowrap;
-top:10px;
-    text-overflow: clip;
-    
-}
- .project-list-container{
-   display: grid;
+    font-weight: 400;
     position: relative;
-     /* top:50px; */
-     left: 180px;
-     gap: 2rem;
-    
-     grid-template-columns: repeat(auto-fit, minmax(12rem, 16rem));
-    gap: 1rem;
+    left: 52px;
+}
+.hero-btn{
+    position: relative;
+    border-radius: 5px;
+    width: 200px;
+    height: 40px;
+    text-transform: none;
+    right: -690px;
+    top: 20px;
+}
+.project-container2{
+    width: 1000px;
+    height:800px;
+    background-color: white;
+    border-radius: 5px;
+    position: relative;
+    top:-80px;
+    left: -100px;
+    overflow-y: scroll;
+}
+.project-list{
+   
+    display: grid;
+grid-template-columns: repeat(auto-fit, minmax(12rem, 16rem));
+gap: 3.5rem;
+justify-content: center;
+top:30px;
+position: relative;
+left: -40px;
+}
+.project-list-item{
+    position: relative;
 
-
- }
- .project-list{
-     display: flex;
-     position: relative;
-     top: -500px;
-     width: 250px;
-     height: 50px;
-     background-color: white;
-     border-radius: 5px;
- }
- .project-pic{
-     left: 20px;
-     width: 30px;
-     bottom: -10px;
-     position: relative;
-     height: 30px;
-     border-radius: 50%;
-     
- }
- .projectname{
-     position: relative;
-     left: 35px;
-     margin-top: 25px;
-     font-size: 14px;
-     position: relative;
-     top: -10px;
-     color: black;
-     
- }
- .dots{
-     position: relative;
-     left: 100px;
-     font-size: 14px;
-     color: black;
-     font-weight: 600;
-     top:15px
- }
+    background-color: #efefef;
+    padding: 20px 10px;
+    width: 300px;
+    height: 30px;
+    list-style: none;
+    border-radius: 5px;
+}
+.project-name{
+    color: black;
+    font-size: 15px;
+    position: relative;
+    top:-10px;
+}
+.dots{
+    color: black;
+    font-weight: 500;
+    font-size: 18px;
+    position: relative;
+    right:-170px;
+    top: -10px;
+}

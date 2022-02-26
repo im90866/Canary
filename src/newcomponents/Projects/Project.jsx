@@ -10,9 +10,9 @@ function Project() {
   return (
     <div>
       <Topbar/>
-      <Sidebar/>
+    
         <div className="project-container">
-          
+        <Sidebar/>
             <div className="project">
                 <div className="project-title">
                     <h1 className='title'>Your Projects</h1>
@@ -23,35 +23,54 @@ function Project() {
                     </div> 
 
                  
-                   
+                    <div className="project-container2">
+                      <ul className="project-list">
+                        <Link to="/workspace"><li className="project-list-item">
+                          <span className='project-name'>Clipart base</span>
+                          <span className='dots'>...</span>
+                          </li></Link>
+                          <Link to="/workspace"><li className="project-list-item">
+                          <span className='project-name'>Clipart base</span>
+                          <span className='dots'>...</span>
+                          </li></Link>
+                          <Link to="/workspace"><li className="project-list-item">
+                          <span className='project-name'>Clipart base</span>
+                          <span className='dots'>...</span>
+                          </li></Link>
+                          <Link to="/workspace"> <li className="project-list-item">
+                          <span className='project-name'>Clipart base</span>
+                          <span className='dots'>...</span>
+                          </li></Link>
+                          <Link to="/workspace"> <li className="project-list-item">
+                          <span className='project-name'>Clipart base</span>
+                          <span className='dots'>...</span>
+                          </li></Link>
+                          <Link to="/workspace"> <li className="project-list-item">
+                          <span className='project-name'>Clipart base</span>
+                          <span className='dots'>...</span>
+                          </li></Link>
+                          <Link to="/workspace"> <li className="project-list-item">
+                          <span className='project-name'>Clipart base</span>
+                          <span className='dots'>...</span>
+                          </li></Link>
+                          <Link to="/workspace">  <li className="project-list-item">
+                          <span className='project-name'>Clipart base</span>
+                          <span className='dots'>...</span>
+                          </li></Link>
+                        
+                        
+                      </ul>
+
+</div>   
                   
                  
             </div>
+            
         </div>
          {openModal && <Modal closeModal={setOpenModal} />} 
-  <div className="project-list-container">
-  <Link to="/workspace"><div className="project-list">
-     <img src="/images/avatar.png" alt="" className='project-pic' />
-     <span className="projectname">Clipart Base</span>
-     <span className="dots">...</span>
-     </div></Link>
-     <div className="project-list">
-     <img src="/images/avatar.png" alt="" className='project-pic' />
-     <span className="projectname">Clipart Base</span>
-     <span className="dots">...</span>
-     </div>
-      <div className="project-list">
-     <img src="/images/avatar.png" alt="" className='project-pic' />
-     <span className="projectname">Clipart Base</span>
-     <span className="dots">...</span>
-     </div>
-     <div className="project-list">
-     <img src="/images/avatar.png" alt="" className='project-pic' />
-     <span className="projectname">Clipart Base</span>
-     <span className="dots">...</span>
-     </div> 
-   
-   </div>   
+     
+
+ 
     </div>
   )
 }

@@ -16,6 +16,7 @@ import './App.css';
 // import Editprofile from './Componenets/Editprofile/Editprofile';
 // import ChangePassword from './Componenets/ChangePassword/ChangePassword';
 import Overlay from "./newcomponents/Overlay/Overlay"
+import Project from './newcomponents/Projects/Project';
 
 function App() {
   useEffect(() => {
@@ -35,7 +36,7 @@ function App() {
        <Route path="/profile" element={<Profile />}></Route>
       <Route path="/profile/collaborations" element={<Collaboration/>}></Route>
  <Route path="/profile/profileposts" element={<Profileposts/>}></Route>
-     
+ <Route path="/project" element={<Project/>}></Route>
       {/* <Route path="/team" element={<Team />}></Route>  */}
     </Routes></>
 

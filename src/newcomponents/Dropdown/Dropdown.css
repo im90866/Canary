@@ -24,7 +24,7 @@ z-index: 999;
     cursor: pointer;
     position: relative;
     top:-5px;
-    right: -30px;
+    left:-5px;
     color: black;
   }
   .creat-folder-title{
