@@ -24,7 +24,7 @@ function Workspace() {
                    </div>
                </div>
            </div>
-       
+        
          </div>
          {openDropdown && <Dropdown closeModal={setOpenDropdown} />} 
           <div className="folder">
