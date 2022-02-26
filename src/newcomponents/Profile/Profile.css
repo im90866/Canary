@@ -1,5 +1,7 @@
  .profile-container{
 bottom:100px;
+justify-content:space-around;
+margin:18px 0px;
  
 }
  .profile-image{

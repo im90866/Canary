@@ -8,7 +8,7 @@ function Profile() {
     <div>
        <Topbar/>
         <Sidebar/> 
-        <div style={{justifyContent:"space-around",margin:"18px 0px" }} className="profile-container">
+        <div className="profile-container">
       <div>
         <img src="/images/avatar3.png" alt="" className="profile-image"/>
         <h1 className="profile-user">Nashwa_Abdul</h1>
