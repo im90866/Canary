@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { BiEdit } from "react-icons/bi";
 import { BsFillTrashFill } from "react-icons/bs";
-import { Link } from 'react-router-dom';
+import { BrowserRouter as Route, Routes, Link } from 'react-router-dom';
 
 function Projects() {
 
@@ -34,15 +34,12 @@ function Projects() {
           console.log("Error: " + res.data["error"])
       })
     setProjects(response)
-    console.log(response)
-    console.log(String(getCookie('username')))
   }
 
   // useEffect(() => (async () => setProjects(await getProjects()))(), [])
   useEffect(() => {
     const getAll = async () => {
       const allProjects = await getProjects()
-      console.log(allProjects)
       if (allProjects)
         setProjects(allProjects)
     }

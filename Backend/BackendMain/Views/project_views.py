@@ -28,7 +28,7 @@ class CreateProject(APIView):
         #    return Response({ 'error': 'You have another project with the same name' })
 
         # Stores the created root folder, gets the ID and appends it to the new project
-        rootFolderID = folder_col.insert_one(folder("//root", 0).getModel()).inserted_id
+        rootFolderID = folder_col.insert_one(folder("&root&", data['projectName']).getModel()).inserted_id
         rootFolderID = json.loads(json_util.dumps(rootFolderID))['$oid']
 
         projectModel = project(data['projectName'], data['projectAdmin'], rootFolderID)
@@ -107,33 +107,30 @@ class GetProjects(APIView):
 
         extraError = ""
 
-        try:
-            if not(ifExists(username, "username", 'userInfo')):
-                raise ValueError("Wrong username sent. Something went wrong.")
+        if not(ifExists(username, "username", 'userInfo')):
+            raise ValueError("Wrong username sent. Something went wrong.")
 
-            userProjects = (user_col.find_one({'username' : username}))['projectID']
-            finalList = []
+        userProjects = (user_col.find_one({'username' : username}))['projectID']
+        finalList = []
 
-            for projID in userProjects:
-                PROJ = proj_col.find_one({'_id' : ObjectId(projID)})
-                #ID = json.loads(json_util.dumps(projID))['$oid']
-                ID = projID
-                print(PROJ)
-                struct = {
-                    'id' : ID,
-                    'projectName' : PROJ['projectName'],
-                }
-                
-                finalList.append(struct)
-                
-            print(finalList)
+        for projID in userProjects:
+            PROJ = proj_col.find_one({'_id' : ObjectId(projID)})
+            #ID = json.loads(json_util.dumps(projID))['$oid']
+            ID = projID
+            print(PROJ)
+            struct = {
+                'id' : ID,
+                'projectName' : PROJ['projectName'],
+            }
+            
+            finalList.append(struct)
+            
+        print(finalList)
 
-            return Response({ 
-                'success': 'Projects obtained',
-                'projectList': finalList
-            })
-        except:
-            return Response({ 'error': 'Unable to retrieve projects'})
+        return Response({ 
+            'success': 'Projects obtained',
+            'projectList': finalList
+        })
 
 
 

@@ -53,19 +53,21 @@ class userInfo():
 
 class folder():
     _projectID = ""
+    _projectName = ""
     _folderName = ""
     _parentID = ""
     _folderList = []    
     _imageList = []
 
-    def __init__(self, name, parent): 
+    def __init__(self, name, projectName): 
         self._folderName = name
-        self._parentID = parent
+        self._projectName = projectName
 
     def getModel(self):
         model = {
             "type" : 'folder',
-            "projectName" : self._folderName,
+            "projectName" : self._projectName,
+            "folderName" : self._folderName,
             "parentID" : self._parentID,
             "folderList" : self._folderList,
             "imageList" : self._imageList
@@ -114,13 +116,14 @@ class project():
     _projectName = ""
     _projectAdmin = ""
     _projectMembers = []
-    _projectRoot = []
+    _projectRoot = ""
     _projectSettings = {}
 
     def __init__(self, name, admin, root):
         self._projectName = name
         self._projectAdmin = admin
         self._projectMembers = [admin]
+        self._projectRoot = root
 
     def otherInit(self, jsonFile):
         self._projectName = jsonFile['projectName']

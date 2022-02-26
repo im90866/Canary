@@ -1,8 +1,10 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Home from './newcomponents/Home/Home';
-
-import Workspace from './newcomponents/Workspace/Workspace';
+import Login from "./Componenets/Login/Login"
+import Signup from './Componenets/Signup/Signup'
+import Team from './newcomponents/Team/Team'
+import Workspace from './Componenets/Workspace/Workspace';
 import { useEffect } from "react"
 import CSRFToken from './Componenets/Auth/CSRF.js'
 import Projects from './Componenets/Projects/Projects';
@@ -32,6 +34,7 @@ function App() {
       <Route path="/workspace" element={<Workspace />}></Route>
       <Route path="/profile" element={<Profile />}></Route>
       <Route path="/profileposts" element={<Profilepost />}></Route>
+      <Route path="/team" element={<Team />}></Route>
     </Routes></>
 
   );

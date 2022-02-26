@@ -2,10 +2,11 @@ import React from 'react';
 import "./Modal.css"
 import { useState, useEffect } from "react"
 import { useParams } from 'react-router-dom';
+import axios from 'axios'
 
 function Modal({ closeModal }) {
 
-  const {projectId} = useParams()
+  const projectID = (useParams())['id']
 
   const [folders, setFolders] = useState([])
   const [name, setName] = useState("")
@@ -17,9 +18,19 @@ function Modal({ closeModal }) {
   const addFolder = async (folder) => {
     console.log(folder)
     const request = {
-      ...folder,
-      projectId: projectId
+      'projectID' : projectID,
+      'projectName' : name,
+      'curFolder' : '&root&'
     }
+
+
+    await axios.post("http://localhost:8000/createfolder/", request).then((res) =>{
+      if (res.data["error"]) {
+        console.log(res.data['error'])
+      }
+      else
+        console.log("sucess")
+    })
 
     // const response = await api.post("/folders", request)
     // console.log(response)
