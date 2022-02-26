@@ -6,11 +6,12 @@ import Workspace from './newcomponents/Workspace/Workspace';
 import { useEffect } from "react"
 import CSRFToken from './Componenets/Auth/CSRF.js'
 import Projects from './Componenets/Projects/Projects';
-import Profile from './Componenets/Profile/Profile';
+import Profile from './newcomponents/Profile/Profile';
 import Profilepost from './Componenets/Profileposts/Profilepost';
 import Mainspace from './Componenets/Mainspace/Mainspace'
 import Upload from './Componenets/Upload/Upload'
-import Collaboration from './Componenets/Collaboration/Collaboration';
+import Collaboration from './newcomponents/Collaborations/Collaboration';
+import Profileposts from './newcomponents/Profileposts/Profileposts';
 import Editprofile from './Componenets/Editprofile/Editprofile';
 import ChangePassword from './Componenets/ChangePassword/ChangePassword';
 import Overlay from "./newcomponents/Overlay/Overlay"
@@ -31,6 +32,8 @@ function App() {
       <Route path="/projects" element={<Projects />}></Route>
       <Route path="/workspace" element={<Workspace />}></Route>
       <Route path="/profile" element={<Profile />}></Route>
+      <Route path="/profile/collaborations" element={<Collaboration/>}></Route>
+ <Route path="/profile/profileposts" element={<Profileposts/>}></Route>
       <Route path="/profileposts" element={<Profilepost />}></Route>
     </Routes></>
 
