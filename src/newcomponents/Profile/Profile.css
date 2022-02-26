@@ -1,7 +1,7 @@
  .profile-container{
 bottom:100px;
 justify-content:space-around;
-margin:18px 0px;
+margin-top: 150px;
  
 }
  .profile-image{
@@ -9,33 +9,38 @@ margin:18px 0px;
    width:170px;
    height: 170px;
    border-radius: 50%;
-   margin-top: -480px;
-margin-bottom: 40px;
-   margin-bottom: 450px;
-margin-left: 650px;
+position: relative;
+top:-350px;
+left: 660px;
 }
 .profile-user{
-  margin-top: -430px;
-  margin-left:140px
+    position: relative;
+    top:-350px;
+    left:75px;
+
 }
 .editp{
-    margin-left: 670px;
+    position: relative;
+  top:-350px;
+  left: 660px;
     text-transform: none;
+    border-radius: 5px;
+    font-size: 16px;
 
 }
 .post-info{
     display: flex;
-    gap: 4rem;
-    margin-left: 600px;
-    margin-top: -180px;
+    position: relative;
+    gap: 2rem;
+    top:-350px;
+    left: 650px;
+
 } 
  .collaborations{
-    margin-right: 100px;
-    margin-left: -70px;
+position: relative;
+left:-20px;
 }
-.posts1{
-margin-right: -200px;
-} 
+
  .collaborations a:hover{
     background-color: #efefef;
     padding-top: 15px;
@@ -54,10 +59,12 @@ margin-right: -200px;
 }
 .wrapper {
    
-    padding-bottom: 100px;
+position: relative;
+top: -350px;
+left: 60px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(12rem, 16rem));
     gap: 2rem;
     justify-content: center;
-    margin-left: 100px;
+ 
        } 
