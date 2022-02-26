@@ -2,7 +2,7 @@ import "./Sidebar.css";
 
 import {RiChatSmile2Line} from  "react-icons/ri"
 
-import { Link} from "react-router-dom";
+import { NavLink ,Link} from "react-router-dom";
 
 
 import { MdOutlineExplore} from "react-icons/md"
@@ -20,10 +20,10 @@ export default function Sidebar() {
         <ul className="sidebarList">
         
           <li className="sidebarListItem">
-         <Link to="/home">
+          <NavLink to="/home" activeStyle={{ backgroundColor: '#88e' }}>
             <AiOutlineHome className="sidebarIcon" />
             <span className="sidebarListItemText">Home</span>
-            </Link>
+          </NavLink>
           </li>
       
       
