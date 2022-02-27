@@ -1,8 +1,15 @@
 import React from 'react'
 import "./Modal.css"
-function Modal({ closeModal}) {
+function Modal(props) {
+  var closeModal = props.closeModal
+  var hello = props.val
+  
   return (
+  
     <div>
+      {
+      console.log(hello)
+    }
            <div className="modalBackground">
         <div className="modalContainer">
           <div className="titleCloseBtn">

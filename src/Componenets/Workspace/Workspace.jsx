@@ -15,6 +15,7 @@ import { BsImageFill } from "react-icons/bs";
 import { BsThreeDots } from "react-icons/bs";
 import Modal from "../Modal/Modal"
 import { useState, useEffect } from "react"
+import axios from "axios";
 
 function Workspace() {
 
@@ -61,7 +62,6 @@ function Workspace() {
     }
     getAll();
   }
-
 
   return <div>
     <div className="navbar-container">

@@ -46,10 +46,9 @@
     display: grid;
 grid-template-columns: repeat(auto-fit, minmax(12rem, 16rem));
 gap: 3.5rem;
-justify-content: center;
 top:30px;
 position: relative;
-left: -40px;
+left: -5px;
 }
 .project-list-item{
     position: relative;
@@ -72,6 +71,5 @@ left: -40px;
     font-weight: 500;
     font-size: 18px;
     position: relative;
-    right:-170px;
-    top: -10px;
+    right: -70px;
 }

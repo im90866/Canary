@@ -20,17 +20,25 @@ class SignupView(APIView):
         data = self.request.data
         
         collection = CLIENT_DATABASE['userInfo']
+        email_col = CLIENT_DATABASE['emailList']
         
-        if ifExists(data['username'], "username", 'userInfo'):
-            return Response({ 'error': 'Username already exists' })
-        else:
-            userModel = userInfo(data['username'], data['password'], data['userDetails'])
-            
-            user_info = userModel.getModel()
+        try:
+            if ifExists(data['username'], "username", 'userInfo'):
+                return Response({ 'error': 'Username already exists' })
+            elif ifExists(data['email'], "email", 'emailList'):
+                return Response({ 'error: Account with given email already exists'})
+            else:
+                userModel = userInfo(data['username'], data['password'], data['email'])
+                
+                user_info = userModel.getModel()
 
-            collection.insert_one(user_info)
-            return Response({ 'success': 'User created successfully' })
-    
+                collection.insert_one(user_info)
+
+                # authenticate email
+
+                email_col.insert_one({'email': data['email']})
+                return Response({ 'success': 'User created successfully' })
+        except:
             return Response({ 'error': 'Something went wrong when registering account' })
 
 

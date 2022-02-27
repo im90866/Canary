@@ -22,7 +22,6 @@ function Projects() {
   })
 
   const getProjects = async () => {
-
     const response = await axios.get("http://localhost:8000/getproject/" + String(getCookie('username')))
       .then((res) => {
         if (res.data["success"]) {

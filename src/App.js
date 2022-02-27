@@ -27,16 +27,16 @@ function App() {
     <>
     <CSRFToken />
     <Routes>
-    <Route path="/" element={<Overlay />}></Route>
-       <Route path="/home" element={<Home />}></Route>
+      <Route path="/" element={<Overlay />}></Route>
+      <Route path="/home" element={<Home />}></Route>
       {/* <Route path="/signup" element={<Signup />}></Route> */}
       {/* <Route path="/mainspace" element={<Mainspace />}></Route>
       <Route path="/projects" element={<Projects />}></Route> */}
-      <Route path="/workspace" element={<Workspace />}></Route>
-       <Route path="/profile" element={<Profile />}></Route>
+      <Route path="/workspace/:id" element={<Workspace />}></Route>
+      <Route path="/profile" element={<Profile />}></Route>
       <Route path="/profile/collaborations" element={<Collaboration/>}></Route>
- <Route path="/profile/profileposts" element={<Profileposts/>}></Route>
- <Route path="/project" element={<Project/>}></Route>
+      <Route path="/profile/profileposts" element={<Profileposts/>}></Route>
+      <Route path="/project" element={<Project/>}></Route>
       {/* <Route path="/team" element={<Team />}></Route>  */}
     </Routes></>
 

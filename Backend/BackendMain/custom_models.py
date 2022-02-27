@@ -3,6 +3,7 @@ import hashlib
 class userInfo():
     _username = ""
     _password = ""
+    _email = ""
     _profilePictureID = ""
     _userDetails = {}
     _postID = []
@@ -10,9 +11,9 @@ class userInfo():
     _userSettings = {}
 
     # Creates a model with default features
-    def __init__(self, username, password, details):
+    def __init__(self, username, password, email):
         self.setAuth(username, password)
-        self._userDetails = details
+        self._email = email
 
     # Creates model without checks. Use when JSON object is taken from database
     @classmethod
@@ -43,6 +44,7 @@ class userInfo():
         model = {
             "username" : self._username,
             "password" : self._password,
+            "email" : self._email,
             "userDetails": self._userDetails,
             "postID" : self._postID,
             "projectID" : self._projectID,

@@ -13,7 +13,7 @@ body {
 	height: 100vh;
 	margin: -20px 0 50px;
 	overflow-x: hidden;
-	overflow-y: auto;
+	overflow-y: hidden;
 
 }
 
@@ -56,8 +56,8 @@ a {
     margin-top: 0;
     color: #ffb53b;
     font-weight: 600;
-font-size: 48px;
-line-height: 77px;
+	font-size: 48px;
+	line-height: 77px;
 }
 button {
 	border-radius: 20px;
@@ -69,15 +69,29 @@ button {
 	padding: 12px 45px;
 	letter-spacing: 1px;
 	text-transform: uppercase;
-	transition: transform 80ms ease-in;
+	transition: 0.2s;
 }
 
+button:hover{
+	background-color: #ffffff;
+	color: #ffb53b;
+}
 
+button:active{
+	border: 1px solid #ffcf81;
+	color: #ffcf81;
+}
 
 
 button.ghost {
 	background-color: transparent;
-	border-color: #FFFFFF;
+	border-color: #ffffff;
+}
+
+button.ghost:hover {
+	background-color: #ffffff;
+	border-color: #ffffff;
+	color: #ffb53b;
 }
 
 form {
@@ -95,7 +109,7 @@ form {
 	background-color: #eeee;
 	border: none;
 	padding: 12px 15px;
-margin-bottom: 10px;
+	margin-bottom: 10px;
 	width: 100%;
 }
 
@@ -222,6 +236,7 @@ margin-bottom: 10px;
 
 
 span{
+	
 	color: red;
 	text-align: left;
 }
