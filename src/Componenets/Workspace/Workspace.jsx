@@ -1,4 +1,6 @@
 import React from 'react';
+import axios from 'axios';
+
 import { FaSearch } from 'react-icons/fa'
 
 import { Link, useParams } from "react-router-dom";
@@ -19,27 +21,27 @@ import axios from "axios";
 
 function Workspace() {
 
-  const { projectId } = useParams()
+  const projectId  = useParams()["id"]
   const [openModal, setOpenModal] = useState(false);
+  const [currentFolder, setCurrentFolder] = useState("root")
+  const [folderList, setFolderList] = useState([])
+  const [imageList, setImageList] = useState([])
 
-  const [folders, setFolders] = useState([])
-
-  const getFolders = async () => {
-    await axios.get("http://localhost:8000/getFolders/" + projectId)
+  const getFolder = async () => {
+    await axios.get("http://localhost:8000/getWorkspace/" + String(projectId) + '/&root&/')
       .then((res) => {
         if (res.data["success"]) {
-          console.log(res)
-          return (res.data['folderList'])
+          console.log(res.data)
+          setFolderList(res.data['folderList'])
         }
         else
           console.log("Error: " + res.data["error"])
       })
   }
+
   useEffect(() => {
     const getAll = async () => {
-      const allFolders = await getFolders()
-      if (allFolders)
-        setFolders(allFolders)
+        await getFolder()
     }
     getAll();
   }, [openModal])
@@ -57,8 +59,8 @@ function Workspace() {
     })
 
     const getAll = async () => {
-      const allFolders = await getFolders()
-      setFolders(allFolders)
+      const allFolders = await getFolder()
+      setFolderList(allFolders)
     }
     getAll();
   }
@@ -151,7 +153,7 @@ function Workspace() {
     </div>
     <div className="folder">
       {
-        folders.map(folder =>
+        folderList.map(folder =>
           <div className="folders" key={folder.id}>
             <Link to={`/mainspace/${folder.id}`}> <BsImageFill className='folder-icon' /></Link>
             <div className="folder-info">

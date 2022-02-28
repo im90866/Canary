@@ -16,6 +16,7 @@ function Project() {
   const [update, setUpdate] = useState(false)
   const [id, setId] = useState("")
   const [projectName, setProjectName] = useState("")
+  const [changed, makeChange] = useState(false)
 
   const getProjects = async () => {
     const response = await axios.get("http://localhost:8000/getproject/" + String(getCookie('username')))
@@ -32,13 +33,14 @@ function Project() {
   }
 
   useEffect(() => {
+    makeChange(false)
     const getAll = async () => {
       const allProjects = await getProjects()
       if (allProjects)
         setProjects(allProjects)
     }
     getAll();
-  }, [])
+  }, [changed])
 
   const addProject = async (project) => {
     console.log(project)
@@ -54,6 +56,24 @@ function Project() {
         console.log(res.data['error'])
       }
     })
+  }
+
+  const removeProject = async (id) => {
+    const request = {
+      'projectAdmin': String(getCookie('username')),
+      'projectID': id,
+    }
+
+    await axios.post("http://localhost:8000/deleteproject/", request).then((res) =>{
+      if (res.data["error"]) {
+        console.log(res.data['error'])
+      }
+    })
+    
+    const newProjectList = projects.filter((project) => {
+      return project.id !== id
+    })
+    setProjects(newProjectList)
   }
 
 
@@ -89,7 +109,7 @@ function Project() {
           </div>     
         </div>      
       </div>
-      {openModal && <Modal closeModal={setOpenModal} val = {"hello"} />} 
+      {openModal && <Modal closeModal={setOpenModal} makeChange = {makeChange} />} 
     </div>
   )
 }

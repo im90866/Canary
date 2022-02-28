@@ -1,4 +1,4 @@
-from django.urls import path, include
+from django.urls import path, re_path, include
 
 from . import views
 from .Views.auth_views import *
@@ -15,7 +15,8 @@ urlpatterns = [
     path('getproject/<str:username>', GetProjects.as_view()),
 
     path('storeImageInWorkspace/', CreateImage.as_view()),
-    path('getWorkspace/<str:projectID>/<str:folderName>/', GetFolder.as_view()),
+    path('getWorkspace/<str:projectID>/<str:folderPath>', GetFolder.as_view()),
+    #workspace\/[0-9A-Za-z]+\/([A-Za-z]+\/)*
     path('createFolder/', CreateFolder.as_view()),
 
     # debug functions

@@ -6,38 +6,45 @@ import { BsImageFill } from "react-icons/bs";
 import { BsThreeDots } from "react-icons/bs";
 
 import { Link, useParams} from "react-router-dom";
-import { useState, useEffect} from "react"
+import { useState, useEffect, useCallback} from "react"
 import axios from "axios"
 
 import Dropdown from '../Dropdown/Dropdown';
 
-function Workspace() {
+function Workspace(props) {
   const [openDropdown, setOpenDropdown] = useState(false);
 
   const projectId  = useParams()['id']
   const [folders, setFolders] = useState([])
   const [images, setImages] = useState([])
+  const [folderPath, setFolderPath] = useState(['root'])
+  const [currentFolder, changeCurrentFolder] = useState("root")
+  const [changed, makeChange] = useState(false)
 
   const getFolders = async () => {
-    await axios.get("http://localhost:8000/getFolders/" + projectId)
+    await axios.get("http://localhost:8000/getWorkspace/" + projectId + '/' + folderPath.join('&'))
       .then((res) => {
         if (res.data["success"]) {
-          console.log(res)
-          return (res.data['folderList'])
+          setFolders(res.data['folderList'])
         }
         else
           console.log("Error: " + res.data["error"])
       })
   }
 
+  const enterFolder = (folderID) => {
+    let newFolder = folderPath
+    setFolderPath(newFolder.push(folderID))
+      console.log(folderID)
+  }
+
   useEffect(() => {
+    makeChange(false)
     const getAll = async () => {
-      const allFolders = await getFolders()
-      if (allFolders)
-        setFolders(allFolders)
+      await getFolders()
     }
     getAll();
-  }, [openDropdown])
+  }, [openDropdown, changed])
 
   const addFolder = async (folder) => {
     console.log(folder)
@@ -53,6 +60,8 @@ function Workspace() {
 
     const getAll = async () => {
       const allFolders = await getFolders()
+      console.log("thenasss: ")
+      console.log(allFolders)
       setFolders(allFolders)
     }
     getAll();
@@ -75,25 +84,25 @@ function Workspace() {
         </div>
       </div>
 
-      {openDropdown && <Dropdown closeModal={setOpenDropdown} />} 
+      {openDropdown && <Dropdown  closeModal={setOpenDropdown} 
+                                  curFolder = {currentFolder} 
+                                  projId = {projectId} 
+                                  setFolder = {setFolders}
+                                  makeChange = {makeChange} />} 
 
       <div className="folder">
-        {
+        {  
           folders.map(folder =>
-            <div className="folders" key={folder.id}>
-              <Link to={`/mainspace/${folder.id}`}> <BsImageFill className='folder-icon' /></Link>
+            <div className="folders" key={folder.folderID} onClick = {() => enterFolder(folder.folderID)}>
+               <BsImageFill className='folder-icon' />
               <div className="folder-info">
-                <h3 className='folder-text'>{folder.name}</h3>
+                <h3 className='folder-text'>{folder.folderName}</h3>
                 <BsThreeDots className='three-dots' />
               </div>
             </div>
           )
         }
-        
       </div> 
-        
-        
-        
     </div>
   )
 }

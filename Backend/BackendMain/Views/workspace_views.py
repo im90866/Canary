@@ -24,7 +24,7 @@ class CreateImage(APIView):
         data = self.request.data
 
         meta_col = CLIENT_DATABASE['imageData']
-        proj_col = CLIENT_DATABASE['projectImage']
+        proj_col = CLIENT_DATABASE['projectData']
         user_col = CLIENT_DATABASE['userInfo']
         folder_col = CLIENT_DATABASE['folder']
 
@@ -46,7 +46,7 @@ class CreateImage(APIView):
             root = (proj_col.find_one({'_id' : ObjectId(data['projectID'])}))['projectRoot']
             targetFolder = ""
 
-            if data['curFolder'] == '//root':
+            if data['curFolder'] == '&root&':
                 targetFolder = searchFolders(root, root, folder_col)
             else:
                 targetFolder = searchFolders(root, data['curFolder'], folder_col)
@@ -71,20 +71,63 @@ class CreateImage(APIView):
 class GetFolder(APIView):
     permission_classes = (permissions.AllowAny, )
 
-    def get(self, request, username, projectID, folderName, format=None):
+    def get(self, request, projectID, folderPath, format=None):
         data = self.request.data
 
+        meta_col = CLIENT_DATABASE['imageData']
         proj_col = CLIENT_DATABASE['projectData']
         folder_col = CLIENT_DATABASE['folder']
 
+        FS = gridfs.GridFS(CLIENT_DATABASE)
+
+        print(projectID)
         root = (proj_col.find_one({'_id' : ObjectId(projectID)}))['projectRoot']
+        root = folder_col.find_one({'_id' : ObjectId(root)})
+
         targetFolder = ""
 
-        if folderName == '//root':
-            targetFolder = searchFolders(root, root, folder_col)
+        if folderPath == 'root':
+            targetFolder = root
         else:
-            targetFolder = searchFolders(root, folderName, folder_col)
+            targetFolder = searchFolders(root, folderPath, folder_col)
 
+        finalFolderList = []
+        finalImageList = []
+
+        if targetFolder != {}:
+            fList = targetFolder['folderList'] 
+            print(fList)
+
+            for x in fList:
+                resultFolder = folder_col.find_one({'_id' : ObjectId(x)})
+
+                finalFolderList.append({
+                    'folderName' : resultFolder['folderName'],
+                    'folderID' : x
+                })
+
+            imageList = targetFolder['imageList'] 
+
+            for x in imageList:
+                metaval = meta_col.find_one({'_id': ObjectId(x)})
+                metaval = {
+                    'imageID' : metaval['imageID'],
+                    'projectID' : metaval['projectID'],
+                    'imageVal' : FS.get(metaval['imageID']),
+                    'uploadedTime' : metaval['uploadedTime'],
+                    'uploader' : metaval['uploader'],
+                    'fileType' : metaval['fileType'],
+                    'dimensions' : metaval['dimensions']
+                }
+
+                finalImageList.append(metaval)
+            
+        print("stuff: ", finalFolderList)
+        return Response({ 
+            'success' : 'Successfully obtained folders',
+            'folderList' : finalFolderList,
+            'imageList' : finalImageList
+        })
 
 # Requires: projectName, projectID, curFolder name
 class CreateFolder(APIView):
@@ -96,17 +139,20 @@ class CreateFolder(APIView):
         proj_col = CLIENT_DATABASE['projectData']
         folder_col = CLIENT_DATABASE['folder']
 
-        root = (proj_col.find_one({'_id' : ObjectId(data['projectID'])}))['projectRoot']
+        proj= (proj_col.find_one({'_id' : ObjectId(data['projectID'])}))
+        root = folder_col.find_one({'_id' : ObjectId(proj['projectRoot'])})
+
         targetFolder = ""
 
-        if data['curFolder'] == '//root':
-            targetFolder = searchFolders(root, root, folder_col)
+
+        if data['curFolder'] == 'root':
+            targetFolder = root
         else:
-            targetFolder = searchFolders(root, data['curFolder'], folder_col)
+            targetFolder = searchFolders(root['folderList'], data['curFolder'], folder_col)
 
         #error check
 
-        folderID = folder_col.insert_one(folder(data['projectName']).getModel()).__inserted_id
+        folderID = folder_col.insert_one(folder(data['folderName'], proj['projectName']).getModel()).inserted_id
         folderID = json.loads(json_util.dumps(folderID))['$oid']
 
         newFolder = [folderID] + targetFolder['folderList']
@@ -115,6 +161,16 @@ class CreateFolder(APIView):
             '$set' : {
                 'folderList' : newFolder
             }
+        })
+
+        #except: 
+        #    return Response({ 
+        #        'Error' : 'Folder not added',
+        #    })
+
+
+        return Response({ 
+            'success' : 'Folder Added',
         })
 
 class GetProjectDetails(APIView):
@@ -141,6 +197,7 @@ def searchFolders(curFolder, goalFolder, col):
         return {}
     else:
         for x in curFolder:
+            print(x)
             val = col.find_one({'_id' : ObjectId(x)})
             if val['projectName'] == goalFolder:
                 return val
@@ -151,4 +208,28 @@ def searchFolders(curFolder, goalFolder, col):
             totalVal = dict(list(totalVal.items()) + list(searchFolders(checkFolder['folderList'], goalFolder).items()))
         return totalVal
 
+
+def searchFoldersWithPath(root, folderPath, col):
+    folderPath = (folderPath.split('&')).pop(0)
+
+    curFolder = root[:]
+
+    if not len(curFolder) > 0:
+        return {}
+    else:
+        while len(folderPath) > 0:
+            for x in curFolder:
+                print(x)
+                val = col.find_one({'_id' : ObjectId(x)})
+                if x == folderPath[0]:
+                    folderPath.pop(0)
+
+                    if len(folderPath) > 0:
+                        curFolder = val['folderList']
+                    else:
+                        return val
+                    break
+            if len(folderPath) == 0:
+                return "error"
+        
 
