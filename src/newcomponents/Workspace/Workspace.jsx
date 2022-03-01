@@ -6,27 +6,79 @@ import { BsImageFill } from "react-icons/bs";
 import { BsThreeDots } from "react-icons/bs";
 import { FaBackward} from "react-icons/fa";
 import { Link, useParams} from "react-router-dom";
-import { useState, useEffect, useCallback} from "react"
+import { useState, useEffect, useRef} from "react"
 import axios from "axios"
 
 import Dropdown from '../Dropdown/Dropdown';
 import Sidebar2 from '../Sidebar2/Sidebar2';
 
 function Workspace(props) {
+  const fileRef = useRef();
+
   const [openDropdown, setOpenDropdown] = useState(false);
 
   const projectId  = useParams()['id']
   const [folders, setFolders] = useState([])
   const [images, setImages] = useState([])
-  const [folderPath, setFolderPath] = useState(['root'])
-  const [currentFolder, changeCurrentFolder] = useState("root")
+  const [folderPath, setFolderPath] = useState(["root"])
+  const [currentFolder, setCurrentFolder] = useState("root")
   const [changed, makeChange] = useState(false)
+
+  const [image, setImage] = useState({
+    selectedFile: null,
+    imageFile: null,
+    'images64': null,
+  });
+
+  const fileSelect = async (event) => {
+    console.log("succa")
+    var file = event.target.files[0]
+    const image64 = await base64(file)
+    setImage({
+        selectedFile: file,
+    })
+    
+    const req = {
+      'projectID': projectId,
+      'currentPath': folderPath,
+
+      'imageString': image64,
+
+      'fileName': file['name'], 
+      'uploadedTime': file['lastModifiedDate'],
+      'uploader': String(getCookie('username')),
+      'fileSize': file['size'],
+      'fileType': file['type'],      
+    }
+
+    console.log(image64)
+    axios.post('http://localhost:8000/uploadImageWorkspace/', req).then((res) => {
+        console.log(res)
+    });
+  }
+
+  const base64 = (file) => {
+    return new Promise(function(resolve, reject) {
+      console.log(file.name)
+      var reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onloadend = function (file) {
+          console.log(file)
+          setImage({
+              'image64': String(file.target.result)
+          })
+          resolve(file.target.result)
+      }
+    })
+  }
 
   const getFolders = async () => {
     await axios.get("http://localhost:8000/getWorkspace/" + projectId + '/' + folderPath.join('&'))
       .then((res) => {
         if (res.data["success"]) {
+          console.log(res.data['imageList'])
           setFolders(res.data['folderList'])
+          setImages(res.data['imageList'])
         }
         else
           console.log("Error: " + res.data["error"])
@@ -34,9 +86,11 @@ function Workspace(props) {
   }
 
   const enterFolder = (folderID) => {
-    let newFolder = folderPath
-    setFolderPath(newFolder.push(folderID))
-      console.log(folderID)
+    folderPath.push(folderID)
+    setFolderPath(folderPath)
+    setCurrentFolder(folderID)
+    console.log(folderPath)
+    makeChange(true)
   }
 
   useEffect(() => {
@@ -45,7 +99,7 @@ function Workspace(props) {
       await getFolders()
     }
     getAll();
-  }, [openDropdown, changed])
+  }, [openDropdown, changed, folderPath])
 
   const addFolder = async (folder) => {
     console.log(folder)
@@ -78,7 +132,14 @@ function Workspace(props) {
           <div className="workspace-title">
             <h1 className="wtitle">WorkSpace</h1>
             <div className="btn-grp">
-              <button className="wbtn">Upload</button>
+              <button className="wbtn" onClick={() => fileRef.current.click()}>Upload</button>
+              <input
+                ref={fileRef}
+                onChange={fileSelect}
+                multiple={false}
+                type="file"
+                hidden
+              />
               <button className="wbtn1"onClick={() =>
                   setOpenDropdown(true)}><span className='btn-text'>New Folder</span></button>
             </div>
@@ -88,7 +149,7 @@ function Workspace(props) {
       </div>
 
       {openDropdown && <Dropdown  closeModal={setOpenDropdown} 
-                                  curFolder = {currentFolder} 
+                                  path = {folderPath} 
                                   projId = {projectId} 
                                   setFolder = {setFolders}
                                   makeChange = {makeChange} />} 
@@ -106,10 +167,32 @@ function Workspace(props) {
             
           )
         }
+
+        {  
+          images.map(image =>
+            <div >
+            <img className="image" src={image.imageVal} width ={100} height={100}/>
+              <div className="folder-info">
+                <h3 className='folder-text'></h3>
+              </div>
+            </div>
+          )
+        }
       </div> 
       </div>
     </div>
   )
+}
+
+function getCookie(name) {
+  var nameEQ = name + "=";
+  var ca = document.cookie.split(';');
+  for (var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+    if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+  }
+  return null;
 }
 
 export default Workspace

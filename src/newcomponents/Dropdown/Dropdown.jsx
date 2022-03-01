@@ -5,7 +5,7 @@ import { useState } from 'react'
 
 export default function Dropdown(props) {
   const closeModal = props.closeModal
-  const currentFolder = props.curFolder
+  const folderPath = props.path
   const projectId = props.projId
   const setFolders = props.setFolder
   
@@ -14,7 +14,7 @@ export default function Dropdown(props) {
   const [folderName, setFolderName] = useState("") 
 
   const getFolders = async () => {
-    await axios.get("http://localhost:8000/getWorkspace/" + projectId + '/' + currentFolder)
+    await axios.get("http://localhost:8000/getWorkspace/" + projectId + '/' + folderPath.join('&'))
       .then((res) => {
         if (res.data["success"]) {
           setFolders(res.data['folderList'])
@@ -27,7 +27,7 @@ export default function Dropdown(props) {
   const addFolder = async (folder) => {
     console.log(folder)
     const request = {
-      'curFolder' : currentFolder,
+      'currentFolderPath' : folderPath,
       'projectID' : projectId,
       ...folder
     }

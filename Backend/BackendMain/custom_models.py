@@ -81,9 +81,11 @@ class folder():
 class projectImage():
     _imageID = ""
     _projectID = ""
+    _imageName = ""
     _uploadedTime = ""
     _uploader = ""
     _authorList = []
+    _fileSize = 0
     _fileType = ""
     _dimensons = {
         "height" : 0, 
@@ -93,22 +95,21 @@ class projectImage():
     def __init__(self, jsonFile): 
         self._imageID = jsonFile['imageID']
         self._projectID = jsonFile['projectID']
+        self._imageName = jsonFile['fileName']
         self._uploadedTime = jsonFile['uploadedTime']
         self._uploader = jsonFile['uploader']
+        self._fileSize = jsonFile['fileSize']
         self._fileType = jsonFile['fileType']
-        self._dimensons = {
-            "height" : jsonFile['dimensions']['height'], 
-            "width" : jsonFile['dimensions']['width']
-        }
     
     def getModel(self):
         model = {
             'imageID' : self._imageID,
             'projectID' : self._projectID,
+            'fileName' : self._imageName,
             'uploadedTime' : self._uploadedTime,
             'uploader' : self._uploader,
+            'fileSize' : self._fileSize,
             'fileType' : self._fileType,
-            'dimensions' : self._dimensons 
         }
 
         return model
