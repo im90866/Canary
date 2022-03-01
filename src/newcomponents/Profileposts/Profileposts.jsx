@@ -20,28 +20,27 @@ function Profileposts() {
     <h2 className="posts1"><Link to="/profile/profileposts">Posts</Link></h2>
     </div>
  <div className="wrapper">
-    <div className="card">
-    <div className="card__body">
-      <div className="img">
- <img src="https://cdn.pixabay.com/photo/2022/01/11/14/09/bird-6930700__340.jpg" className="card__image" alt=""/>    
+ <div className="card1">
+      <div className="card__body1">
+        <div className="img1">
+   <img src="https://cdn.pixabay.com/photo/2022/01/11/14/09/bird-6930700__340.jpg" className="card__image" alt=""/>    
 </div>
 
 </div></div>
 
-<div className="card">
-    <div className="card__body">
-      <div className="img">
- <img src="https://cdn.pixabay.com/photo/2022/01/14/05/10/texture-6936465__340.jpg" className="card__image" alt=""/>    
-</div>   
+<div className="card1">
+      <div className="card__body1">
+        <div className="img1">
+   <img src="https://cdn.pixabay.com/photo/2022/01/11/14/09/bird-6930700__340.jpg" className="card__image" alt=""/>    
+</div>
+
+</div></div>  <div className="card1">
+      <div className="card__body1">
+        <div className="img1">
+   <img src="https://cdn.pixabay.com/photo/2022/01/11/14/09/bird-6930700__340.jpg" className="card__image" alt=""/>    
+</div>
 
 </div></div>
-<div className="card">
-    <div className="card__body">
-      <div className="img">
- <img src="https://cdn.pixabay.com/photo/2022/01/01/19/18/air-bubbles-6908693__340.jpg" className="card__image" alt=""/>    
-</div> 
-
-</div></div> 
 </div>  
    
 

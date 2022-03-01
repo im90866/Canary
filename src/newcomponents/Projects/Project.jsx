@@ -99,7 +99,7 @@ function Project() {
                     <Link to={`/workspace/${project.id}`}>
                       <li className="project-list-item">
                         <span className='project-name'>{project.projectName}</span>
-                        <span className='dots'>...</span>
+                        
                       </li>
                     </Link>
                   </div>

@@ -1,5 +1,5 @@
 .ps-container{
-    margin-top: 120px;
+
 }
 .ps-box{
     z-index: 1;
@@ -8,7 +8,7 @@
     width: 600px;
     height: 500px;
     left: 450px;
-    top: -350px;
+    top: -300px;
     border-radius: 10px;
     overflow-y: scroll;
 }

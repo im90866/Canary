@@ -7,24 +7,27 @@
     padding-top: 100px;
     position: sticky;
 }
-.settings{
-    box-shadow: 2px 2px 2px rgba(0, 0, 0, .2); 
-  
+.settings-title{
+    position: relative;
+top:300px;
+    font-weight: 500;
+    left: -350px;
+}
+.settings{ 
  position: relative;
- 
  border-radius: 5px;
     background-color: #fff;
     height: 100%;
     width:100%;
+    top:200px;
+    left: -100px;
   
- margin-top: 300px;
 
-margin-left: -100px;
 
 }
 .settinglist{
     padding: 30px;
-    margin-bottom: 60px;
+    margin-bottom: 40px;
 
     
 }
@@ -43,8 +46,8 @@ margin-left: -100px;
 }
 .settinglistname a:hover{
     background-color: #efefef;
-    padding-top: 12px;
-    padding-bottom: 12px;
+    padding-top: 8px;
+    padding-bottom: 8px;
     
 }
  .edit-profile{
@@ -58,9 +61,8 @@ margin-left: -100px;
   
     width:600px;
     height: 500px;
-margin-top: 300px;
-margin-right: 150px;
-margin-left: -100px;
+top:200px;
+left:-100px;
 
 
 }
@@ -91,10 +93,12 @@ text-transform: none;
 width: 180px;
     height: 40px;
 border-radius: 20px;
-margin-left: 40px;
-margin-top: 50px;
+position: relative;
+top:50px;
+left: -150px;
+
 white-space: nowrap;
-margin-left: -160px;
+
         text-overflow: clip;
      
  }
@@ -256,11 +260,32 @@ margin-left: -100px;
   
     width:600px;
     height: 300px;
-margin-top: 300px;
+margin-top: 350px;
 margin-right: 150px;
 margin-left: -100px;
 }
 .btnn1{
     margin-bottom: 800px;
     cursor: pointer;
+}
+.settings2{
+    position: relative;
+    border-radius: 5px;
+       background-color: #fff;
+       height: 20%;
+       width:100%;
+       top:300px;
+       left: -100px;
+}
+.settings-title2{
+    position: relative;
+    top:350px;
+        font-weight: 500;
+        left: -350px;
+}
+.settings-title2{
+    position: relative;
+    top:350px;
+        font-weight: 500;
+        left: -350px;
 }

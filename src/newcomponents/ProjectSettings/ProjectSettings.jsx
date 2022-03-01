@@ -32,6 +32,7 @@ function ProjectSettings() {
             <li className="members">Gurav Navyar </li>
             <li className="members">Madiha Kazi </li>
             <li className="members">Moaz Mohammad </li>
+          
         </ul>
         </div>
         </div>
