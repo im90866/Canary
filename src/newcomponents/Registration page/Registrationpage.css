@@ -12,3 +12,16 @@ top:-5px;
 margin-right: 150px;
 margin-left: 200px;
 }
+.submit-changes{
+    border-radius: 5px;
+}
+.change{
+    width: 150px;
+    height: 40px;
+    border-radius: 5px; 
+}
+.photo{
+    color: #fff;
+    position: relative;
+    left: -15px;
+}

@@ -32,8 +32,8 @@ padding-right: 0px;
     list-style: none;
   }
   .sidebarListItem a{
-    padding: 0;
-    margin: 0;
+    padding: 1px;
+  
     list-style: none;
     text-decoration: none;
     color: black;
@@ -41,8 +41,7 @@ padding-right: 0px;
   }
   .sidebarListItem:hover{
       background-color: #efefef;
-      padding-top: 5px;
-      padding-bottom: 5px;
+   
       width: 300px;
   
 
@@ -54,7 +53,7 @@ padding-right: 0px;
   .sidebarListItem {
     display: flex;
     align-items: center;
-    margin-bottom: 30px;
+    margin-bottom: 5px;
   
   }
  

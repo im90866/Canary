@@ -7,7 +7,7 @@
         <div className="existing-details">
             <img src="/images/avatar.png" alt="" className='profile-picture' />
             <h3 className="profile-username">Nashwa_Abdul</h3>
-            <button className='change'>Upload photo</button>
+            <button className='change'><span className="photo">Upload photo</span></button>
         </div>
         <div className="change-details">
             <div className="change-name">

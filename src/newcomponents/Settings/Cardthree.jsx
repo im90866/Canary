@@ -3,14 +3,32 @@ import Sidebar from '../Sidebar/Sidebar'
 import Topbar from '../Topbar/Topbar'
 import Cardone from './Cardone'
 import "./Settings.css"
-
+import { Link } from 'react-router-dom'
 function Cardthree() {
   return (
     <div>
         <Topbar/>
         <Sidebar/>
+        <h1 className="settings-title2">Settings</h1>
         <div className="settings-container1">
-            <Cardone/>
+        <div className="settings-bar">
+          <div className="settings2">
+              <ul className="settinglist">
+                  <div className="settinglistname">
+          <li  className='setting-listli'> <Link to ="/settings">Edit Profile</Link></li>
+                  </div>
+                  <div className="settinglistname">
+                    <li  className='setting-listli'><Link to ="/changepassword">Change Password</Link></li>  
+                  </div>
+                  <div className="settinglistname">
+                  <li className='setting-listli'><Link to ="/blocked">Block Users</Link></li>
+                  </div>
+                  <div className="settinglistname">
+                  <li  className='setting-listli'><Link to ="/delete">Delete Account</Link></li>
+                  </div>
+              </ul>
+          </div>
+      </div>
            <div className="change-password">
            <div className="change-password-title">
                <h1 className="cptitle">Change Password</h1>

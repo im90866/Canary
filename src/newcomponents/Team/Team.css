@@ -1,5 +1,5 @@
 .team-container{
-  margin-top: 120px;
+ 
 }
 
 .team-name{
@@ -9,7 +9,7 @@
   width: 600px;
   height: 400px;
   left: 450px;
-  top: -350px;
+  top: -300px;
   border-radius: 10px;
 
 }
@@ -29,9 +29,11 @@
 }
 .submit-changes1{
   text-transform: none;
+  border-radius: 5px;
 }
 .submit-changes2{
   text-transform: none;
+  border-radius: 5px;
 }
 .change-text12{
   border: none;
