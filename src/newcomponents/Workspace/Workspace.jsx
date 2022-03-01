@@ -4,13 +4,12 @@ import Topbar from '../Topbar/Topbar'
 import "./Workspace.css"
 import { BsImageFill } from "react-icons/bs";
 import { BsThreeDots } from "react-icons/bs";
-import { FaBackward} from "react-icons/fa";
+
 import { Link, useParams} from "react-router-dom";
 import { useState, useEffect, useRef} from "react"
 import axios from "axios"
 
 import Dropdown from '../Dropdown/Dropdown';
-import Sidebar2 from '../Sidebar2/Sidebar2';
 
 function Workspace(props) {
   const fileRef = useRef();
@@ -125,9 +124,8 @@ function Workspace(props) {
   return (
     <div>
       <Topbar/>
-      <Sidebar2/>
+      <Sidebar/>
       <div className="workspace-container">
-     
         <div className="workspace">
           <div className="workspace-title">
             <h1 className="wtitle">WorkSpace</h1>
@@ -144,7 +142,6 @@ function Workspace(props) {
                   setOpenDropdown(true)}><span className='btn-text'>New Folder</span></button>
             </div>
           </div>
-     
         </div>
       </div>
 
@@ -153,7 +150,7 @@ function Workspace(props) {
                                   projId = {projectId} 
                                   setFolder = {setFolders}
                                   makeChange = {makeChange} />} 
-<div className="folder-container2">
+
       <div className="folder">
         {  
           folders.map(folder =>
@@ -164,7 +161,6 @@ function Workspace(props) {
                 <BsThreeDots className='three-dots' />
               </div>
             </div>
-            
           )
         }
 
@@ -179,7 +175,6 @@ function Workspace(props) {
           )
         }
       </div> 
-      </div>
     </div>
   )
 }

@@ -86,19 +86,20 @@ class GetFolder(APIView):
 
         FS = gridfs.GridFS(CLIENT_DATABASE)
 
-        print(projectID)
         root = (proj_col.find_one({'_id' : ObjectId(projectID)}))['projectRoot']
         root = folder_col.find_one({'_id' : ObjectId(root)})
 
         targetFolder = ""
+        print(folderPath)
 
-        if len(folderPath) == 1:
+        if len(folderPath) == 1 or folderPath == 'root':
             targetFolder = root
         else:
             targetFolder = searchFoldersWithPath(root, folderPath.split('&'), folder_col)
 
         finalFolderList = []
         finalImageList = []
+
 
         if targetFolder != {}:
             fList = targetFolder['folderList'] 
