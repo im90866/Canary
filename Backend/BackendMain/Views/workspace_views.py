@@ -91,6 +91,9 @@ class GetFolder(APIView):
 
         targetFolder = ""
         print(folderPath)
+        print(root)
+        print("sussss")
+        print(targetFolder)
 
         if len(folderPath) == 1 or folderPath == 'root':
             targetFolder = root

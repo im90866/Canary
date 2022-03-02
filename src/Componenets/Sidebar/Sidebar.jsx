@@ -4,7 +4,13 @@ import {GoSignOut} from "react-icons/go"
 import  "./Sidebar.css"
 import { Link } from "react-router-dom";
 import "../Home/Home.css"
+
 function Sidebar() {
+    const logout = () => {
+        console.log("bye")
+        eraseCookie('username')
+    }
+
     return (
         <div>
             <div className="sidenav">
@@ -12,19 +18,16 @@ function Sidebar() {
                     <ul className="sidenav-list">
                         <li className="sidenav-item">
                         <MdExplore  className="sidenav-icon"/>
-                        <Link to="/home"><span className="sidenav-text">Explore</span></Link>
                         </li>
                        <li className="sidenav-item">
                         <MdNotificationsActive className="sidenav-icon"/>
-                        <Link to="/home"><span className="sidenav-text">Notifications</span></Link>
                         </li>
                       <li className="sidenav-item">
                         <MdSettings  className="sidenav-icon"/>
-                        <Link to="/home"><span className="sidenav-text">Settings</span></Link>
                         </li>
                        <li className="sidenav-item">
-                        <GoSignOut  className="sidenav-icon"/>
-                        <Link to="/"><span className="sidenav-text">Sign Out</span></Link>
+                        <GoSignOut className="sidenav-icon"/>
+                        <span className="sidenav-text">Sign Out</span>
                         </li>
                     </ul>
                 </div>
@@ -34,6 +37,10 @@ function Sidebar() {
 
         </div>
     )
+}
+
+function eraseCookie(name) {   
+    document.cookie = name+'=; Max-Age=-99999999;';  
 }
 
 export default Sidebar

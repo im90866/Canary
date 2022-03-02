@@ -20,7 +20,6 @@ function Workspace(props) {
   const [folders, setFolders] = useState([])
   const [images, setImages] = useState([])
   const [folderPath, setFolderPath] = useState(["root"])
-  const [currentFolder, setCurrentFolder] = useState("root")
   const [changed, makeChange] = useState(false)
 
   const [image, setImage] = useState({
@@ -30,7 +29,6 @@ function Workspace(props) {
   });
 
   const fileSelect = async (event) => {
-    console.log("succa")
     var file = event.target.files[0]
     const image64 = await base64(file)
     setImage({
@@ -54,6 +52,7 @@ function Workspace(props) {
     axios.post('http://localhost:8000/uploadImageWorkspace/', req).then((res) => {
         console.log(res)
     });
+    makeChange(true)
   }
 
   const base64 = (file) => {
@@ -87,7 +86,6 @@ function Workspace(props) {
   const enterFolder = (folderID) => {
     folderPath.push(folderID)
     setFolderPath(folderPath)
-    setCurrentFolder(folderID)
     console.log(folderPath)
     makeChange(true)
   }
@@ -99,27 +97,6 @@ function Workspace(props) {
     }
     getAll();
   }, [openDropdown, changed, folderPath])
-
-  const addFolder = async (folder) => {
-    console.log(folder)
-    const request = {
-      ...folder
-    }
-
-    axios.post("http://localhost:8000/createFolder/", request).then((res) => {
-      if (res.data["error"]) {
-        console.log(res.data['error'])
-      }
-    })
-
-    const getAll = async () => {
-      const allFolders = await getFolders()
-      console.log("thenasss: ")
-      console.log(allFolders)
-      setFolders(allFolders)
-    }
-    getAll();
-  }
 
   return (
     <div>

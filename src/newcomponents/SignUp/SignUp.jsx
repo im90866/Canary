@@ -4,8 +4,10 @@ import {useNavigate} from 'react-router-dom';
 
 import axios from 'axios';
 
-function SignUp() {
+function SignUp(props) {
   const navigate = useNavigate()
+
+  const changeContainer = props.changeVal
 
   const [email, setEmail] = useState("")
   const [username, setUsername] = useState("")
@@ -41,7 +43,8 @@ function SignUp() {
         else  
           console.log("Error "+res.data["error"])
     })
-
+    
+    //changeContainer(false)
     setSubmitted(true)
   }
 

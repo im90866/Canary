@@ -5,10 +5,11 @@ import {useState} from 'react';
 import axios from 'axios';
 import crypto from 'crypto-js'
 
-function Login() {
+function Login(prop) {
     let navigate = useNavigate()
+
+    const setLog = prop.logger
     const[values,setValues]=useState({
-       
         username:"",
         password:"",
     });
@@ -39,6 +40,8 @@ function Login() {
             .then((res) => {
               if(res.data["success"]) { 
                 console.log('Succesfully logged in')
+
+                setLog(true)
                 setCookie("username", values.username, 2)
                 navigate('/home')
               }
@@ -109,9 +112,7 @@ function Login() {
 }
 
 function setCookie(cname, cvalue, hours){
-  const d = new Date();
-  d.setTime(d.getTime() + (hours*60*60*1000));
-  let expires = "expires="+ d.toUTCString();
+  let expires = "expires="+ "2147483647";
   document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 
