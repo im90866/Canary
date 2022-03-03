@@ -6,9 +6,10 @@ import Feed from "../Feed/Feed"
 function Home() {
   return (
     <div>
-  <Topbar/>    
+  <Topbar/>  
+  <Sidebar/>   
       <div className="home-container">
-    <Sidebar/>   
+      
        <Feed/>    
       </div>
     </div>

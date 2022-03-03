@@ -26,11 +26,11 @@
 
 
 .wrapper1 {
- overflow-x: hidden; 
+
 display: grid;
 grid-template-columns: repeat(auto-fit, minmax(12rem, 16rem));
 gap: 2rem;
-justify-content: center;
+
 position: relative;
 top:-200px;
 left: -20px;
