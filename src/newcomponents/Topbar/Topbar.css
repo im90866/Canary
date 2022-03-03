@@ -2,7 +2,7 @@
 .topbarContainer {
   
     height: 50px;
-    width: 102%;
+    width: 100%;
     display: flex;
     align-items: center; /*to align the search bar*/
     position: fixed;
