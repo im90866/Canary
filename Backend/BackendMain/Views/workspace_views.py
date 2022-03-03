@@ -1,3 +1,4 @@
+from pathlib import Path
 from rest_framework.views import APIView
 from rest_framework import permissions
 from rest_framework.response import Response
@@ -32,37 +33,42 @@ class CreateImage(APIView):
 
         FS = gridfs.GridFS(CLIENT_DATABASE)
 
-        try: 
-            # Stores image in the gridFS database
-            imageID = FS.put(data['imageString'], filename=data['filename'])
-            data['imageID'] = imageID
+        # Stores image in the gridFS database
+        imageID = FS.put(data['imageString'], encoding='utf-8')
+        data['imageID'] = imageID
 
-            # Stores the projectImage metadata 
-            projectImageModel = projectImage(data)
+        # Stores the projectImage metadata 
+        projectImageModel = projectImage(data)
 
-            projectImageID = (meta_col.insert_one(projectImageModel.getModel())).__inserted_id
-            projectImageID = json.loads(json_util.dumps(projectImageID))['$oid']
+        projectImageID = (meta_col.insert_one(projectImageModel.getModel())).inserted_id
+        projectImageID = json.loads(json_util.dumps(projectImageID))['$oid']
 
-            root = (proj_col.find_one({'_id' : ObjectId(data['projectID'])}))['projectRoot']
-            targetFolder = ""
+        proj= (proj_col.find_one({'_id' : ObjectId(data['projectID'])}))
+        root = folder_col.find_one({'_id' : ObjectId(proj['projectRoot'])})
 
-            if data['curFolder'] == '&root&':
-                targetFolder = searchFolders(root, root, folder_col)
-            else:
-                targetFolder = searchFolders(root, data['curFolder'], folder_col)
+        targetFolder = ""
 
-            newImageList = [projectImageID] + targetFolder['imageList']
 
-            folder_col.update_one(targetFolder, {
-               '$set' : {
-                   'imageList' : newImageList
-               }
-            })
+        if len(data['currentPath']) == 1 :
+            print("yesss")
+            targetFolder = root
+        else:
+            targetFolder = searchFoldersWithPath(root, data['currentPath'], folder_col)
+
+          
+
+        newImageList = [projectImageID] + targetFolder['imageList']
+
+        folder_col.update_one(targetFolder, {
+            '$set' : {
+                'imageList' : newImageList
+            }
+        })
 
             #image = FS.get(imageID)
-        except:
-            print("shit happened")
-            return Response({ 'Error' : 'Something went wrong'})
+        #except:
+        #    print("shit happened")
+        #    return Response({ 'Error' : 'Something went wrong'})
 
         return Response({ 'success' : 'Image properly stored' })
 
@@ -80,19 +86,23 @@ class GetFolder(APIView):
 
         FS = gridfs.GridFS(CLIENT_DATABASE)
 
-        print(projectID)
         root = (proj_col.find_one({'_id' : ObjectId(projectID)}))['projectRoot']
         root = folder_col.find_one({'_id' : ObjectId(root)})
 
         targetFolder = ""
+        print(folderPath)
+        print(root)
+        print("sussss")
+        print(targetFolder)
 
-        if folderPath == 'root':
+        if len(folderPath) == 1 or folderPath == 'root':
             targetFolder = root
         else:
-            targetFolder = searchFolders(root, folderPath, folder_col)
+            targetFolder = searchFoldersWithPath(root, folderPath.split('&'), folder_col)
 
         finalFolderList = []
         finalImageList = []
+
 
         if targetFolder != {}:
             fList = targetFolder['folderList'] 
@@ -108,19 +118,25 @@ class GetFolder(APIView):
 
             imageList = targetFolder['imageList'] 
 
+            
             for x in imageList:
                 metaval = meta_col.find_one({'_id': ObjectId(x)})
+                json.loads(json_util.dumps(metaval['_id']))['$oid']
+
                 metaval = {
-                    'imageID' : metaval['imageID'],
                     'projectID' : metaval['projectID'],
                     'imageVal' : FS.get(metaval['imageID']),
+
                     'uploadedTime' : metaval['uploadedTime'],
                     'uploader' : metaval['uploader'],
+                    
                     'fileType' : metaval['fileType'],
-                    'dimensions' : metaval['dimensions']
+                    'fileName' : metaval['fileName'],
+                    'fileSize' : metaval['fileSize'],
                 }
-
+                print("after: ", metaval)
                 finalImageList.append(metaval)
+            
             
         print("stuff: ", finalFolderList)
         return Response({ 
@@ -129,7 +145,7 @@ class GetFolder(APIView):
             'imageList' : finalImageList
         })
 
-# Requires: projectName, projectID, curFolder name
+# Requires: new folder name, projectID, curFolder path
 class CreateFolder(APIView):
     permission_classes = (permissions.AllowAny, )
 
@@ -142,13 +158,20 @@ class CreateFolder(APIView):
         proj= (proj_col.find_one({'_id' : ObjectId(data['projectID'])}))
         root = folder_col.find_one({'_id' : ObjectId(proj['projectRoot'])})
 
+        path = data['currentFolderPath']
         targetFolder = ""
+        print(path)
 
-
-        if data['curFolder'] == 'root':
+        if len(path) == 1:
             targetFolder = root
+            print("skull")
         else:
-            targetFolder = searchFolders(root['folderList'], data['curFolder'], folder_col)
+            print("bong")
+            targetFolder = searchFoldersWithPath(root, path, folder_col)
+
+        print(root)
+        print("ssssssssss")
+        print(targetFolder)
 
         #error check
 
@@ -210,9 +233,10 @@ def searchFolders(curFolder, goalFolder, col):
 
 
 def searchFoldersWithPath(root, folderPath, col):
-    folderPath = (folderPath.split('&')).pop(0)
+    folderPath.pop(0)
 
-    curFolder = root[:]
+    print(root)
+    curFolder = root['folderList']
 
     if not len(curFolder) > 0:
         return {}

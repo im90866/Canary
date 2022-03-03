@@ -14,7 +14,7 @@ urlpatterns = [
     path('updateproject/', UpdateProjectName.as_view()),
     path('getproject/<str:username>', GetProjects.as_view()),
 
-    path('storeImageInWorkspace/', CreateImage.as_view()),
+    path('uploadImageWorkspace/', CreateImage.as_view()),
     path('getWorkspace/<str:projectID>/<str:folderPath>', GetFolder.as_view()),
     #workspace\/[0-9A-Za-z]+\/([A-Za-z]+\/)*
     path('createFolder/', CreateFolder.as_view()),

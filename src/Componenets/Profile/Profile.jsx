@@ -1,8 +1,15 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Topbar from '../Topbar/Topbar'
 import "./Profile.css"
 import {Link} from "react-router-dom"
-function Profile() {
+
+function Profile() { 
+  const [username, setUsername] = useState("")
+ 
+  useEffect(() => {
+    setUsername(String(getCookie('username')))
+  }, [])
+
   return (<div>
   <Topbar/>  
     <div style={{display:"flex",justifyContent:"space-around",margin:"18px 0px" ,borderBottom:"1px solid gray"}} className="profile-container">
@@ -11,7 +18,7 @@ function Profile() {
       </div>
       <div className='profile-info'>
       <div className="profile">
-        <h4 className='profile-name'>Nashwa Abdul</h4>
+        <h4 className='profile-name'>{}</h4>
         
         <Link to="/editprofile"><button className='btn'>Edit Profile</button></Link>
         </div>
@@ -33,6 +40,17 @@ function Profile() {
  </div>
   </div>
   );
+}
+
+function getCookie(name) {
+  var nameEQ = name + "=";
+  var ca = document.cookie.split(';');
+  for(var i=0;i < ca.length;i++) {
+      var c = ca[i];
+      while (c.charAt(0)==' ') c = c.substring(1,c.length);
+      if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+  }
+  return null;
 }
 
 export default Profile;
