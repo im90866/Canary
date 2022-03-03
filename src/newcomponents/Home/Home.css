@@ -1,6 +1,6 @@
-.homeContainer{
+.home-container{
     display: flex;
-    width: 100%;
-    
-    
+    width: 1343px;
+    height: 929px;
+    float: left
 }
