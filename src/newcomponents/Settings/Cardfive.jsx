@@ -11,10 +11,10 @@ function Cardfive() {
     <div>
       <Topbar/>
         <Sidebar/>
-        <h1 className="settings-title2">Settings</h1>
+    
         <div className="settings-container1">
         <div className="settings-bar">
-          <div className="settings2">
+          <div className="settings3">
               <ul className="settinglist">
                   <div className="settinglistname">
           <li  className='setting-listli'> <Link to ="/settings">Edit Profile</Link></li>
@@ -40,9 +40,9 @@ function Cardfive() {
           setOpenModal(true)}>Delete Account</button>
             
            </div>
-           {openModal && <Modal3 closeModal={setOpenModal} />} 
+         
            </div>
-        
+           {openModal && <Modal3 closeModal={setOpenModal} />} 
         </div>
    
     </div>

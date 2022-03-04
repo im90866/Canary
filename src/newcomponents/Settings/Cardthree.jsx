@@ -9,7 +9,7 @@ function Cardthree() {
     <div>
         <Topbar/>
         <Sidebar/>
-        <h1 className="settings-title2">Settings</h1>
+     
         <div className="settings-container1">
         <div className="settings-bar">
           <div className="settings2">

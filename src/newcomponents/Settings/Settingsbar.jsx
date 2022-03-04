@@ -12,7 +12,7 @@ function Settingsbar() {
     <div>
           <Topbar/> 
         <Sidebar/>    
-        <h1 className="settings-title">Settings</h1>
+     
         <div className="settings-container">
        
           <Cardone/>
