@@ -4,6 +4,8 @@ from rest_framework.response import Response
 from django.views.decorators.csrf import ensure_csrf_cookie, csrf_exempt, csrf_protect
 from django.utils.decorators import method_decorator
 
+from rest_framework import filters
+
 from ..helper_functions import *
 from ..custom_models import *
 
@@ -72,9 +74,27 @@ class LoginView(APIView):
         else:
             return Response({ 'error': 'Error Authenticating' })
 
+class Search(APIView):
+    permission_classes = (permissions.AllowAny, )
+    def get(self, request, format=None):
+        queryset = CLIENT_DATABASE['userInfo'].find()
+        users = []
+        # for x in queryset:
+        #     print(x['username'])
+        #     # users.append(x)
+        filter_backends = [filters.SearchFilter]
+        search_fields = ['^username']
+        return Response({
+            'users working' : filter_backends
+        })
+    
+
+
 @method_decorator(ensure_csrf_cookie, name='dispatch')
 class GetCSRFToken(APIView):
     permission_classes = (permissions.AllowAny, )
 
     def get(self, request, format=None):
         return Response({ 'success': 'CSRF cookie set' })
+
+

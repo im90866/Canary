@@ -1,22 +1,19 @@
 .sidebar {
     flex: 3;
-    height:100vh; 
+    height:100%; 
     box-shadow: 5px 2px 2px rgba(0, 0, 0, .1); 
   
 overflow-x: hidden;
-   margin-right: 1200px;
+   /* margin-right: 1200px; */
   
-    width: 160px;
+    width: 150px;
     background-color: #fff;
     z-index: 1;
 
-    position:sticky;
-    top: 50px;
-    
-    
- 
-   
-
+    position:fixed;
+    top: 0;
+    left:0;
+    padding-top: 35px;
   }
   
 
