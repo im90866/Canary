@@ -66,9 +66,10 @@ export default function Dropdown(props) {
          
        
           <div className="div3">
-            <button className='folder-btn3' onClick={() => {addFolder({ "folderName" : folderName }); closeModal(false)}}>
+            {/* <button className='folder-btn3' onClick={() => {addFolder({ "folderName" : folderName }); closeModal(false)}}>
               <span className='folder-title3'>Create Folder</span>
-            </button>
+            </button> */}
+            <button className="fbtn" onClick={() => {addFolder({ "folderName" : folderName }); closeModal(false)}}>Create Folder</button>
           </div>
          
          

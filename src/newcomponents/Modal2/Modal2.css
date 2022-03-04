@@ -85,7 +85,7 @@ position: fixed;
           width: 30%;
      margin-top: 5px;
           position: relative;
-          border-radius: 20px;
+          border-radius: 5px;
       }
       .folder-btn3{
        
@@ -94,6 +94,9 @@ position: fixed;
         height: 40px;
         text-transform: none;
         text-align: center;
+      }
+      .folder-btn4{
+        border-radius: 5px;
       }
      .div2{
       text-align: center;

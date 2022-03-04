@@ -4,10 +4,21 @@
 
  
 }
+ .workspace-container2{
+    width: 1000px;
+    height: 800px;
+    background-color: #fff;
+    overflow-x: hidden;
+    overflow-y: scroll;
+ position: relative;
+ top: 250px;
+ left: 270px;
+ z-index: -1;
+} 
 .workspace-title{
     display: flex;
     position: relative;
-    top:-50px;
+    top:300px;
 }
 
 .btn-grp{
@@ -57,37 +68,50 @@ border-radius: 5px;
     
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(12rem, 16rem));
-    gap: 1rem;
-    justify-content: center;
-    margin-left: 150px;
-  position: relative;
+   
  
+  left: 200px;
+  position: relative;
+  z-index: 9999;
 /* margin-bottom: 500px; */
-top:-200px
+top:-20px
 }
 .folder-icon{
-margin-top: 20px;
+position: relative;
    font-size: 150px;
+   z-index: 9999;
+   left: -100px;
+   top:50px;
 }
 
 .image{
-    margin-top: 20px;
+    position: relative;
+    left: -100px;
     width:150px;
     height: 150px;
+    border-radius: 5px;
+    z-index: 9999;
+    top:50px;
 }
 
 .folder-icon a{
     color: black;
     text-decoration: none;
+    z-index: 9999;
 }
 .folder-info{
+    position: relative;
+    top:50px;
     display: flex;
+    left: -80px;
 }
 .three-dots{
-    margin-left: 30px;
+    position: sticky;
+  
     color: black;
     font-size: 20px;
-    margin-top: -10px;
+   margin-top: -10px;
+   margin-left: 40px;
 }
 .folder-text{
     color:black;
@@ -114,4 +138,12 @@ margin-top: 20px;
 .back-icon{
     font-size: 60px;
     color: black;
+}
+.three-dotsimg{
+    position: sticky;
+  
+    color: black;
+    font-size: 20px;
+   margin-top: -5px;
+   margin-left: 70px;
 }

@@ -7,8 +7,8 @@
     background-color: #fff;
     width: 600px;
     height: 500px;
-    left: 450px;
-    top: -300px;
+    left: 80px;
+    top: 80px;
     border-radius: 10px;
     overflow-y: scroll;
 }
@@ -19,16 +19,18 @@
 .searchInput1{
     background-color: #efefef; 
     border: none;
-    width: 100%;
+    width: 80%;
+    position: relative;
+    left: 10px;
 }
 .searchbar1{
-    width: 75%;
+    width: 90%;
     height: 30px;
     background-color: #efefef;
     border-radius: 30px;
     display: flex;
     align-items: center;
-    margin-left: 70px;
+    margin-left: 30px;
 }
 .project-memberslist{
     margin-top: 20px;
