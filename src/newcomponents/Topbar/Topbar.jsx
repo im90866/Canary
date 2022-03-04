@@ -52,10 +52,13 @@ function Topbar() {
               setOpenModal(true)} />
             <span className="topbarIconBadge">1</span>
           </div>
+      
           <div className="topbarIconItem">
             <Link to="/profile"><img src="/images/avatar.png" alt="" className="topbarImg" /> </Link>
           </div>
+    
         </div>
+      
       </div>
       {openModal && <Modal4 closeModal={setOpenModal} />}
     </div>
