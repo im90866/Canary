@@ -70,6 +70,20 @@ function Workspace(props) {
     })
   }
 
+  const postImage = async (imageID) => { 
+    const req = {
+      'projectID' : projectId, 
+      'metadataID' :imageID,
+      "uploader" : String(getCookie('username')),
+    }
+
+    console.log("HOOOHHAAA")
+    await axios.post("http://localhost:8000/postImage/", req).then((res) => {
+      console.log(res)
+    })
+
+  }
+
   const getFolders = async () => {
     await axios.get("http://localhost:8000/getWorkspace/" + projectId + '/' + folderPath.join('&'))
       .then((res) => {
@@ -146,7 +160,7 @@ function Workspace(props) {
         {  
           images.map(image =>
             <div >
-            <img className="image" src={image.imageVal} width ={100} height={100}/>
+            <img className="image" src={image.imageVal} width ={100} height={100} onClick = {() => postImage(image.imageID)}/>
               <div className="folder-info">
                 <h3 className='folder-text'></h3>
                 <BsThreeDots className='three-dotsimg' />

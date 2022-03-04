@@ -7,18 +7,26 @@ from .Views.workspace_views import *
 from .Views.home_views import *
 
 urlpatterns = [
+    # Auth Views
     path('signup/', SignupView.as_view()),
     path('login/', LoginView.as_view()),
 
+    # Project Views
     path('createproject/', CreateProject.as_view()),
     path('deleteproject/', DeleteProject.as_view()),
     path('updateproject/', UpdateProjectName.as_view()),
     path('getproject/<str:username>', GetProjects.as_view()),
 
+    # Workspace Views
     path('uploadImageWorkspace/', CreateImage.as_view()),
     path('getWorkspace/<str:projectID>/<str:folderPath>', GetFolder.as_view()),
-    #workspace\/[0-9A-Za-z]+\/([A-Za-z]+\/)*
     path('createFolder/', CreateFolder.as_view()),
+
+    path('postImage/', PostImage.as_view()),
+
+    # Home Views
+    path('getFeed/<str:username>', GetHomePosts.as_view()),
+    path('search/<str:value>', SearchProfiles.as_view()),
 
     # debug functions
     #path('backStuff/', views.getBack()),
@@ -26,5 +34,4 @@ urlpatterns = [
     path('print/', views.deleteAll),
     path('returnImage/', views.ReturnImage.as_view()),
     path('csrf/', GetCSRFToken.as_view()),
-    path('search/',Search.as_view()),
 ]

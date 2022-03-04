@@ -1,4 +1,5 @@
 import hashlib
+from datetime import datetime
 
 class userInfo():
     _username = ""
@@ -150,39 +151,28 @@ class project():
 
         return model
 
-class postImage():
+class post():
     _fromProjectID = ""
-    _imageID = ""
-    _projectMembers = []
-    _fileType = ""
-    _dimensons = {
-        'height' : 0,
-        'width' : 0,
-    }
+    _metadataID = ""
+    _uploader = ""
+    _uploadTime = ""
     _caption = ""
     _likes = 0
     _comments = []
     _engagement = 0
 
-    def __init__(self, projID, jsonfile):
-        pass
-
     def __init__(self, jsonFile):
-        self._fromProjectID = jsonFile['fromProjectID']
-        self._imageID = jsonFile['imageID']
-        self._fileType = jsonFile['fileType']
-        self._dimensons = jsonFile['dimension']
-        self._caption = jsonFile['caption']
-        self._likes = jsonFile['likes']
-        self._comments = jsonFile['comments']
-        self._engagement = jsonFile['engagement']
+        self._fromProjectID = jsonFile['projectID']
+        self._metadataID = jsonFile['metadataID']
+        self._uploader = jsonFile['uploader']
+        self._uploadTime = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
     def getModel(self):
         model = {
-            'imageID' : self._imageID,
-            'projectMembers' : self._projectMembers,
-            'fileType' : self._fileType,
-            'dimensons' : self._dimensons,
+            'projectID' : self._fromProjectID,
+            'metadataID' : self._metadataID,
+            "uploader" : self._uploader,
+            "uploadTime" : self._uploadTime,
             "caption" : self._caption,
             "likes" : self._likes,
             "comments" : self._comments,
