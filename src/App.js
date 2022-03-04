@@ -30,18 +30,22 @@ import Sidebar from './newcomponents/Sidebar/Sidebar'
 function App() {
   const [logged, setLogged] = useState(false)
   const [change, setChange] = useState(false)
+
   let navigate = useNavigate()
+
+  const user = getCookie('username')
+  console.log(user)
 
   useEffect(() => {
     console.log("change")
     setLogged(getCookie('username') != null)
 
-    if (getCookie('username') != null)
+    if (getCookie('username') != null && logged)
       navigate('/home')
 
     //axios.get("http://localhost:8000/delete")
     //axios.get("http://localhost:8000/print")
-  }, [logged])
+  }, [user])
 
   const protectOther = (component) => {
     if (getCookie('username') != null) {
@@ -63,37 +67,52 @@ function App() {
 
   return (
     <>
-      <Topbar />
-      <Sidebar />
-      <CSRFToken />
-      <Routes>
+      {
+        user !== null
+          ?
+          <>
+            <Topbar />
+            <Sidebar />
+            <CSRFToken />
+            <Routes>
 
-        <Route path="/" element={protectLogin()} />
+              <Route path="/" element={protectLogin()} />
 
+              <Route path="/home" element={protectOther(<Home />)} />
 
-        <Route path="/home" element={protectOther(<Home />)} />
-
-        {/* <Route path="/signup" element={<Signup />}></Route> */}
-        {/* <Route path="/mainspace" element={<Mainspace />}></Route>
+              {/* <Route path="/signup" element={<Signup />}></Route> */}
+              {/* <Route path="/mainspace" element={<Mainspace />}></Route>
       <Route path="/projects" element={<Projects />}></Route> */}
 
-        <Route path="/workspace/:id" element={<Workspace />} />
+              <Route path="/workspace/:id" element={<Workspace />} />
 
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/profile/collaborations" element={<Collaboration />} />
-        <Route path="/profile/profileposts" element={<Profileposts />} />
-        <Route path="/project" element={<Project />} />
-        <Route path="/profileothers" element={<Profileothers />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/profile/collaborations" element={<Collaboration />} />
+              <Route path="/profile/profileposts" element={<Profileposts />} />
+              <Route path="/project" element={<Project />} />
+              <Route path="/profileothers" element={<Profileothers />} />
 
-        <Route path="/team" element={<Team />} />
-        <Route path="/projectsettings" element={<ProjectSettings />} />
-        <Route path="/registrationpage" element={<Registrationpage />} />
-        <Route path="/settings" element={<Settingsbar />} />
-        <Route path="/changepassword" element={<Cardthree />} />
-        <Route path="/blocked" element={<Cardfour />} />
-        <Route path="/delete" element={<Cardfive />} />
+              <Route path="/team" element={<Team />} />
+              <Route path="/projectsettings" element={<ProjectSettings />} />
+              <Route path="/registrationpage" element={<Registrationpage />} />
+              <Route path="/settings" element={<Settingsbar />} />
+              <Route path="/changepassword" element={<Cardthree />} />
+              <Route path="/blocked" element={<Cardfour />} />
+              <Route path="/delete" element={<Cardfive />} />
 
-      </Routes>
+            </Routes>
+          </>
+          :
+          <>
+            <CSRFToken />
+            <Routes>
+              <Route path="/" element={protectLogin()} />
+
+              <Route path="/home" element={protectOther(<Home />)} />
+            </Routes>
+          </>
+      }
+
 
     </>
 
