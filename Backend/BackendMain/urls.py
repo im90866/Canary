@@ -4,6 +4,7 @@ from . import views
 from .Views.auth_views import *
 from .Views.project_views import *
 from .Views.workspace_views import *
+from .Views.home_views import *
 
 urlpatterns = [
     path('signup/', SignupView.as_view()),
@@ -25,4 +26,5 @@ urlpatterns = [
     path('print/', views.deleteAll),
     path('returnImage/', views.ReturnImage.as_view()),
     path('csrf/', GetCSRFToken.as_view()),
+    path('search/',Search.as_view()),
 ]

@@ -121,10 +121,11 @@ class GetFolder(APIView):
             
             for x in imageList:
                 metaval = meta_col.find_one({'_id': ObjectId(x)})
-                json.loads(json_util.dumps(metaval['_id']))['$oid']
+                metvalID = json.loads(json_util.dumps(metaval['_id']))['$oid']
 
                 metaval = {
                     'projectID' : metaval['projectID'],
+                    'imageID': metvalID,
                     'imageVal' : FS.get(metaval['imageID']),
 
                     'uploadedTime' : metaval['uploadedTime'],
@@ -164,14 +165,8 @@ class CreateFolder(APIView):
 
         if len(path) == 1:
             targetFolder = root
-            print("skull")
         else:
-            print("bong")
             targetFolder = searchFoldersWithPath(root, path, folder_col)
-
-        print(root)
-        print("ssssssssss")
-        print(targetFolder)
 
         #error check
 
@@ -191,7 +186,6 @@ class CreateFolder(APIView):
         #        'Error' : 'Folder not added',
         #    })
 
-
         return Response({ 
             'success' : 'Folder Added',
         })
@@ -199,37 +193,45 @@ class CreateFolder(APIView):
 class GetProjectDetails(APIView):
     permission_classes = (permissions.AllowAny, )
 
-    @csrf_exempt
     def post(self, request, format=None):
         data = self.request.data
 
+# requires projectID, imageID, person uploading, caption
 class PostImage(APIView):
     permission_classes = (permissions.AllowAny, )
 
-    @csrf_exempt
     def post(self, request, format=None):
         data = self.request.data
-        projID = data['projectID']
 
-        newPost = postImage(data)
+        user_col = CLIENT_DATABASE['userInfo']
+        post_col = CLIENT_DATABASE['postData']
+        proj_col = CLIENT_DATABASE['projectData']
+        
+        newPost = post(data).getModel()
 
+        postID = post_col.insert_one(newPost).inserted_id
+        postID = json.loads(json_util.dumps(postID))['$oid']
+        
+        projectVal = proj_col.find_one({'_id': ObjectId(data['projectID'])})
+        userVal = user_col.find_one({'username': projectVal['projectAdmin']}) # SUBJECT TO CHANGE - CHANGE TO ALL USERS INSTEAD OF JUST ADMIN
 
-# Function to find and return a folder
-def searchFolders(curFolder, goalFolder, col):
-    if not len(curFolder) > 0:
-        return {}
-    else:
-        for x in curFolder:
-            print(x)
-            val = col.find_one({'_id' : ObjectId(x)})
-            if val['projectName'] == goalFolder:
-                return val
+        newPostVal = [postID] + userVal['postID'] 
 
-        totalVal = {}
-        for x in curFolder:
-            checkFolder = col.find_one({'_id' : ObjectId(x)})
-            totalVal = dict(list(totalVal.items()) + list(searchFolders(checkFolder['folderList'], goalFolder).items()))
-        return totalVal
+        user_col.update_one(userVal, {
+            '$set' : {
+                'postID' : newPostVal
+            }
+        })
+
+        return Response({ 
+            'success': 'Post added',
+        })
+
+        """
+        for x in projectVal['projectMembers']:
+            user_col.find_one({ObjectId(x)})
+        """
+
 
 
 def searchFoldersWithPath(root, folderPath, col):
