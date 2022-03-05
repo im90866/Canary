@@ -1,5 +1,22 @@
 .feed-container{
     flex: 10;
+    
     margin-left: 150px;
     width: 100%;
+    background-color: #fff;
+    height: 100vh;
+}
+.etitle{
+    position: relative;
+    top:200px;
+    left:-370px;
+    font-size: 30px;
+    font-weight: 500;
+
+}
+.arrow{
+    position: relative;
+    top:5px;
+    left:20px;
+
 }

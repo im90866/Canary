@@ -19,6 +19,8 @@ function Post(post) {
   }
 
   return (
+    <>
+   
     <div className="card">
       <div className="card__body">
         <div className="img">
@@ -37,6 +39,8 @@ function Post(post) {
         </div>
       </div>
     </div> 
+    </>
+    
   )
 }
 

@@ -40,12 +40,7 @@ export default function Sidebar() {
             </Link>
           </li>  
 
-          <li className="sidebarListItem">
-            <Link to="/explore">
-              <MdOutlineExplore className="sidebarIcon" />
-              <span className="sidebarListItemText">Explore</span>
-            </Link>
-          </li> 
+         
           
           <li className="sidebarListItem">
             <Link to="/settings"> 
