@@ -37,6 +37,7 @@ left: 450px;
 
 } 
  .collaborations{
+     color: black;
 position: relative;
 left:-20px;
 }
@@ -47,6 +48,7 @@ left:-20px;
     padding-bottom: 15px;
 }
 .collaborations a{
+    color: black;
     font-size: 18px;
 }
 .posts1 a:hover{
@@ -55,6 +57,7 @@ left:-20px;
     padding-bottom: 15px;
 }
 .posts1 a{
+    color: black;
     font-size: 18px;
 }
 .wrapper {

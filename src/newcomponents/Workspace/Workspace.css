@@ -4,17 +4,17 @@
 
  
 }
- .workspace-container2{
+  .workspace-container2{
     width: 1000px;
     height: 800px;
     background-color: #fff;
     overflow-x: hidden;
     overflow-y: scroll;
-    position: relative;
-    top: 250px;
-    left: 270px;
-    z-index: -1;
-} 
+ position: relative;
+ top: 250px;
+ left: 270px;
+
+}  
 .workspace-title{
     display: flex;
     position: relative;

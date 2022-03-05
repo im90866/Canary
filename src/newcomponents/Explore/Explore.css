@@ -1,0 +1,42 @@
+.new{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    width: 1000px;
+   height: 100vh;
+   background-color: #fff;
+   border-radius: 5px;
+   position: relative;
+   top:80px;
+   left: 70px;
+   overflow-y: scroll;
+   overflow-x: hidden;
+
+}
+.new-title{
+    position: relative;
+    top:20px;
+    left: -300px;
+    font-size: 24px;
+    margin-left: 30px;
+}
+.new-wrapper{
+display: flex;
+flex-wrap: wrap;
+position: relative;
+gap: 2rem;
+left: 100px;
+padding: 5px;
+justify-content: flex-start;
+
+
+}
+.picture-explore{   
+    position: sticky;
+    display: block;
+    height: 12rem;
+    width: 25%;
+    object-fit: cover;
+  
+
+}

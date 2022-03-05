@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from 'react';
 import SignUp from '../SignUp/SignUp';
 
-import { useNavigate } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 import './Login.css'
 
 import axios from "axios";
@@ -59,7 +59,7 @@ function Login() {
           <input type="password" placeholder="Password" className="password" onChange={handlePasswordInputChange}
             value={values.password} />
           {submitted && !values.password ? <span id="password-error">Please enter your password</span> : null}
-          <h5>Forgot your password?</h5>
+          <h5><Link to ="/forgotpassword">Forgot your password?</Link></h5>
           <button type="submit">Sign In</button>
         </form>
       </div>

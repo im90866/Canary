@@ -34,14 +34,14 @@ export default function Sidebar() {
           </li>
       
           <li className="sidebarListItem">
-            <Link to="/"> 
+            <Link to="/chats"> 
               <RiChatSmile2Line className="sidebarIcon" />
               <span className="sidebarListItemText">Chats</span>
             </Link>
           </li>  
 
           <li className="sidebarListItem">
-            <Link to="/">
+            <Link to="/explore">
               <MdOutlineExplore className="sidebarIcon" />
               <span className="sidebarListItemText">Explore</span>
             </Link>
