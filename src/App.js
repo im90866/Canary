@@ -28,6 +28,7 @@ import Topbar from './newcomponents/Topbar/Topbar'
 import Sidebar from './newcomponents/Sidebar/Sidebar'
 import Chats from './newcomponents/chats/Chats';
 import Forgotpassword from './newcomponents/forgot password/Forgotpassword';
+import Explore from './newcomponents/Explore/Explore';
 
 function App() {
   const [logged, setLogged] = useState(false)
@@ -102,6 +103,7 @@ function App() {
               <Route path="/blocked" element={<Cardfour />} />
               <Route path="/delete" element={<Cardfive />} />
               <Route path="/chats" element={<Chats />} />
+              <Route path="/explore" element={<Explore/>} />
               <Route path="/forgotpassword" element={<Forgotpassword />} />
 
             </Routes>
