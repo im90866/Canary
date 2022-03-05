@@ -41,6 +41,9 @@ h5{
     font-size: 12px;
     
 }
+h5 a{
+	color: black;
+}
 
 span {
 	font-size: 12px;

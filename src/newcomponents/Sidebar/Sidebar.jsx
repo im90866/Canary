@@ -34,7 +34,7 @@ export default function Sidebar() {
           </li>
       
           <li className="sidebarListItem">
-            <Link to="/"> 
+            <Link to="/chats"> 
               <RiChatSmile2Line className="sidebarIcon" />
               <span className="sidebarListItemText">Chats</span>
             </Link>

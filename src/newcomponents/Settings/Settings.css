@@ -43,6 +43,7 @@ top:300px;
 }
 .settinglistname a{
    font-size: 18px;
+   color: black;
 }
 .settinglistname a:hover{
     background-color: #efefef;
