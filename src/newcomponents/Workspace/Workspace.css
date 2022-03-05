@@ -10,10 +10,10 @@
     background-color: #fff;
     overflow-x: hidden;
     overflow-y: scroll;
- position: relative;
- top: 250px;
- left: 270px;
- z-index: -1;
+    position: relative;
+    top: 250px;
+    left: 270px;
+    z-index: -1;
 } 
 .workspace-title{
     display: flex;
