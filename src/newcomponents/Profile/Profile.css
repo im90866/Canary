@@ -11,18 +11,18 @@ margin-top: 150px;
    border-radius: 50%;
 position: relative;
 top:-20px;
-left: 450px;
+left: 550px;
 }
 .profile-user{
     position: relative;
     top:-20px;
-    left:40px;
+    left:70px;
 
 }
 .editp{
     position: relative;
   top:-15px;
-  left: 450px;
+  left: 550px;
     text-transform: none;
     border-radius: 5px;
     font-size: 16px;
@@ -33,7 +33,7 @@ left: 450px;
     position: relative;
     gap: 2rem;
     top:-10px;
-    left: 450px;
+    left: 550px;
 
 } 
  .collaborations{
@@ -64,7 +64,7 @@ left:-20px;
    
 position: relative;
 top: 20px;
-left: 60px;
+left: 80px;
  display: flex;
  gap: 2rem;
   
