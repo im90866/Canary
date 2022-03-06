@@ -7,16 +7,37 @@ import { Link } from "react-router-dom";
 import { Users } from "../../dummy.js";
 import { useState, useEffect} from "react";
 
+import axios from 'axios'
+
 function Post(post) {
-  const [like,setLike] = useState(post.like)
+  const [like,setLike] = useState(post['post']['likes'])
   const [isLiked,setIsLiked] = useState(false)
   
   const vPost = post['post']
 
-  const likeHandler =()=>{
-    setLike(isLiked ? like-1 : like+1)
+  const likeHandler = async ()=>{
+    let likeVal = isLiked ? -1 : 1
+
+    const req = {
+      'username' : String(getCookie('username')),
+      'postID' : vPost.postID,
+      'likeChange' : likeVal
+    }
+
+    await axios.post('http://localhost:8000/likePost/', req).then((res) => {
+      console.log(res)
+      setLike(res.data['likes'])
+    });
+
     setIsLiked(!isLiked)
   }
+
+  useEffect(() => {
+    if((vPost.likedBy).includes(String(getCookie('username')))) {
+      console.log("TRRRUEEEEEEE")
+      setIsLiked(true)
+    }
+  }, [])
 
   return (
     <>
@@ -28,7 +49,7 @@ function Post(post) {
           <img src={vPost['imageVal'][0]} className="card__image" alt=""/>    
 
           <div className="profile">
-            <img src={post.imageVal}alt="profile" className='profilepic' />
+            <img src={post.imageVal} className='profilepic' />
             <span className="card__title">{vPost.uploader}</span>
             <div className="icons">
               <AiFillLike className="like-icon" onClick={likeHandler}/>
@@ -42,6 +63,17 @@ function Post(post) {
     </>
     
   )
+}
+
+function getCookie(name) {
+  var nameEQ = name + "=";
+  var ca = document.cookie.split(';');
+  for (var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+    if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+  }
+  return null;
 }
 
 export default Post

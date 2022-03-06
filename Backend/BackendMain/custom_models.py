@@ -158,6 +158,7 @@ class post():
     _uploadTime = ""
     _caption = ""
     _likes = 0
+    _likedBy = []
     _comments = []
     _engagement = 0
 
@@ -174,6 +175,7 @@ class post():
             "uploader" : self._uploader,
             "uploadTime" : self._uploadTime,
             "caption" : self._caption,
+            "likedBy" : self._likedBy,
             "likes" : self._likes,
             "comments" : self._comments,
             "engagement" : self._engagement,
