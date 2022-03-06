@@ -15,6 +15,7 @@ position: relative;
 /* top:150px; */
 /* left: -20px; */
 width: 100%;
+top:120px;
 /* height: 100%; */
 }
 
@@ -23,21 +24,23 @@ width: 100%;
 position: relative;
 /* top:150px; */
   border-radius: 0.2rem;
-  height: 250px;
+  height: 230px;
   /* flex-direction: column; */
   justify-content: space-between;
   cursor: pointer;
   transition: transform 200ms ease-in;
+  background: #eeee;
+  border: none;
 
 }
 .card:hover{
     height: 230px;
-    background-color:#f0f0f0;
+    background-color:#ffff;
 }
   .card__image {
     position: sticky;
     display: block;
-    height: 12rem;
+    height: 14rem;
     width: 100%;
     object-fit: cover;
   }

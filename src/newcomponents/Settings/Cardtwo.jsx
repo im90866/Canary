@@ -11,11 +11,9 @@
         </div>
         <div className="change-details">
             <div className="change-name">
-                <label for="fname" className='fname'>First Name</label>
+                <label for="fname" className='fname'>Full Name</label>
                 <input type="text" className='change-text1'  name="First Name" placeholder='Nashwa'/><br></br>
-                <label for="fname" className='lname'>Last Name</label>
-           
-                <input type="text" className='change-text2'  name="Last Name" placeholder="Abdul"/><br></br>
+               
             </div>
             <div className="username-change">
             <label for="username" className='user1'>Username</label>
