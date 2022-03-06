@@ -85,9 +85,9 @@ function Workspace(props) {
     }
 
     console.log("HOOOHHAAA")
-    //await axios.post("http://localhost:8000/postImage/", req).then((res) => {
-    //  console.log(res)
-    //})
+    await axios.post("http://localhost:8000/postImage/", req).then((res) => {
+      console.log(res)
+    })
 
   }
 
@@ -105,7 +105,6 @@ function Workspace(props) {
   }
 
   const enterFolder = (folderID) => {
-    console.log("pleasedee")
     folderPath.push(folderID)
     setFolderPath(folderPath)
     console.log(folderPath)
