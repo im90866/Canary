@@ -85,6 +85,9 @@ left:80px;
      justify-content: space-between;
      font-size: 20px;
      font-weight: 400;
+     position: relative;
+     top:20px;
+     left:-15px;
  }
  .change{
      color: #fff;
@@ -135,7 +138,8 @@ white-space: nowrap;
     margin-left: 50px;
 }
 .username-change{
-    margin-top: 20px;
+   position: relative;
+   top: -7px;
 }
 .change-text3{
     border: none;
@@ -190,11 +194,13 @@ cursor: pointer;
     width:600px;
     height: 420px;
 left: 80px;
-top:-200px;
+top:-180px;
 }
 .cptitle{
     font-weight: 400;
     font-size: 30px;
+    position: relative;
+    top:10px;
 }
 .settings-container1{
     display: grid;

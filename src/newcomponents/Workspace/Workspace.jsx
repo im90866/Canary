@@ -116,9 +116,10 @@ function Workspace(props) {
     <div>
       <Topbar />
       <Sidebar />
+      <body className='workspace-body'>
       <div className="workspace-container">
         <div className="workspace">
-          <div className="workspace-title">
+           <div className="workspace-title">
             <h1 className="wtitle">WorkSpace</h1>
             <div className="btn-grp">
               <button className="wbtn" onClick={() => fileRef.current.click()}>Upload</button>
@@ -143,7 +144,7 @@ function Workspace(props) {
         setFolder={setFolders}
         makeChange={makeChange} />}
 
-      <div className="workspace-container2">
+       <div className="workspace-container2">
         <div className="folder">
           {
             folders.map(folder =>
@@ -169,7 +170,8 @@ function Workspace(props) {
             )
           }
         </div>
-      </div>
+      </div> 
+      </body>
     </div>
 
   )

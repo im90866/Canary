@@ -96,14 +96,16 @@ margin-right: 40px;
     position: relative;
     top:-45px;
     border-radius: 5px;
-    width: 325px;
+    width: 400px;
     margin-top: 5px;
+    font-size: 16px;
+    left: 15px;
   }
   .folder-btn{
       text-transform: none;
   }
   .p1name{
-    font-size: 16px;
+    font-size: 14px;
  position: relative;
  top:-50px;
  left: -80px;

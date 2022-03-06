@@ -8,8 +8,9 @@ function Registrationpage() {
          <div className="edit-profile2">
           <h1 className="registration">Registration </h1>
          <div className="existing-details">
-            <BiUserCircle className='profile-picture' />
-            <h3 className="profile-username">Nashwa_Abdul</h3>
+           <img src="/images/profile.jpg" alt="" className='profile-picture'/>
+          
+            <h3 className="profile-username1">Nashwa_Abdul</h3>
             <button className='change'><span className="photo">Upload photo</span></button>
         </div>
         <div className="change-details">
