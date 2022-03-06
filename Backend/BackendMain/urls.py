@@ -27,6 +27,7 @@ urlpatterns = [
     # Home Views
     path('getFeed/<str:username>', GetHomePosts.as_view()),
     path('search/<str:value>', SearchProfiles.as_view()),
+    path('likePost/', LikePost.as_view()),
 
     # debug functions
     #path('backStuff/', views.getBack()),

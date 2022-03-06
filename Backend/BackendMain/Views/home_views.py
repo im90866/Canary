@@ -52,7 +52,6 @@ class GetHomePosts(APIView):
 
             upadatedUpload = str(datetime.now() - datetime.strptime(val['uploadTime'], '%Y-%m-%d %H:%M:%S'))
 
-
             postData = {
                 'postID' : json.loads(json_util.dumps(val['_id']))['$oid'],
                 'projectID' : val['projectID'],
@@ -60,15 +59,54 @@ class GetHomePosts(APIView):
                 "uploader" : val['uploader'],
                 "uploadTime" : upadatedUpload,
                 "caption" : val['caption'],
+                "likedBy" : val['likedBy'],
                 "likes" : val['likes'],
                 "comments" : val['comments'],
                 "engagement" : val['engagement'],
             }
 
             postList.append(postData)
-            print(postList)
 
         return Response({
             'success': 'Home feed posts recieved',
             'posts' : postList,
+        })
+
+class LikePost(APIView):
+    permission_classes = (permissions.AllowAny, )
+
+    def post(self, request, format=None):
+        print("accessed")
+        data = self.request.data
+
+        post_col = CLIENT_DATABASE['postData']
+
+        post_col.update_one({
+            '_id' : ObjectId(data['postID'])
+        }, {
+            '$inc' : {
+                'likes' : data['likeChange']
+            }
+        })
+
+        if(data['likeChange'] == 1):
+            post_col.update_one({
+                '_id' : ObjectId(data['postID'])
+            }, {
+                '$push' : {
+                    'likedBy' : data['username']
+                }
+            })
+        else:
+            post_col.update_one({
+                '_id' : ObjectId(data['postID'])
+            }, {
+                '$pull' : {
+                    'likedBy' : data['username']
+                }
+            })
+
+        return Response({
+            'success': 'Home feed posts recieved',
+            'likes' : (post_col.find_one({'_id': ObjectId(data['postID'])}))['likes'],
         })
