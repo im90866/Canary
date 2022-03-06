@@ -10,9 +10,16 @@ import { useState, useEffect, useRef } from "react"
 import axios from "axios"
 
 import Dropdown from '../Dropdown/Dropdown';
+import Modal5 from "../Modal5/Modal5"
+
+
+import "bootstrap/dist/css/bootstrap.min.css";
+import Dropdown2 from "react-bootstrap/Dropdown";
 
 function Workspace(props) {
   const fileRef = useRef();
+
+  const [openModal, setOpenModal] = useState(false);
 
   const [openDropdown, setOpenDropdown] = useState(false);
 
@@ -148,16 +155,16 @@ function Workspace(props) {
         <div className="folder">
           {
             folders.map(folder =>
-              <div className="folders" key={folder.folderID} onClick={() => enterFolder(folder.folderID)}>
-                <BsFillFolderFill className='folder-icon' />
+              <div className="folders" key={folder.folderID}>
+                <BsFillFolderFill className='folder-icon' onClick={() => enterFolder(folder.folderID)} />
                 <div className="folder-info">
                   <h3 className='folder-text'>{folder.folderName}</h3>
-                  <BsThreeDots className='three-dots' />
+                  <BsThreeDots className='three-dots' onClick={() => setOpenModal(true)}/>
                 </div>
               </div>
             )
           }
-
+          {openModal && <Modal5 closeModal={setOpenModal} makeChange = {makeChange} />} 
           {
             images.map(image =>
               <div >
