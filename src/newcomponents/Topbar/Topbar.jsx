@@ -25,13 +25,6 @@ function Topbar() {
     })
   }
 
-  const openClose = () => {
-    if(openModal === false)
-      setOpenModal(true)
-    else
-      setOpenModal(false)
-  }
-
   return (
     <div className="topbarContainer">
       <div className="topbarLeft">
@@ -56,7 +49,7 @@ function Topbar() {
 
           <div className="topbarIconItem">
             <IoIosNotificationsOutline onClick={() =>
-              openClose()} />
+              setOpenModal(true)} />
             <span className="topbarIconBadge">1</span>
           </div>
       
