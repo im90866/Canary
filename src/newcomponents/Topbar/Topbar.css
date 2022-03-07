@@ -106,7 +106,7 @@
     border-radius: 50%;
     color: white;
     position: absolute;
-    top: 5px;
+    top: -5px;
     right: -5px;
     display: flex;
     align-items: center;
@@ -122,7 +122,7 @@
   object-fit: cover;
   cursor: pointer;
   position: relative;
-  margin-top: -12px;
+  margin-top: -4px;
 }
 
 .topbarImg {
