@@ -89,7 +89,7 @@ left:80px;
      font-size: 20px;
      font-weight: 400;
      position: relative;
-     top:20px;
+     top:5px;
      left:-15px;
  }
  .change{
@@ -142,7 +142,7 @@ white-space: nowrap;
 }
 .username-change{
    position: relative;
-   top: -7px;
+   top: 10px;
 }
 .change-text3{
     border: none;

@@ -1,0 +1,13 @@
+.chatlistli2{
+    list-style: none;
+    padding: 0;
+    display: flex;
+}
+.chatlistli2 a{
+    padding-left:20px;
+}
+.chatlistlitext{
+    font-size: 14px;
+    padding: 10px;
+}
+

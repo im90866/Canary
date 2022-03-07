@@ -1,68 +1,68 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Message from '../Message/Message'
-import "./chats.css"
-function Chats() {
+import "./Teamchats.css"
+function Teamchats() {
   return (
     <div>
-      <div className="messenger">
+         <div className="messenger">
       <div className="chat-menu">
         <div className="chat-menuwrapper">
           <h1 className="chat-title">Chats</h1>
         <ul className="chatlist">
-          <li className="chatlistli">
+          <li className="chatlistli2">
           <Link to="/chats">
-            <img src="/images/avatar.png" alt="" className='profile-pic2' />
-            <span className='chatlistlitext'>Nashwa Abdul</span>
+           
+            <span className='chatlistlitext'>Channel 1</span>
             </Link>
             </li>
         
-            <li className="chatlistli">
+            <li className="chatlistli2">
             <Link to="/chats">
-            <img src="/images/avatar2.png" alt="" className='profile-pic2' />
-            <span className='chatlistlitext'>Aachal Davey</span>
+         
+            <span className='chatlistlitext'>Channel 2</span>
+           
             </Link>
             </li>
            
-            <li className="chatlistli">
+            <li className="chatlistli2">
             <Link to="/chats">
-            <img src="/images/avatar3.png" alt="" className='profile-pic2' />
-            <span className='chatlistlitext'>Aazim Faiz</span>
+          <span className='chatlistlitext'>Channel 3</span>
             </Link>
             </li>
         
-            <li className="chatlistli">
+            <li className="chatlistli2">
             <Link to="/chats">
-            <img src="/images/avatar4.png" alt="" className='profile-pic2' />
-            <span className='chatlistlitext'>Naina Agarwal</span>
+           
+            <span className='chatlistlitext'>Channel 4</span>
             </Link>
             </li>
        
-            <li className="chatlistli">
+            <li className="chatlistli2">
             <Link to="/chats">
-            <img src="/images/avatar5.png" alt="" className='profile-pic2' />
-            <span className='chatlistlitext'>Ismail Mohammad</span>
+          
+            <span className='chatlistlitext'>Channel 5 </span>
             </Link>
             </li>
         
-            <li className="chatlistli">
+            <li className="chatlistli2">
             <Link to="/chats">
-            <img src="/images/avatar6.png" alt="" className='profile-pic2' />
-            <span className='chatlistlitext'>Guarav Navyar</span>
+          
+            <span className='chatlistlitext'>Channel 6</span>
             </Link>
             </li>
          
-            <li className="chatlistli">
+            <li className="chatlistli2"> 
             <Link to="/chats">
-            <img src="/images/avatar7.png" alt="" className='profile-pic2' />
-            <span className='chatlistlitext'>Madiha Kazi</span>
+         
+            <span className='chatlistlitext'>Channel 7</span>
             </Link>
             </li>
             
-            <li className="chatlistli">
+            <li className="chatlistli2">
             <Link to="/chats">
-            <img src="/images/avatar8.jpg" alt="" className='profile-pic2' />
-            <span className='chatlistlitext'>Aaron Abraham</span>
+           
+            <span className='chatlistlitext'>Channel 8</span>
             </Link>
             </li>
           
@@ -71,7 +71,7 @@ function Chats() {
 
         </div>
         </div>
-      <div className="chat-box">
+        <div className="chat-box">
         <div className="chat-boxwrapper">
     <Message/>
     <Message/>
@@ -107,9 +107,8 @@ function Chats() {
           </div>
           
       </div>
-  
     </div>
   )
 }
 
-export default Chats
+export default Teamchats
