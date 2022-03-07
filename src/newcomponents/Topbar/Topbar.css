@@ -121,8 +121,6 @@
   overflow: hidden;
   object-fit: cover;
   cursor: pointer;
-  position: relative;
-  margin-top: -4px;
 }
 
 .topbarImg {
