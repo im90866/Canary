@@ -23,6 +23,8 @@ function Workspace(props) {
   const [folderPath, setFolderPath] = useState(["root"])
   const [changed, makeChange] = useState(false)
 
+  const [editableName, setEditable] = useState("6222fcdd899bcbbc39df3d38")
+
   const [openModal, setOpenModal] = useState(false)
 
   const [image, setImage] = useState({
@@ -88,10 +90,10 @@ function Workspace(props) {
   }
 
   const getFolders = async () => {
-    await axios.get("http://localhost:8000/getWorkspace/" + projectId + '/' + folderPath.join('&'))
+    await axios.get("http://localhost:8000/getFolder/" + projectId + '/' + folderPath.join('&'))
       .then((res) => {
         if (res.data["success"]) {
-          console.log(res.data['imageList'])
+          console.log(res.data['folderList'])
           setFolders(res.data['folderList'])
           setImages(res.data['imageList'])
         }
@@ -105,6 +107,34 @@ function Workspace(props) {
     setFolderPath(folderPath)
     console.log(folderPath)
     makeChange(true)
+  }
+
+  const deleteFolder = async (folderID) => {
+    const request = {
+      'folderID': folderID,
+      'projectID': projectId,
+      'folderPath': folderPath
+    }
+
+    await axios.post("http://localhost:8000/deleteFolder/", request).then((res) => {
+      if (res.data["error"]) {
+        console.log(res.data['error'])
+      }
+    })
+  }
+
+  const deleteImage = async (imageID) => {
+    const request = {
+      'imageID': imageID,
+      'projectID': projectId,
+      'folderPath': folderPath
+    }
+
+    await axios.post("http://localhost:8000/deleteImage/", request).then((res) => {
+      if (res.data["error"]) {
+        console.log(res.data['error'])
+      }
+    })
   }
 
   useEffect(() => {
@@ -153,14 +183,13 @@ function Workspace(props) {
               folders.map(folder =>
                 <div className="folders" key={folder.folderID} >
                   <BsFillFolderFill className='folder-icon' onClick={() => enterFolder(folder.folderID)}/>
-                  <div className="folder-info">
-                    <h3 className='folder-text'>{folder.folderName}</h3>
+                  <div className="folder-info"> {folder.folderName}
                     <div class="dropdown-block">
                       <BsThreeDots className='three-dots' class="dropdowns" />
                       <div class="dropdown-content">
                         <button class="dropdown-text" onClick={() => setOpenModal(true)}>Post</button>
                         <button class="dropdown-text">Rename</button>
-                        <button class="dropdown-text">Delete</button>
+                        <button class="dropdown-text" onClick={() => deleteFolder(folder.folderID)}>Delete</button>
                       </div>
                     </div>
                   </div>
@@ -174,13 +203,13 @@ function Workspace(props) {
                   <img className="image" src={image.imageVal} width={100} height={100} onClick={() => postImage(image.imageID)} />
                   <div className="folder-info">
                     <h3 className='folder-text'></h3>
-                    <div class="dropdown-block">
+                    <div className="dropdown-block">
                       <BsThreeDots className='three-dots' class="dropdowns" />
                       <div class="dropdown-content">
-                        <button class="dropdown-text" onClick={() => setOpenModal(true)}>Post</button>
-                        <button class="dropdown-text">Rename</button>
-                        <button class="dropdown-text">Delete</button>
-                        <button class="dropdown-text">Download</button>
+                        <button className="dropdown-text" onClick={() => setOpenModal(true)}>Post</button>
+                        <button className="dropdown-text">Rename</button>
+                        <button className="dropdown-text" onClick={() => deleteImage(image.imageID)}>Delete</button>
+                        <button className="dropdown-text">Download</button>
                       </div>
                     </div>
                   </div>

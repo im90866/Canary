@@ -188,6 +188,72 @@ class CreateFolder(APIView):
             'success' : 'Folder Added',
         })
 
+class RenameFolder(APIView):
+    permission_classes = (permissions.AllowAny, )
+
+    def post(self, request, format=None):
+        data = self.request.data
+
+        data = self.request.data
+
+        proj_col = CLIENT_DATABASE['projectData']
+        folder_col = CLIENT_DATABASE['folder']
+
+        folder_col.update_one({
+            '_id': data['folderID']
+        }, {
+            '$set': {
+                'folderName': data['newName']
+            }
+        })
+
+        return Response({
+            'success': 'Successfully changed name of folder'
+        })
+
+class DeleteFolder(APIView):
+    permission_classes = (permissions.AllowAny, )
+
+    def post(self, request, format=None):
+        data = self.request.data
+
+        folder_col = CLIENT_DATABASE['folder']
+        proj_col = CLIENT_DATABASE['projectData']
+
+        proj = (proj_col.find_one({'_id' : ObjectId(data['projectID'])}))
+        root = folder_col.find_one({'_id' : ObjectId(proj['projectRoot'])})
+
+        path = data['folderPath']
+        targetFolder = ""
+        print(path)
+
+        if len(path) == 1:
+            targetFolder = root
+        else:
+            targetFolder = searchFoldersWithPath(root, path, folder_col)
+
+        folder_col.update_one(targetFolder, {
+            '$pull': {
+                'folderList': data['folderID']
+            }
+        })
+
+        recursiveDelete(data['folderID'], folder_col)
+
+        return Response({
+            'success': 'Successfully deleted folder'
+        })
+
+def recursiveDelete(folderID, col):
+    folderList = col.find_one({'_id': ObjectId(folderID)})['folderList']
+    print(folderList)
+
+    col.delete_one({'_id': ObjectId(folderID)})  
+    
+    for x in folderList:
+        recursiveDelete(x, col)
+
+
 class GetProjectDetails(APIView):
     permission_classes = (permissions.AllowAny, )
 
@@ -229,6 +295,39 @@ class PostImage(APIView):
         for x in projectVal['projectMembers']:
             user_col.find_one({ObjectId(x)})
         """
+
+class DeleteImage(APIView):
+    permission_classes = (permissions.AllowAny, )
+
+    def post(self, request, format=None):
+        data = self.request.data
+
+        folder_col = CLIENT_DATABASE['folder']
+        proj_col = CLIENT_DATABASE['projectData']
+
+        proj = (proj_col.find_one({'_id' : ObjectId(data['projectID'])}))
+        root = folder_col.find_one({'_id' : ObjectId(proj['projectRoot'])})
+
+        path = data['folderPath']
+        targetFolder = ""
+        print(path)
+
+        if len(path) == 1:
+            targetFolder = root
+        else:
+            targetFolder = searchFoldersWithPath(root, path, folder_col)
+
+        folder_col.update_one(targetFolder, {
+            '$pull': {
+                'imageList': data['imageID']
+            }
+        })
+
+        return Response({ 
+            'success': 'Post deleted',
+        })
+
+
 
 class CreateSpecImage(APIView):
     permission_classes = (permissions.AllowAny, )

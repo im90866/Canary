@@ -21,10 +21,14 @@ urlpatterns = [
     # Workspace Views
     path('uploadImageWorkspace/', CreateImage.as_view()),
     path('uploadIm/', CreateSpecImage.as_view()),
-    path('getWorkspace/<str:projectID>/<str:folderPath>', GetFolder.as_view()),
+
+    path('getFolder/<str:projectID>/<str:folderPath>', GetFolder.as_view()),
     path('createFolder/', CreateFolder.as_view()),
+    path('renameFolder/', RenameFolder.as_view()),
+    path('deleteFolder/', DeleteFolder.as_view()),
 
     path('postImage/', PostImage.as_view()),
+    path('deleteImage/', DeleteImage.as_view()),
 
     # Home Views
     path('getFeed/<str:username>', GetHomePosts.as_view()),
