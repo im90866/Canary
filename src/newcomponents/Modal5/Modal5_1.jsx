@@ -25,10 +25,34 @@ function Modal_1({folderId, imageId, name, closeModal, makeChange}) {
         }
     }
 
-    const Rename = () =>{
-        console.log(renameFolder)
+    const Rename = async () =>{
+      if(folderId !== ""){
+        const request = {
+          'folderID': folderId,
+          'newName': renameFolder
+        }
+
+        await axios.post("http://localhost:8000/renameFolder/", request).then((res) => {
+          if (res.data["error"]) {
+            console.log(res.data['error'])
+          }
+        })
+      }
+      else {
+        const request = {
+          'imageID': imageId,
+          'newName': renameImage
+        }
+
+        await axios.post("http://localhost:8000/renameFolder/", request).then((res) => {
+          if (res.data["error"]) {
+            console.log(res.data['error'])
+          }
+        })
+      }
+
     }
-    
+
   return (
   
     <div>

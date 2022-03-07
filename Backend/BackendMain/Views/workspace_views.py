@@ -88,10 +88,6 @@ class GetFolder(APIView):
         root = folder_col.find_one({'_id' : ObjectId(root)})
 
         targetFolder = ""
-        print(folderPath)
-        print(root)
-        print("sussss")
-        print(targetFolder)
 
         if len(folderPath) == 1 or folderPath == 'root':
             targetFolder = root
@@ -104,7 +100,6 @@ class GetFolder(APIView):
 
         if targetFolder != {}:
             fList = targetFolder['folderList'] 
-            print(fList)
 
             for x in fList:
                 resultFolder = folder_col.find_one({'_id' : ObjectId(x)})
@@ -194,13 +189,13 @@ class RenameFolder(APIView):
     def post(self, request, format=None):
         data = self.request.data
 
-        data = self.request.data
-
         proj_col = CLIENT_DATABASE['projectData']
         folder_col = CLIENT_DATABASE['folder']
 
+        print(data)
+
         folder_col.update_one({
-            '_id': data['folderID']
+            '_id': ObjectId(data['folderID'])
         }, {
             '$set': {
                 'folderName': data['newName']
@@ -295,6 +290,28 @@ class PostImage(APIView):
         for x in projectVal['projectMembers']:
             user_col.find_one({ObjectId(x)})
         """
+
+class RenameImage(APIView):
+    permission_classes = (permissions.AllowAny, )
+
+    def post(self, request, format=None):
+        data = self.request.data
+
+        proj_col = CLIENT_DATABASE['projectData']
+        meta_col = CLIENT_DATABASE['imageData']
+        print(data)
+
+        meta_col.update_one({
+            '_id': ObjectId(data['imageID'])
+        }, {
+            '$set': {
+                'fileName': data['newName']
+            }
+        })
+
+        return Response({
+            'success': 'Successfully changed name of Image'
+        })
 
 class DeleteImage(APIView):
     permission_classes = (permissions.AllowAny, )

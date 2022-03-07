@@ -218,7 +218,7 @@ function Workspace(props) {
                 <div >
                   <img className="image" src={image.imageVal} width={100} height={100} onClick={() => postImage(image.imageID)} />
                   <div className="folder-info">
-                    <h3 className='folder-text'></h3>
+                    <h3 className='folder-text'>{image.fileName}</h3>
                     <div className="dropdown-block">
                       <BsThreeDots className='three-dots' class="dropdowns" />
                       <div class="dropdown-content">

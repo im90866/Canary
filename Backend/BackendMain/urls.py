@@ -29,6 +29,7 @@ urlpatterns = [
 
     path('postImage/', PostImage.as_view()),
     path('deleteImage/', DeleteImage.as_view()),
+    path('renameImage/', RenameImage.as_view()),
 
     # Home Views
     path('getFeed/<str:username>', GetHomePosts.as_view()),
