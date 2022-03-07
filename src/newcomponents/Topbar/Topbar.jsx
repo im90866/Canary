@@ -26,6 +26,7 @@ function Topbar() {
 
     // })
     console.log(searchField)
+
     const response = await axios.get("http://localhost:8000/search/" + searchField)
       .then((res) => {
         if (res.data["success"]) {

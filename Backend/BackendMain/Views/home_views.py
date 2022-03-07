@@ -23,13 +23,28 @@ class SearchProfiles(APIView):
 
     def get(self, request, value, format=None):
         data = self.request.data
+        FS = gridfs.GridFS(CLIENT_DATABASE)
 
         user_col = CLIENT_DATABASE['userInfo']
 
         query = str(value) + '.*'
 
         regx = re.compile(query, re.IGNORECASE)
-        query_results = user_col.find_one({"username": regx})
+        query = user_col.find({"username": regx})
+        query_results = []
+
+        counter = 0
+        for x in query:
+            if counter > 10:
+                break
+            
+            userDict = {
+                'username': x['username'],
+                'profilePictureID': FS.get(x['profilePictureID'])
+            }
+            query_results.append(userDict)
+
+            counter += 1
 
         print(query_results)
 

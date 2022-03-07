@@ -5,23 +5,20 @@
     height: 200px;
     background-color: #fff;
     top: 150px; */
-   
-
- 
 }
 
-  .workspace-container2{
+.workspace-container2{
     width: 1000px;
     height: 100%;
     background-color: #fff;
     overflow-x: hidden;
- overflow-y: scroll; 
- position: relative;
- top: 150px;
- left: 80px;
- z-index: 999;
-
+    overflow-y: scroll; 
+    position: relative;
+    top: 150px;
+    left: 80px;
+    z-index: 999;
 }  
+
 .workspace-title{
     display: flex;
     position: relative;
@@ -180,7 +177,7 @@ position: relative;
     box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
     padding: 5px 16px;
     z-index: 1;
-  }
+}
 
   .dropdown-content button{
       margin: 5px;
@@ -189,4 +186,11 @@ position: relative;
 .dropdown-text{
     font-size: 10px;
     /* width: 120px; */
+    background-color: #f9f9f9;
+    color: black;
+    border: none;
+}
+.dropdown-text:hover{
+    background-color: #f9f9f9;
+    color: black;
 }
