@@ -11,6 +11,7 @@ import axios from "axios"
 
 import Dropdown from '../Dropdown/Dropdown';
 import Modal5 from '../Modal5/Modal5';
+import Modal5_1 from '../Modal5/Modal5_1';
 
 function Workspace(props) {
   const fileRef = useRef();
@@ -26,6 +27,21 @@ function Workspace(props) {
   const [editableName, setEditable] = useState("6222fcdd899bcbbc39df3d38")
 
   const [openModal, setOpenModal] = useState(false)
+  const [openModalRename, setOpenModalRename] = useState(false)
+  const [modalVal, setModalVal] = useState("")
+  const [folderId, setFolderId] = useState("")
+  const [imageId, setImdageId] = useState("")
+
+  const RenameModalStatus = () =>{
+    if(folderId !== null){
+      setFolderId("")
+      setOpenModalRename(false)
+    }
+    else{
+      setImdageId("")
+      setOpenModalRename(false)
+    }
+  }
 
   const [image, setImage] = useState({
     selectedFile: null,
@@ -145,6 +161,7 @@ function Workspace(props) {
     getAll();
   }, [openDropdown, changed, folderPath])
 
+
   return (
     <div>
       <Topbar />
@@ -187,8 +204,7 @@ function Workspace(props) {
                     <div class="dropdown-block">
                       <BsThreeDots className='three-dots' class="dropdowns" />
                       <div class="dropdown-content">
-                        <button class="dropdown-text" onClick={() => setOpenModal(true)}>Post</button>
-                        <button class="dropdown-text">Rename</button>
+                        <button class="dropdown-text" onClick={() => {setOpenModalRename(true);setModalVal("Rename");setFolderId(folder.folderID)}}>Rename</button>
                         <button class="dropdown-text" onClick={() => deleteFolder(folder.folderID)}>Delete</button>
                       </div>
                     </div>
@@ -207,7 +223,7 @@ function Workspace(props) {
                       <BsThreeDots className='three-dots' class="dropdowns" />
                       <div class="dropdown-content">
                         <button className="dropdown-text" onClick={() => setOpenModal(true)}>Post</button>
-                        <button className="dropdown-text">Rename</button>
+                        <button className="dropdown-text" onClick={() => {setOpenModalRename(true);setModalVal("Rename");setImdageId(image.imageID)}}>Rename</button>
                         <button className="dropdown-text" onClick={() => deleteImage(image.imageID)}>Delete</button>
                         <button className="dropdown-text">Download</button>
                       </div>
@@ -220,6 +236,7 @@ function Workspace(props) {
         </div>
       </body>
       {openModal && <Modal5 closeModal={setOpenModal} makeChange={makeChange} />}
+      {openModalRename && <Modal5_1 closeModal={RenameModalStatus} makeChange={makeChange} name={modalVal} folderId={folderId} imageId={imageId}/>}
     </div>
 
   )

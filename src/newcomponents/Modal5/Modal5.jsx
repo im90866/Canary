@@ -4,26 +4,7 @@ import axios from 'axios'
 import { useState} from 'react';
 
 function Modal5({image, closeModal, makeChange}) {
-  // var closeModal = props.closeModal
-  // const makeChange = props.makeChange
-  const [projectName, setProjectName] = useState("")
-
-  const addProject = async (project) => {
-    console.log(project)
-
-    const request = {
-      'projectName': project['projectName'],
-      'projectAdmin': String(getCookie('username')),
-      ...project
-    }
-
-    axios.post("http://localhost:8000/createproject/", request).then((res) => {
-      if (res.data["error"]) {
-        console.log(res.data['error'])
-      }
-    })
-    makeChange(true)
-  }
+  
 
   return (
   
@@ -45,7 +26,7 @@ function Modal5({image, closeModal, makeChange}) {
             
 
             <div className="div">
-              <button className='folder-btn' onClick={() => {addProject({ "projectName" : projectName }); 
+              <button className='folder-btn' onClick={() => { 
                   closeModal(false)}}>Post
               </button>
             </div>
