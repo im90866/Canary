@@ -44,13 +44,13 @@ function Modal_1({folderId, imageId, name, closeModal, makeChange}) {
           'newName': renameImage
         }
 
-        await axios.post("http://localhost:8000/renameFolder/", request).then((res) => {
+        await axios.post("http://localhost:8000/renameImage/", request).then((res) => {
           if (res.data["error"]) {
             console.log(res.data['error'])
           }
         })
       }
-
+      makeChange(true)
     }
 
   return (
