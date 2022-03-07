@@ -1,11 +1,16 @@
+from .helper_functions import *
+
 import hashlib
 from datetime import datetime
+
+CLIENT_SERVER = getClient()
+CLIENT_DATABASE = CLIENT_SERVER['mainDB']
 
 class userInfo():
     _username = ""
     _password = ""
     _email = ""
-    _profilePictureID = ""
+    _profilePictureID = "6224c0913f4d78e52661d872"
     _userDetails = {}
     _postID = []
     _projectID = []
@@ -45,6 +50,7 @@ class userInfo():
         model = {
             "username" : self._username,
             "password" : self._password,
+            "profilePictureID": self._profilePictureID,
             "email" : self._email,
             "userDetails": self._userDetails,
             "postID" : self._postID,
@@ -88,10 +94,6 @@ class projectImage():
     _authorList = []
     _fileSize = 0
     _fileType = ""
-    _dimensons = {
-        "height" : 0, 
-        "width" : 0
-    }
 
     def __init__(self, jsonFile): 
         self._imageID = jsonFile['imageID']

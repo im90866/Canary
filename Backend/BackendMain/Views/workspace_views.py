@@ -55,8 +55,6 @@ class CreateImage(APIView):
         else:
             targetFolder = searchFoldersWithPath(root, data['currentPath'], folder_col)
 
-          
-
         newImageList = [projectImageID] + targetFolder['imageList']
 
         folder_col.update_one(targetFolder, {
@@ -232,7 +230,25 @@ class PostImage(APIView):
             user_col.find_one({ObjectId(x)})
         """
 
+class CreateSpecImage(APIView):
+    permission_classes = (permissions.AllowAny, )
 
+    def post(self, request, format=None):
+        data = self.request.data
+
+        meta_col = CLIENT_DATABASE['imageData']
+        FS = gridfs.GridFS(CLIENT_DATABASE)
+
+        imageID = FS.put(data['imageString'], encoding='utf-8')
+
+        data['imageID'] = imageID
+
+        model = {
+            'imageID' : imageID,
+            'fileName' : data['specName'],
+        }
+        
+        meta_col.insert_one(model)
 
 def searchFoldersWithPath(root, folderPath, col):
     folderPath.pop(0)

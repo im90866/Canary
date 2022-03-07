@@ -4,7 +4,7 @@ import { RiChatSmile2Fill } from "react-icons/ri"
 import { BsFillPlusCircleFill } from "react-icons/bs"
 import { Link } from "react-router-dom";
 import { FaBars } from 'react-icons/fa';
-import { useState, } from "react"
+import { useState, useEffect} from "react"
 import { MdExplore, MdOutlineNotificationsNone, MdSettings } from "react-icons/md"
 import axios from "axios"
 
@@ -15,6 +15,7 @@ function Topbar() {
   const [openModal, setOpenModal] = useState(false);
   const [searchField, setSearchField] = useState("")
   const [searchRes, setSearchRes] = useState("")
+  const [PFP, setPFP] = useState("")
 
   const search = async () => {
     // console.log("hello")
@@ -45,6 +46,16 @@ function Topbar() {
       setOpenModal(false)
   }
 
+  useEffect(() => {
+    setPFP("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPEAAADRCAMAAAAquaQNAAAAA1BMVEX///+nxBvIAAAAR0lEQVR4nO3BMQEAAADCoPVP7WULoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABuxZIAAeHuCGgAAAAASUVORK5CYII=")
+
+    axios.get("http://localhost:8000/getProfilePicture/" + String(getCookie('username'))).then((res) => {
+      if(res.data["success"]) {
+        setPFP(res.data['imageString'])
+      }
+    })
+  }, [])
+  
   return (
     <div className="topbarContainer">
       <div className="topbarLeft">
@@ -76,7 +87,9 @@ function Topbar() {
           </div>
               
           <div className="topbarIconItem">
-            <Link to="/profile"><img src="/images/avatar.png" alt="" className="topbarImg" /> </Link>
+            <div className="topbarImg-cropper">
+              <Link to="/profile"><img src={PFP} alt="" className="topbarImg" /> </Link>
+            </div>
           </div>
     
         </div>

@@ -1,13 +1,77 @@
- import React from 'react'
+ import React, {useState, useEffect, useRef} from 'react'
+ import axios from 'axios'
 
  function Cardtwo() {
+  const fileRef = useRef();
+
+  const [PFP, setPFP] = useState("")
+  const [changed, makeChange] = useState(false)
+  const [image, setImage] = useState({
+    selectedFile: null,
+    imageFile: null,
+    'images64': null,
+  });
+
+  const fileSelect = async (event) => {
+    var file = event.target.files[0]
+    const image64 = await base64(file)
+    setImage({
+      selectedFile: file,
+    })
+
+    const req = {
+      'imageString': image64,
+      'username': String(getCookie('username'))
+    }
+
+    console.log(image64)
+    await axios.post('http://localhost:8000/changeProfilePicture/', req).then((res) => {
+      console.log(res)
+    });
+    window.location.reload();
+  }
+
+  const base64 = (file) => {
+    return new Promise(function (resolve, reject) {
+      console.log(file.name)
+      var reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onloadend = function (file) {
+        console.log(file)
+        setImage({
+          'image64': String(file.target.result)
+        })
+        resolve(file.target.result)
+      }
+    })
+  }
+
+  useEffect(() => {
+    setPFP("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPEAAADRCAMAAAAquaQNAAAAA1BMVEX///+nxBvIAAAAR0lEQVR4nO3BMQEAAADCoPVP7WULoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABuxZIAAeHuCGgAAAAASUVORK5CYII=")
+
+    axios.get("http://localhost:8000/getProfilePicture/" + String(getCookie('username'))).then((res) => {
+      if(res.data["success"]) {
+        setPFP(res.data['imageString'])
+      }
+    })
+  }, [])
+
   return (
      <div>
       <div className="edit-profile">
         <div className="existing-details">
-            <img src="/images/avatar.png" alt="" className='profile-picture' />
+          <div className='profile-picture-cropper'>
+            <img src={PFP} alt="" className='profile-picture' />
+          </div>
             <h3 className="profile-username">Nashwa_Abdul</h3>
-            <button className='change'><span className="photo">Upload photo</span></button>
+            <button className='change' onClick={()=> fileRef.current.click()}><span className="photo">Upload photo</span></button>
+            <input
+              ref={fileRef}
+              onChange={fileSelect}
+              multiple={false}
+              type="file"
+              hidden
+            />
         </div>
         <div className="change-details">
             <div className="change-name">
@@ -37,6 +101,17 @@
       
   )
  }
+
+function getCookie(name) {
+  var nameEQ = name + "=";
+  var ca = document.cookie.split(';');
+  for(var i=0;i < ca.length;i++) {
+      var c = ca[i];
+      while (c.charAt(0)==' ') c = c.substring(1,c.length);
+      if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+  }
+  return null;
+}
 
  export default Cardtwo
 

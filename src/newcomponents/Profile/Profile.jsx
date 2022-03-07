@@ -3,12 +3,21 @@ import Topbar from '../Topbar/Topbar'
 import Sidebar from '../Sidebar/Sidebar'
 import "./Profile.css"
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 
 function Profile() {
   const [username, setUsername] = useState("")
+  const [PFP, setPFP] = useState("")
  
   useEffect(() => {
     setUsername(String(getCookie('username')))
+    setPFP("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPEAAADRCAMAAAAquaQNAAAAA1BMVEX///+nxBvIAAAAR0lEQVR4nO3BMQEAAADCoPVP7WULoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABuxZIAAeHuCGgAAAAASUVORK5CYII=")
+
+    axios.get("http://localhost:8000/getProfilePicture/" + String(getCookie('username'))).then((res) => {
+      if(res.data["success"]) {
+        setPFP(res.data['imageString'])
+      }
+    })
   }, [])
 
   return (
@@ -17,7 +26,9 @@ function Profile() {
       <div className="profile-container">
         <Sidebar/>
         <div>
-          <img src="/images/avatar3.png" alt="" className="profile-image"/>
+          <div className='profile-image-cropper'>
+            <img src={PFP} className="profile-image"/>
+          </div>
           <h1 className="profile-user">{username}</h1>
           <Link to="/settings"><button className="editp">Edit Profile</button></Link>
         </div>

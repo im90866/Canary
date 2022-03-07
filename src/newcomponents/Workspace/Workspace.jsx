@@ -81,9 +81,9 @@ function Workspace(props) {
     }
 
     console.log("HOOOHHAAA")
-    await axios.post("http://localhost:8000/postImage/", req).then((res) => {
-      console.log(res)
-    })
+    //await axios.post("http://localhost:8000/postImage/", req).then((res) => {
+    //  console.log(res)
+    //})
 
   }
 
