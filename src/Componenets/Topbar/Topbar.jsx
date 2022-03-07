@@ -14,6 +14,24 @@ import { IconContext } from 'react-icons';
 export default function Topbar() {
   // const [sidebar,setSidebar]=useState(false);
   // const showSidebar=()=>setSidebar(!sidebar);
+  const [search, setSearch] = useState("")
+  const [searchRes, setSearchRes] = useState([])
+
+  const searchProfile = () =>{
+    const response = await axios.get("http://localhost:8000/search/" + search)
+      .then((res) => {
+        if (res.data["success"]) {
+          console.log("working")
+          console.log(res)
+          // return (res.data['projectList'])
+        }
+        else
+          console.log("Error: " + res.data["error"])
+      })
+    setSearchRes(response)
+  }
+
+
   return (
       <div className="navbar-container">
         <div className="navbar-left">
@@ -28,6 +46,8 @@ export default function Topbar() {
             <input
               placeholder="Search for friend, post or video"
               className="searchInput"
+              value={search}
+              onKeyDown={() => searchProfile()}
             />
           </div>
         </div>

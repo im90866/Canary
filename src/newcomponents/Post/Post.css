@@ -12,9 +12,10 @@ grid-template-columns: repeat(auto-fit, minmax(12rem, 16rem)); */
 /* position: relative; */
 display: flex;
 position: relative;
-/* top:150px; */
+top:150px;
 /* left: -20px; */
 width: 100%;
+top:120px;
 /* height: 100%; */
 }
 
@@ -28,16 +29,18 @@ position: relative;
   justify-content: space-between;
   cursor: pointer;
   transition: transform 200ms ease-in;
+  background-color: #eee;
+  border: none;
 
 }
 .card:hover{
-    height: 230px;
-    background-color:#f0f0f0;
+    height: 250px;
+    background-color:#ffff;
 }
   .card__image {
     position: sticky;
     display: block;
-    height: 12rem;
+    height: 13rem;
     width: 100%;
     object-fit: cover;
   }

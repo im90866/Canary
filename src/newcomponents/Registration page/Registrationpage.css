@@ -19,11 +19,14 @@ margin-left: 200px;
     width: 150px;
     height: 40px;
     border-radius: 5px; 
+    position: relative;
+    left: -170px;
 }
 .photo{
     color: #fff;
     position: relative;
-    left: -15px;
+    left: -18px;
+    font-weight: 600;
 }
 .registration{
     font-size: 24px;
@@ -31,6 +34,9 @@ margin-left: 200px;
     position: relative;
     top:20px;
 }
-.existing-details2{
-
+.profile-username1{
+    font-size: 24px;
+    position: relative;
+    top:20px;
+    left: 10px;
 }

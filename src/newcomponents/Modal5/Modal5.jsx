@@ -3,9 +3,9 @@ import "../Modal/Modal.css"
 import axios from 'axios'
 import { useState} from 'react';
 
-function Modal5(props) {
-  var closeModal = props.closeModal
-  const makeChange = props.makeChange
+function Modal5({image, closeModal, makeChange}) {
+  // var closeModal = props.closeModal
+  // const makeChange = props.makeChange
   const [projectName, setProjectName] = useState("")
 
   const addProject = async (project) => {
@@ -39,20 +39,14 @@ function Modal5(props) {
             </button> 
           </div>
           <div className="title">
-            <h1 className='create-title'>New Project</h1>
+            <h1 className='create-title'>Options</h1>
           </div>
           <div className="body">
-            <label for="pname" className='p1name'>Enter Project Name</label>
-            <input type="text" 
-                  className='change-text10'  
-                  name="Project Name" 
-                  placeholder='Project Name'
-                  onChange={event => setProjectName(event.target.value)}
-            /><br></br>
+            
 
             <div className="div">
               <button className='folder-btn' onClick={() => {addProject({ "projectName" : projectName }); 
-                  closeModal(false)}}>Create Project
+                  closeModal(false)}}>Post
               </button>
             </div>
           </div>         
@@ -72,5 +66,4 @@ function getCookie(name) {
   }
   return null;
 }
-
 export default Modal5

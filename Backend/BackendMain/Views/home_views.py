@@ -1,3 +1,4 @@
+from site import USER_BASE
 from tokenize import String
 from rest_framework.views import APIView
 from rest_framework import permissions
@@ -28,9 +29,14 @@ class SearchProfiles(APIView):
         query = str(value) + '.*'
 
         regx = re.compile(query, re.IGNORECASE)
-        query_results = user_col.find({"username": regx})
+        query_results = user_col.find_one({"username": regx})
 
         print(query_results)
+
+        return Response({
+            'success': 'Results found',
+            'results' : query_results
+        })
 
 class GetHomePosts(APIView):
     permission_classes = (permissions.AllowAny, )

@@ -13,9 +13,10 @@ position: fixed;
         display: flex;
         flex-direction: column;
         padding: 25px;
-  margin-left: 50px;
+  margin-left: 150px;
+    position: relative;
     
-        margin-top: -250px; 
+        margin-top: -50px; 
         z-index: 9999;
  
        

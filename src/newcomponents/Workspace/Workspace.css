@@ -1,30 +1,39 @@
 .workspace-container{
     display: flex;
     position:relative;
+    /* width: 1000px;
+    height: 200px;
+    background-color: #fff;
+    top: 150px; */
+   
 
  
 }
+
   .workspace-container2{
     width: 1000px;
-    height: 800px;
+    height: 100%;
     background-color: #fff;
     overflow-x: hidden;
-    overflow-y: scroll;
+ overflow-y: scroll; 
  position: relative;
- top: 250px;
- left: 270px;
+ top: 150px;
+ left: 80px;
+ z-index: 999;
 
 }  
 .workspace-title{
     display: flex;
     position: relative;
-    top:300px;
+    top:200px;
+    left: 50px;
+ 
 }
 
 .btn-grp{
     display: flex;
     position: relative;
-    left: 100px;
+    left: -20px;
 }
 .wtitle{
    
@@ -42,7 +51,7 @@
   top:-90px;
     width: 150px;
     height: 40px;
-    font-size: 16px;
+    font-size: 14px;
     white-space: nowrap;
     position: relative;
     /* margin-left: 1000px; */
@@ -61,16 +70,18 @@ border-radius: 5px;
     top:-90px;
     left:-150px;
     text-align: center;
-    font-size: 16px;
+    font-size: 14px;
     float: right;
 }
 .folder{
     
-    display: grid;
+    /* display: grid;
     grid-template-columns: repeat(auto-fit, minmax(12rem, 16rem));
-   
- 
-  left: 200px;
+    */
+    display: flex;
+    flex-wrap: wrap;
+ gap: 2rem;
+  left: 150px;
   position: relative;
   z-index: 9999;
 /* margin-bottom: 500px; */
@@ -79,7 +90,7 @@ top:-20px
 .folder-icon{
 position: relative;
    font-size: 150px;
-   z-index: 9999;
+   /* z-index: 9999; */
    left: -100px;
    top:50px;
 }
@@ -90,14 +101,14 @@ position: relative;
     width:150px;
     height: 150px;
     border-radius: 5px;
-    z-index: 9999;
+    /* z-index: 9999; */
     top:50px;
 }
 
 .folder-icon a{
     color: black;
     text-decoration: none;
-    z-index: 9999;
+    /* z-index: 9999; */
 }
 .folder-info{
     position: relative;
@@ -122,7 +133,7 @@ position: relative;
 }
 .btn-text{
     color: white;
-    font-size: 16px;
+    font-size: 14px;
     margin-left: -15px;
 }
   .folder-container2{
@@ -139,11 +150,43 @@ position: relative;
     font-size: 60px;
     color: black;
 }
-.three-dots img{
+.three-dotsimg{
     position: sticky;
   
     color: black;
     font-size: 20px;
    margin-top: -5px;
    margin-left: 70px;
+}
+.three-dots{
+    position: sticky;
+    color: black;
+    font-size: 20px;
+    margin-top: -10px;
+    margin-left: 40px;
+}
+
+.dropdown-block:hover .dropdown-content{
+  
+    color: rgb(0, 0, 0);
+    display:block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 11px;
+    box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
+    padding: 5px 16px;
+    z-index: 1;
+  }
+
+  .dropdown-content button{
+      margin: 5px;
+  }
+
+.dropdown-text{
+    font-size: 10px;
+    /* width: 120px; */
 }
