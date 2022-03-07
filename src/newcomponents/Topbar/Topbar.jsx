@@ -38,6 +38,13 @@ function Topbar() {
     setSearchRes(response)
   }
 
+  const openClose = () => {
+    if(openModal === false)
+      setOpenModal(true)
+    else
+      setOpenModal(false)
+  }
+
   return (
     <div className="topbarContainer">
       <div className="topbarLeft">
@@ -64,10 +71,10 @@ function Topbar() {
 
           <div className="topbarIconItem">
             <IoIosNotificationsOutline onClick={() =>
-              setOpenModal(true)} />
+              openClose()} />
             <span className="topbarIconBadge">1</span>
           </div>
-      
+              
           <div className="topbarIconItem">
             <Link to="/profile"><img src="/images/avatar.png" alt="" className="topbarImg" /> </Link>
           </div>
