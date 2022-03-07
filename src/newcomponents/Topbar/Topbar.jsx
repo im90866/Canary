@@ -14,15 +14,28 @@ import Modal4 from "../Modal4/Modal4";
 function Topbar() {
   const [openModal, setOpenModal] = useState(false);
   const [searchField, setSearchField] = useState("")
+  const [searchRes, setSearchRes] = useState("")
 
-  const search = () => {
-    console.log("hello")
-    const request = {
-      'projectAdmin': String(getCookie('username'))
-    }
-    axios.get("http://localhost:8000/search/" + searchField, request).then((res) => {
+  const search = async () => {
+    // console.log("hello")
+    // const request = {
+    //   'projectAdmin': String(getCookie('username'))
+    // }
+    // axios.get("http://localhost:8000/search/" + searchField, request).then((res) => {
 
-    })
+    // })
+    console.log(searchField)
+    const response = await axios.get("http://localhost:8000/search/" + searchField)
+      .then((res) => {
+        if (res.data["success"]) {
+          console.log("working")
+          console.log(res)
+          return (res.data['results'])
+        }
+        else
+          console.log("Error: " + res.data["error"])
+      })
+    setSearchRes(response)
   }
 
   return (
@@ -34,10 +47,12 @@ function Topbar() {
         <div className="searchbar">
           <FaSearch className="searchIcon" />
           <input
+            
             placeholder="Search for friend, post or video"
             className="searchInput"
             value = {searchField}
-            onKeyDown={() => search()}
+            onKeyUp={() => search()}
+            onChange={e => setSearchField(e.target.value)}
           />
         </div>
       </div>

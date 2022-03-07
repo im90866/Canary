@@ -74,19 +74,19 @@ class LoginView(APIView):
         else:
             return Response({ 'error': 'Error Authenticating' })
 
-class Search(APIView):
-    permission_classes = (permissions.AllowAny, )
-    def get(self, request, format=None):
-        queryset = CLIENT_DATABASE['userInfo'].find()
-        users = []
-        # for x in queryset:
-        #     print(x['username'])
-        #     # users.append(x)
-        filter_backends = [filters.SearchFilter]
-        search_fields = ['^username']
-        return Response({
-            'users working' : filter_backends
-        })
+# class Search(APIView):
+#     permission_classes = (permissions.AllowAny, )
+#     def get(self, request, format=None):
+#         queryset = CLIENT_DATABASE['userInfo'].find()
+#         users = []
+#         # for x in queryset:
+#         #     print(x['username'])
+#         #     # users.append(x)
+#         filter_backends = [filters.SearchFilter]
+#         search_fields = ['^username']
+#         return Response({
+#             'users working' : filter_backends
+#         })
     
 
 
