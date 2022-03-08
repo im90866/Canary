@@ -10,7 +10,7 @@ function Modal5({image, closeModal, makeChange}) {
   
     <div>
       <div className="modalBackground">
-        <div className="modalContainer">
+        <div className="modalContaine3">
           <div className="titleCloseBtn">
             <button className='cross'
               onClick={() => {
@@ -20,8 +20,10 @@ function Modal5({image, closeModal, makeChange}) {
             </button> 
           </div>
           <div className="title">
-            <h1 className='create-title'>Options</h1>
+<img src="/images/avatar2.png" alt=""  className='post-img'/>
           </div>
+          <input type="text" placeholder='enter caption' className='change-text15'/>
+              
           <div className="body">
             
 
