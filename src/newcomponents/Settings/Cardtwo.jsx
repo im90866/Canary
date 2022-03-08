@@ -1,9 +1,10 @@
  import React, {useState, useEffect, useRef} from 'react'
  import axios from 'axios'
-
+ import Modal6 from '../Modal6/Modal6';
+import Moda7 from '../Modal7/Moda7';
  function Cardtwo() {
   const fileRef = useRef();
-
+  const [openModal, setOpenModal] = useState(false);
   const [PFP, setPFP] = useState("")
   const [changed, makeChange] = useState(false)
   const [image, setImage] = useState({
@@ -93,10 +94,11 @@
             </div>
         </div>
      
-      <button className='submit-changes' type='submit'>Update Profile</button>
-        
+      <button className='submit-changes' type='submit' onClick={() =>
+          setOpenModal(true)}>Update Profile</button>
+           {openModal && <Moda7 closeModal={setOpenModal} />} 
       </div>
-
+   
         </div>
       
   )
