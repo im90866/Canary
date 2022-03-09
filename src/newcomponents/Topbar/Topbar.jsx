@@ -65,7 +65,7 @@ function Topbar() {
       e.stopPropagation()
       listRef.current.style.display = 'flex'
       // search()
-      
+
     })
 
     document.addEventListener('click', (e) => {
@@ -78,6 +78,9 @@ function Topbar() {
       <div className="topbarLeft">
         <span className="logo"> <Link to="/home">Canary</Link></span>
       </div>
+
+
+
       <div className="topbarCenter">
         <div className="searchbar">
           <FaSearch className="searchIcon" />
@@ -118,16 +121,15 @@ function Topbar() {
                   No Results Found
                 </button>
             }
-
           </div>
+
         </div>
       </div>
+
+
+
       <div className="topbarRight">
-
         <div className="topbarIcons">
-
-
-
           <div className="topbarIconItem">
             <IoIosNotificationsOutline onClick={() =>
               openClose()} />
