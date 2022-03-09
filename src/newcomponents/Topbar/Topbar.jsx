@@ -4,44 +4,49 @@ import { RiChatSmile2Fill } from "react-icons/ri"
 import { BsFillPlusCircleFill } from "react-icons/bs"
 import { Link } from "react-router-dom";
 import { FaBars } from 'react-icons/fa';
-import { useState, useEffect} from "react"
+import { useState, useEffect, useRef } from "react"
 import { MdExplore, MdOutlineNotificationsNone, MdSettings } from "react-icons/md"
 import axios from "axios"
 
 import { IconContext } from 'react-icons';
 import { IoIosNotificationsOutline } from "react-icons/io";
 import Modal4 from "../Modal4/Modal4";
+import ListGroup from 'react-bootstrap/ListGroup'
+import Res from './Res'
+
 function Topbar() {
   const [openModal, setOpenModal] = useState(false);
+
   const [searchField, setSearchField] = useState("")
-  const [searchRes, setSearchRes] = useState("")
+  const [searchRes, setSearchRes] = useState([])
   const [PFP, setPFP] = useState("")
 
-  const search = async () => {
-    // console.log("hello")
-    // const request = {
-    //   'projectAdmin': String(getCookie('username'))
-    // }
-    // axios.get("http://localhost:8000/search/" + searchField, request).then((res) => {
+  const listRef = useRef()
+  const inputRef = useRef()
 
-    // })
+  const search = async () => {
     console.log(searchField)
+    console.log(searchRes.length)
 
     const response = await axios.get("http://localhost:8000/search/" + searchField)
       .then((res) => {
         if (res.data["success"]) {
           console.log("working")
           console.log(res)
-          return (res.data['results'])
+          // return (res.data['results'])
+          setSearchRes(res.data['results'])
         }
-        else
+        else {
           console.log("Error: " + res.data["error"])
+          setSearchRes([])
+        }
       })
-    setSearchRes(response)
+    console.log(searchRes)
+    console.log(response)
   }
 
   const openClose = () => {
-    if(openModal === false)
+    if (openModal === false)
       setOpenModal(true)
     else
       setOpenModal(false)
@@ -51,12 +56,23 @@ function Topbar() {
     setPFP("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPEAAADRCAMAAAAquaQNAAAAA1BMVEX///+nxBvIAAAAR0lEQVR4nO3BMQEAAADCoPVP7WULoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABuxZIAAeHuCGgAAAAASUVORK5CYII=")
 
     axios.get("http://localhost:8000/getProfilePicture/" + String(getCookie('username'))).then((res) => {
-      if(res.data["success"]) {
+      if (res.data["success"]) {
         setPFP(res.data['imageString'])
       }
     })
+
+    inputRef.current.addEventListener('click', (e) => {
+      e.stopPropagation()
+      listRef.current.style.display = 'flex'
+      // search()
+      
+    })
+
+    document.addEventListener('click', (e) => {
+      listRef.current.style.display = 'none'
+    })
   }, [])
-  
+
   return (
     <div className="topbarContainer">
       <div className="topbarLeft">
@@ -66,13 +82,44 @@ function Topbar() {
         <div className="searchbar">
           <FaSearch className="searchIcon" />
           <input
-            
             placeholder="Search for friend, post or video"
             className="searchInput"
-            value = {searchField}
+            value={searchField}
             onKeyUp={() => search()}
             onChange={e => setSearchField(e.target.value)}
+            ref={inputRef}
           />
+          <div id="results" className="results" ref={listRef}>
+            {
+              searchRes.length > 0
+                ?
+                searchRes.map((res, index) => {
+                  return (
+                    <button
+                      type="button"
+                      key={index}
+                      onClick={(e) => {
+                        inputRef.current.value = res.username;
+                      }}
+                      className="list-group-item list-group-item-action"
+                    >
+                      <img style={{ width: '30px', height: '25px' }} src={res.profilePictureID} />
+                      &nbsp;
+                      &nbsp;
+                      {res.username}
+                    </button>
+                  )
+                })
+                :
+                <button
+                  type="button"
+                  className="list-group-item list-group-item-action"
+                >
+                  No Results Found
+                </button>
+            }
+
+          </div>
         </div>
       </div>
       <div className="topbarRight">
@@ -86,15 +133,15 @@ function Topbar() {
               openClose()} />
             <span className="topbarIconBadge">1</span>
           </div>
-              
+
           <div className="topbarIconItem">
             <div className="topbarImg-cropper">
               <Link to="/profile"><img src={PFP} alt="" className="topbarImg" /> </Link>
             </div>
           </div>
-    
+
         </div>
-      
+
       </div>
       {openModal && <Modal4 closeModal={setOpenModal} />}
     </div>

@@ -42,7 +42,6 @@ position: fixed;
     cursor: pointer;
     position: relative;
     top:-20px;
-    right: -10px;
   }
   .folder-name{
       border:none ;
@@ -78,7 +77,8 @@ position: fixed;
  
   .cross{
       color: black;
-      margin-right: -40px;
+      margin-right: -20px;
+      padding: 12px 12px;
   }
   .folder-btn{
     
