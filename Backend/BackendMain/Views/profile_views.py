@@ -17,33 +17,7 @@ from ..custom_models import *
 CLIENT_SERVER = getClient()
 CLIENT_DATABASE = CLIENT_SERVER['mainDB']
 
-class ChangeProfilePicture(APIView):
-    permission_classes = (permissions.AllowAny, )
-
-    def post(self, request, format=None):
-        data = self.request.data
-
-        FS = gridfs.GridFS(CLIENT_DATABASE)
-
-        user_col = CLIENT_DATABASE['userInfo']
-
-        oldImageID = user_col.find_one({'username': data['username']})['profilePictureID']
-
-        imageID = FS.put(data['imageString'], encoding='utf-8')
-        FS.delete(ObjectId(oldImageID))
-
-        user_col.update_one({
-            'username': data['username']
-        }, {
-            '$set': {
-                'profilePictureID': imageID
-            }
-        })
-
-        return Response({
-            'success': 'Profile picture changed'
-        })
-
+# Views
 class GetProfilePicture(APIView):
     permission_classes = (permissions.AllowAny, )
 
@@ -59,3 +33,45 @@ class GetProfilePicture(APIView):
             'success': 'Obtained image',
             'imageString': imageString,
         })
+
+class GetProfileFeed(APIView):
+    permission_classes = (permissions.AllowAny, )
+
+    def get(self, request, username, format=None):
+        FS = gridfs.GridFS(CLIENT_DATABASE)
+
+        user_col = CLIENT_DATABASE['userInfo']
+        post_col = CLIENT_DATABASE['postData']
+        meta_col = CLIENT_DATABASE['imageData']
+    
+        postList = user_col.find_one({'username': username})['postID']
+
+        imageList = []
+
+        for postID in postList:
+            postData = post_col.find_one({'_id': ObjectId(postID)})
+            metaID = postData['metadataID']
+            imageID = meta_col.find_one({'_id': ObjectId(metaID)})['imageID']
+            
+            imageVal = FS.get(ObjectId(imageID))
+
+            upadatedUpload = str(datetime.now() - datetime.strptime(postData['uploadTime'], '%Y-%m-%d %H:%M:%S'))
+
+            newPostData = {
+                'postID' : json.loads(json_util.dumps(postData['_id']))['$oid'],
+                'imageVal' : imageVal,
+                "uploader" : postData['uploader'],
+                "uploadTime" : upadatedUpload,
+                "caption" : postData['caption'],
+                "likedBy" : postData['likedBy'],
+                "likes" : postData['likes'],
+                "comments" : postData['comments'],
+            }
+            imageList.append(newPostData)
+
+
+        return Response({
+            'success': 'Obtained image',
+            'postData': imageList
+        })
+

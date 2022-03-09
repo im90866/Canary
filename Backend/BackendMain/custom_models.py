@@ -9,16 +9,19 @@ CLIENT_DATABASE = CLIENT_SERVER['mainDB']
 class userInfo():
     _username = ""
     _password = ""
+    _fullname = ""
     _email = ""
     _profilePictureID = "6224c0913f4d78e52661d872"
     _userDetails = {}
     _postID = []
     _projectID = []
     _userSettings = {}
+    _DOB = ""
 
     # Creates a model with default features
     def __init__(self, username, password, email):
         self.setAuth(username, password)
+        self._fullname = username
         self._email = email
 
     # Creates model without checks. Use when JSON object is taken from database
@@ -50,12 +53,14 @@ class userInfo():
         model = {
             "username" : self._username,
             "password" : self._password,
+            "fullname": self._fullname,
             "profilePictureID": self._profilePictureID,
             "email" : self._email,
             "userDetails": self._userDetails,
             "postID" : self._postID,
             "projectID" : self._projectID,
-            "userSettings" : self._userSettings
+            "userSettings" : self._userSettings,
+            "DOB": self._DOB
         }
 
         return model

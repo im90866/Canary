@@ -12,6 +12,34 @@
     'images64': null,
   });
 
+  const [username, setUsername] = useState("")
+  const [fullname, setFullname] = useState("")
+  const [email, setEmail] = useState("")
+  const [DOB, setDOB] = useState("")
+
+  const [values, setValues] = useState({
+    username: "",
+    fullname: "",
+    email: "",
+    DOB: "",
+  });
+
+  const handleNameInputChange = (e) => {
+    setValues({ ...values, fullname: e.target.value })
+  }
+
+  const handleUsernameInputChange = (e) => {
+    setValues({ ...values, username: e.target.value })
+  }
+
+  const handleEmailInputChange = (e) => {
+    setValues({ ...values, email: e.target.value })
+  }
+
+  const handleDOBInputChange = (e) => {
+    setValues({ ...values, DOB: e.target.value })
+  }
+
   const fileSelect = async (event) => {
     var file = event.target.files[0]
     const image64 = await base64(file)
@@ -46,6 +74,29 @@
     })
   }
 
+  const updateInfo = async () => {
+    let request = {
+      'username': values.username
+    }
+
+    if(username != values.username)
+      request['newUsername'] = values.username
+    if(fullname != values.fullname)
+      request['fullname'] = values.fullname
+    if(email != values.email)
+      request['email'] = values.email
+    if(DOB != values.DOB)
+      request['DOB'] = values.DOB
+
+    
+    await axios.post('http://localhost:8000/uploadUserInfo/', request).then((res) => {
+      console.log(res)
+    });
+    window.location.reload();
+  }
+
+
+
   useEffect(() => {
     setPFP("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPEAAADRCAMAAAAquaQNAAAAA1BMVEX///+nxBvIAAAAR0lEQVR4nO3BMQEAAADCoPVP7WULoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABuxZIAAeHuCGgAAAAASUVORK5CYII=")
 
@@ -54,46 +105,90 @@
         setPFP(res.data['imageString'])
       }
     })
+
+    axios.get("http://localhost:8000/getUserInfo/" + String(getCookie('username'))).then((res) => {
+      if(res.data['success']){
+        setValues({
+          username: res.data['username'],
+          fullname: res.data['fullname'],
+          email: res.data['email'],
+          DOB: res.data['DOB']
+        })
+
+        setUsername(res.data['username'])
+        setFullname(res.data['fullname'])
+        setEmail(res.data['email'])
+        setDOB(res.data['DOB'])
+      }
+    })
   }, [])
 
   return (
-     <div>
+    <div>
       <div className="edit-profile">
         <div className="existing-details">
           <div className='profile-picture-cropper'>
             <img src={PFP} alt="" className='profile-picture' />
           </div>
-            <h3 className="profile-username">Nashwa_Abdul</h3>
-            <button className='change' onClick={()=> fileRef.current.click()}><span className="photo">Upload photo</span></button>
-            <input
-              ref={fileRef}
-              onChange={fileSelect}
-              multiple={false}
-              type="file"
-              hidden
-            />
+
+          <h3 className="profile-username">{getCookie('username')}</h3>
+          <button className='change' onClick={()=> fileRef.current.click()}><span className="photo">Upload photo</span></button>
+          <input
+            ref={fileRef}
+            onChange={fileSelect}
+            multiple={false}
+            type="file"
+            hidden
+          />
         </div>
+
         <div className="change-details">
-            <div className="change-name">
-                <label for="fname" className='fname'>Full Name</label>
-                <input type="text" className='change-text1'  name="First Name" placeholder='Nashwa'/><br></br>
-               
-            </div>
-            <div className="username-change">
+          <div className="change-name">
+            <label for="fname" className='fname'>Name</label>
+            <input 
+              type="text" 
+              className='change-text1'  
+              onChange={handleNameInputChange} 
+              value={values.fullname} name="Fullame" 
+            />
+            <br></br>     
+          </div>
+
+          <div className="username-change">
             <label for="username" className='user1'>Username</label>
-            <input type="text" className='change-text3'  name="Username" placeholder='Nashwa_Abdul'/>
-            </div>
-            <div className="email-address">
+            <input 
+              type="text" 
+              className='change-text3' 
+              name="Username" 
+              onChange={handleUsernameInputChange}  
+              value={values.username} 
+            />
+          </div>
+
+          <div className="email-address">
             <label for="ID" className='emailID'>Email Id</label>
-            <input type="email" className='change-text4'  name="Username" placeholder='nashwa.abdul@gmail.com'/>
-            </div>
-            <div className="Dateofbirth">
+            <input 
+              type="email" 
+              className='change-text4' 
+              name="Email" 
+              onChange={handleEmailInputChange}  
+              value={values.email} 
+            />
+          </div>
+
+          <div className="Dateofbirth">
             <label for="date" className='date'>Date of Birth</label>
-            <input type="date" className='change-text5'  name="DOB" placeholder='16/10/2001'/>
-            </div>
+            <input 
+              type="date" 
+              className='change-text5'  
+              name="DOB" 
+              onChange={handleDOBInputChange}  
+              value={values.DOB} 
+            />
+          </div>
         </div>
      
-      <button className='submit-changes' type='submit'>Update Profile</button>
+      <button className='submit-changes' type='submit' onClick={() => updateInfo()}>Update Profile</button>
         
       </div>
 

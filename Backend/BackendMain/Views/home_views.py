@@ -75,6 +75,18 @@ class GetHomePosts(APIView):
 
             postData = {
                 'postID' : json.loads(json_util.dumps(val['_id']))['$oid'],
+                'imageVal' : imageVal,
+                "uploader" : val['uploader'],
+                "uploadTime" : upadatedUpload,
+                "caption" : val['caption'],
+                "likedBy" : val['likedBy'],
+                "likes" : val['likes'],
+                "comments" : val['comments'],
+            }
+
+            """
+            postData = {
+                'postID' : json.loads(json_util.dumps(val['_id']))['$oid'],
                 'projectID' : val['projectID'],
                 'imageVal' : imageVal,
                 "uploader" : val['uploader'],
@@ -85,6 +97,8 @@ class GetHomePosts(APIView):
                 "comments" : val['comments'],
                 "engagement" : val['engagement'],
             }
+
+            """
 
             postList.append(postData)
 

@@ -76,3 +76,13 @@ left:-20px;
     display: flex;
     gap: 2rem;
 } 
+
+
+.feedImage {
+    position: sticky;
+    display: block;
+    height: 13rem;
+    width: 100%;
+    object-fit: cover;
+  }
+

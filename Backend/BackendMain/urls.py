@@ -6,6 +6,7 @@ from .Views.project_views import *
 from .Views.workspace_views import *
 from .Views.home_views import *
 from .Views.profile_views import *
+from .Views.setting_views import *
 
 urlpatterns = [
     # Auth Views
@@ -39,6 +40,11 @@ urlpatterns = [
     # Profile Views
     path('getProfilePicture/<str:username>', GetProfilePicture.as_view()),
     path('changeProfilePicture/', ChangeProfilePicture.as_view()),
+    path('getProfileFeed/<str:username>', GetProfileFeed.as_view()),
+
+    # Settings Views
+    path('getUserInfo/<str:username>', GetUserInfo.as_view()),
+    path('uploadUserInfo/', UploadUserInfo.as_view()),
 
     # debug functions
     #path('backStuff/', views.getBack()),

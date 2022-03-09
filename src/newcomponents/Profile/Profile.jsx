@@ -8,6 +8,7 @@ import axios from 'axios'
 function Profile() {
   const [username, setUsername] = useState("")
   const [PFP, setPFP] = useState("")
+  const [images, setImages] = useState([])
  
   useEffect(() => {
     setUsername(String(getCookie('username')))
@@ -16,6 +17,13 @@ function Profile() {
     axios.get("http://localhost:8000/getProfilePicture/" + String(getCookie('username'))).then((res) => {
       if(res.data["success"]) {
         setPFP(res.data['imageString'])
+      }
+    })
+
+    axios.get("http://localhost:8000/getProfileFeed/" + String(getCookie('username'))).then((res) => {
+      if(res.data["success"]) {
+        setImages(res.data['postData'])
+        console.log(res.data)
       }
     })
   }, [])
@@ -37,31 +45,19 @@ function Profile() {
           <h2 className="posts1"><Link to="/profile/profileposts">Posts</Link></h2>
         </div>
         <div className="wrapper">
-          <div className="card1">
-            <div className="card__body1">
-              <div className="img1">
-                <img src="https://cdn.pixabay.com/photo/2022/01/11/14/09/bird-6930700__340.jpg" className="card__image" alt=""/>    
+        {
+          images.map(image => (
+            <div className="card1">
+              <div className="card__body1">
+                <div className="feedImageCropper">
+                  <img src={image.imageVal} className="feedImage" alt=""/>    
+                </div>
               </div>
             </div>
-          </div>
-
-        <div className="card1">
-          <div className="card__body1">
-            <div className="img1">
-              <img src="https://cdn.pixabay.com/photo/2022/01/11/14/09/bird-6930700__340.jpg" className="card__image" alt=""/>    
-            </div>
-          </div>
-        </div> 
-
-        <div className="card1">
-          <div className="card__body1">
-            <div className="img1">
-              <img src="https://cdn.pixabay.com/photo/2022/01/11/14/09/bird-6930700__340.jpg" className="card__image" alt=""/>    
-            </div>
-          </div>
-        </div>
-      </div>   
-     </div>
+          ))
+        }
+        </div>   
+      </div>
     </div>
   )
 }
