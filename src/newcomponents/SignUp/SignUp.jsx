@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import "../Login/Login.css"
-import {useNavigate} from 'react-router-dom';
-
+import {Link, useNavigate} from 'react-router-dom';
+import Modal3 from '../Modal3/Modal3'
 import axios from 'axios';
+import Modal6 from '../Modal6/Modal6';
 
 function SignUp(props) {
   const navigate = useNavigate()
@@ -15,7 +16,7 @@ function SignUp(props) {
 
   const[submitted,setSubmitted]=useState(false)
   const [validate, setValidate] = useState(false)
-
+  const [openModal, setOpenModal] = useState(false);
   const handleUserNameInputChange=(e)=>{
     setUsername(e.target.value)
   }
@@ -70,9 +71,11 @@ function SignUp(props) {
               value={password}/>
           
           {submitted && !password?<span id="password-error">Please enter your password</span> :null}
-          <button className='btn' type="submit">Sign Up</button>
+          <button className='btn' type="submit"  onClick={() =>
+          setOpenModal(true)}>Sign Up</button>
         </form>
       </div>
+      {openModal && <Modal6 closeModal={setOpenModal} />} 
     </div>
   )
 }

@@ -1,9 +1,10 @@
  import React, {useState, useEffect, useRef} from 'react'
  import axios from 'axios'
-
+ import Modal6 from '../Modal6/Modal6';
+import Moda7 from '../Modal7/Moda7';
  function Cardtwo() {
   const fileRef = useRef();
-
+  const [openModal, setOpenModal] = useState(false);
   const [PFP, setPFP] = useState("")
   const [changed, makeChange] = useState(false)
   const [image, setImage] = useState({
@@ -83,8 +84,10 @@
       request['newUsername'] = values.username
     if(fullname != values.fullname)
       request['fullname'] = values.fullname
-    if(email != values.email)
+    if(email != values.email) {
+      setOpenModal(true)
       request['email'] = values.email
+    }
     if(DOB != values.DOB)
       request['DOB'] = values.DOB
 
@@ -92,7 +95,9 @@
     await axios.post('http://localhost:8000/uploadUserInfo/', request).then((res) => {
       console.log(res)
     });
-    window.location.reload();
+    
+    if(email == values.email)
+      window.location.reload();
   }
 
 
@@ -188,11 +193,12 @@
           </div>
         </div>
      
-      <button className='submit-changes' type='submit' onClick={() => updateInfo()}>Update Profile</button>
-        
+        <button className='submit-changes' type='submit' onClick={() => updateInfo()}>
+          Update Profile
+          {openModal && <Moda7 closeModal={setOpenModal} />} 
+        </button>
       </div>
-
-        </div>
+    </div>
       
   )
  }
