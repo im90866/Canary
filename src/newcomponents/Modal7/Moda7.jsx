@@ -6,6 +6,7 @@ function Moda7({ closeModal}) {
         <div className="modalBackground7">
 <div className="modalContainer7">
  <div className="titleCloseBtn6">
+ <div className="titleCloseBtn6">
    <button className='cross'
      onClick={() => {
        closeModal(false);
@@ -14,18 +15,19 @@ function Moda7({ closeModal}) {
      x
    </button>
  </div>
+ </div>
  <div className="title6">
  <p className='six-digit'>A 6-digit code is being sent to your email confiriming the details</p>
  </div>
 
 
   <div className="div6">
-  <input type="digit" className='digit' />
-  <input type="digit" className='digit' />
-  <input type="digit" className='digit' />
-  <input type="digit" className='digit' />
-  <input type="digit" className='digit' />
-  <input type="digit" className='digit' />
+  <input type="digit" className='digit'  maxlength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+  <input type="digit" className='digit'  maxlength="1" size="1" min="0" max="9" pattern="[0-9]{1}"/>
+  <input type="digit" className='digit'  maxlength="1" size="1" min="0" max="9" pattern="[0-9]{1}"/>
+  <input type="digit" className='digit'  maxlength="1" size="1" min="0" max="9" pattern="[0-9]{1}"/>
+  <input type="digit" className='digit'  maxlength="1" size="1" min="0" max="9" pattern="[0-9]{1}"/>
+  <input type="digit" className='digit'  maxlength="1" size="1" min="0" max="9" pattern="[0-9]{1}"/>
  
   </div>
 
