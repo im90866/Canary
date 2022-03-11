@@ -19,13 +19,13 @@ function Modal6({ closeModal}) {
  </div>
 
 
-  <div className="div6">
-  <input type="digit" className='digit' />
-  <input type="digit" className='digit' />
-  <input type="digit" className='digit' />
-  <input type="digit" className='digit' />
-  <input type="digit" className='digit' />
-  <input type="digit" className='digit' />
+  <div className="div61">
+  <input type="digit" className='digit' maxlength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+  <input type="digit" className='digit' maxlength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+  <input type="digit" className='digit' maxlength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+  <input type="digit" className='digit' maxlength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+  <input type="digit" className='digit' maxlength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+  <input type="digit" className='digit' maxlength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
  
   </div>
 

@@ -50,10 +50,16 @@ class SearchProfiles(APIView):
 
         print(query_results)
 
-        return Response({
-            'success': 'Results found',
-            'results' : query_results
-        })
+        if(len(query_results) > 0):
+            return Response({
+                'success': 'Results found',
+                'results' : query_results
+            })
+        else:
+            return Response({
+                'error': 'Results not found',
+                'results' : query_results
+            })
 
 class GetHomePosts(APIView):
     permission_classes = (permissions.AllowAny, )

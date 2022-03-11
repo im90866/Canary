@@ -16,7 +16,7 @@
      
         position: relative;
          top:-300px;
-         left: -130px;
+         left: -500px;
        
      z-index:100;
            
@@ -99,7 +99,7 @@
          .div6{
       position: relative;
       top: -40px;
-      left: 65px;
+      left: 10px;
          }
          .digit{
              width: 50px;

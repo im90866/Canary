@@ -8,7 +8,6 @@ import axios from 'axios'
 function Profile() {
   const [username, setUsername] = useState("")
   const [PFP, setPFP] = useState("")
-  const [images, setImages] = useState([])
  
   useEffect(() => {
     setUsername(String(getCookie('username')))
@@ -19,45 +18,71 @@ function Profile() {
         setPFP(res.data['imageString'])
       }
     })
-
-    axios.get("http://localhost:8000/getProfileFeed/" + String(getCookie('username'))).then((res) => {
-      if(res.data["success"]) {
-        setImages(res.data['postData'])
-        console.log(res.data)
-      }
-    })
   }, [])
 
   return (
     <div>
       <Topbar/>
+     
+        
+      <Sidebar/>
       <div className="profile-container">
-        <Sidebar/>
-        <div>
-          <div className='profile-image-cropper'>
+  
+    
+         <div className='profile-image-cropper'>
             <img src={PFP} className="profile-image"/>
           </div>
           <h1 className="profile-user">{username}</h1>
           <Link to="/settings"><button className="editp">Edit Profile</button></Link>
-        </div>
+      
         <div className="post-info">
           <h2 className="collaborations"><Link to="/profile/collaborations">Collaborations</Link></h2>
           <h2 className="posts1"><Link to="/profile/profileposts">Posts</Link></h2>
-        </div>
-        <div className="wrapper">
-        {
-          images.map(image => (
-            <div className="card1">
-              <div className="card__body1">
-                <div className="feedImageCropper">
-                  <img src={image.imageVal} className="feedImage" alt=""/>    
-                </div>
+      
+       </div>
+  
+
+         <div className="wrapper">
+   <div className="card1">
+            <div className="card__body1">
+              <div className="img1">
+                <img src="https://cdn.pixabay.com/photo/2022/01/11/14/09/bird-6930700__340.jpg" className="card__image" alt=""/>    
               </div>
             </div>
-          ))
-        }
-        </div>   
-      </div>
+          </div>
+
+        <div className="card1">
+          <div className="card__body1">
+            <div className="img1">
+              <img src="https://cdn.pixabay.com/photo/2022/01/11/14/09/bird-6930700__340.jpg" className="card__image" alt=""/>    
+            </div>
+          </div>
+        </div> 
+
+        <div className="card1">
+          <div className="card__body1">
+            <div className="img1">
+              <img src="https://cdn.pixabay.com/photo/2022/01/11/14/09/bird-6930700__340.jpg" className="card__image" alt=""/>    
+            </div>
+          </div>
+        </div>
+        <div className="card1">
+          <div className="card__body1">
+            <div className="img1">
+              <img src="https://cdn.pixabay.com/photo/2022/01/11/14/09/bird-6930700__340.jpg" className="card__image" alt=""/>    
+            </div>
+          </div>
+        </div>
+        <div className="card1">
+          <div className="card__body1">
+            <div className="img1">
+              <img src="https://cdn.pixabay.com/photo/2022/01/11/14/09/bird-6930700__340.jpg" className="card__image" alt=""/>    
+            </div>
+          </div>
+        </div>
+      </div> 
+    
+      </div> 
     </div>
   )
 }
@@ -72,5 +97,4 @@ function getCookie(name) {
   }
   return null;
 }
-
 export default Profile
