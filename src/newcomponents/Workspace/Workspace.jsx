@@ -165,7 +165,7 @@ function Workspace(props) {
   return (
     <div>
       <Topbar />
-      <Sidebar />
+  
       <body className='workspace-body'>
         <div className="workspace-container">
           <div className="workspace">

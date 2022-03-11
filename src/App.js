@@ -32,6 +32,7 @@ import Chats from './newcomponents/chats/Chats';
 import Forgotpassword from './newcomponents/forgot password/Forgotpassword';
 import Explore from './newcomponents/Explore/Explore';
 import Teamchats from './newcomponents/Teamchats/Teamchats';
+import Postbig from './newcomponents/Postbig/Postbig';
 
 function App() {
   const [logged, setLogged] = useState(false)
@@ -120,6 +121,7 @@ function App() {
               <Route path="/teamchats" element={<Teamchats />} />
               <Route path="/explore" element={<Explore/>} />
               <Route path="/forgotpassword" element={<Forgotpassword />} />
+              <Route path="/postbig" element={<Postbig />} />
 
             </Routes>
           </>
