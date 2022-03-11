@@ -11,7 +11,7 @@ class userInfo():
     _password = ""
     _fullname = ""
     _email = ""
-    _profilePictureID = "6224c0913f4d78e52661d872"
+    _profilePictureID = "6228f291957de3501a1e7fd7"
     _userDetails = {}
     _postID = []
     _projectID = []
@@ -186,6 +186,62 @@ class post():
             "likes" : self._likes,
             "comments" : self._comments,
             "engagement" : self._engagement,
+        }
+
+        return model
+
+class IndividualChat():
+    _firstPersonID = ""
+    _secondPersonID = ""
+    _createdAt = ""
+    _messageList = ""
+
+    def __init__(self, firstPersonID, secondPersonID):
+        self._firstPersonID = firstPersonID
+        self._secondPersonID = secondPersonID
+        self._createdAt = 3
+        self._messageList = []
+
+    def getModel(self):
+        model = {
+            'firstPersonID' : self._firstPersonID,
+            'secondPersonID' : self._secondPersonID,
+            "createdAt" : self._createdAt,
+            "messageList" : self._messageList,
+        }
+
+        return model
+
+class Message():
+    _info = ""
+    _createdAt = ""
+    _createdBy = ""
+
+    def __init__(self, info, by):
+        self._info = info
+        self._createdBy = by
+
+    def getModel(self):
+        model = {
+            'messageVal' : self._info, 
+            'messageBy' : self._createdBy
+        }
+
+        return model
+
+class Notification():
+    _info = ""
+    _createdAt = ""
+    _createdBy = ""
+
+    def __init__(self, info, by):
+        self._info = info
+        self._createdBy = by
+
+    def getModel(self):
+        model = {
+            'messageVal' : self._info, 
+            'messageBy' : self._createdBy
         }
 
         return model

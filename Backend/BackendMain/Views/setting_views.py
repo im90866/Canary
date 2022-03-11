@@ -3,6 +3,7 @@ from rest_framework import permissions
 from rest_framework.response import Response
 from django.views.decorators.csrf import ensure_csrf_cookie, csrf_exempt, csrf_protect
 from django.utils.decorators import method_decorator
+from django.core.mail import send_mail
 
 from rest_framework import filters
 
@@ -97,7 +98,8 @@ class ChangeProfilePicture(APIView):
         oldImageID = user_col.find_one({'username': data['username']})['profilePictureID']
 
         imageID = FS.put(data['imageString'], encoding='utf-8')
-        FS.delete(ObjectId(oldImageID))
+        if(str(oldImageID) != '6228f291957de3501a1e7fd7'):
+            FS.delete(ObjectId(oldImageID))
 
         user_col.update_one({
             'username': data['username']
@@ -110,3 +112,22 @@ class ChangeProfilePicture(APIView):
         return Response({
             'success': 'Profile picture changed'
         })
+
+class SendEmail(APIView):
+    permission_classes = (permissions.AllowAny, )
+
+    def post(self, request, format=None):
+        data = self.request.data
+
+        send_mail(
+            'Here\'s your email man',
+            'Here\'s the actual content of the email, my guy',
+            'madebyteamcanary@gmail.com',
+            ['cameraupten@gmail.com'],
+            fail_silently=False,
+        )
+
+        return Response({
+            'yes':'yes'
+        })
+

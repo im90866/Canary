@@ -1,102 +1,13 @@
+import math
 
-from re import search
+dividend = 10
+divisor = 3
 
+for x in range(10):
+    print(dividend, '/', divisor, '=', dividend/divisor, 'which is', math.floor(dividend/divisor))
+    print(dividend, '/', divisor, '=', dividend/divisor, 'which is', ((dividend + (divisor / 2))/(divisor)))
+    print("")
+    dividend += 2
+    divisor += 1
 
-blaise = [
-    {
-        'type' : 'folder',
-        'name' : 'jas',
-        'folders' : [ 
-            {
-                'type' : 'folder',
-                'name' : 'class',
-                'folders' : [
-                    {
-                        'type' : 'file',
-                        'name' : 'bawad'
-                    }
-                ]
-            },
-            {
-                'type' : 'folder',
-                'name' : 'blass',
-                'folders' : [
-                    {
-                        'type' : 'folder',
-                        'name' : 'sad',
-                        'folders' : [
-                            {
-                                'type' : 'file',
-                                'name' : 'sadv'
-                            }
-                        ]
-                    },
-                    {
-                        'type' : 'folder',
-                        'name' : 'sadss',
-                        'folders' : [
-                            {
-                                'type' : 'file',
-                                'name' : 'sadw'
-                            }
-                        ]
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        'type' : 'folder',
-        'name' : 'mann',
-        'folders' : [
-            {
-                'type' : 'folder',
-                'name' : 'jogn',
-                'folders' : [
-                    {
-                        'type' : 'folder',
-                        'name' : 'pello',
-                        'folders' : [
-                            {
-                                'type' : 'file',
-                                'name' : 'casm'
-                            }
-                        ]
-                    },
-                    {
-                        'type' : 'folder',
-                        'name' : 'boil',
-                        'folders' : [
-                            {
-                                'type' : 'file',
-                                'name' : 'daete'
-                            }
-                        ]
-                    }
-                ]
-            }
-        ]
-        
-    }
-]
-
-def searchTree(curFolder, goalFolder):
-    if not len(curFolder) > 0:
-        return {}
-    elif not next((item for item in curFolder if item["type"] == 'folder'), False):
-        return {}
-    else:
-        for x in curFolder:
-            if x['name'] == goalFolder:
-                return x
-
-        totalVal = {}
-        for x in curFolder:
-            totalVal = dict(list(totalVal.items()) + list(searchTree(x['folders'], goalFolder).items()))
-        return totalVal
-
-
-def search_dictionaries(key, value, list_of_dictionaries):
-    return len([element for element in list_of_dictionaries if element[key] == value]) > 0
-
-print(searchTree(blaise, 'blaSss'))
+# int i = (x + (n / 2)) / n

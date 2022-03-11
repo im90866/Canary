@@ -7,19 +7,11 @@ import { Posts } from "../../dummy.js";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import axios from 'axios'
 
-function Feed() {
-  const [posts, setPosts] = useState([])
+function Feed(prop) {
+  const posts = prop.posts
 
   useEffect(async () => {
-    await axios.get("http://localhost:8000/getFeed/" + String(getCookie('username')))
-      .then((res) => {
-        if (res.data["success"]) {
-          setPosts(res.data['posts'])
-          console.log(res.data['posts'])
-        }
-        else
-          console.log("Error: " )
-      })
+    
   }, [])
 
   return (

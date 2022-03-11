@@ -38,6 +38,8 @@ class SearchProfiles(APIView):
             if counter > 10:
                 break
             
+
+            print(x['profilePictureID'])
             userDict = {
                 'username': x['username'],
                 'profilePictureID': FS.get(x['profilePictureID'])

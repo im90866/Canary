@@ -2,6 +2,8 @@ import { Route, Routes, useNavigate, Navigate } from 'react-router-dom';
 import './App.css';
 import { useEffect, useState } from "react"
 
+import axios from 'axios'
+
 import Home from './newcomponents/Home/Home';
 import Team from './newcomponents/Team/Team'
 import Workspace from './newcomponents/Workspace/Workspace';
@@ -34,21 +36,32 @@ import Teamchats from './newcomponents/Teamchats/Teamchats';
 function App() {
   const [logged, setLogged] = useState(false)
   const [change, setChange] = useState(false)
+  const[posts, setPosts] = useState([])
 
   let navigate = useNavigate()
 
   const user = getCookie('username')
   console.log(user)
 
-  useEffect(() => {
+  useEffect(async () => {
     console.log("change")
     setLogged(getCookie('username') != null)
 
     if (getCookie('username') != null && logged)
       navigate('/home')
 
-    //axios.get("http://localhost:8000/delete")
+    //axios.post("http://localhost:8000/sendEmail/", {})
     //axios.get("http://localhost:8000/print")
+
+    await axios.get("http://localhost:8000/getFeed/" + String(getCookie('username')))
+      .then((res) => {
+        if (res.data["success"]) {
+          setPosts(res.data['posts'])
+          console.log(res.data['posts'])
+        }
+        else
+          console.log("Error: " )
+      })
   }, [user])
 
   const protectOther = (component) => {
@@ -82,7 +95,7 @@ function App() {
 
               <Route path="/" element={protectLogin()} />
          
-              <Route path="/home" element={protectOther(<Home />)} />
+              <Route path="/home" element={protectOther(<Home post={posts} />)} />
 
               {/* <Route path="/signup" element={<Signup />}></Route> */}
               {/* <Route path="/mainspace" element={<Mainspace />}></Route>
