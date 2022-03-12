@@ -1,5 +1,6 @@
 import React from 'react'
 import Sidebar from '../Sidebar/Sidebar'
+import Sidebar2 from '../Sidebar2/Sidebar2'
 import Topbar from '../Topbar/Topbar'
 import "./Workspace.css"
 import { BsFillFolderFill } from "react-icons/bs";
@@ -167,7 +168,7 @@ function Workspace(props) {
   return (
     <div>
       <Topbar />
-  
+  <Sidebar2/>
       <body className='workspace-body'>
         <div className="workspace-container">
           <div className="workspace">

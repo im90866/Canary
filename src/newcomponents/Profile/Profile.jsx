@@ -52,7 +52,7 @@ function Profile() {
             <div className="card1">
               <div className="card__body1">
                 <div className="img1">
-                  <img src={image.imageVal} className="card__image" alt=""/>    
+                  <img src={image.imageVal} className="card__image1" alt=""/>    
                 </div>
               </div>
             </div>
