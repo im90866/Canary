@@ -100,7 +100,17 @@ width: 100%;
 
     border: none;
 }
+
+.img1{
+    width: 340px;
+    height: 300px;
+    overflow: hidden;
+}
+
 .card__image1{
-    width: 250px;
-    height: 250px;
+    position: sticky;
+    display: block;
+    height: 15rem;
+    width: 100%;
+    object-fit: cover;
 }
