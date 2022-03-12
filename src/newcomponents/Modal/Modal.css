@@ -110,13 +110,21 @@ margin-right: 40px;
  top:-50px;
  left: -80px;
   }
-  .post-img{
-    width: 200px;
-    height: 200px;
-    position: relative;
-    top: -40px;
-    left: 20px;
-  }
+
+.post-img{
+  height: auto;
+  width: 100%;
+}
+
+.post-img-cropper {
+  width: 280px;
+  height: 280px;
+  position: relative;
+  overflow: hidden;
+  top: -40px;
+  left: 20px;
+}
+
   .modalContaine3{
     width: 380px;
     height: 400px;

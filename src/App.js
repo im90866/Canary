@@ -107,7 +107,7 @@ function App() {
               <Route path="/profile/collaborations" element={<Collaboration />} />
               <Route path="/profile/profileposts" element={<Profileposts />} />
               <Route path="/project" element={<Project />} />
-              <Route path="/profileothers" element={<Profileothers />} />
+              <Route path="/profile/:username" element={<Profileothers />} />
 
               <Route path="/team" element={<Team />} />
               <Route path="/projectsettings" element={<ProjectSettings />} />

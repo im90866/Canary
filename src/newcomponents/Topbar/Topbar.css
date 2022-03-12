@@ -129,6 +129,18 @@
     width: auto;
 }
 
+.search-image-cropper {
+    width: 25px;
+    height: 25px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.search-image {
+    width:100%;
+    height: auto;
+}
+
 
 /* Diff */
 

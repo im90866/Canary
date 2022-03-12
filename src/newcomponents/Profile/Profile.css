@@ -11,20 +11,22 @@ left: 80px;
 }
 
 .profile-image-cropper{
-width: 100px;
-height: 100px;
-border-radius: 50%;
-
-
-} 
-.profile-image{
     width: 200px;
-height: 200px;
-border-radius: 50%;
-position: relative;
-top:30px;
-left: 450px;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 50%;
+    position: relative;
+    top:30px;
+    left: 450px;
 }
+
+.profile-image{
+    width:auto;
+    height: 100%;
+    top:-20px;
+    left: 550px;
+}
+
 .profile-user{
     position: relative;
     top:120px;

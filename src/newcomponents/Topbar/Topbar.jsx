@@ -2,7 +2,7 @@ import "./Topbar.css";
 import { FaSearch, FaHome } from 'react-icons/fa'
 import { RiChatSmile2Fill } from "react-icons/ri"
 import { BsFillPlusCircleFill } from "react-icons/bs"
-import { Link } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import { FaBars } from 'react-icons/fa';
 import { useState, useEffect, useRef } from "react"
 import { MdExplore, MdOutlineNotificationsNone, MdSettings } from "react-icons/md"
@@ -15,34 +15,45 @@ import ListGroup from 'react-bootstrap/ListGroup'
 import Res from './Res'
 
 function Topbar() {
+  const navigate = useNavigate()
+
   const [openModal, setOpenModal] = useState(false);
 
   const [searchField, setSearchField] = useState("")
   const [searchRes, setSearchRes] = useState([])
+
+  const [isSearching, setIsSearching] = useState(false)
+
   const [PFP, setPFP] = useState("")
 
   const listRef = useRef()
   const inputRef = useRef()
 
   const search = async () => {
+    setIsSearching(true)
     console.log(searchField)
     console.log(searchRes.length)
 
-    const response = await axios.get("http://localhost:8000/search/" + searchField)
-      .then((res) => {
-        if (res.data["success"]) {
-          console.log("working")
-          console.log(res)
-          // return (res.data['results'])
-          setSearchRes(res.data['results'])
-        }
-        else {
-          console.log("Error: " + res.data["error"])
-          setSearchRes([])
-        }
-      })
-    console.log(searchRes)
-    console.log(response)
+    if(searchField == "")
+      setSearchRes([])
+    else {
+      const response = await axios.get("http://localhost:8000/search/" + searchField)
+        .then((res) => {
+          setIsSearching(false)
+          if (res.data["success"]) {
+            console.log("working")
+            console.log(res)
+            // return (res.data['results'])
+            setSearchRes(res.data['results'])
+          }
+          else {
+            console.log("Error: " + res.data["error"])
+            setSearchRes([])
+          }
+        })
+      console.log(searchRes)
+      console.log(response)
+    }
   }
 
   const openClose = () => {
@@ -103,10 +114,15 @@ function Topbar() {
                       key={index}
                       onClick={(e) => {
                         inputRef.current.value = res.username;
+                        
+                        navigate('/profile/' + res.username)
+                        window.location.reload();
                       }}
                       className="list-group-item list-group-item-action"
                     >
-                      <img style={{ width: '30px', height: '25px' }} src={res.profilePictureID} />
+                      <div className="search-image-cropper">
+                        <img style={{ width: '30px', height: '25px' }} className="search-image" src={res.profilePictureID} />
+                      </div>
                       &nbsp;
                       &nbsp;
                       {res.username}
@@ -114,12 +130,14 @@ function Topbar() {
                   )
                 })
                 :
-                <button
-                  type="button"
-                  className="list-group-item list-group-item-action"
-                >
-                  No Results Found
-                </button>
+                  isNotEmpty(searchField) && !isSearching &&
+                  <button
+                    type="button"
+                    className="list-group-item list-group-item-action"
+                  >
+                    No Results Found
+                  </button>
+                
             }
           </div>
 
@@ -150,6 +168,7 @@ function Topbar() {
 
   );
 }
+
 function getCookie(name) {
   var nameEQ = name + "=";
   var ca = document.cookie.split(';');
@@ -160,5 +179,14 @@ function getCookie(name) {
   }
   return null;
 }
+
+
+function isNotEmpty(val) {
+  if(val == "")
+    return false
+  else 
+    return true
+}
+
 
 export default Topbar

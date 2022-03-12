@@ -24,13 +24,15 @@ function Workspace(props) {
   const [folderPath, setFolderPath] = useState(["root"])
   const [changed, makeChange] = useState(false)
 
+  const [postImageVal, setPostImageVal] = useState("")
+
   const [editableName, setEditable] = useState("6222fcdd899bcbbc39df3d38")
 
   const [openModal, setOpenModal] = useState(false)
   const [openModalRename, setOpenModalRename] = useState(false)
   const [modalVal, setModalVal] = useState("")
   const [folderId, setFolderId] = useState("")
-  const [imageId, setImdageId] = useState("")
+  const [imageId, setImageId] = useState("")
 
   const RenameModalStatus = () =>{
     if(folderId !== null){
@@ -38,7 +40,7 @@ function Workspace(props) {
       setOpenModalRename(false)
     }
     else{
-      setImdageId("")
+      setImageId("")
       setOpenModalRename(false)
     }
   }
@@ -222,8 +224,8 @@ function Workspace(props) {
                     <div className="dropdown-block">
                       <BsThreeDots className='three-dots' class="dropdowns" />
                       <div class="dropdown-content">
-                        <button className="dropdown-text" onClick={() => setOpenModal(true)}>Post</button>
-                        <button className="dropdown-text" onClick={() => {setOpenModalRename(true);setModalVal("Rename");setImdageId(image.imageID)}}>Rename</button>
+                        <button className="dropdown-text" onClick={() => {setPostImageVal(image);setOpenModal(true)}}>Post</button>
+                        <button className="dropdown-text" onClick={() => {setOpenModalRename(true);setModalVal("Rename");setImageId(image.imageID)}}>Rename</button>
                         <button className="dropdown-text" onClick={() => deleteImage(image.imageID)}>Delete</button>
                         <button className="dropdown-text">Download</button>
                       </div>
@@ -235,7 +237,7 @@ function Workspace(props) {
           </div>
         </div>
       </body>
-      {openModal && <Modal5 closeModal={setOpenModal} makeChange={makeChange} />}
+      {openModal && <Modal5 projectID={projectId} image={postImageVal} closeModal={setOpenModal} makeChange={makeChange} />}
       {openModalRename && <Modal5_1 closeModal={RenameModalStatus} makeChange={makeChange} name={modalVal} folderId={folderId} imageId={imageId}/>}
     </div>
 

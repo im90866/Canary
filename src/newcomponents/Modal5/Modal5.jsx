@@ -3,14 +3,43 @@ import "../Modal/Modal.css"
 import axios from 'axios'
 import { useState} from 'react';
 
-function Modal5({image, closeModal, makeChange}) {
-  
+function Modal5(prop) {
+  const imageID = prop.image.imageID
+  const imageVal = prop.image.imageVal
+  const closeModal = prop.closeModal
+  const makeChange = prop.makeChange
+  const projectId = prop.projectID
+
+  const [caption, setCaption] = useState("")
+
+
+  const postImage = async (imageID) => {
+    console.log(projectId)
+    const req = {
+      'projectID': projectId,
+      'metadataID': imageID,
+      "uploader": String(getCookie('username')),
+      "caption": caption,
+    }
+
+    console.log("HOOOHHAAA")
+    await axios.post("http://localhost:8000/postImage/", req).then((res) => {
+     console.log(res)
+    })
+
+  }
+
+  const handleCaptionChange = (e) => {
+    setCaption(e.target.value)
+  }
+
 
   return (
   
     <div>
       <div className="modalBackground">
         <div className="modalContaine3">
+          
           <div className="titleCloseBtn">
             <button className='cross'
               onClick={() => {
@@ -19,17 +48,25 @@ function Modal5({image, closeModal, makeChange}) {
               x
             </button> 
           </div>
-          <div className="title">
-<img src="/images/avatar2.png" alt=""  className='post-img'/>
+
+          <div className="post-img-cropper">
+            <img src={imageVal} alt=""  className='post-img'/>
           </div>
-          <input type="text" placeholder='enter caption' className='change-text15'/>
+
+          <input 
+            type="text" 
+            placeholder='Enter a caption' 
+            className='change-text15' 
+            value={caption}
+            onChange={handleCaptionChange}
+          />
               
           <div className="body">
             
 
             <div className="div">
               <button className='folder-btn' onClick={() => { 
-                  closeModal(false)}}>Post
+                  postImage(imageID);closeModal(false)}}>Post
               </button>
             </div>
           </div>         

@@ -2,6 +2,7 @@ from .helper_functions import *
 
 import hashlib
 from datetime import datetime
+from bson import json_util, ObjectId
 
 CLIENT_SERVER = getClient()
 CLIENT_DATABASE = CLIENT_SERVER['mainDB']
@@ -11,7 +12,7 @@ class userInfo():
     _password = ""
     _fullname = ""
     _email = ""
-    _profilePictureID = "6228f291957de3501a1e7fd7"
+    _profilePictureID = ObjectId("6228f291957de3501a1e7fd7")
     _userDetails = {}
     _postID = []
     _projectID = []
@@ -174,6 +175,7 @@ class post():
         self._metadataID = jsonFile['metadataID']
         self._uploader = jsonFile['uploader']
         self._uploadTime = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        self._caption = jsonFile['caption']
 
     def getModel(self):
         model = {
