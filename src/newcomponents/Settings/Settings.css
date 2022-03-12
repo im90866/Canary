@@ -21,19 +21,20 @@ top:300px;
     width:100%;
     top:290px;
     left: -250px;
+    overflow-y: scroll;
   
 
 
 }
 .settinglist{
-    padding: 30px;
-    margin-bottom: 40px;
+    padding: 20px;
+    margin-bottom: 20px;
 
     
 }
 
 .settinglistname{
-    padding-bottom:30px;
+    padding-bottom:10px;
     padding-top: 20px;
     list-style: none;
     color: black;

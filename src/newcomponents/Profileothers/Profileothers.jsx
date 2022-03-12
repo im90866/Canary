@@ -42,7 +42,7 @@ function Profileothers() {
         </div>
 
         <h1 className="profile-user">{username}</h1>
-        <Link to="/settings"><button className="editp">Edit Profile</button></Link>
+        <Link to="/settings"><button className="editp">Message</button></Link>
 
         <div className="post-info">
           <h2 className="collaborations"><Link to="/profile/collaborations">Collaborations</Link></h2>
