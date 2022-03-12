@@ -4,7 +4,7 @@ function Modal6({ closeModal}) {
   return (
     <div>
     <div className="modalBackground6">
-<div className="modalContainer6">
+<div className="modalContainer7">
  <div className="titleCloseBtn6">
    <button className='cross'
      onClick={() => {

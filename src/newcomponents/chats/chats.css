@@ -1,166 +1,168 @@
 .messenger {
     /* height: calc(100vh - 70px); */
     display: flex;
-  }
-  
-  .chatMenu {
+}
+
+.chatMenu {
     flex: 3.5;
-  }
-  .chat-menuwrapper{
+}
+
+.chat-menuwrapper {
     background-color: #fff;
     overflow-y: scroll;
     width: 300px;
     height: 600px;
     border-radius: 5px;
     position: relative;
-    top:50px;
+    top: 50px;
     left: 90px;
+}
 
-  }
-  .profile-pic2{
-      position: relative;
-      left: -20px;
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-  }
-  .chatlistlitext{
-position: relative;
-left: 5px;
-color: black;
-top:-10px;
+.profile-pic2 {
+    position: relative;
+    left: -20px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
 
-  }
-  .chatlistli a:hover{
-  background-color: #efefef;
-  padding-left: 20px;
-  width: 100%;
-  
-  }
-  .chat-title{
-      font-size: 18px;
-  }
-  .chatlistli{
-      list-style: none;
-      padding: 0;
-      display: flex;
-  }
-  .chatlistli a{
-      padding-left:20px;
-  }
-  
-  .chatMenuInput {
+.chatlistlitext {
+    position: relative;
+    left: 5px;
+    color: black;
+    top: -10px;
+}
+
+.chatlistli a:hover {
+    background-color: #efefef;
+    padding-left: 20px;
+    width: 100%;
+}
+
+.chat-title {
+    font-size: 18px;
+}
+
+.chatlistli {
+    list-style: none;
+    padding: 0;
+    display: flex;
+}
+
+.chatlistli a {
+    padding-left: 20px;
+}
+
+.chatMenuInput {
     width: 90%;
     padding: 10px 0;
     border: none;
     border-bottom: 1px solid gray;
-  }
-  
-  .chatBox {
+}
+
+.chatBox {
     flex: 5.5;
-  }
-  
-  
-  
-  .chatBoxTop {
+}
+
+.chatBoxTop {
     height: 100%;
     overflow-y: scroll;
     padding-right: 10px;
-  }
-  
-  .chatBoxBottom {
+}
+
+.chatBoxBottom {
     margin-top: 5px;
     position: relative;
-    top:50px;
+    top: 50px;
     left: 70px;
-  
-  
-  }
-  
-  .chatMessageInput {
+}
+
+
+/* 
+.chatMessageInput {
     width: 80%;
     height: 90px;
     padding: 10px;
-  }
-  
- 
-  
- 
+} */
 
-  
-  .noConversationText {
+.noConversationText {
     position: absolute;
     top: 10%;
     font-size: 50px;
     color: rgb(224, 220, 220);
     cursor: default;
-  }
-  .chat-boxwrapper{
+}
+
+.chat-boxwrapper {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     position: relative;
- 
-background-color: #fff;
-width: 800px;
-height: 500px;
- 
-overflow-y: scroll;
+    background-color: #fff;
+    width: 800px;
+    height: 500px;
+    overflow-y: scroll;
+    border-radius: 5px;
+    left: 90px;
+    top: 50px;
+}
 
-
-border-radius: 5px;
-left: 90px;
-top:50px;
-
-
-  }
-  .conversation{
+.conversation {
     position: relative;
- 
     display: flex;
-  
-  
     left: 50px;
 }
-  .conversation-title{
+
+.conversation-title {
     padding: 0px;
     border-radius: 20px;
     background-color: #ffb53b;
     color: white;
     max-width: 300px;
     height: 100px;
-  }
-  .convo{
-      margin-left: 20px;
-  }
+}
 
- .profile-pic3{
+.convo {
+    margin-left: 20px;
+}
+
+.profile-pic3 {
     position: relative;
     width: 32px;
     height: 32px;
     border-radius: 50%;
     object-fit: cover;
     margin-right: 10px;
- }
- .chatBoxBottom {
+}
+
+.chatBoxBottom {
     margin-top: 5px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    
-  }
-  
-  .chatMessageInput {
+}
+
+
+/* .chatMessageInput {
+    display: block;
     width: 80%;
-    height: 90px;
+    height: 50px;
     padding: 10px;
     position: relative;
     left: 20px;
-    
+    overflow: hidden;
+    resize: both;
+    line-height: 20px;
+    min-height: 40px;
+    border: 1px solid black;
+} */
 
-  }
-  
-  .chatSubmitButton {
+.chatMessageInput[contenteditable]:empty::before {
+    content: 'Placeholder still possible';
+    color: gray;
+}
+
+.chatSubmitButton {
     width: 70px;
     height: 40px;
     border: none;
@@ -170,10 +172,11 @@ top:50px;
     color: white;
     position: relative;
     left: -20px;
-  }
-  .send{
-      color: #fff;
-      text-transform: none;
-      position: relative;
-      left: -15px;
-  }
+}
+
+.send {
+    color: #fff;
+    text-transform: none;
+    position: relative;
+    left: -15px;
+}

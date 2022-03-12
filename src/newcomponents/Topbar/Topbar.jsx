@@ -1,6 +1,6 @@
 import "./Topbar.css";
 import { FaSearch, FaHome } from 'react-icons/fa'
-import { RiChatSmile2Fill } from "react-icons/ri"
+import { RiChatSmile2Fill, RiContactsBookLine } from "react-icons/ri"
 import { BsFillPlusCircleFill } from "react-icons/bs"
 import { Link, useNavigate} from "react-router-dom";
 import { FaBars } from 'react-icons/fa';
@@ -28,6 +28,7 @@ function Topbar() {
 
   const listRef = useRef()
   const inputRef = useRef()
+  const notifRef = useRef()
 
   const search = async () => {
     setIsSearching(true)
@@ -57,10 +58,12 @@ function Topbar() {
   }
 
   const openClose = () => {
-    if (openModal === false)
+    if (!openModal)
       setOpenModal(true)
     else
       setOpenModal(false)
+
+    console.log(openModal)
   }
 
   useEffect(() => {
@@ -72,6 +75,10 @@ function Topbar() {
       }
     })
 
+    // notifRef.current.addEventListener('click', (e) => {
+    //   setOpenModal(true)
+    // })
+
     inputRef.current.addEventListener('click', (e) => {
       e.stopPropagation()
       listRef.current.style.display = 'flex'
@@ -81,6 +88,7 @@ function Topbar() {
 
     document.addEventListener('click', (e) => {
       listRef.current.style.display = 'none'
+      // setOpenModal(false)
     })
   }, [])
 
@@ -149,8 +157,59 @@ function Topbar() {
       <div className="topbarRight">
         <div className="topbarIcons">
           <div className="topbarIconItem">
-            <IoIosNotificationsOutline onClick={() =>
-              openClose()} />
+            <IoIosNotificationsOutline
+            onClick={() => openClose()}
+            />
+            <div ref={notifRef}>
+              {
+                openModal
+                &&
+                <div >
+                  <div className="modalBackground2">
+                    <div className="modalContainer4">
+                      <div className="titleCloseBtn2">
+                        <button className='cross'
+                          onClick={() => {
+                            openClose();
+                          }}
+                        >
+                          x
+                        </button>
+                      </div>
+                      <h1 className="notifications">Notifications</h1>
+
+                      <ul className="notifications-2">
+                        <li className="notificationslist">
+                          <img src="/images/avatar.png" alt="" className='profile-pic' />
+                          <div className="notif-text">User1 liked your post</div>
+                        </li>
+                        <li className="notificationslist">
+                          <img src="/images/avatar.png" alt="" className='profile-pic' />
+                          <div className="notif-text">User1 liked your post</div>
+                        </li>
+                        <li className="notificationslist">
+                          <img src="/images/avatar.png" alt="" className='profile-pic' />
+                          <div className="notif-text">User1 liked your post</div>
+                        </li>
+                        <li className="notificationslist">
+                          <img src="/images/avatar.png" alt="" className='profile-pic' />
+                          <div className="notif-text">User1 liked your post</div>
+                        </li>
+                        <li className="notificationslist">
+                          <img src="/images/avatar.png" alt="" className='profile-pic' />
+                          <div className="notif-text">User1 liked your post</div>
+                        </li>
+                        <li className="notificationslist">
+                          <img src="/images/avatar.png" alt="" className='profile-pic' />
+                          <div className="notif-text">User1 liked your post</div>
+                        </li>
+                      </ul>
+
+                    </div>
+                  </div>
+                </div>
+              }
+            </div>
             <span className="topbarIconBadge">1</span>
           </div>
 
@@ -163,7 +222,7 @@ function Topbar() {
         </div>
 
       </div>
-      {openModal && <Modal4 closeModal={setOpenModal} />}
+      {/* {openModal && <Modal4 closeModal={setOpenModal} />} */}
     </div>
 
   );

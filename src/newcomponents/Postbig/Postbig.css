@@ -1,0 +1,117 @@
+.postbig-container{
+    display: flex;
+    width: 900px;
+    height: 500px;
+    position: relative;
+    top:30px;
+    left: 50px;
+    background-color: #fff;
+}
+.postimg-container{
+    height: 500px;
+    width: 400px;
+ 
+}
+.postimage{
+    width: 400px;
+    height: 500px;
+
+}
+.profile-post{
+    width: 500px;
+    height: 50px;
+  
+}
+.comment-containber{
+    width: 510px;
+    height: 300px;
+  
+    overflow-y: scroll;
+}
+.comment-info{
+    width: 500px;
+    height: 50px;
+
+    display: flex;
+    gap: 2rem;
+}
+.comment{
+    display: flex;
+    width: 500px;
+    height: 100px;
+   top:30px;
+    position: relative;
+}
+.profilepost-img{
+    display: flex;
+}
+.ppimg{
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    position: relative;
+    left: 20px;
+    top:10px;
+}
+.ppname{
+    position: relative;
+    left: 30px;
+    top:-5px;
+}
+.pcimg{
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    position: relative;
+    left: -20px;
+}
+.commentli{
+    list-style: none;
+    display: flex;
+}
+.pctext{
+    position: relative;
+    top:-20px;
+}
+.icon-info{
+    font-size: 25px;
+    left: 5px;
+    color: #f7b53b;
+
+}
+.icons{
+    display: flex;
+    gap: 1rem;
+  left: -180px;
+  position: relative;
+  top:20px;
+}
+.remix{
+    position: relative;
+    font-size: 20px;
+    top:-30px;
+    color: #f7b53b;
+}
+.chatMessageInput1{
+    width: 70%;
+    height: 50px;
+}
+.pcimg1{
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    position: relative;
+    left: -1px;
+}
+.chatSubmitButton1{
+    width: 100px;
+    height: 40px;border-radius: 5px;
+    position: relative;
+    left: 10px;
+}
+.likenumber{
+    color: black;
+    position: relative;
+    top:-5px;
+    left: 5px;
+}
