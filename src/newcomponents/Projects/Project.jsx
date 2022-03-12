@@ -47,7 +47,7 @@ function Project() {
 
     const request = {
       'projectName': "project1",
-      'projectAdmin': String(getCookie('username')),
+      'projectAdminID': String(getCookie('userID')),
       ...project
     }
 
@@ -60,7 +60,7 @@ function Project() {
 
   const removeProject = async (id) => {
     const request = {
-      'projectAdmin': String(getCookie('username')),
+      'projectAdminID': String(getCookie('userID')),
       'projectID': id,
     }
 

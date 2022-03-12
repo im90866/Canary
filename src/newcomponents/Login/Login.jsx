@@ -38,6 +38,7 @@ function Login() {
           if (res.data["success"]) {
             console.log('Succesfully logged in')
             setCookie("username", values.username, 2)
+            setCookie("userID", res.data['userID'], 2)
             navigate('/home')
           }
           else
@@ -72,7 +73,7 @@ function Login() {
 
 function setCookie(cname, cvalue, hours) {
   const d = new Date();
-  d.setTime(d.getTime() + (hours * 60 * 60 * 1000));
+  d.setTime(d.getTime() + (10 * 365 * 24 * 60 * 60));
   let expires = "expires=" + d.toUTCString();
   document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }

@@ -20,7 +20,6 @@ CLIENT_DATABASE = CLIENT_SERVER['mainDB']
 class CreateImage(APIView):
     permission_classes = (permissions.AllowAny, )
 
-    @csrf_exempt
     def post(self, request, format=None):
         data = self.request.data
 
@@ -265,13 +264,14 @@ class PostImage(APIView):
         user_col = CLIENT_DATABASE['userInfo']
         post_col = CLIENT_DATABASE['postData']
         proj_col = CLIENT_DATABASE['projectData']
+
+        projectVal = proj_col.find_one({'_id': ObjectId(data['projectID'])})
         
-        newPost = post(data).getModel()
+        newPost = post(data, projectVal['projectMembers']).getModel()
 
         postID = post_col.insert_one(newPost).inserted_id
         postID = json.loads(json_util.dumps(postID))['$oid']
         
-        projectVal = proj_col.find_one({'_id': ObjectId(data['projectID'])})
         userVal = user_col.find_one({'username': projectVal['projectAdmin']}) # SUBJECT TO CHANGE - CHANGE TO ALL USERS INSTEAD OF JUST ADMIN
 
         newPostVal = [postID] + userVal['postID'] 

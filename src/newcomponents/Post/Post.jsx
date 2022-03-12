@@ -19,7 +19,7 @@ function Post(post) {
     let likeVal = isLiked ? -1 : 1
 
     const req = {
-      'username' : String(getCookie('username')),
+      'userID' : String(getCookie('userID')),
       'postID' : vPost.postID,
       'likeChange' : likeVal
     }
@@ -33,7 +33,7 @@ function Post(post) {
   }
 
   useEffect(() => {
-    if((vPost.likedBy).includes(String(getCookie('username')))) {
+    if((vPost.likedBy).includes(String(getCookie('userID')))) {
       console.log("TRRRUEEEEEEE")
       setIsLiked(true)
     }
@@ -51,9 +51,10 @@ function Post(post) {
           <div className="profile">
             <img src={post.imageVal} className='profilepic' />
             <span className="card__title">{vPost.uploader}</span>
+            <span className="icontext">{like}</span> 
             <div className="icons">
               <AiFillLike className="like-icon" onClick={likeHandler}/>
-              <span className="icontext">{like}</span> 
+              
             </div>  
           </div> 
 

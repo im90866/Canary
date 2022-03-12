@@ -12,6 +12,7 @@ export default function Sidebar() {
 
   const logout = () => {
     eraseCookie('username')
+    eraseCookie('userID')
     navigate('/')
   }
 

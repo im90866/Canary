@@ -18,7 +18,6 @@ function Modal5(prop) {
     const req = {
       'projectID': projectId,
       'metadataID': imageID,
-      "uploader": String(getCookie('username')),
       "caption": caption,
     }
 

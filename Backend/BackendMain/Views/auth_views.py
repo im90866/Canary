@@ -4,7 +4,9 @@ from rest_framework.response import Response
 from django.views.decorators.csrf import ensure_csrf_cookie, csrf_exempt, csrf_protect
 from django.utils.decorators import method_decorator
 
+import json
 from rest_framework import filters
+from bson import json_util, ObjectId
 
 from ..helper_functions import *
 from ..custom_models import *
@@ -62,15 +64,18 @@ class LoginView(APIView):
             'username' : username
         }
 
-        for x in collection.find():
-            print(x)
+        usernameID = ""
 
         for x in collection.find(query):
             if x['password'] == password:
+                    usernameID = json.loads(json_util.dumps(x['_id']))['$oid']
                     valid = True    
                   
         if valid:
-            return Response({ 'success': 'User authenticated' })
+            return Response({
+                'success': 'User authenticated',
+                'userID' : usernameID
+            })
         else:
             return Response({ 'error': 'Error Authenticating' })
 

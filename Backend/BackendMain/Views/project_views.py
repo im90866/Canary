@@ -31,13 +31,13 @@ class CreateProject(APIView):
         rootFolderID = folder_col.insert_one(folder("&root&", data['projectName']).getModel()).inserted_id
         rootFolderID = json.loads(json_util.dumps(rootFolderID))['$oid']
 
-        projectModel = project(data['projectName'], data['projectAdmin'], rootFolderID)
+        projectModel = project(data['projectName'], ObjectId(data['projectAdminID']), rootFolderID)
         
         # Stores the project, gets the ID and appends it to the user
         projectID = (proj_col.insert_one(projectModel.getModel())).inserted_id
         projectID = json.loads(json_util.dumps(projectID))['$oid']
 
-        userData = user_col.find_one({'username' : data['projectAdmin']})
+        userData = user_col.find_one({'_id' : ObjectId(data['projectAdminID'])})
         userProjects = userData['projectID']
 
         newProjectList = [projectID] + userProjects
@@ -62,13 +62,13 @@ class DeleteProject(APIView):
         proj_col = CLIENT_DATABASE['projectData']
         user_col = CLIENT_DATABASE['userInfo']
 
-        userData = user_col.find_one({'username' : data['projectAdmin']})
+        userData = user_col.find_one({'_id' : ObjectId(data['projectAdminID'])})
         userData['projectID'].remove(data['projectID'])
         newProjectList = userData['projectID']
 
         proj_col.delete_one({'_id' : ObjectId(data['projectID'])})
 
-        newUser = user_col.find_one({'username' : data['projectAdmin']})
+        newUser = user_col.find_one({'_id' : ObjectId(data['projectAdminID'])})
 
         user_col.update_one(newUser, {
             '$set' : {
@@ -87,7 +87,7 @@ class UpdateProjectName(APIView):
         proj_col = CLIENT_DATABASE['projectData']
 
         try:
-            userProject = proj_col.find_one({'_id' : data['projectID']})
+            userProject = proj_col.find_one({'_id' : ObjectId(data['projectID'])})
             proj_col.update_one(userProject, {
                 '$set' : {
                             'projectName' : data['newProjectName']
@@ -117,15 +117,12 @@ class GetProjects(APIView):
             PROJ = proj_col.find_one({'_id' : ObjectId(projID)})
             #ID = json.loads(json_util.dumps(projID))['$oid']
             ID = projID
-            print(PROJ)
             struct = {
                 'id' : ID,
                 'projectName' : PROJ['projectName'],
             }
             
             finalList.append(struct)
-            
-        print(finalList)
 
         return Response({ 
             'success': 'Projects obtained',

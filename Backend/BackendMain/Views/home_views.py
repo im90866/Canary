@@ -131,7 +131,7 @@ class LikePost(APIView):
                 '_id' : ObjectId(data['postID'])
             }, {
                 '$push' : {
-                    'likedBy' : data['username']
+                    'likedBy' : data['userID']
                 }
             })
         else:
@@ -139,7 +139,7 @@ class LikePost(APIView):
                 '_id' : ObjectId(data['postID'])
             }, {
                 '$pull' : {
-                    'likedBy' : data['username']
+                    'likedBy' : data['userID']
                 }
             })
 

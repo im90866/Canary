@@ -1,5 +1,5 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, {useRef, useEffect} from 'react'
+import { Link} from 'react-router-dom'
 import Message from '../Message/Message'
 import "./chats.css"
 import TextareaAutosize from 'react-textarea-autosize';
@@ -7,7 +7,15 @@ import TextareaAutosize from 'react-textarea-autosize';
 
 function Chats() {
 
+  const messagesEndRef = useRef(null)
 
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
+  }
+
+  useEffect(() => {
+    scrollToBottom()
+  }, []);
 
   return (
     <div>
@@ -72,6 +80,34 @@ function Chats() {
                 </Link>
               </li>
 
+              <li className="chatlistli">
+                <Link to="/chats">
+                  <img src="/images/avatar8.jpg" alt="" className='profile-pic2' />
+                  <span className='chatlistlitext'>Aaron Abraham</span>
+                </Link>
+              </li>
+
+              <li className="chatlistli">
+                <Link to="/chats">
+                  <img src="/images/avatar8.jpg" alt="" className='profile-pic2' />
+                  <span className='chatlistlitext'>Aaron Abraham</span>
+                </Link>
+              </li>
+
+              <li className="chatlistli">
+                <Link to="/chats">
+                  <img src="/images/avatar8.jpg" alt="" className='profile-pic2' />
+                  <span className='chatlistlitext'>Aaron Abraham</span>
+                </Link>
+              </li>
+
+              <li className="chatlistli">
+                <Link to="/chats">
+                  <img src="/images/avatar8.jpg" alt="" className='profile-pic2' />
+                  <span className='chatlistlitext'>Aaron Abraham</span>
+                </Link>
+              </li>
+
 
             </ul>
 
@@ -96,7 +132,7 @@ function Chats() {
             <Message own={true} />
 
 
-
+            <div ref={messagesEndRef} />
           </div>
           <div className="chatBoxBottom">
             {/* <span

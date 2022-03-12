@@ -13,7 +13,7 @@ function Modal(props) {
 
     const request = {
       'projectName': project['projectName'],
-      'projectAdmin': String(getCookie('username')),
+      'projectAdminID': getCookie('userID'),
       ...project
     }
 

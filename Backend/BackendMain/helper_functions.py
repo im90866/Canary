@@ -1,7 +1,7 @@
 import pymongo
 
-client = pymongo.MongoClient("mongodb+srv://User2:password1234@zinasktest.uxarp.mongodb.net/mainDB?retryWrites=true&w=majority", 
-        serverSelectionTimeoutMS=5000, maxPoolSize = 1000)
+client = pymongo.MongoClient("mongodb+srv://User1:password1234@zinasktest.uxarp.mongodb.net/mainDB?retryWrites=true&w=majority", 
+        serverSelectionTimeoutMS=5000, maxPoolSize = 10000)
 
 # Helper functions
 def getClient():

@@ -16,6 +16,8 @@ class userInfo():
     _userDetails = {}
     _postID = []
     _projectID = []
+
+    _messageList = []
     _userSettings = {}
     _DOB = ""
 
@@ -60,6 +62,7 @@ class userInfo():
             "userDetails": self._userDetails,
             "postID" : self._postID,
             "projectID" : self._projectID,
+            "messageList": self._messageList,
             "userSettings" : self._userSettings,
             "DOB": self._DOB
         }
@@ -126,20 +129,20 @@ class projectImage():
 
 class project():
     _projectName = ""
-    _projectAdmin = ""
+    _projectAdminID = ""
     _projectMembers = []
     _projectRoot = ""
     _projectSettings = {}
 
-    def __init__(self, name, admin, root):
+    def __init__(self, name, adminID, root):
         self._projectName = name
-        self._projectAdmin = admin
-        self._projectMembers = [admin]
+        self._projectAdminID = adminID
+        self._projectMembers = [adminID]
         self._projectRoot = root
 
     def otherInit(self, jsonFile):
         self._projectName = jsonFile['projectName']
-        self._projectAdmin = jsonFile['projectAdmin']
+        self._projectAdminID = jsonFile['projectAdminID']
         self._projectMembers = jsonFile['projectMembers']
         self._projecRoot = jsonFile['projectRoot']
         self._projectSettings = jsonFile['projectSettings']
@@ -151,7 +154,7 @@ class project():
     def getModel(self):
         model = {
             'projectName' : self._projectName,
-            'projectAdmin' : self._projectAdmin,
+            'projectAdminID' : self._projectAdminID,
             'projectMembers' : self._projectMembers,
             'projectRoot' : self._projectRoot,
             'projectSettings' : self._projectSettings
@@ -162,7 +165,7 @@ class project():
 class post():
     _fromProjectID = ""
     _metadataID = ""
-    _uploader = ""
+    _memberList = []
     _uploadTime = ""
     _caption = ""
     _likes = 0
@@ -170,10 +173,10 @@ class post():
     _comments = []
     _engagement = 0
 
-    def __init__(self, jsonFile):
+    def __init__(self, jsonFile, memberList):
         self._fromProjectID = jsonFile['projectID']
         self._metadataID = jsonFile['metadataID']
-        self._uploader = jsonFile['uploader']
+        self._memberList = memberList
         self._uploadTime = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         self._caption = jsonFile['caption']
 
@@ -181,7 +184,7 @@ class post():
         model = {
             'projectID' : self._fromProjectID,
             'metadataID' : self._metadataID,
-            "uploader" : self._uploader,
+            "memberList" : self._memberList,
             "uploadTime" : self._uploadTime,
             "caption" : self._caption,
             "likedBy" : self._likedBy,
@@ -192,24 +195,24 @@ class post():
 
         return model
 
-class IndividualChat():
+class IndividualChatStore():
     _firstPersonID = ""
     _secondPersonID = ""
+    _chatID = ""
     _createdAt = ""
-    _messageList = ""
 
-    def __init__(self, firstPersonID, secondPersonID):
+    def __init__(self, firstPersonID, secondPersonID, chatID):
         self._firstPersonID = firstPersonID
         self._secondPersonID = secondPersonID
         self._createdAt = 3
-        self._messageList = []
+        self._chatID = chatID
 
     def getModel(self):
         model = {
             'firstPersonID' : self._firstPersonID,
             'secondPersonID' : self._secondPersonID,
+            'chatID' : self._chatID,
             "createdAt" : self._createdAt,
-            "messageList" : self._messageList,
         }
 
         return model
@@ -219,12 +222,14 @@ class Message():
     _createdAt = ""
     _createdBy = ""
 
-    def __init__(self, info, by):
+    def __init__(self, chatID, info, by):
+        self._chatID
         self._info = info
         self._createdBy = by
 
     def getModel(self):
         model = {
+            'chatID' : self._chatID,
             'messageVal' : self._info, 
             'messageBy' : self._createdBy
         }
