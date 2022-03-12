@@ -60,8 +60,8 @@ function Login() {
           <input type="password" placeholder="Password" className="password" onChange={handlePasswordInputChange}
             value={values.password} />
           {submitted && !values.password ? <span id="password-error">Please enter your password</span> : null}
-          <h5><Link to ="/forgotpassword">Forgot your password?</Link></h5>
-          <button type="submit">Sign In</button>
+          <h5 className="forgot"><Link to ="/forgotpassword">Forgot your password?</Link></h5>
+          <button  className="signin" type="submit">Sign In</button>
         </form>
       </div>
 

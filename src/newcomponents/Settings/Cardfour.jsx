@@ -6,9 +6,7 @@ import { Link } from 'react-router-dom'
 function Cardfour() {
   return (
     <div>
-        <Topbar/>
-        <Sidebar/>
-    
+       <body className="settingscc1">
         <div className="settings-container1">
         <div className="settings-bar">
           <div className="settings2">
@@ -30,7 +28,7 @@ function Cardfour() {
       </div>
             <div className="change-password">
            <div className="change-password-title">
-               <h1 className="cptitle">Blocked Users</h1>
+               <h1 className="cptitle1">Blocked Users</h1>
                <p className='block'>Blocked users will no longer be allowed to: follow you, see your work in their feed, comment on your work, add your work to a moodboard, and message you.</p>
 
            </div>
@@ -40,6 +38,7 @@ function Cardfour() {
 
            </div>
             </div>
+            </body>
     </div>
   )
 }

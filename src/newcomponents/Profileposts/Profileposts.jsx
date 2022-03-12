@@ -22,23 +22,21 @@ function Profileposts() {
 
   return (
     <div>
-      <Topbar/>
      
-        
-      <Sidebar/>
+     <body className="profilecc">
+      
+   
       <div className="profile-container">
-  
-    
-         <div className='profile-image-cropper'>
-            <img src={PFP} className="profile-image"/>
-          </div>
-          <h1 className="profile-user">{username}</h1>
-          <Link to="/settings"><button className="editp">Edit Profile</button></Link>
+        <div className='profile-image-cropper'>
+          <img src={PFP} className="profile-image"/>
+        </div>
+
+        <h1 className="profile-user">{username}</h1>
+        <Link to="/settings"><button className="editp">Edit Profile</button></Link>
       
         <div className="post-info">
           <h2 className="collaborations"><Link to="/profile/collaborations">Collaborations</Link></h2>
           <h2 className="posts1"><Link to="/profile/profileposts">Posts</Link></h2>
-      
        </div>
   
 
@@ -83,6 +81,7 @@ function Profileposts() {
       </div> 
     
       </div> 
+      </body>
     </div>
   )
 }

@@ -2,7 +2,7 @@
     position: fixed;
 z-index: 9999;
 }
-.modalContainer3{
+.modalContainerdrop{
     width: 250px;
     height: 200px;
     background-color: white;
@@ -19,13 +19,20 @@ z-index: 9999;
     cursor: pointer;
     background-color: transparent;
   }
+  .crossbtnss{
+    font-size: 20px;
+    position: relative;
+    left:-5px;
+    top:100px;
+
+  }
   .titleCloseBtn3 button {
     background-color: transparent;
     border: none;
     font-size: 11px;
     cursor: pointer;
     position: relative;
-    top:-5px;
+    top:10px;
     left:-5px;
     color: black;
     
@@ -36,15 +43,16 @@ z-index: 9999;
     background-color: #efefef;
     padding: 8px 20px;
 margin-left: 25px;
-    font-size: 16px;
+    font-size: 14px;
     border-radius: 5px;
     width: 200px;
- top:-20px;
+ top:10px;
   }
-  .create-title3{
-      font-size: 18px;
+  .create-titledrop{
+      font-size: 20px;
       position: relative;
-      top:-20px;
+      top:5px;
+      left: 60px;
   }
   .folder-btn3{
     text-transform: none;
@@ -68,4 +76,13 @@ margin-left: 25px;
     border-radius: 5px;
     text-transform: none;
     width: 200px;
+    background-color: #ffb53b;
+    color: #FFFFFF;
+    border: 1px solid #ffb53b;
+    font-weight: bold;
+  top:30px;
+    height: 40px;
+  }
+  .drop{
+    left: 30px;
   }

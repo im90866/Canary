@@ -9,7 +9,7 @@ import { BsThreeDots } from "react-icons/bs";
 import { Link, useParams } from "react-router-dom";
 import { useState, useEffect, useRef } from "react"
 import axios from "axios"
-
+import {TiArrowBack}from "react-icons/ti";
 import Dropdown from '../Dropdown/Dropdown';
 import Modal5 from '../Modal5/Modal5';
 import Modal5_1 from '../Modal5/Modal5_1';
@@ -167,10 +167,11 @@ function Workspace(props) {
 
   return (
     <div>
+        <body className='workspace-body'>
       <Topbar />
   <Sidebar2/>
-      <body className='workspace-body'>
-        <div className="workspace-container">
+    
+       <div className="workspace-container">
           <div className="workspace">
             <div className="workspace-title">
               <h1 className="wtitle">WorkSpace</h1>
@@ -186,6 +187,10 @@ function Workspace(props) {
                 <button className="wbtn1" onClick={() =>
                   setOpenDropdown(true)}><span className='btn-text'>New Folder</span></button>
               </div>
+              <div className="directory-path">
+              <TiArrowBack className='back-arrow'/>
+              <h3 className="directory">/root/workspace</h3>
+              </div>
             </div>
           </div>
 
@@ -195,9 +200,9 @@ function Workspace(props) {
           path={folderPath}
           projId={projectId}
           setFolder={setFolders}
-          makeChange={makeChange} />}
+          makeChange={makeChange} />} 
 
-        <div className="workspace-container2">
+       <div className="workspace-container2">
           <div className="folder">
             {
               folders.map(folder =>
@@ -237,9 +242,9 @@ function Workspace(props) {
             }
           </div>
         </div>
-      </body>
-      {openModal && <Modal5 projectID={projectId} image={postImageVal} closeModal={setOpenModal} makeChange={makeChange} />}
-      {openModalRename && <Modal5_1 closeModal={RenameModalStatus} makeChange={makeChange} name={modalVal} folderId={folderId} imageId={imageId}/>}
+      </body> 
+     {openModal && <Modal5 projectID={projectId} image={postImageVal} closeModal={setOpenModal} makeChange={makeChange} />}
+      {openModalRename && <Modal5_1 closeModal={RenameModalStatus} makeChange={makeChange} name={modalVal} folderId={folderId} imageId={imageId}/>} 
     </div>
 
   )

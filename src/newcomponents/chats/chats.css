@@ -2,14 +2,29 @@
     /* height: calc(100vh - 70px); */
     display: flex;
 }
-
+.chatscc{
+    background: #f5f5f5;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	font-family: 'Montserrat', sans-serif;
+	height: 100vh;
+	overflow-y:scroll;
+	overflow-x: hidden;
+}
 .chatMenu {
     flex: 3.5;
 }
-
+.chatlistli a{
+text-decoration: none;
+padding-left: 20px;
+padding-bottom: 5px;
+}
 .chat-menuwrapper {
     background-color: #fff;
     overflow-y: scroll;
+    overflow-x: hidden;
     width: 300px;
     height: 600px;
     border-radius: 5px;
@@ -41,6 +56,8 @@
 
 .chat-title {
     font-size: 18px;
+    position: relative;
+    left: 50px;
 }
 
 .chatlistli {
@@ -49,9 +66,6 @@
     display: flex;
 }
 
-.chatlistli a {
-    padding-left: 20px;
-}
 
 .chatMenuInput {
     width: 90%;
@@ -163,7 +177,7 @@
 }
 
 .chatSubmitButton {
-    width: 70px;
+    width: 100px;
     height: 40px;
     border: none;
     border-radius: 5px;
@@ -171,12 +185,13 @@
     background-color: #ffb53b;
     color: white;
     position: relative;
-    left: -20px;
+    left: -10px;
 }
 
 .send {
     color: #fff;
     text-transform: none;
     position: relative;
-    left: -15px;
+    left: -5px;
+ 
 }

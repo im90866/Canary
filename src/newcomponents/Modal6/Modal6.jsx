@@ -4,7 +4,7 @@ function Modal6({ closeModal}) {
   return (
     <div>
     <div className="modalBackground6">
-<div className="modalContainer7">
+<div className="modalContainer6">
  <div className="titleCloseBtn6">
    <button className='cross'
      onClick={() => {
@@ -19,7 +19,7 @@ function Modal6({ closeModal}) {
  </div>
 
 
-  <div className="div61">
+  <div className="div6">
   <input type="digit" className='digit' maxlength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
   <input type="digit" className='digit' maxlength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
   <input type="digit" className='digit' maxlength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />

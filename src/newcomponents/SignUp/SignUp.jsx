@@ -71,7 +71,7 @@ function SignUp(props) {
               value={password}/>
           
           {submitted && !password?<span id="password-error">Please enter your password</span> :null}
-          <button className='btn' type="submit"  onClick={() =>
+          <button className='signup' type="submit" onClick={() =>
           setOpenModal(true)}>Sign Up</button>
         </form>
       </div>

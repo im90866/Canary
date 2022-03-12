@@ -57,7 +57,7 @@ function Modal_1({folderId, imageId, name, closeModal, makeChange}) {
   
     <div>
       <div className="modalBackground">
-        <div className="modalContainer">
+        <div className="modalContainer5">
           <div className="titleCloseBtn">
             <button className='cross'
               onClick={() => {
@@ -67,7 +67,7 @@ function Modal_1({folderId, imageId, name, closeModal, makeChange}) {
             </button> 
           </div>
           <div className="title">
-            <h1 className='create-title'>{name}</h1>
+            <h1 className='create-title5'>Rename File</h1>
           </div>
           <div className="body">
             <input type="text" 
@@ -78,7 +78,7 @@ function Modal_1({folderId, imageId, name, closeModal, makeChange}) {
             /><br></br>
 
             <div className="div">
-              <button className='folder-btn' onClick={() => {Rename(); 
+              <button className='folder-btn5' onClick={() => {Rename(); 
                   closeModal(false)}}>Rename
               </button>
             </div>

@@ -12,9 +12,11 @@ function Team() {
   return (
     <div>
       
-     <Topbar/>
+     <body className="teamscc">
+       
+    
      <div className="team-container">
-     <Sidebar/> 
+
     
      <div className="team-name">
        <div className="project-settings">
@@ -41,8 +43,8 @@ function Team() {
        {openModal && <Modal2 closeModal={setOpenModal} />} 
      </div>
  
-     </div>
-    
+     </div> 
+     </body>
     </div>
   )
 }

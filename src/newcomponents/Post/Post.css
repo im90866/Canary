@@ -12,10 +12,10 @@
     /* position: relative; */
     display: flex;
     position: relative;
-    top:150px;
+    top:10px;
     /* left: -20px; */
     width: 100%;
-    top:120px;
+  
     /* height: 100%; */
 }
 
@@ -28,7 +28,7 @@
     justify-content: space-between;
     cursor: pointer;
     transition: transform 200ms ease-in;
-    background-color: #eee;
+    background-color:  #ffff;
     border: none;
 }
 
@@ -82,7 +82,8 @@
 .icons{
     display:flex;
     position:absolute;
-    margin-left: 200px;
+    margin-top: -10px;
+    margin-left: 300px;
     padding-top: 10px;
    
 }
@@ -90,16 +91,18 @@
 .like-icon{
     color: #F7B53B;
     font-size: 20px; 
+    position: relative;
+    top:-20px;
 }
 
 .icontext{
-   margin-left: 5px;
+   margin-left: -5px;
    margin-top: 3px;
+   position: relative;
+   top:-20px;
 }
 
-.save-icon{
-    margin-left: 200px;
-}
+
 .icontext{
     color: gray;
 }

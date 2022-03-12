@@ -11,10 +11,13 @@
     top: 20px;
     border-radius: 10px;
     overflow-y: scroll;
+    overflow-x: hidden;
 }
 .ttitle{
     font-size: 30px;
   font-weight: 400;
+  position: relative;
+  left: 250px;
 }
 .searchInput1{
     background-color: #efefef; 

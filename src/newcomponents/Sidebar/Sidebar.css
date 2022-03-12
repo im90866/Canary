@@ -2,83 +2,56 @@
     flex: 3;
     height:100%; 
     box-shadow: 5px 2px 2px rgba(0, 0, 0, .1); 
-  
-overflow-x: hidden;
-   /* margin-right: 1200px; */
-  
+    overflow-x: hidden;
     width: 150px;
     background-color: #fff;
     z-index: 1;
-
     position:fixed;
     top: 0;
     left:0;
     padding-top: 35px;
   }
   
-
   .sidebarWrapper {
   padding-top: 20px;
   padding-bottom: 20px;
 padding-right: 0px;
   }
-  
   .sidebarList {
     padding: 0;
     margin: 0;
     list-style: none;
   }
-  .sidebarListItem a{
-    padding: 1px;
-  
+  .sidebarListItem  {
+    padding-bottom:10px ;
+    padding-top:10px ;
+    padding-right: -5px;
     list-style: none;
     text-decoration: none;
     color: black;
     transition: width 2s;
-  }
-  .sidebarListItem:hover{
-      background-color: #efefef;
-   
-      width: 300px;
-  
-
-   
-      
-  }
- 
-  
-  .sidebarListItem {
     display: flex;
     align-items: center;
-    margin-bottom: 5px;
-  
+    margin-bottom: 15px;
   }
- 
+  .sidebarListItem:hover{
+      background-color: #efefef; 
+      width: 300px;    
+  }
   
   .sidebarIcon  {
-    margin-right:80px;
     font-size: 23px;
-    margin-left: 20px;
-position:absolute;
-    justify-content: left;
+    margin-left: -10px;
+    position:relative;
     margin-bottom: 22px;
     margin-top: -2.5px;
-   
-    
-
   }
   
   
-  .sidebarListItemText{
-
-   
+.sidebarListItemText{
 margin-left: 60px;
 color: black;
 font-size: 18px;
 margin-top: 10px;
-
-
-
-
   }
  

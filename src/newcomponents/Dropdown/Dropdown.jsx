@@ -48,9 +48,9 @@ export default function Dropdown(props) {
   return (
     <div>
       <div className="modalBackground3">
-        <div className="modalContainer3">
+        <div className="modalContainerdrop">
           <div className="titleCloseBtn3">
-            <button className='cross'
+            <button className='crossbtnss'
               onClick={() => {
                 closeModal(false);
               }}
@@ -59,13 +59,13 @@ export default function Dropdown(props) {
             </button>
           </div>
           <div className="title3">
-          <h1 className='create-title3'>New Folder</h1>
+          <h1 className='create-titledrop'>New Folder</h1>
             <input type="text" className='creat-folder-title' placeholder='Enter folder name' 
               onChange={event => setFolderName(event.target.value)}/>
           </div>
          
        
-          <div className="div3">
+          <div className="drop">
             {/* <button className='folder-btn3' onClick={() => {addFolder({ "folderName" : folderName }); closeModal(false)}}>
               <span className='folder-title3'>Create Folder</span>
             </button> */}

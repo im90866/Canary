@@ -28,15 +28,20 @@ left: 80px;
 }
 
 .profile-user{
-    position: relative;
-    top:20px;
-    left: 10px;
+    margin-top: 50px;
+margin-left: 500px;
+ 
 }
 .editp{
     border-radius: 5px;
     position: relative;
     top:30px;
     left:470px;
+    border: 1px solid #ffb53b;
+	background-color: #ffb53b;
+	color: #FFFFFF;
+    width: 200px;
+    height: 40px;
 }
 .post-info{
     display: flex;
@@ -49,11 +54,13 @@ left: 80px;
 .collaborations a{
     color: black;
     font-size: 14px;
+    text-decoration: none;
     
 }
 .posts1 a{
     color: black;
     font-size: 14px;
+    text-decoration: none;
 }
  .post-contain{
     width: 1200px;
@@ -113,4 +120,15 @@ width: 100%;
     height: 15rem;
     width: 100%;
     object-fit: cover;
+}
+.profilecc{
+    background: #f5f5f5;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	font-family: 'Montserrat', sans-serif;
+	height: 100vh;
+	overflow-y:scroll;
+	overflow-x: hidden;
 }

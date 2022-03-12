@@ -64,7 +64,7 @@ function Modal5(prop) {
             
 
             <div className="div">
-              <button className='folder-btn' onClick={() => { 
+              <button className='folder-btn6' onClick={() => { 
                   postImage(imageID);closeModal(false)}}>Post
               </button>
             </div>

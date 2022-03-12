@@ -79,19 +79,21 @@ function Project() {
 
   return (
     <div>
-      <Topbar/>
-    
-      <div className="project-container">
-        <Sidebar/>
-        <div className="project">
+<body className="projectss">
+  
+
+        
+ <div className="project-container">
+ <div className="project">
           <div className="project-title">
             <h1 className='title'>Your Projects</h1>
-            {/* {/* <button className='hero-btn' onClick={() =>
-              setOpenModal(true)}>New Project</button> */}
-            <button className="hero-btn"onClick={() => setOpenModal(true)}> New Project</button>
+          <button className='hero-btn' onClick={() =>
+              setOpenModal(true)}>New Project</button> 
+         
+          </div>
           </div> 
-
-          <div className="project-container2">
+ </div>
+   <div className="project-container2"> 
             <ul className="project-list">
               {
                 projects.map(project =>
@@ -106,10 +108,14 @@ function Project() {
                 )
               }
             </ul>
-          </div>     
-        </div>      
-      </div>
-      {openModal && <Modal closeModal={setOpenModal} makeChange = {makeChange} />} 
+               
+      </div> 
+
+      {openModal && <Modal closeModal={setOpenModal} makeChange = {makeChange} />}  
+ </body>
+     
+    
+     
     </div>
   )
 }

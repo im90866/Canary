@@ -19,10 +19,13 @@ function Chats() {
 
   return (
     <div>
-      <div className="messenger">
+      <body className="chatscc">
+        
+     <div className="messenger">
         <div className="chat-menu">
           <div className="chat-menuwrapper">
             <h1 className="chat-title">Chats</h1>
+           
             <ul className="chatlist">
               <li className="chatlistli">
                 <Link to="/chats">
@@ -129,19 +132,19 @@ function Chats() {
             <Message own={true} />
             <Message own={true} />
             <Message own={true} />
-            <Message own={true} />
+            <Message own={true} /> 
 
 
-            <div ref={messagesEndRef} />
+        <div ref={messagesEndRef} />
           </div>
-          <div className="chatBoxBottom">
+          <div className="chatBoxBottom"> 
             {/* <span
               className="chatMessageInput"
               placeholder="write something..."
               role={'textbox'}
             >
             </span> */}
-            <TextareaAutosize
+           <TextareaAutosize
               style={{
                 width: '83%',
                 height: '50px',
@@ -160,8 +163,8 @@ function Chats() {
           </div>
         </div>
 
-      </div>
-
+      </div> 
+</body>
     </div>
   )
 }

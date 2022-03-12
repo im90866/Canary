@@ -94,6 +94,9 @@ function Registrationpage() {
 
   return (
     <div>
+      <body className="regcc">
+        
+
       <div className="edit-profile2">
         <h1 className="registration">Registration </h1>
 
@@ -141,6 +144,7 @@ function Registrationpage() {
         <button className='submit-changes' onClick={() => updateInfo()} type='submit'>Continue</button>
 
       </div>
+      </body>
     </div>
   )
 }

@@ -51,10 +51,10 @@ function Post(post) {
           <div className="profile">
             <img src={post.imageVal} className='profilepic' />
             <span className="card__title">{vPost.uploader}</span>
-            <span className="icontext">{like}</span> 
+           
             <div className="icons">
               <AiFillLike className="like-icon" onClick={likeHandler}/>
-              
+              <span className="icontext">{like}</span> 
             </div>  
           </div> 
 

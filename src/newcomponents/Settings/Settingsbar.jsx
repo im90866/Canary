@@ -10,14 +10,15 @@ import Cardfive from './Cardfive'
 function Settingsbar() {
   return (
     <div>
-          <Topbar/> 
-        <Sidebar/>    
-     
+        <body className="settingscc1">
+          
+       
         <div className="settings-container">
        
-          <Cardone/>
-            <Cardtwo/> 
+         <Cardone/>
+            <Cardtwo/>  
         </div>
+        </body>
     </div>
   )
 }

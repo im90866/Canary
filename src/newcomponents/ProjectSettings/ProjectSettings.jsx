@@ -6,9 +6,9 @@ import {FaSearch,FaHome} from 'react-icons/fa'
 function ProjectSettings() {
   return (
     <div>
-        <Topbar/>
+          <body className="teamscc">
         <div className="ps-container">
-        <Sidebar/>
+     
         <div className="ps-box">
           <div className="team-title">
               <h1 className="ttitle">
@@ -37,7 +37,7 @@ function ProjectSettings() {
         </div>
         </div>
        
-
+        </body>
     </div>
   )
 }

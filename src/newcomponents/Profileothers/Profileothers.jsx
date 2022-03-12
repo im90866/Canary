@@ -33,8 +33,8 @@ function Profileothers() {
 
   return (
     <div>
-      <Topbar/>
-      <Sidebar/>
+        <body className="profilecc">
+    
       <div className="profile-container">
       
         <div className='profile-image-cropper'>
@@ -63,6 +63,7 @@ function Profileothers() {
         </div> 
         
       </div>
+      </body>
     </div>
   )
 }

@@ -83,19 +83,28 @@
 
 .folder-btn3 {
     margin-left: 10px;
-    width: 30%;
+    width: 100px;
     height: 40px;
+
     text-transform: none;
     text-align: center;
+    border: 1px solid #ffb53b;
+	background-color: #ffb53b;
+	color: #FFFFFF;
 }
 
 .folder-btn4 {
     border-radius: 5px;
+    border: 1px solid #ffb53b;
+	background-color: #ffb53b;
+	color: #FFFFFF;
+    width: 100px;
+    height: 40px;
 }
 
 .div2 {
     text-align: center;
-    margin-left: 20px;
+    margin-left: -5px;
     gap: 2rem;
 }
 

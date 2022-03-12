@@ -51,9 +51,11 @@ function Modal(props) {
             /><br></br>
 
             <div className="div">
-              <button className='folder-btn' onClick={() => {addProject({ "projectName" : projectName }); 
+              {/* <button className='folder-btn' onClick={() => {addProject({ "projectName" : projectName }); 
                   closeModal(false)}}>Create Project
-              </button>
+              </button> */}
+              <button className="folderbtnsssss"  onClick={() => {addProject({ "projectName" : projectName }); 
+                  closeModal(false)}}>Create Project</button>
             </div>
           </div>         
         </div>

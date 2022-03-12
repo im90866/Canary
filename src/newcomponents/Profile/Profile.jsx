@@ -30,8 +30,9 @@ function Profile() {
 
   return (
     <div>
-      <Topbar/>
-      <Sidebar/>
+    <body className="profilecc">
+      
+   
       <div className="profile-container">
         <div className='profile-image-cropper'>
           <img src={PFP} className="profile-image"/>
@@ -61,6 +62,7 @@ function Profile() {
         </div> 
     
       </div> 
+      </body>
     </div>
   )
 }

@@ -7,8 +7,7 @@ import { Link } from 'react-router-dom'
 function Cardthree() {
   return (
     <div>
-        <Topbar/>
-        <Sidebar/>
+           <body className="settingscc1">
      
         <div className="settings-container1">
         <div className="settings-bar">
@@ -48,6 +47,7 @@ function Cardthree() {
        </div>
     
             </div> 
+            </body>
     </div>
   )
 }
