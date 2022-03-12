@@ -5,14 +5,16 @@ import {RiChatSmile2Line} from  "react-icons/ri"
 import { NavLink ,Link} from "react-router-dom";
 
 
-import { MdOutlineExplore} from "react-icons/md"
+import { MdOutlineExplore,MdWorkspacesOutline} from "react-icons/md"
 
 
-import  {AiOutlineHome}from 'react-icons/ai';
+import  {BsChatSquareDots}from 'react-icons/bs';
+import  {AiOutlineHome,AiFillCaretDown,AiOutlineTeam}from 'react-icons/ai';
 import {IoCreateOutline,IoSettingsOutline,IoLogOutOutline} from   'react-icons/io5';
+import "./Sidebar2.css"
 function Sidebar2() {
   return (
-    <div className="sidebar">
+    <div className="sidebar2">
     <div className="sidebarWrapper">
       <ul className="sidebarList">
       
@@ -48,6 +50,41 @@ function Sidebar2() {
         <Link to="/settings"> 
           <IoSettingsOutline className="sidebarIcon" />
           <span className="sidebarListItemText">Settings</span>
+          </Link>
+        </li> 
+        <li className="sidebarListItem">
+        <Link to="/settings"> 
+        
+          <span className="sidebarListItemText1">Project1</span>
+          <AiFillCaretDown className="sidebarIcon1"/>
+           <ul className="sidebarlistsub">
+          <li className="sidebarListItemsub">
+    <Link to="/workspace/:id"> 
+         
+          <span className="sidebarListItemTextsub">Workspace</span>
+          </Link>
+        </li>
+        <li className="sidebarListItemsub">
+    <Link to="/projectsettings"> 
+        
+          <span className="sidebarListItemTextsub">Teams</span>
+          </Link>
+        </li>
+        <li className="sidebarListItemsub">
+    <Link to="/teamchats"> 
+       
+          <span className="sidebarListItemTextsub">Team chats</span>
+          </Link>
+        </li>
+        <li className="sidebarListItemsub">
+    <Link to="/team"> 
+       
+          <span className="sidebarListItemTextsub">Project Settings</span>
+          </Link>
+        </li>
+       
+      
+          </ul> 
           </Link>
         </li> 
     <li className="sidebarListItem">
