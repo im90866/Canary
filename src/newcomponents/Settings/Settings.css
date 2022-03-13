@@ -113,15 +113,15 @@ left:80px;
  }
  .change{
      
-     font-weight: 400;
-     font-size: 12px;
+    font-weight: 400;
+    font-size: 12px;
 text-transform: none;
 width: 150px;
-    height: 40px;
-border-radius: 20px;
+   height: 40px;
+border-radius: 5px;
 position: relative;
 top:60px;
-left:200px;
+left:-250px;
 margin-left: 80px;
 background-color: #ffb53b;
 color: #FFFFFF;
@@ -130,8 +130,13 @@ font-weight: bold;
 
 white-space: nowrap;
 
-        text-overflow: clip;
-     
+       text-overflow: clip;
+
+ }
+ .change:hover{
+    background-color: #fff;
+    color: #ffb53b;
+    border: 1px solid #ffb53b;
  }
  .change-details{
  
@@ -215,6 +220,11 @@ font-weight: bold;
 width: 180px;
     height: 40px;
 
+}
+.submit-changes:hover{
+    background-color: white;
+    color: #ffb53b;
+    border: 1px solid #ffb53b; 
 }
 .change-password{
     

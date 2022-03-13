@@ -7,6 +7,7 @@ import { FaShare } from "react-icons/fa";
 function Postbig() {
   return (
     <div>
+      <div className="bodyyy">
       <div className="postbig-container">
         <div className="postimg-container">
           <img src="https://cdn.pixabay.com/photo/2022/01/11/14/09/bird-6930700__340.jpg" alt="" className='postimage'/>
@@ -16,6 +17,9 @@ function Postbig() {
            <div className="profilepost-img">
              <img src="/images/avatar.png" alt="" className='ppimg'/>
              <h4 className="ppname">Newfez</h4>
+             </div>
+             <div className="captions">
+               <p className='cap'>Lorem ipsum dolor sit amet consectetu.</p>
              </div>
             </div>
             <div className="comment-containber">
@@ -60,7 +64,7 @@ function Postbig() {
               </div>
               <div className="comment-info">
                 <div className="icons">
-                  <div className="like">
+                  <div className="like1">
                 <AiFillLike className='icon-info'/>
                 <span className='likenumber'>200</span>
                 </div>
@@ -82,6 +86,7 @@ function Postbig() {
                     </span>
                   </button>
                   </div>
+        </div>
         </div>
         </div>
     </div>

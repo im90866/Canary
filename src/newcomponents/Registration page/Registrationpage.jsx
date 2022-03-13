@@ -105,7 +105,7 @@ function Registrationpage() {
             <img src={PFP} alt="" className='profile-picture'/>
           </div>
           <h3 className="profile-username1">Nashwa_Abdul</h3>
-          <button className='change' onClick={()=> fileRef.current.click()}><span className="photo">Upload photo</span></button>
+          <button className='change1' onClick={()=> fileRef.current.click()}><span className="photo1">Upload photo</span></button>
           <input
             ref={fileRef}
             onChange={fileSelect}
@@ -133,7 +133,7 @@ function Registrationpage() {
             <label for="date" className='date'>Date of Birth</label>
             <input 
               type="date" 
-              className='change-text5' 
+              className='change-text50' 
               name="DOB" 
               onChange={handleDOBInputChange}  
               value={values.DOB} 

@@ -55,6 +55,8 @@
 
 .title2 {
     color: black;
+    position: relative;
+    left: 50px;
 }
 
 .create-title2 {
@@ -92,7 +94,16 @@
 	background-color: #ffb53b;
 	color: #FFFFFF;
 }
-
+.folder-btn3:hover{
+    border: 1px solid #ffb53b;
+	background-color: #ffff;
+	color: #ffb53b;
+}
+.folder-btn4:hover{
+    border: 1px solid #ffb53b;
+	background-color: #ffff;
+	color: #ffb53b;
+}
 .folder-btn4 {
     border-radius: 5px;
     border: 1px solid #ffb53b;

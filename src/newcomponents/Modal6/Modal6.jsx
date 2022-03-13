@@ -29,7 +29,7 @@ function Modal6({ closeModal}) {
  
   </div>
 
-  <button className='folder-btn6'>Submit Details</button>
+  <button className='folder-btn60'>Submit Details</button>
   
 
 </div>

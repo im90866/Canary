@@ -73,6 +73,19 @@ left: 80px;
 border-radius: 5px;
     text-overflow: clip;
 }
+.wbtn:hover{
+    background-color:#fff ;
+    color: #ffb53b;
+    border: 1px solid #ffb53b;
+}
+.wbtn1:hover{
+    background-color:#fff ;
+    color: #ffb53b;
+    border: 1px solid #ffb53b;
+}
+.btn-text:hover{
+    color: #ffb53b;
+}
 .wbtn1{
     position: relative;
     white-space: nowrap;

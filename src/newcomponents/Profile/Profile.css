@@ -42,6 +42,12 @@ margin-left: 500px;
 	color: #FFFFFF;
     width: 200px;
     height: 40px;
+    font-weight: 600;
+}
+.editp:hover{
+    border: 1px solid #ffb53b;
+	background-color: #ffff;
+	color: #ffb53b; 
 }
 .post-info{
     display: flex;

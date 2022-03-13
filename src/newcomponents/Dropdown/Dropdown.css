@@ -83,6 +83,11 @@ margin-left: 25px;
   top:30px;
     height: 40px;
   }
+  .fbtn:hover{
+    background-color:#fff ;
+    color: #ffb53b;
+    border: 1px solid #ffb53b;
+}
   .drop{
     left: 30px;
   }

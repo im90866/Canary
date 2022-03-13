@@ -7,6 +7,18 @@
     left: 50px;
     background-color: #fff;
 }
+.bodyyy{
+    background: #f5f5f5;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	font-family: 'Montserrat', sans-serif;
+	height: 100vh;
+	overflow-y:scroll;
+	overflow-x: hidden; 
+}
+
 .postimg-container{
     height: 500px;
     width: 400px;
@@ -19,19 +31,30 @@
 }
 .profile-post{
     width: 500px;
-    height: 50px;
+    height: 70px;
+    
   
+}
+.captions{
+    position: relative;
+    top:-10px;
+}
+.cap{
+    position: relative;
+    top:-20px;
+    left: 20px;
 }
 .comment-containber{
     width: 510px;
-    height: 300px;
+    height: 280px;
+    
   
     overflow-y: scroll;
 }
 .comment-info{
     width: 500px;
     height: 50px;
-
+margin-left:-80px;
     display: flex;
     gap: 2rem;
 }
@@ -103,15 +126,21 @@
     position: relative;
     left: -1px;
 }
+.like1{
+    display: flex;
+}
 .chatSubmitButton1{
     width: 100px;
     height: 40px;border-radius: 5px;
     position: relative;
     left: 10px;
+    border: 1px solid #ffb53b;
+	background-color: #ffb53b;
+	color: #FFFFFF;
 }
 .likenumber{
     color: black;
     position: relative;
-    top:-5px;
+    top:5px;
     left: 5px;
 }

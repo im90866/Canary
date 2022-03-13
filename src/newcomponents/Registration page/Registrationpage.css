@@ -32,14 +32,40 @@
     font-weight: 500;
     position: relative;
     top:20px;
+    left: 200px;
 }
 .profile-username1{
     font-size: 24px;
     position: relative;
-    top:20px;
+    top:-5px;
     left: 10px;
+    font-weight: 500;
 }
+.change1{
+    font-weight: 400;
+    font-size: 12px;
+text-transform: none;
+width: 150px;
+   height: 40px;
+border-radius: 5px;
+position: relative;
+top:60px;
+left:-250px;
+margin-left: 80px;
+background-color: #ffb53b;
+color: #FFFFFF;
+border: 1px solid #ffb53b;
+font-weight: bold;
 
+white-space: nowrap;
+
+       text-overflow: clip;
+}
+.change1:hover{
+    background-color: #fff;
+color: #ffb53b;
+border: 1px solid #ffb53b;
+}
 .profile-picture-cropper{
     height: 80px;
     width: 80px;
@@ -64,3 +90,12 @@
 	overflow-x: hidden;
 
  }
+ .change-text50{
+    border: none;
+    background-color: #efefef;
+    padding: 8px 20px;
+    margin-left: 45px;
+    border-radius: 5px;
+    width: 300px;
+    margin-top: 20px;
+}
