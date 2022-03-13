@@ -9,7 +9,7 @@ import { BsThreeDots } from "react-icons/bs";
 import { Link, useParams } from "react-router-dom";
 import { useState, useEffect, useRef } from "react"
 import axios from "axios"
-import {TiArrowBack}from "react-icons/ti";
+import { TiArrowBack } from "react-icons/ti";
 import Dropdown from '../Dropdown/Dropdown';
 import Modal5 from '../Modal5/Modal5';
 import Modal5_1 from '../Modal5/Modal5_1';
@@ -35,12 +35,12 @@ function Workspace(props) {
   const [folderId, setFolderId] = useState("")
   const [imageId, setImageId] = useState("")
 
-  const RenameModalStatus = () =>{
-    if(folderId !== null){
+  const RenameModalStatus = () => {
+    if (folderId !== null) {
       setFolderId("")
       setOpenModalRename(false)
     }
-    else{
+    else {
       setImageId("")
       setOpenModalRename(false)
     }
@@ -167,11 +167,11 @@ function Workspace(props) {
 
   return (
     <div>
-        <body className='workspace-body'>
-      <Topbar />
-  <Sidebar2/>
-    
-       <div className="workspace-container">
+      <body className='workspace-body'>
+        <Topbar />
+        {/* <Sidebar2 /> */}
+
+        <div className="workspace-container">
           <div className="workspace">
             <div className="workspace-title">
               <h1 className="wtitle">WorkSpace</h1>
@@ -188,8 +188,8 @@ function Workspace(props) {
                   setOpenDropdown(true)}><span className='btn-text'>New Folder</span></button>
               </div>
               <div className="directory-path">
-              <TiArrowBack className='back-arrow'/>
-              <h3 className="directory">/root/workspace</h3>
+                <TiArrowBack className='back-arrow' />
+                <h3 className="directory">/root/workspace</h3>
               </div>
             </div>
           </div>
@@ -200,19 +200,19 @@ function Workspace(props) {
           path={folderPath}
           projId={projectId}
           setFolder={setFolders}
-          makeChange={makeChange} />} 
+          makeChange={makeChange} />}
 
-       <div className="workspace-container2">
+        <div className="workspace-container2">
           <div className="folder">
             {
               folders.map(folder =>
                 <div className="folders" key={folder.folderID} >
-                  <BsFillFolderFill className='folder-icon' onClick={() => enterFolder(folder.folderID)}/>
+                  <BsFillFolderFill className='folder-icon' onClick={() => enterFolder(folder.folderID)} />
                   <div className="folder-info"> {folder.folderName}
                     <div class="dropdown-block">
                       <BsThreeDots className='three-dots' class="dropdowns" />
                       <div class="dropdown-content">
-                        <button class="dropdown-text" onClick={() => {setOpenModalRename(true);setModalVal("Rename");setFolderId(folder.folderID)}}>Rename</button>
+                        <button class="dropdown-text" onClick={() => { setOpenModalRename(true); setModalVal("Rename"); setFolderId(folder.folderID) }}>Rename</button>
                         <button class="dropdown-text" onClick={() => deleteFolder(folder.folderID)}>Delete</button>
                       </div>
                     </div>
@@ -230,8 +230,8 @@ function Workspace(props) {
                     <div className="dropdown-block">
                       <BsThreeDots className='three-dots' class="dropdowns" />
                       <div class="dropdown-content">
-                        <button className="dropdown-text" onClick={() => {setPostImageVal(image);setOpenModal(true)}}>Post</button>
-                        <button className="dropdown-text" onClick={() => {setOpenModalRename(true);setModalVal("Rename");setImageId(image.imageID)}}>Rename</button>
+                        <button className="dropdown-text" onClick={() => { setPostImageVal(image); setOpenModal(true) }}>Post</button>
+                        <button className="dropdown-text" onClick={() => { setOpenModalRename(true); setModalVal("Rename"); setImageId(image.imageID) }}>Rename</button>
                         <button className="dropdown-text" onClick={() => deleteImage(image.imageID)}>Delete</button>
                         <button className="dropdown-text">Download</button>
                       </div>
@@ -242,9 +242,9 @@ function Workspace(props) {
             }
           </div>
         </div>
-      </body> 
-     {openModal && <Modal5 projectID={projectId} image={postImageVal} closeModal={setOpenModal} makeChange={makeChange} />}
-      {openModalRename && <Modal5_1 closeModal={RenameModalStatus} makeChange={makeChange} name={modalVal} folderId={folderId} imageId={imageId}/>} 
+      </body>
+      {openModal && <Modal5 projectID={projectId} image={postImageVal} closeModal={setOpenModal} makeChange={makeChange} />}
+      {openModalRename && <Modal5_1 closeModal={RenameModalStatus} makeChange={makeChange} name={modalVal} folderId={folderId} imageId={imageId} />}
     </div>
 
   )

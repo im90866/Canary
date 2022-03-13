@@ -33,6 +33,7 @@ import Forgotpassword from './newcomponents/forgot password/Forgotpassword';
 import Explore from './newcomponents/Explore/Explore';
 import Teamchats from './newcomponents/Teamchats/Teamchats';
 import Postbig from './newcomponents/Postbig/Postbig';
+import Sidebar2 from './newcomponents/Sidebar2/Sidebar2';
 
 function App() {
 
@@ -87,8 +88,17 @@ function App() {
     }
 
     useEffect(() => {
-        setCheck(location.pathname.includes("/workspace"));
-      }, [location.pathname]);
+        if (location.pathname.includes("/workspace"))
+            setCheck(location.pathname.includes("/workspace"))
+        else if (location.pathname === "/teamchats")
+            setCheck(location.pathname.includes("/teamchats"))
+        else if (location.pathname === "/team")
+            setCheck(location.pathname.includes("/team"))
+        else if (location.pathname === "/projectsettings")
+            setCheck(location.pathname.includes("/projectsettings"))
+        else
+            setCheck(false)
+    }, [location.pathname]);
 
     return (
         <>
@@ -102,13 +112,13 @@ function App() {
                             !check
                                 ?
                                 <>
-                                <Sidebar />
-                                {
-                                    console.log("working")
-                                }
+                                    <Sidebar />
+                                    {
+                                        console.log("working")
+                                    }
                                 </>
                                 :
-                                null
+                                <Sidebar2 />
                         }
                         {/* <Sidebar /> */}
                         <CSRFToken />
@@ -122,44 +132,44 @@ function App() {
                             {/* <Route path="/mainspace" element={<Mainspace />}></Route>
       <Route path="/projects" element={<Projects />}></Route> */}
 
-              <Route path="/workspace/:id" element={<Workspace />} />
+                            <Route path="/workspace/:id" element={<Workspace />} />
 
-              <Route path="/profile" element={<Profile />} />
-              <Route path="/profile/collaborations" element={<Collaboration />} />
-              <Route path="/profile/profileposts" element={<Profileposts />} />
-              <Route path="/project" element={<Project />} />
-              <Route path="/profile/:username" element={<Profileothers />} />
+                            <Route path="/profile" element={<Profile />} />
+                            <Route path="/profile/collaborations" element={<Collaboration />} />
+                            <Route path="/profile/profileposts" element={<Profileposts />} />
+                            <Route path="/project" element={<Project />} />
+                            <Route path="/profile/:username" element={<Profileothers />} />
 
-              <Route path="/team" element={<Team />} />
-              <Route path="/projectsettings" element={<ProjectSettings />} />
-              <Route path="/registrationpage" element={<Registrationpage />} />
-              <Route path="/settings" element={<Settingsbar />} />
-              <Route path="/changepassword" element={<Cardthree />} />
-              <Route path="/blocked" element={<Cardfour />} />
-              <Route path="/delete" element={<Cardfive />} />
-              <Route path="/chats" element={<Chats />} />
-              <Route path="/teamchats" element={<Teamchats />} />
-              <Route path="/explore" element={<Explore/>} />
-              <Route path="/forgotpassword" element={<Forgotpassword />} />
-              <Route path="/postbig" element={<Postbig />} />
+                            <Route path="/team" element={<Team />} />
+                            <Route path="/projectsettings" element={<ProjectSettings />} />
+                            <Route path="/registrationpage" element={<Registrationpage />} />
+                            <Route path="/settings" element={<Settingsbar />} />
+                            <Route path="/changepassword" element={<Cardthree />} />
+                            <Route path="/blocked" element={<Cardfour />} />
+                            <Route path="/delete" element={<Cardfive />} />
+                            <Route path="/chats" element={<Chats />} />
+                            <Route path="/teamchats" element={<Teamchats />} />
+                            <Route path="/explore" element={<Explore />} />
+                            <Route path="/forgotpassword" element={<Forgotpassword />} />
+                            <Route path="/postbig" element={<Postbig />} />
 
-            </Routes>
-          </>
-          :
-          <>
-            <CSRFToken />
-            <Routes>
-              <Route path="/" element={protectLogin()} />
+                        </Routes>
+                    </>
+                    :
+                    <>
+                        <CSRFToken />
+                        <Routes>
+                            <Route path="/" element={protectLogin()} />
 
-              <Route path="/home" element={protectOther(<Home />)} />
-            </Routes>
-          </>
-      }
+                            <Route path="/home" element={protectOther(<Home />)} />
+                        </Routes>
+                    </>
+            }
 
 
-    </>
+        </>
 
-  );
+    );
 }
 
 function getCookie(name) {
