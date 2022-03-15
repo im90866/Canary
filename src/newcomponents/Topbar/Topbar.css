@@ -17,6 +17,7 @@
 
 .topbarLeft {
     flex: 3;
+    /* display: inline-block; */
 }
 
 .logo {
@@ -838,4 +839,15 @@ textarea.form-control-lg {
     font-size: 15px;
     white-space: nowrap;
     text-overflow: clip;
+}
+
+.threeBars{
+    width:40px;
+    height: 50px;
+    padding: 7px;
+    color: #ffb53b;
+}
+
+@media (max-width: 800px){
+    
 }

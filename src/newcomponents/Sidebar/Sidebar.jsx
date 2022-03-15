@@ -16,6 +16,8 @@ export default function Sidebar() {
     navigate('/')
   }
 
+  console.log(window.innerWidth)
+
   return (
     <div className="sidebar">
       <div className="sidebarWrapper">

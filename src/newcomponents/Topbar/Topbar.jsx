@@ -2,8 +2,9 @@ import "./Topbar.css";
 import { FaSearch, FaHome } from 'react-icons/fa'
 import { RiChatSmile2Fill, RiContactsBookLine } from "react-icons/ri"
 import { BsFillPlusCircleFill } from "react-icons/bs"
-import { Link, useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaBars } from 'react-icons/fa';
+import { GoThreeBars } from 'react-icons/go'
 import { useState, useEffect, useRef } from "react"
 import { MdExplore, MdOutlineNotificationsNone, MdSettings } from "react-icons/md"
 import axios from "axios"
@@ -13,11 +14,14 @@ import { IoIosNotificationsOutline } from "react-icons/io";
 import Modal4 from "../Modal4/Modal4";
 import ListGroup from 'react-bootstrap/ListGroup'
 import Res from './Res'
+import { useMediaQuery } from 'react-responsive';
 
 function Topbar() {
   const navigate = useNavigate()
 
   const [openModal, setOpenModal] = useState(false);
+  const isMobile = useMediaQuery({ query: `(max-width: 800px)` })
+  const [showSidebar, setShowSidebar] = useState(false)
 
   const [searchField, setSearchField] = useState("")
   const [searchRes, setSearchRes] = useState([])
@@ -35,7 +39,7 @@ function Topbar() {
     console.log(searchField)
     console.log(searchRes.length)
 
-    if(searchField == "")
+    if (searchField == "")
       setSearchRes([])
     else {
       const response = await axios.get("http://localhost:8000/search/" + searchField)
@@ -89,13 +93,20 @@ function Topbar() {
     document.addEventListener('click', (e) => {
       listRef.current.style.display = 'none'
       // setOpenModal(false)
+
     })
-  }, [])
+  }, [isMobile])
 
   return (
     <div className="topbarContainer">
       <div className="topbarLeft">
-        <span className="logo"> <Link to="/home">Canary</Link></span>
+        {
+          isMobile
+            ?
+            <GoThreeBars className="threeBars" />
+            :
+            <span className="logo"> <Link to="/home">Canary</Link></span>
+        }
       </div>
 
 
@@ -122,7 +133,7 @@ function Topbar() {
                       key={index}
                       onClick={(e) => {
                         inputRef.current.value = res.username;
-                        
+
                         navigate('/profile/' + res.username)
                         window.location.reload();
                       }}
@@ -138,14 +149,14 @@ function Topbar() {
                   )
                 })
                 :
-                  isNotEmpty(searchField) && !isSearching &&
-                  <button
-                    type="button"
-                    className="list-group-item list-group-item-action"
-                  >
-                    No Results Found
-                  </button>
-                
+                isNotEmpty(searchField) && !isSearching &&
+                <button
+                  type="button"
+                  className="list-group-item list-group-item-action"
+                >
+                  No Results Found
+                </button>
+
             }
           </div>
 
@@ -158,7 +169,7 @@ function Topbar() {
         <div className="topbarIcons">
           <div className="topbarIconItem">
             <IoIosNotificationsOutline
-            onClick={() => openClose()}
+              onClick={() => openClose()}
             />
             <div ref={notifRef}>
               {
@@ -241,9 +252,9 @@ function getCookie(name) {
 
 
 function isNotEmpty(val) {
-  if(val == "")
+  if (val == "")
     return false
-  else 
+  else
     return true
 }
 
