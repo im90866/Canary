@@ -1,4 +1,4 @@
-import React, {useRef, useEffect} from 'react'
+import React, {useRef, useEffect, useState} from 'react'
 import { Link} from 'react-router-dom'
 import Message from '../Message/Message'
 import "./chats.css"
@@ -8,6 +8,7 @@ import TextareaAutosize from 'react-textarea-autosize';
 function Chats() {
 
   const messagesEndRef = useRef(null)
+  const [message, setMessage] = useState("")
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
@@ -15,7 +16,8 @@ function Chats() {
 
   useEffect(() => {
     scrollToBottom()
-  }, []);
+    console.log(message)
+  }, [message]);
 
   return (
     <div>
@@ -154,6 +156,8 @@ function Chats() {
                 borderRadius: '25px',
                 border: '2px solid #ffb53b'
               }}
+              value={message}
+              onChange={event => setMessage(event.target.value)}
             />
             <button className="chatSubmitButton" >
               <span className='send'>
