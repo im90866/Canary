@@ -3,14 +3,14 @@
 
 
 .wrapper1 {
-    overflow-x: hidden; 
-    overflow-y: hidden;
+
     /* display: grid; 
     grid-template-columns: repeat(auto-fit, minmax(12rem, 16rem)); */
     /* gap: 2rem; */
     /* justify-content: center; */
     /* position: relative; */
     display: flex;
+flex-wrap: wrap;
     position: relative;
     top:10px;
     /* left: -20px; */
@@ -30,6 +30,8 @@
     transition: transform 200ms ease-in;
     background-color:  #ffff;
     border: none;
+    display: block;
+    flex-basis: 100%;
 }
 
 .card:hover{
@@ -105,4 +107,8 @@
 
 .icontext{
     color: gray;
+}
+@media (max-width: 800px){
+    
+
 }

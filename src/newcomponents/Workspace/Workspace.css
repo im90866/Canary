@@ -86,6 +86,10 @@ border-radius: 5px;
 .btn-text:hover{
     color: #ffb53b;
 }
+.three-dots1{
+    margin-left: 50px;
+    margin-top: -10px;
+}
 .wbtn1{
     position: relative;
     white-space: nowrap;
@@ -153,6 +157,14 @@ position: relative;
     font-size: 15px;
     margin-left: 15px;
   margin-top: -10px;
+
+}
+.folder-info1{
+  
+   
+    display: flex;
+    margin-top: 40px;
+    margin-left: -70px;
 
 }
 .btn-text{

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import Message from '../Message/Message'
 import { AiFillLike,AiOutlineDownload } from "react-icons/ai";
 import { FaShare } from "react-icons/fa";
+import { BsThreeDots } from "react-icons/bs";
 function Postbig() {
   return (
     <div>
@@ -71,6 +72,7 @@ function Postbig() {
                 <FaShare  className='icon-info'/>
                 <AiOutlineDownload className='icon-info'/>
                 <h5 className='remix'>Remix</h5>
+               
                 </div>
                 </div>
                 <div className="comment">

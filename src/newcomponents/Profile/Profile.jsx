@@ -34,6 +34,8 @@ function Profile() {
       
    
       <div className="profile-container">
+        <div className="profileconc">
+      
         <div className='profile-image-cropper'>
           <img src={PFP} className="profile-image"/>
         </div>
@@ -45,7 +47,7 @@ function Profile() {
           <h2 className="collaborations"><Link to="/profile/collaborations">Collaborations</Link></h2>
           <h2 className="posts1"><Link to="/profile/profileposts">Posts</Link></h2>
        </div>
-  
+       </div>
 
         <div className="wrapper">
           {

@@ -9,9 +9,13 @@ function Home(prop) {
 
   return (
     <div>
+      <body className="homebody">
+        
+ 
       <div className="home-container">
         <Feed posts={post} />
       </div>
+      </body>
     </div>
   )
 }
