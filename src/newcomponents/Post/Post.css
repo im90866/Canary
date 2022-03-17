@@ -11,9 +11,11 @@
     /* position: relative; */
     display: flex;
 flex-wrap: wrap;
+gap: 2rem;
     position: relative;
     top:10px;
     /* left: -20px; */
+
     width: 100%;
   
     /* height: 100%; */
@@ -31,7 +33,7 @@ flex-wrap: wrap;
     background-color:  #ffff;
     border: none;
     display: block;
-    flex-basis: 100%;
+ 
 }
 
 .card:hover{
@@ -108,7 +110,8 @@ flex-wrap: wrap;
 .icontext{
     color: gray;
 }
-@media (max-width: 800px){
-    
-
+@media (max-width: 900px){
+    .wrapper1{
+        flex-direction: row;
+    }
 }

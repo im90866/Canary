@@ -42,12 +42,7 @@ function Sidebar2() {
               <span className="sidebarListItemText">Chats</span>
             </Link>
           </li>
-          <li className="sidebarListItem">
-            <Link to="/">
-              <MdOutlineExplore className="sidebarIcon" />
-              <span className="sidebarListItemText">Explore</span>
-            </Link>
-          </li>
+         
 
           <li className="sidebarListItem">
             <Link to="/settings">

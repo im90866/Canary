@@ -53,7 +53,7 @@ margin-left: 500px;
     display: flex;
     gap: 2rem;
     position: relative;
-    top:50px;
+    top:20px;
     left: 470px;
     color: black;
 }
@@ -78,7 +78,7 @@ margin-left: 500px;
 }  
 .wrapper{
     display: flex;
-  flex-wrap: wrap;
+flex-wrap:wrap ;
   
 
 width: 100%;
@@ -143,21 +143,24 @@ width: 100%;
 	overflow-y:scroll;
 	overflow-x: hidden;
 }
-@media screen and (max-width: 800px){
+@media (max-width: 900px) and (max-width: 667px){
     .wrapper{
         flex-direction: column;
         left: 300px;
+
     }
     .post-info{
         display: flex;
         gap: 2rem;
         position: relative;
-        top:50px;
+        top:-20px;
         left: 370px;
         color: black;
     }
     .editp{
+        position:relative ;
         left: 370px;
+        top: -10px;
     }
     .profile-user{
         margin-top: 100px;
@@ -182,3 +185,4 @@ width: 100%;
     }
     
 }
+

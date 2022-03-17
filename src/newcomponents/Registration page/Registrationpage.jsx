@@ -2,7 +2,7 @@ import React, {useState, useEffect, useRef} from 'react'
 import {useNavigate} from 'react-router-dom'
 import "./Registrationpage.css"
 import {BiUserCircle } from "react-icons/bi";
-
+import { useMediaQuery } from 'react-responsive';
 import axios from 'axios'
 
 function Registrationpage() {
@@ -120,7 +120,7 @@ function Registrationpage() {
             <label for="fname" className='fname'>Full Name</label>
             <input 
               type="text" 
-              className='change-text1'  
+              className='change-text51'  
               name="First Name" 
               placeholder='Name' 
               onChange={handleNameInputChange} 

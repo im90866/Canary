@@ -75,3 +75,56 @@
     border-radius: 5px;
     width: 300px;
 }
+@media (max-width:900px){
+  .team-name{
+    z-index: 1;
+    position: relative;
+    background-color: #fff;
+    width: 100%;
+    height: 100%;
+    left: 5px;
+    top: -30px;
+    border-radius: 10px;
+  
+  }
+  .psettings{
+
+    font-size: 20px;
+    font-weight: 400;
+    position: relative;
+    left: 200px;
+  }
+  .buttonss{
+    display: flex;
+    gap: 1rem;
+    margin-top: 60px;
+    margin-left: 100px;
+    position: relative;
+    top:-25px;
+    left: -50px;
+  }
+  .change-text12{
+    border: none;
+      background-color: #efefef;
+      padding: 8px 20px;
+      margin-left: 31px;
+      border-radius: 5px;
+      width: 250px;
+  }
+  .change-text2{
+    border: none;
+      background-color: #efefef;
+      padding: 8px 20px;
+      margin-left: 31px;
+      border-radius: 5px;
+      width: 250px;
+  }
+  .fname{
+    position: relative;
+    left: 15px;
+  }
+  .lname{
+    position: relative;
+    left: 15px;
+  }
+}
