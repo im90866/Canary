@@ -21,9 +21,7 @@ function Cardfive() {
                   <div className="settinglistname">
                     <li  className='setting-listli'><Link to ="/changepassword">Change Password</Link></li>  
                   </div>
-                  <div className="settinglistname">
-                  <li className='setting-listli'><Link to ="/blocked">Block Users</Link></li>
-                  </div>
+                
                   <div className="settinglistname">
                   <li  className='setting-listli'><Link to ="/delete">Delete Account</Link></li>
                   </div>
@@ -33,7 +31,7 @@ function Cardfive() {
         <div className="change-password1">
            <div className="change-password-title">
                <h1 className="cptitle2">Delete Account</h1>
-               <p className='block'><strong>Would you like to delete your Behance account: @Nashwa_Abdul?</strong>
+               <p className='block'><strong>Would you like to delete your Canary account: @Nashwa_Abdul?</strong>
 <br></br>This account contains 1 projects and drafts. Deleting your account will remove all of your content and data associated with it..</p>
 <button className='submit-changes btnn1' type='submit'  onClick={() =>
           setOpenModal(true)}>Delete Account</button>

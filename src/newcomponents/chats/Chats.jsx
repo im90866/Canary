@@ -113,7 +113,47 @@ function Chats() {
                 </Link>
               </li>
 
-
+              <li className="chatlistli">
+                <Link to="/chats">
+                  <img src="/images/avatar8.jpg" alt="" className='profile-pic2' />
+                  <span className='chatlistlitext'>Aaron Abraham</span>
+                </Link>
+              </li>  <li className="chatlistli">
+                <Link to="/chats">
+                  <img src="/images/avatar8.jpg" alt="" className='profile-pic2' />
+                  <span className='chatlistlitext'>Aaron Abraham</span>
+                </Link>
+              </li>  <li className="chatlistli">
+                <Link to="/chats">
+                  <img src="/images/avatar8.jpg" alt="" className='profile-pic2' />
+                  <span className='chatlistlitext'>Aaron Abraham</span>
+                </Link>
+              </li>  <li className="chatlistli">
+                <Link to="/chats">
+                  <img src="/images/avatar8.jpg" alt="" className='profile-pic2' />
+                  <span className='chatlistlitext'>Aaron Abraham</span>
+                </Link>
+              </li>  <li className="chatlistli">
+                <Link to="/chats">
+                  <img src="/images/avatar8.jpg" alt="" className='profile-pic2' />
+                  <span className='chatlistlitext'>Aaron Abraham</span>
+                </Link>
+              </li>  <li className="chatlistli">
+                <Link to="/chats">
+                  <img src="/images/avatar8.jpg" alt="" className='profile-pic2' />
+                  <span className='chatlistlitext'>Aaron Abraham</span>
+                </Link>
+              </li>  <li className="chatlistli">
+                <Link to="/chats">
+                  <img src="/images/avatar8.jpg" alt="" className='profile-pic2' />
+                  <span className='chatlistlitext'>Aaron Abraham</span>
+                </Link>
+              </li>  <li className="chatlistli">
+                <Link to="/chats">
+                  <img src="/images/avatar8.jpg" alt="" className='profile-pic2' />
+                  <span className='chatlistlitext'>Aaron Abraham</span>
+                </Link>
+              </li>  
             </ul>
 
           </div>
@@ -158,6 +198,7 @@ function Chats() {
               }}
               value={message}
               onChange={event => setMessage(event.target.value)}
+              className="chatbar"
             />
             <button className="chatSubmitButton" >
               <span className='send'>

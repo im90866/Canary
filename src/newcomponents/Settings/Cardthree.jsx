@@ -10,8 +10,23 @@ function Cardthree() {
     <div>
            <body className="settingscc1">
            <div className="settings-container">
-       
-          <Cardone/>
+           <div className="settings-bar">
+          <div className="settings1">
+              <ul className="settinglist">
+                  <div className="settinglistname">
+          <li  className='setting-listli'> <Link to ="/settings">Edit Profile</Link></li>
+                  </div>
+                  <div className="settinglistname">
+                    <li  className='setting-listli'><Link to ="/changepassword">Change Password</Link></li>  
+                  </div>
+              
+                  <div className="settinglistname">
+                  <li  className='setting-listli'><Link to ="/delete">Delete Account</Link></li>
+                  </div>
+              </ul>
+          </div>
+      </div>
+        
          <div className="change-password">
            <div className="change-password-title">
                <h1 className="cptitle">Change Password</h1>

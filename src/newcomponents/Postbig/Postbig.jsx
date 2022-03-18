@@ -13,6 +13,7 @@ function Postbig() {
         <div className="postimg-container">
           <img src="https://cdn.pixabay.com/photo/2022/01/11/14/09/bird-6930700__340.jpg" alt="" className='postimage'/>
           </div>
+          <div className="post-bigdet">
           <div className="post-bigdetails">
           <div className="profile-post">
            <div className="profilepost-img">
@@ -73,6 +74,7 @@ function Postbig() {
                 <AiOutlineDownload className='icon-info'/>
                 <h5 className='remix'>Remix</h5>
                
+                </div>
                 </div>
                 </div>
                 <div className="comment">
