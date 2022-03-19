@@ -33,6 +33,7 @@ import Forgotpassword from './newcomponents/forgot password/Forgotpassword';
 import Explore from './newcomponents/Explore/Explore';
 import Teamchats from './newcomponents/Teamchats/Teamchats';
 import Postbig from './newcomponents/Postbig/Postbig';
+import Sidebar2 from './newcomponents/Sidebar2/Sidebar2';
 
 import WebSocketInstance from './JS_Files/websocket';
 
@@ -83,8 +84,17 @@ function App() {
     }
 
     useEffect(() => {
-        setCheck(location.pathname.includes("/workspace"));
-      }, [location.pathname]);
+        if (location.pathname.includes("/workspace"))
+            setCheck(location.pathname.includes("/workspace"))
+        else if (location.pathname === "/teamchats")
+            setCheck(location.pathname.includes("/teamchats"))
+        else if (location.pathname === "/team")
+            setCheck(location.pathname.includes("/team"))
+        else if (location.pathname === "/projectsettings")
+            setCheck(location.pathname.includes("/projectsettings"))
+        else
+            setCheck(false)
+    }, [location.pathname]);
 
     return (
         <>
@@ -94,16 +104,18 @@ function App() {
                     <>
 
                         <Topbar />
-                        {
+                        {/* {
                             !check
                                 ?
                                 <>
-                                <Sidebar />
+                                    <Sidebar />
+                                    {
+                                        console.log("working")
+                                    }
                                 </>
                                 :
-                                null
-                        }
-                        {/* <Sidebar /> */}
+                                <Sidebar2 />
+                        } */}
                         <CSRFToken />
                         <Routes>
 

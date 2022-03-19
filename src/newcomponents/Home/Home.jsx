@@ -10,9 +10,13 @@ function Home(prop) {
 
   return (
     <div>
+      <body className="homebody">
+        
+ 
       <div className="home-container">
         <Feed cache={cache} setCache={setCache} />
       </div>
+      </body>
     </div>
   )
 }

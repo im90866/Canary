@@ -30,7 +30,6 @@ padding-right: 0px;
   }
   .sidebarListItem a{
     padding: 1px;
-  
     list-style: none;
     text-decoration: none;
     color: black;
@@ -48,7 +47,7 @@ padding-right: 0px;
  
   
   .sidebarListItem {
-    display: flex;
+    display: block;
     align-items: center;
     margin-bottom: 5px;
   

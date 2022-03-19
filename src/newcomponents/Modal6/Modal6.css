@@ -5,8 +5,8 @@
         
         }
 .modalContainer6{
-  width: 500px;
-  height: 300px;
+  width: 100%;
+  height: 100%;
   border-radius: 5px;
   background-color: #Ffff;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -16,7 +16,7 @@
 
 position: relative;
 top:100px;
-left: 150px;
+left: 120px;
 
        
     
@@ -157,4 +157,26 @@ left: 150px;
                .folder-btn60:hover{
                 background-color: #ffffff;
                 color: #ffb53b;
+              }
+
+              @media (max-width: 800px){
+                .modalContainer6{
+                  width:100%;
+                  height: 100%;
+                  border-radius: 5px;
+                  background-color: #Ffff;
+                  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+                  display: flex;
+                  flex-direction: column;
+                  padding: 25px;
+                  position: relative;
+                  top:100px;
+                  left: -2px;        
+               }
+                   .div6{
+                    position: relative;
+                     top: -40px;
+                     left: 10px;
+                               }
+                      
               }

@@ -15,7 +15,7 @@ function Modal2({ closeModal}) {
             </button>
           </div>
           <div className="title2">
-            <h1 className='create-title2'>Are You Sure You Want To Delete This Project</h1>
+            <h1 className='create-title2'>Are You Sure You Want To<br></br> Delete This Project</h1>
           </div>
          
        

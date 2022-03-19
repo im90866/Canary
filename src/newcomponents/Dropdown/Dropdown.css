@@ -91,3 +91,13 @@ margin-left: 25px;
   .drop{
     left: 30px;
   }
+  
+@media (max-width: 900px){
+  .modalContainerdrop{
+ 
+    position: relative;
+    left: -120px;
+    top:-100px;
+
+}
+}

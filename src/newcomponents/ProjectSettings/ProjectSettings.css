@@ -44,3 +44,33 @@
     word-spacing: 0.25rem;
 
 }
+@media(max-width:900px){
+    .ps-box{
+        z-index: 1;
+        position: relative;
+        background-color: #fff;
+        width: 350px;
+        height: 100%;
+        
+        left: 5px;
+        top: -35px;
+        border-radius: 10px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+    }
+    .ttitle{
+        font-size: 20px;
+      font-weight: 400;
+      position: relative;
+      left: 150px;
+    }
+    .searchbar1{
+        width: 90%;
+        height: 30px;
+        background-color: #efefef;
+        border-radius: 30px;
+        display: flex;
+        align-items: center;
+        margin-left: 25px;
+    }
+}

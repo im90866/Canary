@@ -23,6 +23,7 @@ function Chats() {
   const [textBoxVal, setTextBoxVal] = useState("")
 
   const messagesEndRef = useRef(null)
+  const [message, setMessage] = useState("")
 
   const scrollToBottomSmooth = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
@@ -179,6 +180,7 @@ function Chats() {
               }}
               value={textBoxVal}
               onChange={handleMessageChange}
+              className="chatbar"
             />
             <button className="chatSubmitButton"  onClick={() => sendMessage()}>
               <span className='send'>

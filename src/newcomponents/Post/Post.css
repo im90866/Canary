@@ -3,17 +3,19 @@
 
 
 .wrapper1 {
-    overflow-x: hidden; 
-    overflow-y: hidden;
+
     /* display: grid; 
     grid-template-columns: repeat(auto-fit, minmax(12rem, 16rem)); */
     /* gap: 2rem; */
     /* justify-content: center; */
     /* position: relative; */
     display: flex;
+flex-wrap: wrap;
+gap: 0rem;
     position: relative;
     top:10px;
     /* left: -20px; */
+left: -15px;
     width: 100%;
   
     /* height: 100%; */
@@ -28,13 +30,17 @@
     justify-content: space-between;
     cursor: pointer;
     transition: transform 200ms ease-in;
-    background-color:  #ffff;
+	background: #f5f5f5;
     border: none;
+    width: 100%;
+    
+    display: block;
+ 
 }
 
 .card:hover{
     height: 250px;
-    background-color:#ffff;
+	background: #f5f5f5;
 }
 
 .card__image {
@@ -105,4 +111,9 @@
 
 .icontext{
     color: gray;
+}
+@media (max-width: 900px){
+    .wrapper1{
+        flex-direction: row;
+    }
 }

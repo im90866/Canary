@@ -1,11 +1,10 @@
 .feed-container{
     flex: 10;
 
-    margin-left: 150px;
+    margin-left: 60px;
     width: 100%;
 
-
-    height: 100vh;
+  height: 100vh;
 }
 .etitle{
     position: relative;
@@ -21,3 +20,22 @@
     left:20px;
 
 } 
+@media (max-width: 800px){
+    .etitle{
+        position: relative;
+        top:50px;
+        font-size:20px;
+        font-weight: 500;
+
+    }
+    .arrow{
+        position: relative;
+        top:5px;
+        left:40px;
+    
+    } 
+
+    .feed-container{
+        margin: 0;
+    }
+}

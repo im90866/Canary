@@ -11,7 +11,7 @@
 }
  .project-container{
     width: 1000px;
-    height: 200px;
+    height: 150px;
     background-color: #fff;
     border-radius: 5px;
     position: relative;
@@ -24,13 +24,16 @@
 
      position: relative;
      display: flex;
+     flex-direction: column;
+     flex-wrap: wrap;
+
      
  } 
 .project-title{
      position: relative;
      display: flex;
-     justify-content: space-between;
-     top:50px; 
+   
+     top:5px; 
     left:-5px;
  }
 .title{
@@ -64,15 +67,15 @@
     background-color: white;
     border-radius: 5px;
     position: relative;
-    top:80px;
+    top:50px;
     left: 80px;
     overflow-y: scroll;
 }
 .project-list{
    
-    display: grid;
-grid-template-columns: repeat(auto-fit, minmax(12rem, 16rem));
-gap: 3.5rem;
+    display: flex;
+flex-wrap: wrap;
+gap: 1rem;
 top:30px;
 position: relative;
 left: -5px;
@@ -97,4 +100,42 @@ left: -5px;
 
 .projectlistname a{
     text-decoration: none;
+}
+@media (max-width: 900px) {
+    .project-container{
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+        border-radius: 5px;
+        position: relative;
+        top:100px;
+        left: -5px;
+    
+        
+     }
+     .project-container2{
+        width:100%;
+        height:100%;
+        background-color: white;
+        border-radius: 5px;
+        position: relative;
+        top:-160px;
+        left: -5px;
+        overflow-y: scroll;
+    }
+    .hero-btn{
+        position: relative;
+  width: 150px;
+       left: 80px;
+      top:5px;
+    }
+    .title{
+        font-size: 20px;
+        font-weight: 400;
+        position: relative;
+        left: 30px;
+        white-space: nowrap;
+        text-overflow: clip;
+    }
+  
 }

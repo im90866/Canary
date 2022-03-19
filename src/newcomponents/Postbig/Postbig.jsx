@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import Message from '../Message/Message'
 import { AiFillLike,AiOutlineDownload } from "react-icons/ai";
 import { FaShare } from "react-icons/fa";
+import { BsThreeDots } from "react-icons/bs";
 function Postbig() {
   return (
     <div>
@@ -12,6 +13,7 @@ function Postbig() {
         <div className="postimg-container">
           <img src="https://cdn.pixabay.com/photo/2022/01/11/14/09/bird-6930700__340.jpg" alt="" className='postimage'/>
           </div>
+          <div className="post-bigdet">
           <div className="post-bigdetails">
           <div className="profile-post">
            <div className="profilepost-img">
@@ -71,6 +73,8 @@ function Postbig() {
                 <FaShare  className='icon-info'/>
                 <AiOutlineDownload className='icon-info'/>
                 <h5 className='remix'>Remix</h5>
+               
+                </div>
                 </div>
                 </div>
                 <div className="comment">

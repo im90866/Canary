@@ -148,7 +148,7 @@ import Moda7 from '../Modal7/Moda7';
           </div>
 
           <h3 className="profile-username">{getCookie('username')}</h3>
-          <button className='change' onClick={()=> fileRef.current.click()}><span className="photo">Upload photo</span></button>
+          <button className='change-photo' onClick={()=> fileRef.current.click()}><span className="photo">Upload photo</span></button>
           <input
             ref={fileRef}
             onChange={fileSelect}

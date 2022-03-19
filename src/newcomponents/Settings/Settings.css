@@ -1,9 +1,7 @@
 .settings-container{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(12rem, 16rem));
-    gap: 4rem;
-    justify-content: center;
-  
+    display: flex;
+   gap: 2rem;
+  flex-wrap: wrap;
     padding-top: 100px;
     position: sticky;
 }
@@ -34,12 +32,10 @@ top:300px;
     background-color: #fff;
     height: 100%;
     width:100%;
-    top:290px;
-    left: -250px;
+    top:20px;
+    left: 80px;
     overflow-y: scroll;
   
-
-
 }
 .settinglist{
     padding: 20px;
@@ -47,6 +43,17 @@ top:300px;
 
     
 }
+.settings1{ 
+    position: relative;
+    border-radius: 5px;
+       background-color: #fff;
+       height: 100%;
+       width:100%;
+       top:110px;
+       left: 120px;
+       overflow-y: scroll;
+     
+   }
 .setting-listli a{
     text-decoration: none;
 }
@@ -71,18 +78,14 @@ top:300px;
     
 }
  .edit-profile{
-    
 
     position: relative;
-
-  
  border-radius: 5px;
     background-color: #fff;
-  
-    width:600px;
-    height: 500px;
-top:-200px;
-left:80px;
+    width:100%;
+    height: 100%;
+top:-60px;
+left:120px;
 
 
 }
@@ -111,7 +114,8 @@ left:80px;
      top:5px;
      left:-15px;
  }
- .change{
+
+ .change-photo{
      
     font-weight: 400;
     font-size: 12px;
@@ -121,7 +125,7 @@ width: 150px;
 border-radius: 5px;
 position: relative;
 top:60px;
-left:-250px;
+left:-170px;
 margin-left: 80px;
 background-color: #ffb53b;
 color: #FFFFFF;
@@ -133,7 +137,8 @@ white-space: nowrap;
        text-overflow: clip;
 
  }
- .change:hover{
+ 
+ .change-photo:hover{
     background-color: #fff;
     color: #ffb53b;
     border: 1px solid #ffb53b;
@@ -210,7 +215,10 @@ white-space: nowrap;
 }
 .submit-changes{
 margin-top: 30px;
-margin-left: 350px;
+margin-left: 300px;
+position: relative;
+top:-10px;
+left: -50px;
 text-transform: none;
 cursor: pointer;
 background-color: #ffb53b;
@@ -229,15 +237,12 @@ width: 180px;
 .change-password{
     
     position: relative;
-
-  
  border-radius: 5px;
     background-color: #fff;
-  
-    width:600px;
-    height: 420px;
-left: 80px;
-top:-180px;
+  width: 80%;
+  height: 60%;
+left: 380px;
+top:-200px;
 }
 .cptitle{
     font-weight: 400;
@@ -261,13 +266,12 @@ top:-180px;
     left: 180px;
 }
 .settings-container1{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(12rem, 16rem));
-    gap: 1rem;
-    justify-content: center;
-  
-    padding-top: 50px;
-    position: sticky;
+    display: flex;
+    gap: 2rem;
+   flex-wrap: wrap;
+     padding-top: 100px;
+     position: sticky;
+     margin-left: 60px;
 }
 .change-text6{
     border: none;
@@ -324,7 +328,7 @@ top:-180px;
     width:600px;
     height: 300px;
 left: 80px;
-top:-180px;
+top:-50px;
 }
 .btnn1{
     margin-bottom: 800px;
@@ -334,10 +338,11 @@ top:-180px;
     position: relative;
     border-radius: 5px;
        background-color: #fff;
-       height: 90%;
+       height: 100%;
        width:100%;
-       top:250px;
-       left: -250px;
+       top:140px;
+       left: 81px;
+       overflow-y: scroll;
 }
 .settings-title2{
     position: relative;
@@ -355,8 +360,138 @@ top:-180px;
     position: relative;
     border-radius: 5px;
        background-color: #fff;
-       height: 90%;
+       height: 100%;
        width:100%;
-       top:190px;
-       left: -250px;
+       top:-50px;
+       left: 60px;
+       overflow-y: scroll;
+}
+@media screen and (max-width: 800px){
+    .settings-container{
+        position: relative;
+        top:-50px;
+        flex-direction: column;
+        
+    }
+    .settings{ 
+        position: relative;
+        border-radius: 5px;
+           background-color: #fff;
+           height: 100%;
+           width:100%;
+           top:50px;
+           left: 5px;
+           overflow-y: scroll;
+       
+       }
+       .settinglist{
+       margin-left: 30px;
+    
+       }   
+       .edit-profile{
+           position: relative;
+           top:50px;
+           left: 5px;
+         
+       } 
+       .change-text3,.change-text1,.change-text2,.change-text4,.change-text5{
+           width: 250px;
+       }
+       .submit-changes{
+           position: relative;
+           left: -70px;
+       }
+       .profile-username{
+           position: relative;
+           left: 20px;
+       }
+    .change-photo{
+        position: relative;
+        left: -150px;
+    }
+    .profile-picture-cropper{
+        position: relative;
+        left: 30px;
+    }
+    .settings-container1{
+        flex-direction: column;
+        
+    }
+    .settings2{ 
+        position: relative;
+        border-radius: 5px;
+           background-color: #fff;
+           height: 100%;
+           width:180%;
+           top:50px;
+           left: 10px;
+           overflow-y: scroll;
+       
+       }
+       .change-password{
+           position: relative;
+           top:300px;
+           left: -170px;
+           width: 60%;
+           height: 60%;
+       }
+       .cptitle{
+        font-weight: 400;
+        font-size: 20px;
+        position: relative;
+        top:10px;
+        left: 50px;
+    }
+    .change-text6{
+        position: relative;
+       left: 40px;
+        width: 80%;
+        margin-top: 20px;
+
+    }
+    .change-text7{
+        position: relative;
+       left: -25px;
+        width: 80%;
+        margin-top: 20px;
+    }
+    .change-text8{
+       position: relative;
+       left: -30px;
+        width: 80%;
+        margin-top: 20px;
+        
+    }
+    .settings1{ 
+        position: relative;
+        border-radius: 5px;
+           background-color: #fff;
+           height: 100%;
+           width:100%;
+           top:30px;
+           left: 120px;
+           overflow-y: scroll;
+         
+       }
+       .submit-changes{
+        margin-top: 30px;
+        margin-left: 300px;
+        position: relative;
+        top:-10px;
+        left: -250px;
+        text-transform: none;
+        cursor: pointer;
+        background-color: #ffb53b;
+        color: #FFFFFF;
+        border: 1px solid #ffb53b;
+        font-weight: bold;
+        width: 180px;
+            height: 40px;
+        
+        }
+       .cptitle2{
+           font-size: 20px;
+           position: relative;
+           left: 100px;
+       }
 }

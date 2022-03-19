@@ -53,7 +53,7 @@ margin-left: 500px;
     display: flex;
     gap: 2rem;
     position: relative;
-    top:50px;
+    top:20px;
     left: 470px;
     color: black;
 }
@@ -78,7 +78,7 @@ margin-left: 500px;
 }  
 .wrapper{
     display: flex;
-  flex-wrap: wrap;
+flex-wrap:wrap ;
   
 
 width: 100%;
@@ -92,6 +92,11 @@ width: 100%;
     height: 13rem;
     width: 50%;
     object-fit: cover;
+}
+.profileconc{
+    width: 100%;
+    height: 70%;
+
 }
 .feedImage{
 
@@ -138,3 +143,46 @@ width: 100%;
 	overflow-y:scroll;
 	overflow-x: hidden;
 }
+@media (max-width: 900px) and (max-width: 667px){
+    .wrapper{
+        flex-direction: column;
+        left: 300px;
+
+    }
+    .post-info{
+        display: flex;
+        gap: 2rem;
+        position: relative;
+        top:-20px;
+        left: 370px;
+        color: black;
+    }
+    .editp{
+        position:relative ;
+        left: 370px;
+        top: -10px;
+    }
+    .profile-user{
+        margin-top: 100px;
+    margin-left: 400px;
+     
+    }
+    .profile-image-cropper{
+        width: 200px;
+        height: 200px;
+        overflow: hidden;
+        border-radius: 50%;
+        position: relative;
+        top:50px;
+        left: 370px;
+    }
+    
+    .profile-image{
+        width:auto;
+        height: 100%;
+        top:-20px;
+        left: 550px;
+    }
+    
+}
+

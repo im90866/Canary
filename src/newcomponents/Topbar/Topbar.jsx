@@ -2,9 +2,10 @@ import "./Topbar.css";
 import { FaSearch, FaHome } from 'react-icons/fa'
 import { RiChatSmile2Fill, RiContactsBookLine } from "react-icons/ri"
 import { BsFillPlusCircleFill } from "react-icons/bs"
-import { Link, useNavigate} from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaBars } from 'react-icons/fa';
-import { useState, useEffect, useRef } from "react"
+import { GoThreeBars } from 'react-icons/go'
+import { useState, useEffect, useRef, createContext } from "react"
 import { MdExplore, MdOutlineNotificationsNone, MdSettings } from "react-icons/md"
 import axios from "axios"
 
@@ -13,11 +14,21 @@ import { IoIosNotificationsOutline } from "react-icons/io";
 import Modal4 from "../Modal4/Modal4";
 import ListGroup from 'react-bootstrap/ListGroup'
 import Res from './Res'
+import { useMediaQuery } from 'react-responsive';
+import Sidebar from "../Sidebar/Sidebar";
+import Sidebar2 from "../Sidebar2/Sidebar2";
+
+
+const isMobileContext = createContext()
 
 function Topbar() {
   const navigate = useNavigate()
-
   const [openModal, setOpenModal] = useState(false);
+  const isMobile = useMediaQuery({ query: `(max-width: 800px)` })
+  const [showSidebar, setShowSidebar] = useState(false)
+  const location = useLocation()
+  const [check, setCheck] = useState()
+  console.log(isMobile)
 
   const [searchField, setSearchField] = useState("")
   const [searchRes, setSearchRes] = useState([])
@@ -35,7 +46,7 @@ function Topbar() {
     console.log(searchField)
     console.log(searchRes.length)
 
-    if(searchField == "")
+    if (searchField == "")
       setSearchRes([])
     else {
       const response = await axios.get("http://localhost:8000/search/" + searchField)
@@ -90,13 +101,33 @@ function Topbar() {
       listRef.current.style.display = 'none'
       // setOpenModal(false)
     })
-  }, [])
+
+    if (location.pathname.includes("/workspace"))
+      setCheck(location.pathname.includes("/workspace"))
+    else if (location.pathname === "/teamchats")
+      setCheck(location.pathname.includes("/teamchats"))
+    else if (location.pathname === "/team")
+      setCheck(location.pathname.includes("/team"))
+    else if (location.pathname === "/projectsettings")
+      setCheck(location.pathname.includes("/projectsettings"))
+    else
+      setCheck(false)
+
+  }, [location.pathname])
 
   return (
-    <div className="topbarContainer">
-      <div className="topbarLeft">
-        <span className="logo"> <Link to="/home">Canary</Link></span>
-      </div>
+    <>
+      <div className="topbarContainer">
+
+        <div className="topbarLeft">
+          {
+            isMobile
+              ?
+              <GoThreeBars className="threeBars" onClick={() => setShowSidebar(!showSidebar)} />
+              :
+              <span className="logo"> <Link to="/home">Canary</Link></span>
+          }
+        </div>
 
 
 
@@ -146,85 +177,115 @@ function Topbar() {
                   >
                     No Results Found
                   </button>
-            }
-          </div>
 
-        </div>
-      </div>
-
-
-
-      <div className="topbarRight">
-        <div className="topbarIcons">
-          <div className="topbarIconItem">
-            <IoIosNotificationsOutline
-            onClick={() => openClose()}
-            />
-            <div ref={notifRef}>
-              {
-                openModal
-                &&
-                <div >
-                  <div className="modalBackground2">
-                    <div className="modalContainer4">
-                      <div className="titleCloseBtn2">
-                        <button className='cross'
-                          onClick={() => {
-                            openClose();
-                          }}
-                        >
-                          x
-                        </button>
-                      </div>
-                      <h1 className="notifications">Notifications</h1>
-
-                      <ul className="notifications-2">
-                        <li className="notificationslist">
-                          <img src="/images/avatar.png" alt="" className='profile-pic' />
-                          <div className="notif-text">User1 liked your post</div>
-                        </li>
-                        <li className="notificationslist">
-                          <img src="/images/avatar.png" alt="" className='profile-pic' />
-                          <div className="notif-text">User1 liked your post</div>
-                        </li>
-                        <li className="notificationslist">
-                          <img src="/images/avatar.png" alt="" className='profile-pic' />
-                          <div className="notif-text">User1 liked your post</div>
-                        </li>
-                        <li className="notificationslist">
-                          <img src="/images/avatar.png" alt="" className='profile-pic' />
-                          <div className="notif-text">User1 liked your post</div>
-                        </li>
-                        <li className="notificationslist">
-                          <img src="/images/avatar.png" alt="" className='profile-pic' />
-                          <div className="notif-text">User1 liked your post</div>
-                        </li>
-                        <li className="notificationslist">
-                          <img src="/images/avatar.png" alt="" className='profile-pic' />
-                          <div className="notif-text">User1 liked your post</div>
-                        </li>
-                      </ul>
-
-                    </div>
-                  </div>
-                </div>
               }
             </div>
-            <span className="topbarIconBadge">1</span>
-          </div>
 
-          <div className="topbarIconItem">
-            <div className="topbarImg-cropper">
-              <Link to="/profile"><img src={PFP} alt="" className="topbarImg" /> </Link>
+          </div>
+        </div>
+
+
+
+        <div className="topbarRight">
+          <div className="topbarIcons">
+            <div className="topbarIconItem">
+              <IoIosNotificationsOutline
+                onClick={() => openClose()}
+              />
+              <div ref={notifRef}>
+                {
+                  openModal
+                  &&
+                  <div >
+                    <div className="modalBackground2">
+                      <div className="modalContainer4">
+                        <div className="titleCloseBtn2">
+                          <button className='cross'
+                            onClick={() => {
+                              openClose();
+                            }}
+                          >
+                            x
+                          </button>
+                        </div>
+                        <h1 className="notifications">Notifications</h1>
+
+                        <ul className="notifications-2">
+                          <li className="notificationslist">
+                            <img src="/images/avatar.png" alt="" className='profile-pic' />
+                            <div className="notif-text">User1 liked your post</div>
+                          </li>
+                          <li className="notificationslist">
+                            <img src="/images/avatar.png" alt="" className='profile-pic' />
+                            <div className="notif-text">User1 liked your post</div>
+                          </li>
+                          <li className="notificationslist">
+                            <img src="/images/avatar.png" alt="" className='profile-pic' />
+                            <div className="notif-text">User1 liked your post</div>
+                          </li>
+                          <li className="notificationslist">
+                            <img src="/images/avatar.png" alt="" className='profile-pic' />
+                            <div className="notif-text">User1 liked your post</div>
+                          </li>
+                          <li className="notificationslist">
+                            <img src="/images/avatar.png" alt="" className='profile-pic' />
+                            <div className="notif-text">User1 liked your post</div>
+                          </li>
+                          <li className="notificationslist">
+                            <img src="/images/avatar.png" alt="" className='profile-pic' />
+                            <div className="notif-text">User1 liked your post</div>
+                          </li>
+                        </ul>
+
+                      </div>
+                    </div>
+                  </div>
+                }
+              </div>
+              <span className="topbarIconBadge">1</span>
             </div>
+
+            <div className="topbarIconItem">
+              <div className="topbarImg-cropper">
+                <Link to="/profile"><img src={PFP} alt="" className="topbarImg" /> </Link>
+              </div>
+            </div>
+
           </div>
 
         </div>
-
+        {/* {openModal && <Modal4 closeModal={setOpenModal} />} */}
       </div>
-      {/* {openModal && <Modal4 closeModal={setOpenModal} />} */}
-    </div>
-
+      {
+        !isMobile
+          ?
+          !check
+            ?
+            <>
+              <Sidebar isMobile={isMobile} showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
+              {
+                console.log("working")
+              }
+            </>
+            :
+            <Sidebar2 />
+          :
+          showSidebar
+            ?
+            !check
+              ?
+              <>
+                <Sidebar />
+                {
+                  console.log("working")
+                }
+              </>
+              :
+              <Sidebar2 />
+            :
+            null
+      }
+    </>
   );
 }
 
@@ -241,11 +302,12 @@ function getCookie(name) {
 
 
 function isNotEmpty(val) {
-  if(val == "")
+  if (val == "")
     return false
-  else 
+  else
     return true
 }
 
 
 export default Topbar
+export { isMobileContext }

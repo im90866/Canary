@@ -6,7 +6,7 @@ import {BsFillBookmarkFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { Users } from "../../dummy.js";
 import { useState, useEffect} from "react";
-
+import { useMediaQuery } from 'react-responsive';
 import axios from 'axios'
 
 function Post(post) {
