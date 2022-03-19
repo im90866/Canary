@@ -18,6 +18,40 @@ from ..custom_models import *
 CLIENT_SERVER = getClient()
 CLIENT_DATABASE = CLIENT_SERVER['mainDB']
 
+# Views
+class GetUsername(APIView):
+    permission_classes = (permissions.AllowAny, )
+
+    def get(self, request, userID, format=None):
+        user_col = CLIENT_DATABASE['userInfo']
+
+        username = user_col.find_one({'_id': ObjectId(userID)})['username']
+
+        print(username)
+
+        return Response({
+            'success': 'Obtained username',
+            'username': username,
+        })
+
+class GetUserID(APIView):
+    permission_classes = (permissions.AllowAny, )
+
+    def get(self, request, username, format=None):
+        data = self.request.data
+
+        user_col = CLIENT_DATABASE['userInfo']
+        
+        userID = user_col.find_one({'username': username})['_id']
+        userID = json.loads(json_util.dumps(userID))['$oid']
+
+        print(userID)
+
+        return Response({
+            'success': 'Obtained username',
+            'userID': userID,
+        })
+
 class SearchProfiles(APIView):
     permission_classes = (permissions.AllowAny, )
 
@@ -58,7 +92,7 @@ class SearchProfiles(APIView):
 class GetHomePosts(APIView):
     permission_classes = (permissions.AllowAny, )
 
-    def get(self, request, username, format=None):
+    def get(self, request, userID, format=None):
         data = self.request.data
 
         post_col = CLIENT_DATABASE['postData']

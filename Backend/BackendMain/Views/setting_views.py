@@ -21,12 +21,12 @@ CLIENT_DATABASE = CLIENT_SERVER['mainDB']
 class GetUserInfo(APIView):
     permission_classes = (permissions.AllowAny, )
 
-    def get(self, request, username, format=None):
+    def get(self, request, userID, format=None):
         data = self.request.data
 
         user_col = CLIENT_DATABASE['userInfo']
 
-        userData = user_col.find_one({'username': username})
+        userData = user_col.find_one({'_id': ObjectId(userID)})
 
         newUserData = {}
 
@@ -65,7 +65,7 @@ class UploadUserInfo(APIView):
 
         if 'fullname' in data:
             user_col.update_one({
-                'username': data['username']
+                '_id': data['userID']
             }, {
                 '$set': {
                     'fullname': data['fullname']
@@ -74,7 +74,7 @@ class UploadUserInfo(APIView):
         
         if 'DOB' in data:
             user_col.update_one({
-                'username': data['username']
+                '_id': ObjectId(data['userID'])
             }, {
                 '$set': {
                     'DOB' : data['DOB']
@@ -95,14 +95,14 @@ class ChangeProfilePicture(APIView):
 
         user_col = CLIENT_DATABASE['userInfo']
 
-        oldImageID = user_col.find_one({'username': data['username']})['profilePictureID']
+        oldImageID = user_col.find_one({'_id': ObjectId(data['userID'])})['profilePictureID']
 
         imageID = FS.put(data['imageString'], encoding='utf-8')
         if(str(oldImageID) != '6228f291957de3501a1e7fd7'):
             FS.delete(ObjectId(oldImageID))
 
         user_col.update_one({
-            'username': data['username']
+            '_id': ObjectId(data['userID'])
         }, {
             '$set': {
                 'profilePictureID': imageID

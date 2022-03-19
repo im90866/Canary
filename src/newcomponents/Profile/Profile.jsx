@@ -14,13 +14,13 @@ function Profile() {
     setUsername(String(getCookie('username')))
     setPFP("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPEAAADRCAMAAAAquaQNAAAAA1BMVEX///+nxBvIAAAAR0lEQVR4nO3BMQEAAADCoPVP7WULoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABuxZIAAeHuCGgAAAAASUVORK5CYII=")
 
-    axios.get("http://localhost:8000/getProfilePicture/" + String(getCookie('username'))).then((res) => {
+    axios.get("http://localhost:8000/getProfilePicture/" + String(getCookie('userID'))).then((res) => {
       if(res.data["success"]) {
         setPFP(res.data['imageString'])
       }
     })
 
-    axios.get("http://localhost:8000/getProfileFeed/" + String(getCookie('username'))).then((res) => {
+    axios.get("http://localhost:8000/getProfileFeed/" + String(getCookie('userID'))).then((res) => {
       if(res.data["success"]) {
         setImages(res.data['postData'])
         console.log(res.data)

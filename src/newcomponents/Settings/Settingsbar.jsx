@@ -7,7 +7,10 @@ import Cardthree from './Cardthree'
 import Cardfour from './Cardfour'
 import Cardfive from './Cardfive'
 
-function Settingsbar() {
+function Settingsbar(prop) {
+  const cache = prop.cache
+  const setCache = prop.setCache
+
   return (
     <div>
         <body className="settingscc1">
@@ -16,7 +19,7 @@ function Settingsbar() {
         <div className="settings-container">
        
          <Cardone/>
-            <Cardtwo/>  
+            <Cardtwo cache={cache} setCache={setCache}/>  
         </div>
         </body>
     </div>

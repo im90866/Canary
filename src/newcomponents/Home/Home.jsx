@@ -5,12 +5,13 @@ import Sidebar from '../Sidebar/Sidebar'
 import Feed from "../Feed/Feed"
 
 function Home(prop) {
-  const post = prop.post
+  const cache = prop.cache
+  const setCache = prop.setCache
 
   return (
     <div>
       <div className="home-container">
-        <Feed posts={post} />
+        <Feed cache={cache} setCache={setCache} />
       </div>
     </div>
   )

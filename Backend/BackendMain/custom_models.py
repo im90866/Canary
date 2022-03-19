@@ -1,3 +1,4 @@
+from email import message
 from .helper_functions import *
 
 import hashlib
@@ -17,7 +18,7 @@ class userInfo():
     _postID = []
     _projectID = []
 
-    _messageList = []
+    _chatList = []
     _userSettings = {}
     _DOB = ""
 
@@ -62,7 +63,7 @@ class userInfo():
             "userDetails": self._userDetails,
             "postID" : self._postID,
             "projectID" : self._projectID,
-            "messageList": self._messageList,
+            "chatList": self._chatList,
             "userSettings" : self._userSettings,
             "DOB": self._DOB
         }
@@ -195,43 +196,66 @@ class post():
 
         return model
 
-class IndividualChatStore():
-    _firstPersonID = ""
-    _secondPersonID = ""
+class ChatStore():
+    _otherPersonsID = ""
     _chatID = ""
-    _createdAt = ""
+    _show = True
 
-    def __init__(self, firstPersonID, secondPersonID, chatID):
-        self._firstPersonID = firstPersonID
-        self._secondPersonID = secondPersonID
-        self._createdAt = 3
+    def __init__(self, otherPersonsID, chatID):
+        self._otherPersonID = otherPersonsID
         self._chatID = chatID
 
     def getModel(self):
         model = {
-            'firstPersonID' : self._firstPersonID,
-            'secondPersonID' : self._secondPersonID,
+            'otherPersonsID' : self._otherPersonID,
             'chatID' : self._chatID,
-            "createdAt" : self._createdAt,
         }
 
         return model
 
+class chat():
+    _createdAt = ""
+    _lastModified = ""
+    _messageList = []
+    _personAID = ""
+    _personBID = ""
+
+    def __init__(self, idA, idB):
+        time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+
+        self._createdAt = time
+        self._lastModified = time
+        self._personAID = idA
+        self._personBID =idB
+
+    def getModel(self):
+        model = {
+            'createdAt' : self._createdAt,
+            'lastModified' : self._lastModified,
+            'messageList' : self._messageList,
+        }
+
+        return model
+
+
 class Message():
+    _chatId = ""
     _info = ""
     _createdAt = ""
     _createdBy = ""
 
     def __init__(self, chatID, info, by):
-        self._chatID
+        self._chatID = chatID
         self._info = info
         self._createdBy = by
+        self._createdAt = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
     def getModel(self):
         model = {
             'chatID' : self._chatID,
             'messageVal' : self._info, 
-            'messageBy' : self._createdBy
+            'messageBy' : self._createdBy,
+            'createdAt' : self._createdAt,
         }
 
         return model

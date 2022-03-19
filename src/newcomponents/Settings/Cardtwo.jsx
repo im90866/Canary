@@ -2,7 +2,10 @@
  import axios from 'axios'
  import Modal6 from '../Modal6/Modal6';
 import Moda7 from '../Modal7/Moda7';
- function Cardtwo() {
+ function Cardtwo(prop) {
+  const cache = prop.cache
+  const setCache = prop.setCache
+
   const fileRef = useRef();
   const [openModal, setOpenModal] = useState(false);
   const [PFP, setPFP] = useState("")
@@ -50,7 +53,7 @@ import Moda7 from '../Modal7/Moda7';
 
     const req = {
       'imageString': image64,
-      'username': String(getCookie('username'))
+      'userID': String(getCookie('userID'))
     }
 
     console.log(image64)
@@ -105,13 +108,21 @@ import Moda7 from '../Modal7/Moda7';
   useEffect(() => {
     setPFP("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPEAAADRCAMAAAAquaQNAAAAA1BMVEX///+nxBvIAAAAR0lEQVR4nO3BMQEAAADCoPVP7WULoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABuxZIAAeHuCGgAAAAASUVORK5CYII=")
 
-    axios.get("http://localhost:8000/getProfilePicture/" + String(getCookie('username'))).then((res) => {
-      if(res.data["success"]) {
-        setPFP(res.data['imageString'])
-      }
-    })
+    if(!('settingsProfilePicture' in cache)) {
+      axios.get("http://localhost:8000/getProfilePicture/" + String(getCookie('userID'))).then((res) => {
+        if(res.data["success"]) {
+          setPFP(res.data['imageString'])
+          
+          cache['settingsProfilePicture'] = res.data['imageString']
+          setCache(cache)
+        }
+      })
+    }
+    else{
+      setPFP(cache['settingsProfilePicture'])
+    }
 
-    axios.get("http://localhost:8000/getUserInfo/" + String(getCookie('username'))).then((res) => {
+    axios.get("http://localhost:8000/getUserInfo/" + String(getCookie('userID'))).then((res) => {
       if(res.data['success']){
         setValues({
           username: res.data['username'],

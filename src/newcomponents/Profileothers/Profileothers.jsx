@@ -5,25 +5,43 @@ import { Link, useParams, useNavigate} from 'react-router-dom'
 import axios from 'axios'
 
 function Profileothers() {
-  const username = useParams()['username']
+  const userID = useParams()['userID']
   const [PFP, setPFP] = useState("")
   const [images, setImages] = useState([])
+  const [username, setUsername] = useState("")
 
   const navigate = useNavigate()
+
+  const messageUser = async() => {
+    const req = {
+      'userID': getCookie('userID'),
+      'otherPersonsID': userID
+    }
+
+    await axios.post('http://localhost:8000/checkChat/', req).then((res) => {
+      console.log(res)
+    });
+
+    navigate('/chats')
+  }
   
   useEffect(() => {
     setPFP("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPEAAADRCAMAAAAquaQNAAAAA1BMVEX///+nxBvIAAAAR0lEQVR4nO3BMQEAAADCoPVP7WULoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABuxZIAAeHuCGgAAAAASUVORK5CYII=")
 
-    if(username == String(getCookie('username')))
+    if(userID == String(getCookie('userID')))
       navigate('/profile')
 
-    axios.get("http://localhost:8000/getProfilePicture/" + username).then((res) => {
+    axios.get('http://localhost:8000/getUsername/'+ userID).then((res) => {
+      setUsername(res.data['username'])
+    });
+
+    axios.get("http://localhost:8000/getProfilePicture/" + userID).then((res) => {
       if(res.data["success"]) {
         setPFP(res.data['imageString'])
       }
     })
 
-    axios.get("http://localhost:8000/getProfileFeed/" + username).then((res) => {
+    axios.get("http://localhost:8000/getProfileFeed/" + userID).then((res) => {
       if(res.data["success"]) {
         setImages(res.data['postData'])
         console.log(res.data)
@@ -42,7 +60,7 @@ function Profileothers() {
         </div>
 
         <h1 className="profile-user">{username}</h1>
-        <Link to="/settings"><button className="editp">Message</button></Link>
+        <button className="editp" onClick={() => {messageUser()}}>Message</button>
 
         <div className="post-info">
           <h2 className="collaborations"><Link to="/profile/collaborations">Collaborations</Link></h2>

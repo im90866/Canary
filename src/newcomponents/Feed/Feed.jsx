@@ -8,10 +8,31 @@ import { AiOutlineArrowRight } from "react-icons/ai";
 import axios from 'axios'
 
 function Feed(prop) {
-  const posts = prop.posts
+  const cache = prop.cache
+  const setCache = prop.setCache
 
-  useEffect(async () => {
-    
+  const [posts, setPosts] = useState([])
+
+  useEffect(() => {
+    if(!('homePosts' in cache)) {
+      console.log('booooo')
+      axios.get("http://localhost:8000/getFeed/" + String(getCookie('username')))
+              .then((res) => {
+                  if (res.data["success"]) {
+                      setPosts(res.data['posts'])
+
+                      cache['homePosts'] = res.data['posts']
+                      setCache(cache)
+                      console.log(res.data['posts'])
+                  }
+                  else
+                      console.log("Error: ")
+              })
+    }
+    else {
+      console.log('woooooo')
+      setPosts(cache['homePosts'])
+    }
   }, [])
 
   return (

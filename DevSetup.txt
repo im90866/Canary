@@ -11,26 +11,27 @@ npm start
 ------------------------------------------------------------
 
 ------------------------------------------------------------
-ONLY DO THE FOLLOWING IF YOUR DJANGO FILES ARE MISSING:
+Python libraries to install before starting the server
 ------------------------------------------------------------
-To install Django(Have python3 and pip installed) and then:
-    pip install Django
-Then:
-    django-admin startproject Canary
-To add any of your apps(No need to do this):
-    python manage.py startapp <your_app_name>
-------------------------------------------------------------
+Prerequisites: Have python and pip installed
 
-------------------------------------------------------------
-To start the Django server, do the following:
-------------------------------------------------------------
-First have python and pip installed. 
-Then install the following through pip:
+    pip install Django
     pip install pymongo
     pip install djangorestframework
     pip install django-cors-headers
 
-After the above is done,
-To run the Django server:
-    python Canary/manage.py runserver <port_number(OPTIONAL. if not specified, default is 8000)>
+    --NEW THINGS TO INSTALL:
+    pip install -U channels  
+    pip install channels-redis
+    pip install redis
+
+In case of a pyOpenSSL error, do the following:
+pip install pyOpenSSL -U
+
+
+To run the server run the following:
+redis-server
+python Backend/manage.py runserver  OR  python manage.py runserver 
+
+
 ------------------------------------------------------------

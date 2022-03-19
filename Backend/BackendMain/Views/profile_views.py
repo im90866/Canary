@@ -21,12 +21,12 @@ CLIENT_DATABASE = CLIENT_SERVER['mainDB']
 class GetProfilePicture(APIView):
     permission_classes = (permissions.AllowAny, )
 
-    def get(self, request, username, format=None):
+    def get(self, request, userID, format=None):
         FS = gridfs.GridFS(CLIENT_DATABASE)
 
         user_col = CLIENT_DATABASE['userInfo']
     
-        imageID = user_col.find_one({'username': username})['profilePictureID']
+        imageID = user_col.find_one({'_id': ObjectId(userID)})['profilePictureID']
         imageString = FS.get(ObjectId(imageID))
 
         return Response({
@@ -37,14 +37,14 @@ class GetProfilePicture(APIView):
 class GetProfileFeed(APIView):
     permission_classes = (permissions.AllowAny, )
 
-    def get(self, request, username, format=None):
+    def get(self, request, userID, format=None):
         FS = gridfs.GridFS(CLIENT_DATABASE)
 
         user_col = CLIENT_DATABASE['userInfo']
         post_col = CLIENT_DATABASE['postData']
         meta_col = CLIENT_DATABASE['imageData']
     
-        postList = user_col.find_one({'username': username})['postID']
+        postList = user_col.find_one({'_id': ObjectId(userID)})['postID']
 
         imageList = []
 

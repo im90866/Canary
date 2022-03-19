@@ -1,13 +1,6 @@
-import math
+returnChatList = [{'s':1, 'n':3},{'s':5, 'n':6},{'s':4, 'n':3},{'s':12, 'n':2}]
 
-dividend = 10
-divisor = 3
+for x in range(len(returnChatList)):
+    returnChatList[x] = (returnChatList[x])['n']
 
-for x in range(10):
-    print(dividend, '/', divisor, '=', dividend/divisor, 'which is', math.floor(dividend/divisor))
-    print(dividend, '/', divisor, '=', dividend/divisor, 'which is', ((dividend + (divisor / 2))/(divisor)))
-    print("")
-    dividend += 2
-    divisor += 1
-
-# int i = (x + (n / 2)) / n
+print(returnChatList)

@@ -6,6 +6,7 @@ from .Views.project_views import *
 from .Views.workspace_views import *
 from .Views.home_views import *
 from .Views.profile_views import *
+from .Views.chat_views import *
 from .Views.setting_views import *
 
 urlpatterns = [
@@ -33,17 +34,25 @@ urlpatterns = [
     path('renameImage/', RenameImage.as_view()),
 
     # Home Views
-    path('getFeed/<str:username>', GetHomePosts.as_view()),
+    path('getFeed/<str:userID>', GetHomePosts.as_view()),
     path('search/<str:value>', SearchProfiles.as_view()),
     path('likePost/', LikePost.as_view()),
 
     # Profile Views
-    path('getProfilePicture/<str:username>', GetProfilePicture.as_view()),
+    path('getProfilePicture/<str:userID>', GetProfilePicture.as_view()),
     path('changeProfilePicture/', ChangeProfilePicture.as_view()),
-    path('getProfileFeed/<str:username>', GetProfileFeed.as_view()),
+    path('getProfileFeed/<str:userID>', GetProfileFeed.as_view()),
+    path('getUserID/<str:username>', GetUserID.as_view()),
+    path('getUsername/<str:userID>', GetUsername.as_view()),
+
+    # Chat Views
+    path('checkChat/', CheckChat.as_view()),
+    path('getChat/<str:userID>', GetChats.as_view()),
+    path('getMessages/<str:chatID>/<str:userID>', GetMessages.as_view()),
+    path('sendMessage/', SendMessage.as_view()),
 
     # Settings Views
-    path('getUserInfo/<str:username>', GetUserInfo.as_view()),
+    path('getUserInfo/<str:userID>', GetUserInfo.as_view()),
     path('uploadUserInfo/', UploadUserInfo.as_view()),
 
     # debug functions

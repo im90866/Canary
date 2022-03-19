@@ -69,7 +69,7 @@ function Topbar() {
   useEffect(() => {
     setPFP("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPEAAADRCAMAAAAquaQNAAAAA1BMVEX///+nxBvIAAAAR0lEQVR4nO3BMQEAAADCoPVP7WULoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABuxZIAAeHuCGgAAAAASUVORK5CYII=")
 
-    axios.get("http://localhost:8000/getProfilePicture/" + String(getCookie('username'))).then((res) => {
+    axios.get("http://localhost:8000/getProfilePicture/" + String(getCookie('userID'))).then((res) => {
       if (res.data["success"]) {
         setPFP(res.data['imageString'])
       }
@@ -122,9 +122,10 @@ function Topbar() {
                       key={index}
                       onClick={(e) => {
                         inputRef.current.value = res.username;
-                        
-                        navigate('/profile/' + res.username)
-                        window.location.reload();
+                        axios.get('http://localhost:8000/getUserID/'+res.username).then((response) => {
+                          navigate('profile/'+response.data['userID'])
+                          window.location.reload();
+                        });
                       }}
                       className="list-group-item list-group-item-action"
                     >
@@ -145,7 +146,6 @@ function Topbar() {
                   >
                     No Results Found
                   </button>
-                
             }
           </div>
 

@@ -34,43 +34,39 @@ import Explore from './newcomponents/Explore/Explore';
 import Teamchats from './newcomponents/Teamchats/Teamchats';
 import Postbig from './newcomponents/Postbig/Postbig';
 
+import WebSocketInstance from './JS_Files/websocket';
+
 function App() {
 
     const location = useLocation()
     const [logged, setLogged] = useState(false)
     const [change, setChange] = useState(false)
-    const [posts, setPosts] = useState([])
     const [check, setCheck] = useState()
+
+    const [cache, setCache] = useState({})
+
+    const socketRef = null
 
     let navigate = useNavigate()
 
     const user = getCookie('username')
     console.log(user)
 
-    useEffect(async () => {
+    useEffect(() => {
         console.log("change")
         setLogged(getCookie('username') != null)
 
-        if (getCookie('username') != null && logged)
+        if (getCookie('username') != null && logged){
             navigate('/home')
+        }
 
         //axios.post("http://localhost:8000/sendEmail/", {})
         //axios.get("http://localhost:8000/print")
 
-        await axios.get("http://localhost:8000/getFeed/" + String(getCookie('username')))
-            .then((res) => {
-                if (res.data["success"]) {
-                    setPosts(res.data['posts'])
-                    console.log(res.data['posts'])
-                }
-                else
-                    console.log("Error: ")
-            })
     }, [user])
 
     const protectOther = (component) => {
         if (getCookie('username') != null) {
-            console.log("The answer is: " + getCookie('username') != null)
             return component
         }
         else {
@@ -103,9 +99,6 @@ function App() {
                                 ?
                                 <>
                                 <Sidebar />
-                                {
-                                    console.log("working")
-                                }
                                 </>
                                 :
                                 null
@@ -116,7 +109,7 @@ function App() {
 
                             <Route path="/" element={protectLogin()} />
 
-                            <Route path="/home" element={protectOther(<Home post={posts} />)} />
+                            <Route path="/home" element={protectOther(<Home cache={cache} setCache={setCache}/>)} />
 
                             {/* <Route path="/signup" element={<Signup />}></Route> */}
                             {/* <Route path="/mainspace" element={<Mainspace />}></Route>
@@ -128,12 +121,12 @@ function App() {
               <Route path="/profile/collaborations" element={<Collaboration />} />
               <Route path="/profile/profileposts" element={<Profileposts />} />
               <Route path="/project" element={<Project />} />
-              <Route path="/profile/:username" element={<Profileothers />} />
+              <Route path="/profile/:userID" element={<Profileothers />} />
 
               <Route path="/team" element={<Team />} />
               <Route path="/projectsettings" element={<ProjectSettings />} />
               <Route path="/registrationpage" element={<Registrationpage />} />
-              <Route path="/settings" element={<Settingsbar />} />
+              <Route path="/settings" element={<Settingsbar cache={cache} setCache={setCache}/>} />
               <Route path="/changepassword" element={<Cardthree />} />
               <Route path="/blocked" element={<Cardfour />} />
               <Route path="/delete" element={<Cardfive />} />
@@ -150,7 +143,6 @@ function App() {
             <CSRFToken />
             <Routes>
               <Route path="/" element={protectLogin()} />
-
               <Route path="/home" element={protectOther(<Home />)} />
             </Routes>
           </>
