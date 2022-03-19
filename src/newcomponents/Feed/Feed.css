@@ -24,10 +24,9 @@
     .etitle{
         position: relative;
         top:50px;
-        left:350px;
         font-size:20px;
         font-weight: 500;
-    
+
     }
     .arrow{
         position: relative;
@@ -35,4 +34,8 @@
         left:40px;
     
     } 
+
+    .feed-container{
+        margin: 0;
+    }
 }

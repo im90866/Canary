@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import "./Feed.css"
 import Post from '../Post/Post'
 
 import { Posts } from "../../dummy.js";
-   
+
 import { AiOutlineArrowRight } from "react-icons/ai";
 import axios from 'axios'
 
@@ -11,61 +11,61 @@ function Feed(prop) {
   const posts = prop.posts
 
   useEffect(async () => {
-    
+
   }, [])
 
   return (
-   
+
     <div className="feed-container">
-    {/* <CreatePost/> */}
-     <div className="explore-title">
-    <h1 className='etitle'>Recommended For You <AiOutlineArrowRight className='arrow'/></h1>
-  </div> 
-    <div className="wrapper1">
+      {/* <CreatePost/> */}
+      <div className="explore-title">
+        <h1 className='etitle'>Recommended For You <AiOutlineArrowRight className='arrow' /></h1>
+      </div>
+      <div className="wrapper1">
 
-    {
-      posts.map(p => (
-        <Post key={p.postID} post={p} />
-      ))
-    }
+        {
+          posts.map(p => (
+            <Post key={p.postID} post={p} />
+          ))
+        }
 
-    </div>
-    <div className="explore-title">
-    <h1 className='etitle'>Recommended For You  <AiOutlineArrowRight className='arrow'/></h1>
+      </div>
+      <div className="explore-title">
+        <h1 className='etitle'>Recommended For You  <AiOutlineArrowRight className='arrow' /></h1>
 
-  </div> 
-    <div className="wrapper1">
+      </div>
+      <div className="wrapper1">
 
-    {
-      posts.map(p => (
-        <Post key={p.postID} post={p} />
-      ))
-    }
+        {
+          posts.map(p => (
+            <Post key={p.postID} post={p} />
+          ))
+        }
 
-    </div>
-    <div className="explore-title">
-    <h1 className='etitle'>Recommended For You  <AiOutlineArrowRight className='arrow'/></h1>
+      </div>
+      <div className="explore-title">
+        <h1 className='etitle'>Recommended For You  <AiOutlineArrowRight className='arrow' /></h1>
 
-  </div> 
-    <div className="wrapper1">
+      </div>
+      <div className="wrapper1">
 
-    {
-      posts.map(p => (
-        <Post key={p.postID} post={p} />
-      ))
-    }
+        {
+          posts.map(p => (
+            <Post key={p.postID} post={p} />
+          ))
+        }
 
-    </div>
-    <div className="explore-title">
-    <h1 className='etitle'>Recommended For You  <AiOutlineArrowRight className='arrow'/></h1>
+      </div>
+      <div className="explore-title">
+        <h1 className='etitle'>Recommended For You  <AiOutlineArrowRight className='arrow' /></h1>
 
-  </div> 
-    <div className="wrapper1">
-    {
-        posts.map(p => (
-          <Post key={p.postID} post={p} />
-        ))
-      }
+      </div>
+      <div className="wrapper1">
+        {
+          posts.map(p => (
+            <Post key={p.postID} post={p} />
+          ))
+        }
       </div>
     </div>
   )
