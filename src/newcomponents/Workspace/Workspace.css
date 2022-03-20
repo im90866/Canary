@@ -87,9 +87,9 @@ border-radius: 40px;
 .btn-text:hover{
     color: #ffb53b;
 }
-.three-dots1{
-    margin-left: 50px;
-    margin-top: -10px;
+.dropdowns{
+position: absolute;
+left: 135px;
 }
 .wbtn1{
     position: relative;
@@ -117,21 +117,24 @@ border-radius: 40px;
   left: 150px;
   position: relative;
   z-index: 9999;
-top:-20px
+top:-20px;
+width: 100%;
+
 }
 .folder-icon{
 position: relative;
-   font-size: 150px;
+   font-size: 155px;
    /* z-index: 9999; */
    left: -100px;
    top:50px;
+  
 }
 
 .image{
     position: relative;
     left: -100px;
-    width:150px;
-    height: 150px;
+    width:160px;
+    height: 155px;
     border-radius: 5px;
     /* z-index: 9999; */
     top:50px;
@@ -142,18 +145,33 @@ position: relative;
     text-decoration: none;
     /* z-index: 9999; */
 }
+.details-folder{
+    background-color: red;
+}
 .folder-info{
     position: relative;
-    top:50px;
+    top:45px;
     display: flex;
-    left: -80px;
+    left: -100px;
+    max-width: 150px;
+    max-height: 20px;
+ 
+ 
+}
+.folder-text1{
+    font-weight: 500;
+    font-size: 15px;
+    position: relative;
+    top:-15px;
 }
 
 .folder-text{
     color:black;
     font-size: 15px;
-    margin-left: 15px;
-  margin-top: -10px;
+ font-weight: 500;
+ position: relative;
+    top:-15px;
+    left: 10px;
 
 }
 .folder-info1{
@@ -196,17 +214,8 @@ font-size: 45px;
     font-size:100px;
     color: black;
 }
-/* .three-dotsimg{
-    position: sticky;
-  
-    color: black;
-    font-size: 20px;
-   margin-top: -5px;
-   margin-left: 70px;
-} */
-.three-dots{
-margin-left: 60px;
-}
+
+
 
 .dropdown-block:hover .dropdown-content{
   

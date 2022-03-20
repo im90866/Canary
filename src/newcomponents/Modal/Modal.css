@@ -6,8 +6,8 @@ position: fixed;
 
 }
   .modalContainer {
-    width: 380px;
-    height: 300px;
+    width: 280px;
+    height: 210px;
     border-radius: 12px;
     background-color: #Ffff;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -22,8 +22,8 @@ position: fixed;
    
   }
   .modalContainer5{
-    width: 380px;
-    height: 300px;
+    width: 250px;
+    height: 200px;
     border-radius: 12px;
     background-color: #Ffff;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -31,8 +31,8 @@ position: fixed;
     flex-direction: column;
     padding: 25px;
    position: relative;
-   top:50px;
-   left: 550px;
+   top:100px;
+   left: 620px;
    
   }
   
@@ -45,8 +45,9 @@ position: fixed;
   .create-title5{
     font-size: 25px;
     position: relative;
-    top:-50px;
-    left: 30px;
+    top:-60px;
+    font-size: 20px;
+    left: -15px;
   }
   .titleCloseBtn {
     display: flex;
@@ -81,11 +82,11 @@ position: fixed;
       color: black;
   }
   .create-title{
-      font-size: 30px;
+      font-size: 20px;
       font-weight: 600;
       color: black;
    position: relative;
-   top:-50px;
+   top:-70px;
    left: -50px;
    
        text-overflow: clip;
@@ -101,18 +102,44 @@ position: fixed;
   }
  
   
+  .change-text100{
+    border: none;
+    background-color: #efefef;
+    padding: 8px 20px;
+
+    position: relative;
+    top:-45px;
+    border-radius: 5px;
+    width: 200px;
+    margin-top: 0px;
+    font-size: 10px;
+    left: 0px;
+  }
   .change-text10{
     border: none;
     background-color: #efefef;
     padding: 8px 20px;
-margin-right: 40px;
+
     position: relative;
     top:-45px;
     border-radius: 5px;
-    width: 400px;
+    width: 150px;
     margin-top: 5px;
     font-size: 14px;
-    left: 15px;
+    left: 5px;
+  }
+  .change-text101{
+    border: none;
+    background-color: #efefef;
+    padding: 8px 20px;
+
+    position: relative;
+    top:-55px;
+    border-radius: 5px;
+    width: 250px;
+    margin-top: 5px;
+    font-size: 14px;
+    left: -7px;
   }
   .folder-btn{
       text-transform: none;
@@ -135,21 +162,26 @@ margin-right: 40px;
 
   background-color: #f7b53b;
   color: #FFFFFF;
-  border: 1px solid #f7b53b;;
+  border: 1px solid #ffb53b;;
   font-weight: bold;
-  width: 200px;
+  width: 150px;
+  position: relative;
+  top:-40px;
   height: 40px;border-radius: 40px;
 }
 .folder-btn5{
   
-  background-color: #f7b53b;
+  background-color: #ffb53b;
   color: #FFFFFF;
   border: 1px solid #f7b53b;;
   font-weight: bold;
-  width: 200px;
+  width: 120px;
   height: 40px;
   margin-left: 60px;
   border-radius: 40px;
+  position: relative;
+  left: -20px;
+  top:-25px;
 }
 .folder-btn5:hover{
   background-color: #fff;
@@ -169,8 +201,8 @@ margin-right: 40px;
   .p1name{
     font-size: 14px;
  position: relative;
- top:-50px;
- left: -80px;
+ top:-60px;
+ left: -40px;
   }
 
 .post-img{
@@ -211,77 +243,7 @@ top: 10px;
     margin-bottom: 30px;
   }
   @media (max-width: 900px) {
-    .modalContainer {
-      width: 100%;
-      height: 300px;
-      border-radius: 12px;
-      background-color: #Ffff;
-      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-      display: flex;
-      flex-direction: column;
-      padding: 25px;
-     position: relative;
-     top:10px;
-     left: -200px;
-     
-    
-     
-    }
-    .create-title{
-      font-size: 20px;
-      font-weight: 600;
-      color: black;
-   position: relative;
-   top:-50px;
-   left: -50px;
    
-       text-overflow: clip;
-      white-space: nowrap;
-  }
-  .folderbtnsssss{
-
-    background-color: #f7b53b;
-    color: #FFFFFF;
-    border: 1px solid #f7b53b;;
-    font-weight: bold;
-    width: 150px;
-    height: 40px;
-    border-radius: 40px;
-  }
-  .modalContainer5{
-    width: 400px;
-    height: 200px;
-    border-radius: 12px;
-    background-color: #Ffff;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    display: flex;
-    flex-direction: column;
-    padding: 25px;
-   position: relative;
-   top:-30px;
-   left: 30px;
-   
-  }
-  .create-title5{
-    font-size: 20px;
-    position: relative;
-    top:-50px;
-    left: 50px;
-  }
-  .folder-btn5{
-  
-    background-color: #f7b53b;
-    color: #FFFFFF;
-    border: 1px solid #f7b53b;;
-    font-weight: bold;
-    width: 150px;
-    height: 30px;
-    margin-left: 60px;
-    position: relative;
-    top:-25px;
-    left: 20px;
-    border-radius: 40px;
-  }
   .titleCloseBtn button {
     background-color: transparent;
     border: none;
@@ -330,7 +292,20 @@ top: -20px;
     left: 20px;
     
   }
+  .modalContainer5{
+    position: relative;
+    left: 60px;
+  }
     
+  .modalContainer {
+
+   position: relative;
+   top:50px;
+   left: -140px;
+   
+  
+   
+  }
 }
 
   

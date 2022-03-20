@@ -1,21 +1,16 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import "./Modal6.css"
-function Modal6({ closeModal}) {
+function Modal6() {
   return (
     <div>
     <div className="modalBackground6">
 <div className="modalContainer6">
  <div className="titleCloseBtn6">
-   <button className='cross'
-     onClick={() => {
-       closeModal(false);
-     }}
-   >
-     x
-   </button>
+  
  </div>
  <div className="title6">
- <p className='six-digit'>A 6-digit code is being sent to your email confiriming the details</p>
+ <p className='six-digit1'>A 6-digit code is being sent to your email confiriming the details</p>
  </div>
 
 

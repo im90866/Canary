@@ -5,7 +5,11 @@ import Message from '../Message/Message'
 import { AiFillLike,AiOutlineDownload } from "react-icons/ai";
 import { FaShare } from "react-icons/fa";
 import { BsThreeDots } from "react-icons/bs";
-function Postbig() {
+import { useState, useEffect} from "react"
+import Modal from "../Modal/Modal"
+import Modal8 from '../Modal8/Modal8';
+function Postbig({ closeModal}) {
+  const [openModal, setOpenModal] = useState(false);
   return (
     <div>
       <div className="bodyyy">
@@ -70,7 +74,8 @@ function Postbig() {
                 <AiFillLike className='icon-info'/>
                 <span className='likenumber'>200</span>
                 </div>
-                <FaShare  className='icon-info'/>
+                <FaShare  className='icon-info' onClick={() =>
+              setOpenModal(true)}/>
               
                 <h5 className='remix'>Remix</h5>
                 <BsThreeDots className='three-dots2'/>
@@ -92,6 +97,7 @@ function Postbig() {
                   </div>
         </div>
         </div>
+        {openModal && <Modal8 closeModal={setOpenModal} />}  
         </div>
     </div>
   )

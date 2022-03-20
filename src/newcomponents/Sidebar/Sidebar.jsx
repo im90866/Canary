@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { RiChatSmile2Line } from "react-icons/ri"
 import { NavLink, Link } from "react-router-dom";
 import { MdOutlineExplore } from "react-icons/md"
-import { AiOutlineHome } from 'react-icons/ai';
+import { AiOutlineHome,AiFillHome } from 'react-icons/ai';
 import { IoCreateOutline, IoSettingsOutline, IoLogOutOutline } from 'react-icons/io5';
 import { useContext } from "react";
 
@@ -26,40 +26,40 @@ export default function Sidebar() {
         <div className="sidebarWrapper">
           <ul className="sidebarList">
             <li className="sidebarListItem">
-              <NavLink to="/home" activeStyle={{ backgroundColor: '#88e' }}>
+              <NavLink to="/home"AiFillHome>
                 <AiOutlineHome className="sidebarIcon" />
                 <span className="sidebarListItemText">Home</span>
               </NavLink>
             </li>
 
             <li className="sidebarListItem">
-              <Link to="/project">
+              <NavLink to="/project">
                 <IoCreateOutline className="sidebarIcon" />
                 <span className="sidebarListItemText">Project</span>
-              </Link>
+              </NavLink>
             </li>
 
             <li className="sidebarListItem">
-              <Link to="/chats">
+              <NavLink to="/chats">
                 <RiChatSmile2Line className="sidebarIcon" />
                 <span className="sidebarListItemText">Chats</span>
-              </Link>
+              </NavLink>
             </li>
 
 
 
             <li className="sidebarListItem">
-              <Link to="/settings">
+              <NavLink to="/settings">
                 <IoSettingsOutline className="sidebarIcon" />
                 <span className="sidebarListItemText">Settings</span>
-              </Link>
+              </NavLink>
             </li>
 
             <li className="sidebarListItem" onClick={() => logout()}>
-              <Link to="/">
+              <NavLink to="/">
                 <IoLogOutOutline className="sidebarIcon" />
                 <span className="sidebarListItemText">Signout</span>
-              </Link>
+              </NavLink>
             </li>
 
           </ul>
