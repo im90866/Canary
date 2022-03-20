@@ -15,7 +15,9 @@ overflow-x: hidden;
     left:0;
     padding-top: 35px;
   }
-  
+  .sidebarlistsub{
+    margin-top: 10px;
+  }
 
   .sidebarWrapper {
   padding-top: 20px;
@@ -85,6 +87,7 @@ margin-top: 10px;
     color: black;
     font-size: 18px;
     margin-top: 10px;
+    margin-bottom: 10px;
  }
  .sidebarIcon1{
     font-size: 14px;
@@ -92,6 +95,7 @@ margin-top: 10px;
  }
  .sidebarListItemsub{
      list-style: none;
+     margin-top: 5px;
     padding: 5px;
  }
 

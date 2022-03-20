@@ -15,6 +15,11 @@ import Modal5 from '../Modal5/Modal5';
 import Modal5_1 from '../Modal5/Modal5_1';
 
 function Workspace(props) {
+  const back = async ()=>{
+    console.log("hello");
+
+  
+    }
   const fileRef = useRef();
 
   const [openDropdown, setOpenDropdown] = useState(false);
@@ -187,7 +192,7 @@ function Workspace(props) {
                   setOpenDropdown(true)}><span className='btn-text'>New Folder</span></button>
               </div>
               <div className="directory-path">
-                <TiArrowBack className='back-arrow' />
+                <TiArrowBack className='back-arrow' onClick={back} />
                 <h3 className="directory">/root/workspace</h3>
               </div>
             </div>

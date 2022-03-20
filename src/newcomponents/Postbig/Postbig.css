@@ -136,9 +136,17 @@ margin-left:-80px;
 .like1{
     display: flex;
 }
+.three-dots2{
+    color: #f7b53b;
+    font-size: 20px;
+    position: relative;
+    left:100px;
+    top:5px;
+
+}
 .chatSubmitButton1{
     width: 100px;
-    height: 40px;border-radius: 5px;
+    height: 40px;border-radius: 40px;
     position: relative;
     left: 15px;
     border: 1px solid #ffb53b;

@@ -103,6 +103,7 @@ function Chats() {
       scrollToBottomSmooth()
     }
     else {
+      console.log("working....");
       updateChatList()
       if(updater['chatID'] == currentChatID) {
         let val = messageList

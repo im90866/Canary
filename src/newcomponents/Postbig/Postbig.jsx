@@ -71,9 +71,9 @@ function Postbig() {
                 <span className='likenumber'>200</span>
                 </div>
                 <FaShare  className='icon-info'/>
-                <AiOutlineDownload className='icon-info'/>
+              
                 <h5 className='remix'>Remix</h5>
-               
+                <BsThreeDots className='three-dots2'/>
                 </div>
                 </div>
                 </div>
