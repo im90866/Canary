@@ -28,7 +28,7 @@ left: 80px;
     overflow-x: hidden;
     overflow-y: scroll; 
     position: relative;
-    top: 90px;
+    top: 120px;
     left: 80px;
     z-index: 999;
 }  
@@ -164,10 +164,23 @@ position: relative;
     margin-left: -70px;
 
 }
+
 .btn-text{
     color: white;
     font-size: 14px;
     margin-left: 0px;
+}
+.back{
+font-size: 45px;
+}
+.whitespace{
+    position: relative;
+    top:-50px;
+    width: 50px;
+    height: 50px;
+    left: -250px;
+   
+    
 }
   .folder-container2{
     width: 1000px;
@@ -180,7 +193,7 @@ position: relative;
     overflow-y: scroll;
 }   
 .back-icon{
-    font-size: 60px;
+    font-size:100px;
     color: black;
 }
 /* .three-dotsimg{
@@ -242,7 +255,9 @@ margin-left: 60px;
     font-size: 18px;
     font-weight: 500;
     margin-top: -35px;
-    margin-left: 20px;
+
+    position: relative;
+    left: -240px;
 }
 
 @media (max-width: 900px){

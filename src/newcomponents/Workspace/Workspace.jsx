@@ -244,7 +244,9 @@ function Workspace(props) {
                   setOpenDropdown(true)}><span className='btn-text'>New Folder</span></button>
               </div>
               <div className="directory-path">
-                <TiArrowBack className='back-arrow' onClick={back} />
+           <div className="whitespace" onClick={back}>
+             <TiArrowBack className='back'/> 
+               </div>
                 <h3 className="directory">/root/workspace</h3>
               </div>
             </div>

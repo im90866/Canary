@@ -57,7 +57,7 @@ function Post(post) {
               <AiFillLike className="like-icon" onClick={likeHandler}/>
 
               <span className="icontext">{like}</span> 
-              <BsThreeDots className='three-dots1'/>
+           
             </div>  
           </div> 
 
