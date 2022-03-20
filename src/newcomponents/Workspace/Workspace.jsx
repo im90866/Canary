@@ -16,6 +16,7 @@ import Modal5_1 from '../Modal5/Modal5_1';
 import { FaPython } from 'react-icons/fa'
 
 function Workspace(props) {
+  
   const fileRef = useRef();
 
   const [openDropdown, setOpenDropdown] = useState(false);
@@ -154,6 +155,10 @@ function Workspace(props) {
     console.log(newPath)
   }
 
+  const back = async ()=>{
+    console.log("hello")
+  }
+
   const deleteFolder = async (folderID) => {
     const request = {
       'folderID': folderID,
@@ -238,9 +243,9 @@ function Workspace(props) {
                 <button className="wbtn1" onClick={() =>
                   setOpenDropdown(true)}><span className='btn-text'>New Folder</span></button>
               </div>
-              <div className="directory-path" onClick={() => exitFolder()}>
-                <TiArrowBack className='back-arrow' />
-                <h3 className="directory" >/root/workspace</h3>
+              <div className="directory-path">
+                <TiArrowBack className='back-arrow' onClick={back} />
+                <h3 className="directory">/root/workspace</h3>
               </div>
             </div>
           </div>

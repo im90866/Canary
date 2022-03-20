@@ -61,10 +61,7 @@ function Profile(prop) {
         <h1 className="profile-user">{username}</h1>
         <Link to="/settings"><button className="editp">Edit Profile</button></Link>
       
-        <div className="post-info">
-          <h2 className="collaborations"><Link to="/profile/collaborations">Collaborations</Link></h2>
-          <h2 className="posts1"><Link to="/profile/profileposts">Posts</Link></h2>
-       </div>
+        
        </div>
 
         <div className="wrapper">

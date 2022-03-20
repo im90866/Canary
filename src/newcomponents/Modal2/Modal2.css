@@ -97,6 +97,7 @@
     border: 1px solid #ffb53b;
 	background-color: #ffb53b;
 	color: #FFFFFF;
+    border-radius: 40px;
 }
 .folder-btn3:hover{
     border: 1px solid #ffb53b;
@@ -109,7 +110,7 @@
 	color: #ffb53b;
 }
 .folder-btn4 {
-    border-radius: 5px;
+    border-radius: 40px;
     border: 1px solid #ffb53b;
 	background-color: #ffb53b;
 	color: #FFFFFF;

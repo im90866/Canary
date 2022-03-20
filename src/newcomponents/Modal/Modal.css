@@ -117,7 +117,7 @@ margin-right: 40px;
   .folder-btn{
       text-transform: none;
       position: relative;
-      border-radius: 5px;
+      border-radius: 40px;
       width: 200px;
       height: 40px;
       text-transform: none;
@@ -138,7 +138,7 @@ margin-right: 40px;
   border: 1px solid #f7b53b;;
   font-weight: bold;
   width: 200px;
-  height: 40px;border-radius: 5px;
+  height: 40px;border-radius: 40px;
 }
 .folder-btn5{
   
@@ -149,7 +149,7 @@ margin-right: 40px;
   width: 200px;
   height: 40px;
   margin-left: 60px;
-  border-radius: 5px;
+  border-radius: 40px;
 }
 .folder-btn5:hover{
   background-color: #fff;
@@ -164,7 +164,7 @@ margin-right: 40px;
   width: 200px;
   height: 40px;
   margin-left: 60px;
-  border-radius: 5px;
+  border-radius: 40px;
   margin-bottom: 30px;}
   .p1name{
     font-size: 14px;
@@ -245,7 +245,8 @@ top: 10px;
     border: 1px solid #f7b53b;;
     font-weight: bold;
     width: 150px;
-    height: 40px;border-radius: 5px;
+    height: 40px;
+    border-radius: 40px;
   }
   .modalContainer5{
     width: 400px;
@@ -279,7 +280,7 @@ top: 10px;
     position: relative;
     top:-25px;
     left: 20px;
-    border-radius: 5px;
+    border-radius: 40px;
   }
   .titleCloseBtn button {
     background-color: transparent;
@@ -322,7 +323,7 @@ top: -20px;
     width: 150px;
     height: 40px;
     margin-left: 60px;
-    border-radius: 5px;
+    border-radius: 40px;
     margin-bottom: 30px;
     position: relative;
     top:-30px;

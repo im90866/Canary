@@ -8,7 +8,7 @@ import { Users } from "../../dummy.js";
 import { useState, useEffect} from "react";
 import { useMediaQuery } from 'react-responsive';
 import axios from 'axios'
-
+import { BsThreeDots } from "react-icons/bs";
 function Post(post) {
   const [like,setLike] = useState(post['post']['likes'])
   const [isLiked,setIsLiked] = useState(false)
@@ -53,8 +53,11 @@ function Post(post) {
             <span className="card__title">{vPost.uploader}</span>
            
             <div className="icons">
+         
               <AiFillLike className="like-icon" onClick={likeHandler}/>
+
               <span className="icontext">{like}</span> 
+              <BsThreeDots className='three-dots1'/>
             </div>  
           </div> 
 

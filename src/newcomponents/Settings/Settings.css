@@ -122,7 +122,7 @@ left:120px;
 text-transform: none;
 width: 150px;
    height: 40px;
-border-radius: 5px;
+border-radius: 40px;
 position: relative;
 top:60px;
 left:-170px;
@@ -227,6 +227,7 @@ border: 1px solid #ffb53b;
 font-weight: bold;
 width: 180px;
     height: 40px;
+    border-radius: 40px;
 
 }
 .submit-changes:hover{
