@@ -3,7 +3,18 @@ import "../Modal/Modal.css"
 import axios from 'axios'
 import { useState} from 'react';
 
-function Modal_1({folderId, imageId, name, closeModal, makeChange}) {
+function Modal_1(props) {
+    const folders = props.folderList
+    const images = props.imageList
+    const setFolders = props.setFolders
+    const setImages = props.setImages
+
+    const name = props.name
+
+    const imageId = props.imageId
+    const folderId = props.folderId
+
+    const closeModal = props.closeModal
 
     const [renameFolder, setRenameFolder] = useState("")
     const [renameImage, setRenameImage] = useState("")
@@ -32,9 +43,21 @@ function Modal_1({folderId, imageId, name, closeModal, makeChange}) {
           'newName': renameFolder
         }
 
+        console.log(renameFolder + " " + folderId)
+
         await axios.post("http://localhost:8000/renameFolder/", request).then((res) => {
           if (res.data["error"]) {
             console.log(res.data['error'])
+          }
+          else {
+            let newFolderList = folders.slice()
+            for(let x = 0; x < folders.length;++x) {
+              if((folders[x])['folderID'] == folderId) {
+                (newFolderList[x])['folderName'] = renameFolder
+                break
+              }
+            }
+            setFolders(newFolderList)
           }
         })
       }
@@ -48,9 +71,19 @@ function Modal_1({folderId, imageId, name, closeModal, makeChange}) {
           if (res.data["error"]) {
             console.log(res.data['error'])
           }
+          else {
+            let newImageList = images.slice()
+            for(let x = 0; x < images.length;++x) {
+              console.log((images[x])['imageID'] + " " + imageId)
+              if((images[x])['imageID'] == imageId) {
+                (newImageList[x])['fileName'] = renameImage
+                break
+              }
+            }
+            setImages(newImageList)
+          }
         })
       }
-      makeChange(true)
     }
 
   return (

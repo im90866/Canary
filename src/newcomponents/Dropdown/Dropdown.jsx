@@ -8,21 +8,10 @@ export default function Dropdown(props) {
   const folderPath = props.path
   const projectId = props.projId
   const setFolders = props.setFolder
+  const folders = props.folders
   
-  const makeChange = props.makeChange
 
   const [folderName, setFolderName] = useState("") 
-
-  const getFolders = async () => {
-    await axios.get("http://localhost:8000/getWorkspace/" + projectId + '/' + folderPath.join('&'))
-      .then((res) => {
-        if (res.data["success"]) {
-          setFolders(res.data['folderList'])
-        }
-        else
-          console.log("Error: " + res.data["error"])
-      })
-  }
 
   const addFolder = async (folder) => {
     console.log(folder)
@@ -32,17 +21,19 @@ export default function Dropdown(props) {
       ...folder
     }
 
-    axios.post("http://localhost:8000/createFolder/", request).then((res) => {
-      if (res.data["error"]) {
-        console.log(res.data['error'])
+    await axios.post("http://localhost:8000/createFolder/", request).then((res) => {
+      if (res.data["success"]) {
+        let newFolders = folders.slice()
+    
+        const val = {
+          'folderName' : folder['folderName'],
+          'folderID' : res.data['folderID']
+        }
+
+        newFolders.unshift(val)
+        setFolders(newFolders)
       }
     })
-
-    const getAll = async () => {
-      const allFolders = await getFolders()
-    }
-    getAll();
-    makeChange(true)
   }
 
   return (

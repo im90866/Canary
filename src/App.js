@@ -97,42 +97,34 @@ function App() {
     }, [location.pathname]);
 
     return (
-        <>
-            {
-                user !== null
+      <>
+        {
+          user !== null
+           ?
+          <>
+            <Topbar />
+            {/* {
+                !check
                     ?
                     <>
-
-                        <Topbar />
-                        {/* {
-                            !check
-                                ?
-                                <>
-                                    <Sidebar />
-                                    {
-                                        console.log("working")
-                                    }
-                                </>
-                                :
-                                <Sidebar2 />
-                        } */}
-                        <CSRFToken />
-                        <Routes>
-
-                            <Route path="/" element={protectLogin()} />
-
-                            <Route path="/home" element={protectOther(<Home cache={cache} setCache={setCache}/>)} />
-
-                            {/* <Route path="/signup" element={<Signup />}></Route> */}
-                            {/* <Route path="/mainspace" element={<Mainspace />}></Route>
-      <Route path="/projects" element={<Projects />}></Route> */}
-
+                        <Sidebar />
+                        {
+                            console.log("working")
+                        }
+                    </>
+                    :
+                    <Sidebar2 />
+            } */}
+            <CSRFToken />
+            <Routes>
+              <Route path="/" element={protectLogin()} />
+              <Route path="/home" element={protectOther(<Home cache={cache} setCache={setCache}/>)} />
+   
               <Route path="/workspace/:id" element={<Workspace />} />
-
-              <Route path="/profile" element={<Profile />} />
+              <Route path="/profile" element={<Profile cache={cache} setCache={setCache}/>} />
               <Route path="/profile/collaborations" element={<Collaboration />} />
               <Route path="/profile/profileposts" element={<Profileposts />} />
-              <Route path="/project" element={<Project />} />
+              <Route path="/project" element={<Project cache={cache} setCache={setCache}/>} />
               <Route path="/profile/:userID" element={<Profileothers />} />
 
               <Route path="/team" element={<Team />} />
@@ -147,7 +139,6 @@ function App() {
               <Route path="/explore" element={<Explore/>} />
               <Route path="/forgotpassword" element={<Forgotpassword />} />
               <Route path="/postbig" element={<Postbig />} />
-
             </Routes>
           </>
           :
@@ -158,12 +149,9 @@ function App() {
               <Route path="/home" element={protectOther(<Home />)} />
             </Routes>
           </>
-      }
-
-
-    </>
-
-  );
+        }
+      </>
+    );
 }
 
 function getCookie(name) {

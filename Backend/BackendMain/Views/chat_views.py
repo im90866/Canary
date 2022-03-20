@@ -170,7 +170,6 @@ class SendMessage(APIView):
                 '$push': {
                     'messageList': {
                         '$each': [messageModel],
-                        '$position': 0
                     }
                 },
         })

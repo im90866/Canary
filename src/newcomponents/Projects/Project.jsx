@@ -9,13 +9,13 @@ import { Link } from 'react-router-dom'
 
 import axios from 'axios'
 
-function Project() {
+function Project(prop) {
+  const cache = prop.cache
+  const setCache = prop.setCache
+  
   const [openModal, setOpenModal] = useState(false);
 
   const [projects, setProjects] = useState([])
-  const [update, setUpdate] = useState(false)
-  const [id, setId] = useState("")
-  const [projectName, setProjectName] = useState("")
   const [changed, makeChange] = useState(false)
 
   const getProjects = async () => {

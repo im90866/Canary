@@ -47,7 +47,6 @@ class CreateImage(APIView):
 
         targetFolder = ""
 
-
         if len(data['currentPath']) == 1 :
             print("yesss")
             targetFolder = root
@@ -67,7 +66,10 @@ class CreateImage(APIView):
         #    print("shit happened")
         #    return Response({ 'Error' : 'Something went wrong'})
 
-        return Response({ 'success' : 'Image properly stored' })
+        return Response({ 
+            'success' : 'Image properly stored',
+            'imageID' : json.loads(json_util.dumps(imageID))['$oid']
+        })
 
 
 # To get a specific folder
@@ -180,6 +182,7 @@ class CreateFolder(APIView):
 
         return Response({ 
             'success' : 'Folder Added',
+            'folderID': folderID
         })
 
 class RenameFolder(APIView):

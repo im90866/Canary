@@ -5,27 +5,45 @@ import "./Profile.css"
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 
-function Profile() {
+function Profile(prop) {
+  const cache = prop.cache
+  const setCache = prop.setCache
+
   const [username, setUsername] = useState("")
   const [PFP, setPFP] = useState("")
   const [images, setImages] = useState([])
- 
+
   useEffect(() => {
     setUsername(String(getCookie('username')))
     setPFP("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPEAAADRCAMAAAAquaQNAAAAA1BMVEX///+nxBvIAAAAR0lEQVR4nO3BMQEAAADCoPVP7WULoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABuxZIAAeHuCGgAAAAASUVORK5CYII=")
 
-    axios.get("http://localhost:8000/getProfilePicture/" + String(getCookie('userID'))).then((res) => {
-      if(res.data["success"]) {
-        setPFP(res.data['imageString'])
-      }
-    })
+    if(!('profilePicture' in cache)) {
+      axios.get("http://localhost:8000/getProfilePicture/" + String(getCookie('userID'))).then((res) => {
+        if(res.data["success"]) {
+          setPFP(res.data['imageString'])
 
-    axios.get("http://localhost:8000/getProfileFeed/" + String(getCookie('userID'))).then((res) => {
-      if(res.data["success"]) {
-        setImages(res.data['postData'])
-        console.log(res.data)
-      }
-    })
+          cache['profilePicture'] = res.data['imageString']
+          setCache(cache)
+        }
+      })
+    }
+    else {
+      setPFP(cache['profilePicture'])
+    }
+
+    if(!('profilePosts' in cache)) {
+      axios.get("http://localhost:8000/getProfileFeed/" + String(getCookie('userID'))).then((res) => {
+        if(res.data["success"]) {
+          setImages(res.data['postData'])
+
+          cache['profilePosts'] = res.data['postData']
+          setCache(cache)
+        }
+      })
+    }
+    else {
+      setImages(cache['profilePosts'])
+    } 
   }, [])
 
   return (

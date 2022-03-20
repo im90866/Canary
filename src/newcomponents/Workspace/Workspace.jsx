@@ -13,6 +13,7 @@ import { TiArrowBack } from "react-icons/ti";
 import Dropdown from '../Dropdown/Dropdown';
 import Modal5 from '../Modal5/Modal5';
 import Modal5_1 from '../Modal5/Modal5_1';
+import { FaPython } from 'react-icons/fa'
 
 function Workspace(props) {
   const fileRef = useRef();
@@ -73,10 +74,25 @@ function Workspace(props) {
     }
 
     console.log(image64)
-    axios.post('http://localhost:8000/uploadImageWorkspace/', req).then((res) => {
+    console.log(req)
+    await axios.post('http://localhost:8000/uploadImageWorkspace/', req).then((res) => {
       console.log(res)
+      if(res.data['success']){
+        const val = {
+          'projectID': projectId,
+          'imageID': res.data['imageID'],
+          'imageVal': image64,
+          'uploadedTime': file['lastModifiedDate'],
+          'uploader': String(getCookie('username')),
+          'fileType': file['type'],
+          'fileName': file['name'],
+          'fileSize': file['size'],
+        }
+        let newImageList = images.slice()
+        newImageList.unshift(val)
+        setImages(newImageList)
+      }
     });
-    makeChange(true)
   }
 
   const base64 = (file) => {
@@ -122,10 +138,20 @@ function Workspace(props) {
   }
 
   const enterFolder = (folderID) => {
-    folderPath.push(folderID)
-    setFolderPath(folderPath)
-    console.log(folderPath)
-    makeChange(true)
+    let newPath = folderPath.slice()
+
+    newPath.push(folderID)
+    setFolderPath(newPath)
+  }
+
+  const exitFolder = () => {
+    let newPath = folderPath.slice()
+    console.log(newPath)
+
+    newPath.pop()
+    setFolderPath(newPath)
+
+    console.log(newPath)
   }
 
   const deleteFolder = async (folderID) => {
@@ -138,6 +164,19 @@ function Workspace(props) {
     await axios.post("http://localhost:8000/deleteFolder/", request).then((res) => {
       if (res.data["error"]) {
         console.log(res.data['error'])
+      }
+      else{
+        let newFolders = folders.slice()
+
+        for(let x = 0; x < folders.length;++x) {
+          console.log((folders[x])['folderID'] + " " +folderID)
+          if((folders[x])['folderID'] == folderID) {
+            newFolders.splice(x, 1)
+            break
+          }
+        }
+
+        setFolders(newFolders)
       }
     })
   }
@@ -153,16 +192,29 @@ function Workspace(props) {
       if (res.data["error"]) {
         console.log(res.data['error'])
       }
+      else {
+        let newImageList = images.slice()
+        for(let x = 0; x < images.length;++x) {
+          console.log((images[x])['imageID'] + " " + imageID)
+          if((images[x])['imageID'] == imageID) {
+            newImageList.splice(x, 1)
+            break
+          }
+        }
+
+        setImages(newImageList)
+      }
     })
   }
 
   useEffect(() => {
+    console.log(folderPath)
     makeChange(false)
     const getAll = async () => {
       await getFolders()
     }
     getAll();
-  }, [openDropdown, changed, folderPath])
+  }, [folderPath])
 
 
   return (
@@ -186,9 +238,9 @@ function Workspace(props) {
                 <button className="wbtn1" onClick={() =>
                   setOpenDropdown(true)}><span className='btn-text'>New Folder</span></button>
               </div>
-              <div className="directory-path">
+              <div className="directory-path" onClick={() => exitFolder()}>
                 <TiArrowBack className='back-arrow' />
-                <h3 className="directory">/root/workspace</h3>
+                <h3 className="directory" >/root/workspace</h3>
               </div>
             </div>
           </div>
@@ -198,13 +250,14 @@ function Workspace(props) {
         {openDropdown && <Dropdown closeModal={setOpenDropdown}
           path={folderPath}
           projId={projectId}
+          folders={folders}
           setFolder={setFolders}
-          makeChange={makeChange} />}
+           />}
 
         <div className="workspace-container2">
           <div className="folder">
             {
-              folders.map(folder =>
+              folders.map((folder) =>
                 <div className="folders" key={folder.folderID} >
                   <BsFillFolderFill className='folder-icon' onClick={() => enterFolder(folder.folderID)} />
                   <div className="folder-info"> {folder.folderName}
@@ -243,7 +296,18 @@ function Workspace(props) {
         </div>
       </body>
       {openModal && <Modal5 projectID={projectId} image={postImageVal} closeModal={setOpenModal} makeChange={makeChange} />}
-      {openModalRename && <Modal5_1 closeModal={RenameModalStatus} makeChange={makeChange} name={modalVal} folderId={folderId} imageId={imageId} />}
+      {openModalRename && 
+        <Modal5_1 
+          closeModal={RenameModalStatus} 
+          folderList={folders}
+          imageList={images}
+          setFolders={setFolders}
+          setImages={setImages}
+          name={modalVal} 
+          folderId={folderId} 
+          imageId={imageId} 
+        />}
+
     </div>
 
   )
