@@ -7,6 +7,8 @@ import Cardone from "../Settings/Cardone"
 import Cardtwo from "../Settings/Cardtwo"
 import { useState,} from "react"
 import Modal2 from '../Modal2/Modal2'
+
+import { Link } from 'react-router-dom'
 function Team() {
   const [openModal, setOpenModal] = useState(false);
   return (
@@ -14,36 +16,43 @@ function Team() {
       
      <body className="teamscc">
        
+     <div className="settings-container">
+     <div className="settings-bar">
+   
+   <div className="settings-pro">
     
-     <div className="team-container">
-
-    
-     <div className="team-name">
-       <div className="project-settings">
-         <h1 className="psettings">Project Settings</h1>
-         <div className="change-details">
-            <div className="change-name">
-                <label for="fname" className='fname'>Project Name</label>
-                <input type="text" className='change-text12'  name="First Name" placeholder='Clipart Base'/><br></br>
-                <label for="fname" className='lname'>Project Admin</label>
-           
-                <input type="text" className='change-text2'  name="Last Name" placeholder="Nashwa"/><br></br>
-            
-            </div>
-            <div className="buttonss">
-            <button className='submit-changes1' type='submit'>Update Project</button>
-                <button className='submit-changes2' type='submit'onClick={() =>
-          setOpenModal(true)}>Delete Project</button>
-                </div>
-               
-        </div>
+      <ul className="settinglist">
+          <div className="settinglistname">
+  <li  className='setting-listli'> <Link to ="/team">Rename Project</Link></li>
+          </div>
+          <div className="settinglistname">
+            <li  className='setting-listli'><Link to ="/admin">Admin</Link></li>  
+          </div>
+          <div className="settinglistname">
+            <li  className='setting-listli'><Link to ="/remove">Remove Member</Link></li>  
+          </div>
+          <div className="settinglistname">
+            <li  className='setting-listli'><Link to ="/deleteproject">Delete Project</Link></li>  
+          </div>
+      
         
+      </ul>
+  </div>
+</div>
+      
+
+        <div className="change-password3">
+       <div className="change-password-title">
+           <h1 className="cptitle2">Rename Project</h1>
+           <p>We can rename our project file by entering an new name for the project and updating it</p>
+           <label for="vehicle1"> Project Name</label>
+          <input type="text" className='change-text105'/><br></br>
+  <button className='rename-btn'>Rename project</button>
        </div>
-         
-       {openModal && <Modal2 closeModal={setOpenModal} />} 
-     </div>
- 
-     </div> 
+   
+  </div>
+
+  </div>
      </body>
     </div>
   )

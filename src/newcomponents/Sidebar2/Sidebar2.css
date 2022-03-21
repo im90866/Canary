@@ -6,7 +6,7 @@
 overflow-x: hidden;
    /* margin-right: 1200px; */
   
-    width: 150px;
+    width: 160px;
     background-color: #fff;
     z-index: 1;
 
@@ -85,13 +85,15 @@ margin-top: 10px;
  .sidebarListItemText1{
     margin-left: 25px;
     color: black;
-    font-size: 18px;
+    font-size: 15px;
     margin-top: 10px;
     margin-bottom: 10px;
  }
  .sidebarIcon1{
     font-size: 14px;
-    margin-left: 10px;
+
+    position: absolute;
+    top: 255px;
  }
  .sidebarListItemsub{
      list-style: none;

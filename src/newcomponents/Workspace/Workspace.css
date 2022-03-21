@@ -20,7 +20,21 @@ left: 80px;
 	overflow-y:scroll;
 	overflow-x: hidden;
 }
+.three-dots3{
+    position: absolute;
+    left: 140px;
 
+}
+.dropdown-text1{
+    text-decoration: none;
+    font-size: 10px;
+    /* width: 120px; */
+    background-color: #f9f9f9;
+    color: black;
+    border: none;
+    position: relative;
+    left: 10px;
+}
 .workspace-container2{
     width: 1000px;
     height: 100%;

@@ -40,6 +40,9 @@ import Modal6 from './newcomponents/Modal6/Modal6';
 import Fp from './newcomponents/FP/Fp';
 import Resetpassword from './newcomponents/Resetpassword/Resetpassword';
 import Cardsix from './newcomponents/Settings/Cardsix';
+import Team1 from './newcomponents/Team/Team1';
+import Team2 from './newcomponents/Team/Team2';
+import Team3 from './newcomponents/Team/Team3';
 
 function App() {
 
@@ -148,6 +151,9 @@ function App() {
               <Route path="/forgotpassword" element={<Fp/>} />
               <Route path="/resetpassword" element={<Resetpassword/>} />
               <Route path="/privacy" element={<Cardsix/>} />
+              <Route path="/admin" element={<Team1/>} />
+              <Route path="/remove" element={<Team2/>} />
+              <Route path="/deleteproject" element={<Team3/>} />
             </Routes>
           </>
           :
