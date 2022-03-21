@@ -95,6 +95,7 @@ class GetHomePosts(APIView):
     def get(self, request, userID, format=None):
         data = self.request.data
 
+        user_col = CLIENT_DATABASE['userInfo']
         post_col = CLIENT_DATABASE['postData']
         meta_col = CLIENT_DATABASE['imageData']
 
@@ -104,16 +105,22 @@ class GetHomePosts(APIView):
         postList = []
 
         for val in allPosts:
+            print(val)
             metaval = meta_col.find_one({'_id': ObjectId(val['metadataID'])})
+            print(metaval)
             imageVal = FS.get(metaval['imageID'])
 
-            upadatedUpload = str(datetime.now() - datetime.strptime(val['uploadTime'], '%Y-%m-%d %H:%M:%S'))
+            updatedUpload = str(datetime.now() - datetime.strptime(val['uploadTime'], '%Y-%m-%d %H:%M:%S'))
+
+            memberList =[]
+            for id in val['memberList']:
+                memberList.append(user_col.find_one({'_id': ObjectId(id['id'])})['username'])
 
             postData = {
                 'postID' : json.loads(json_util.dumps(val['_id']))['$oid'],
                 'imageVal' : imageVal,
-                "uploader" : val['uploader'],
-                "uploadTime" : upadatedUpload,
+                "memberList" : memberList,
+                "uploadTime" : updatedUpload,
                 "caption" : val['caption'],
                 "likedBy" : val['likedBy'],
                 "likes" : val['likes'],
@@ -147,10 +154,20 @@ class LikePost(APIView):
     permission_classes = (permissions.AllowAny, )
 
     def post(self, request, format=None):
-        print("accessed")
         data = self.request.data
 
         post_col = CLIENT_DATABASE['postData']
+
+        postVal = post_col.find_one({'_id': data['postID']})
+
+        check = False
+        for memberID in postVal['memberList']:
+            if data['userID'] == memberID:
+                check = True
+
+        # Send notification to everyone in memberList
+        if not check:
+            pass
 
         post_col.update_one({
             '_id' : ObjectId(data['postID'])

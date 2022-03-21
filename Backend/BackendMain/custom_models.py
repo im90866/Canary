@@ -17,6 +17,7 @@ class userInfo():
     _userDetails = {}
     _postID = []
     _projectID = []
+    _notificationList = []
 
     _chatList = []
     _userSettings = {}
@@ -64,6 +65,7 @@ class userInfo():
             "postID" : self._postID,
             "projectID" : self._projectID,
             "chatList": self._chatList,
+            "notificationList": self._notificationList,
             "userSettings" : self._userSettings,
             "DOB": self._DOB
         }
@@ -135,10 +137,10 @@ class project():
     _projectRoot = ""
     _projectSettings = {}
 
-    def __init__(self, name, adminID, root):
+    def __init__(self, name, adminID, username, root):
         self._projectName = name
         self._projectAdminID = adminID
-        self._projectMembers = [adminID]
+        self._projectMembers = [{'id': adminID, 'username': username}]
         self._projectRoot = root
 
     def otherInit(self, jsonFile):
@@ -261,9 +263,11 @@ class Message():
         return model
 
 class Notification():
+    _senderID = ""
+    _type = ""
     _info = ""
+    _onPostID = ""
     _createdAt = ""
-    _createdBy = ""
 
     def __init__(self, info, by):
         self._info = info
@@ -276,3 +280,10 @@ class Notification():
         }
 
         return model
+
+class ProjectInvite():
+    _senderID = ""
+    _projectID = ""
+    _info = ""
+    _onPostID = ""
+    _createdAt = ""

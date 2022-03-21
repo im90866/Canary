@@ -62,30 +62,6 @@ function Feed(prop) {
         }
 
       </div>
-      <div className="explore-title">
-        <h1 className='etitle'>Recommended For You  <AiOutlineArrowRight className='arrow' /></h1>
-
-      </div>
-      <div className="wrapper1">
-
-        {
-          posts.map(p => (
-            <Post key={p.postID} post={p} />
-          ))
-        }
-
-      </div>
-      <div className="explore-title">
-        <h1 className='etitle'>Recommended For You  <AiOutlineArrowRight className='arrow' /></h1>
-
-      </div>
-      <div className="wrapper1">
-        {
-          posts.map(p => (
-            <Post key={p.postID} post={p} />
-          ))
-        }
-      </div>
     </div>
   )
 }

@@ -31,7 +31,8 @@ class CreateProject(APIView):
         rootFolderID = folder_col.insert_one(folder("&root&", data['projectName']).getModel()).inserted_id
         rootFolderID = json.loads(json_util.dumps(rootFolderID))['$oid']
 
-        projectModel = project(data['projectName'], ObjectId(data['projectAdminID']), rootFolderID)
+        username = user_col.find_one({'_id': ObjectId(data['projectAdminID'])})['username']
+        projectModel = project(data['projectName'], data['projectAdminID'], username, rootFolderID)
         
         # Stores the project, gets the ID and appends it to the user
         projectID = (proj_col.insert_one(projectModel.getModel())).inserted_id
@@ -97,6 +98,20 @@ class UpdateProjectName(APIView):
             return Response({ 'error': 'Something went wrong' })
         
         return Response({ 'success': 'Project Updated' })
+
+class GetProjectName(APIView):
+    permission_classes = (permissions.AllowAny, )
+
+    def get(self, request, projectID, format=None):
+        proj_col = CLIENT_DATABASE['projectData']
+
+        projectName = proj_col.find_one({'_id': ObjectId(projectID)})['projectName']
+
+        return Response({ 
+            'success': 'Project name obtained',
+            'projectName': projectName
+        })
+
 
 class GetProjects(APIView):
     permission_classes = (permissions.AllowAny, )

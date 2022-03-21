@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect} from 'react'
 
 import { RiChatSmile2Line } from "react-icons/ri"
 
@@ -6,8 +6,6 @@ import { NavLink, Link } from "react-router-dom";
 
 
 import { MdOutlineExplore, MdWorkspacesOutline } from "react-icons/md"
-
-
 import { BsChatSquareDots } from 'react-icons/bs';
 import { AiOutlineHome, AiFillCaretDown, AiOutlineTeam, AiFillCaretUp } from 'react-icons/ai';
 import { IoCreateOutline, IoSettingsOutline, IoLogOutOutline } from 'react-icons/io5';
@@ -15,6 +13,10 @@ import "./Sidebar2.css"
 function Sidebar2() {
 
   const [sub, setSub] = useState(false)
+
+  useEffect(() => {
+    window.sessionStorage.getItem("currentProjectName")
+  }, [])
 
   return (
     <div className="sidebar2">
@@ -52,7 +54,7 @@ function Sidebar2() {
           </li>
           <li className="sidebarListItem" onClick={() => setSub(!sub)}>
 
-            <span className="sidebarListItemText1">Project1</span>
+            <span className="sidebarListItemText1">{window.sessionStorage.getItem("currentProjectName")}</span>
             {
               sub
                 ?

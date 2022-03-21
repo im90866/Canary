@@ -57,10 +57,12 @@
     color: #FFFFFF;
     border: 1px solid #ffb53b;
     font-weight: bold;
+    transition: 0.25s;
 }
 .hero-btn:hover{
     background-color: #ffffff;
 	color: #ffb53b;
+    transition: 0.3s;
 }
 .project-container2{
     width: 1000px;

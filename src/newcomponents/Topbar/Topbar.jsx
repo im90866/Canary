@@ -235,6 +235,26 @@ function Topbar() {
                             <img src="/images/avatar.png" alt="" className='profile-pic' />
                             <div className="notif-text">User1 liked your post</div>
                           </li>
+                          <li className="notificationslist">
+                            <img src="/images/avatar.png" alt="" className='profile-pic' />
+                            <div className="notif-text">User1 liked your post</div>
+                          </li>
+                          <li className="notificationslist">
+                            <img src="/images/avatar.png" alt="" className='profile-pic' />
+                            <div className="notif-text">User1 liked your post</div>
+                          </li>
+                          <li className="notificationslist">
+                            <img src="/images/avatar.png" alt="" className='profile-pic' />
+                            <div className="notif-text">User1 liked your post</div>
+                          </li>
+                          <li className="notificationslist">
+                            <img src="/images/avatar.png" alt="" className='profile-pic' />
+                            <div className="notif-text">User1 liked your post</div>
+                          </li>
+                          <li className="notificationslist">
+                            <img src="/images/avatar.png" alt="" className='profile-pic' />
+                            <div className="notif-text">User1 liked your post</div>
+                          </li>
                         </ul>
 
                       </div>

@@ -32,16 +32,6 @@ function Project(prop) {
     setProjects(response)
   }
 
-  useEffect(() => {
-    makeChange(false)
-    const getAll = async () => {
-      const allProjects = await getProjects()
-      if (allProjects)
-        setProjects(allProjects)
-    }
-    getAll();
-  }, [changed])
-
   const addProject = async (project) => {
     console.log(project)
 
@@ -76,6 +66,21 @@ function Project(prop) {
     setProjects(newProjectList)
   }
 
+  const setProjectName = async (projectId) => {
+      window.sessionStorage.setItem("currentProjectName", projectId);
+  }
+
+  useEffect(() => {
+    makeChange(false)
+    const getAll = async () => {
+      const allProjects = await getProjects()
+      if (allProjects)
+        setProjects(allProjects)
+    }
+    getAll();
+  }, [])
+
+
 
   return (
     <div>
@@ -97,7 +102,7 @@ function Project(prop) {
             <ul className="project-list">
               {
                 projects.map(project =>
-                  <div className="projectlistname" key={project.id}>
+                  <div className="projectlistname" key={project.id} onClick={() => setProjectName(project.projectName)}>
                     <Link to={`/workspace/${project.id}`}>
                       <li className="project-list-item">
                         <span className='project-name'>{project.projectName}</span>
@@ -111,7 +116,7 @@ function Project(prop) {
                
       </div> 
 
-      {openModal && <Modal closeModal={setOpenModal} makeChange = {makeChange} />}  
+      {openModal && <Modal closeModal={setOpenModal} makeChange = {makeChange} projects={projects} setProjects={setProjects}/>}  
  </body>
      
     

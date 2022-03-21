@@ -19,6 +19,7 @@ urlpatterns = [
     path('deleteproject/', DeleteProject.as_view()),
     path('updateproject/', UpdateProjectName.as_view()),
     path('getproject/<str:username>', GetProjects.as_view()),
+    path('getProjectName/<str:projectID>', GetProjectName.as_view()),
 
     # Workspace Views
     path('uploadImageWorkspace/', CreateImage.as_view()),

@@ -263,7 +263,7 @@ class PostImage(APIView):
 
     def post(self, request, format=None):
         data = self.request.data
-
+        
         user_col = CLIENT_DATABASE['userInfo']
         post_col = CLIENT_DATABASE['postData']
         proj_col = CLIENT_DATABASE['projectData']
@@ -275,15 +275,15 @@ class PostImage(APIView):
         postID = post_col.insert_one(newPost).inserted_id
         postID = json.loads(json_util.dumps(postID))['$oid']
         
-        userVal = user_col.find_one({'username': projectVal['projectAdmin']}) # SUBJECT TO CHANGE - CHANGE TO ALL USERS INSTEAD OF JUST ADMIN
+        for x in projectVal['projectMembers']:
+            userVal = user_col.find_one({'_id': ObjectId(x['id'])}) # SUBJECT TO CHANGE - CHANGE TO ALL USERS INSTEAD OF JUST ADMIN
+            newPostVal = [postID] + userVal['postID'] 
 
-        newPostVal = [postID] + userVal['postID'] 
-
-        user_col.update_one(userVal, {
-            '$set' : {
-                'postID' : newPostVal
-            }
-        })
+            user_col.update_one(userVal, {
+                '$set' : {
+                    'postID' : newPostVal
+                }
+            })
 
         return Response({ 
             'success': 'Post added',

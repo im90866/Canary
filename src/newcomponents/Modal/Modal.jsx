@@ -6,6 +6,10 @@ import { useState} from 'react';
 function Modal(props) {
   var closeModal = props.closeModal
   const makeChange = props.makeChange
+
+  const projects = props.projects
+  const setProjects = props.setProjects
+
   const [projectName, setProjectName] = useState("")
 
   const addProject = async (project) => {
@@ -21,8 +25,15 @@ function Modal(props) {
       if (res.data["error"]) {
         console.log(res.data['error'])
       }
+      else {
+        let newProjects = projects.slice()
+        newProjects.unshift({
+          'id': res.data['projectID'],
+          'projectName': project['projectName']
+        })
+        setProjects(newProjects)
+      }
     })
-    makeChange(true)
   }
 
   return (
