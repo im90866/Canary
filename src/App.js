@@ -39,6 +39,7 @@ import WebSocketInstance from './JS_Files/websocket';
 import Modal6 from './newcomponents/Modal6/Modal6';
 import Fp from './newcomponents/FP/Fp';
 import Resetpassword from './newcomponents/Resetpassword/Resetpassword';
+import Cardsix from './newcomponents/Settings/Cardsix';
 
 function App() {
 
@@ -123,7 +124,7 @@ function App() {
               <Route path="/" element={protectLogin()} />
               <Route path="/home" element={protectOther(<Home cache={cache} setCache={setCache}/>)} />
    
-              <Route path="/workspace/:id" element={<Workspace cache={cache} setCache={setCache}/>} />
+              <Route path="/workspace/:id" element={<Workspace />} />
               <Route path="/profile" element={<Profile cache={cache} setCache={setCache}/>} />
               <Route path="/profile/collaborations" element={<Collaboration />} />
               <Route path="/profile/profileposts" element={<Profileposts />} />
@@ -146,6 +147,7 @@ function App() {
               <Route path="/codeconfirmation" element={<Modal6 />} />
               <Route path="/forgotpassword" element={<Fp/>} />
               <Route path="/resetpassword" element={<Resetpassword/>} />
+              <Route path="/privacy" element={<Cardsix/>} />
             </Routes>
           </>
           :

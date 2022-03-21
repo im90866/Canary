@@ -11,23 +11,34 @@ function Cardfive() {
     <div>
          <body className="settingscc1">
     
-        <div className="settings-container1">
+        <div className="settings-container">
         <div className="settings-bar">
-          <div className="settings3">
-              <ul className="settinglist">
-                  <div className="settinglistname">
-          <li  className='setting-listli'> <Link to ="/settings">Edit Profile</Link></li>
-                  </div>
-                  <div className="settinglistname">
-                    <li  className='setting-listli'><Link to ="/changepassword">Change Password</Link></li>  
-                  </div>
-                
-                  <div className="settinglistname">
-                  <li  className='setting-listli'><Link to ="/delete">Delete Account</Link></li>
-                  </div>
-              </ul>
-          </div>
+       
+       <div className="settings">
+        <div className="settings-pic">
+          <img src="/images/avatar.png" alt="" className='pic-sett'/>
+          <h3 className="pic-sett-title">Welcome Newfez</h3>
+        </div>
+          <ul className="settinglist">
+              <div className="settinglistname">
+      <li  className='setting-listli'> <Link to ="/settings">Edit Profile</Link></li>
+              </div>
+              <div className="settinglistname">
+                <li  className='setting-listli'><Link to ="/changepassword">Change Password</Link></li>  
+              </div>
+              <div className="settinglistname">
+                <li  className='setting-listli'><Link to ="/blocked">Block Users</Link></li>  
+              </div>
+              <div className="settinglistname">
+                <li  className='setting-listli'><Link to ="/privacy">Privacy And Security</Link></li>  
+              </div>
+          
+              <div className="settinglistname">
+              <li  className='setting-listli'><Link to ="/delete">Delete Account</Link></li>
+              </div>
+          </ul>
       </div>
+  </div>
         <div className="change-password1">
            <div className="change-password-title">
                <h1 className="cptitle2">Delete Account</h1>
