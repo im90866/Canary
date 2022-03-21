@@ -189,15 +189,19 @@ position: fixed;
   border: 1px solid #f7b53b;;
 }
 .folder-btn6{
-  background-color: #f7b53b;
+  background-color: #ffb53b;
   color: #FFFFFF;
-  border: 1px solid #f7b53b;;
+  border: 1px solid #ffb53b;
   font-weight: bold;
   width: 200px;
   height: 40px;
-  margin-left: 60px;
+  margin-left: 200px;
   border-radius: 40px;
-  margin-bottom: 30px;}
+  margin-bottom: 30px;
+  position: relative;
+  top:-20px;
+}
+  
   .p1name{
     font-size: 14px;
  position: relative;
@@ -211,8 +215,8 @@ position: fixed;
 }
 
 .post-img-cropper {
-  width: 280px;
-  height: 280px;
+  width: 600px;
+  height: 300px;
   position: relative;
   overflow: hidden;
   top: -40px;
@@ -220,8 +224,8 @@ position: fixed;
 }
 
   .modalContaine3{
-    width: 380px;
-    height: 400px;
+    width: 700px;
+    height: 500px;
     border-radius: 12px;
     background-color: #Ffff;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -229,17 +233,18 @@ position: fixed;
     flex-direction: column;
     padding: 25px;
    position: relative;
-   top:-20px;
-   left: 550px;
+   top:5px;
+   left: 400px;
   }
   .change-text15{
     border: none;
     background-color: #efefef;
     padding: 8px 20px;
 position: relative;
-top: 10px;
+top: -10px;
     border-radius: 5px;
-    width: 330px;
+    left:20px;
+    width: 600px;
     margin-bottom: 30px;
   }
   @media (max-width: 900px) {

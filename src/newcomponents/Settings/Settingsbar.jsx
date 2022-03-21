@@ -19,7 +19,7 @@ function Settingsbar(prop) {
         <div className="settings-container">
        
          <Cardone/>
-            <Cardtwo cache={cache} setCache={setCache}/>  
+          <Cardtwo cache={cache} setCache={setCache}/>  
         </div>
         </body>
     </div>
