@@ -120,7 +120,7 @@ function App() {
               <Route path="/" element={protectLogin()} />
               <Route path="/home" element={protectOther(<Home cache={cache} setCache={setCache}/>)} />
    
-              <Route path="/workspace/:id" element={<Workspace />} />
+              <Route path="/workspace/:id" element={<Workspace cache={cache} setCache={setCache}/>} />
               <Route path="/profile" element={<Profile cache={cache} setCache={setCache}/>} />
               <Route path="/profile/collaborations" element={<Collaboration />} />
               <Route path="/profile/profileposts" element={<Profileposts />} />

@@ -15,7 +15,9 @@ import Modal5 from '../Modal5/Modal5';
 import Modal5_1 from '../Modal5/Modal5_1';
 import { FaPython } from 'react-icons/fa'
 
-function Workspace(props) {
+function Workspace(prop) {
+  const cache = prop.cache
+  const setCache = prop.setCache
   
   const fileRef = useRef();
 
@@ -24,12 +26,14 @@ function Workspace(props) {
   const projectId = useParams()['id']
   const [folders, setFolders] = useState([])
   const [images, setImages] = useState([])
+
   const [folderPath, setFolderPath] = useState(["root"])
+  const [folderPathName, setFolderPathName] = useState(["root"])
+  const [folderPathString, setFolderPathString] = useState("\\root")
+
   const [changed, makeChange] = useState(false)
 
   const [postImageVal, setPostImageVal] = useState("")
-
-  const [editableName, setEditable] = useState("6222fcdd899bcbbc39df3d38")
 
   const [openModal, setOpenModal] = useState(false)
   const [openModalRename, setOpenModalRename] = useState(false)
@@ -132,27 +136,40 @@ function Workspace(props) {
           console.log(res.data['folderList'])
           setFolders(res.data['folderList'])
           setImages(res.data['imageList'])
+
+          setFolderPathString('\\' + folderPathName.join('\\'))
         }
         else
           console.log("Error: " + res.data["error"])
       })
   }
 
-  const enterFolder = (folderID) => {
+  const enterFolder = (folderID, folderName) => {
     let newPath = folderPath.slice()
+    let newPathName = folderPathName.slice()
+
+    console.log(folderName + newPathName)
 
     newPath.push(folderID)
+    newPathName.push(folderName)
+
+    console.log(newPathName)
+
     setFolderPath(newPath)
+    setFolderPathName(newPathName)
   }
 
-  const exitFolder = () => {
-    let newPath = folderPath.slice()
-    console.log(newPath)
+  const exitFolder = async () => {
+    if(!(folderPath.length == 1)) {
+      let newPath = folderPath.slice()
+      let newPathName = folderPathName.slice()
 
-    newPath.pop()
-    setFolderPath(newPath)
+      newPath.pop()
+      newPathName.pop()
 
-    console.log(newPath)
+      setFolderPath(newPath)
+      setFolderPathName(newPathName)
+    }
   }
 
   const back = async ()=>{
@@ -214,6 +231,8 @@ function Workspace(props) {
 
   useEffect(() => {
     console.log(folderPath)
+    
+
     makeChange(false)
     const getAll = async () => {
       await getFolders()
@@ -225,8 +244,6 @@ function Workspace(props) {
   return (
     <div>
       <body className='workspace-body'>
-        
-
         <div className="workspace-container">
           <div className="workspace">
             <div className="workspace-title">
@@ -244,10 +261,10 @@ function Workspace(props) {
                   setOpenDropdown(true)}><span className='btn-text'>New Folder</span></button>
               </div>
               <div className="directory-path">
-           <div className="whitespace" onClick={back}>
+           <div className="whitespace" onClick={exitFolder}>
              <TiArrowBack className='back'/> 
                </div>
-                <h3 className="directory">/root/workspace</h3>
+                <h3 className="directory">{folderPathString}</h3>
               </div>
             </div>
           </div>
@@ -266,7 +283,7 @@ function Workspace(props) {
             {
               folders.map((folder) =>
                 <div className="folders" key={folder.folderID} >
-                  <BsFillFolderFill className='folder-icon' onClick={() => enterFolder(folder.folderID)} />
+                  <BsFillFolderFill className='folder-icon' onClick={() => enterFolder(folder.folderID, folder.folderName)} />
                   <div className="folder-info"> {folder.folderName}
                     <div class="dropdown-block">
                       <BsThreeDots className='three-dots' class="dropdowns" />
@@ -283,7 +300,9 @@ function Workspace(props) {
             {
               images.map(image =>
                 <div >
-                  <img className="image" src={image.imageVal} width={100} height={100} onClick={() => postImage(image.imageID)} />
+                  <div className="image-cropper">
+                    <img className="image" src={image.imageVal} width={100} height={100} onClick={() => postImage(image.imageID)} />
+                  </div>
                   <div className="folder-info">
                     <h3 className='folder-text'>{image.fileName}</h3>
                     <div className="dropdown-block">

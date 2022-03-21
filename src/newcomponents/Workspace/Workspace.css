@@ -128,13 +128,19 @@ position: relative;
 }
 
 .image{
+    height: 100%;
+    width: auto;
+}
+
+.image-cropper{
+    width: 170px;
+    height: 150px;
+
+    overflow: hidden;
     position: relative;
     left: -100px;
-    width:150px;
-    height: 150px;
-    border-radius: 5px;
-    /* z-index: 9999; */
     top:50px;
+    border-radius: 5%;
 }
 
 .folder-icon a{
