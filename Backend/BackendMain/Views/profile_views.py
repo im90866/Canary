@@ -55,12 +55,16 @@ class GetProfileFeed(APIView):
             
             imageVal = FS.get(ObjectId(imageID))
 
+            memberList =[]
+            for id in postData['memberList']:
+                memberList.append(user_col.find_one({'_id': ObjectId(id['id'])})['username'])
+
             upadatedUpload = str(datetime.now() - datetime.strptime(postData['uploadTime'], '%Y-%m-%d %H:%M:%S'))
 
             newPostData = {
                 'postID' : json.loads(json_util.dumps(postData['_id']))['$oid'],
                 'imageVal' : imageVal,
-                "uploader" : postData['uploader'],
+                "memberList" : memberList,
                 "uploadTime" : upadatedUpload,
                 "caption" : postData['caption'],
                 "likedBy" : postData['likedBy'],
