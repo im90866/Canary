@@ -104,7 +104,7 @@ function Modal_1(props) {
           </div>
           <div className="body">
             <input type="text" 
-                  className='change-text10'  
+                  className='change-text100'  
                   name="Rename" 
                   placeholder='Rename'
                   onKeyUp={event => setRenameVal(event.target.value)}

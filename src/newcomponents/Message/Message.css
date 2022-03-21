@@ -16,6 +16,7 @@
     margin-right: 10px;
     position: relative;
     top:20px;
+    left: 20px;
   }
   
   .messageText{
@@ -26,13 +27,14 @@
       max-width: 300px;
       position: relative;
       top:-15px;
+      left: 10px;
   }
   
   .messageBottom{
       font-size: 12px;
   
       position: relative;
-      top: -35px;
+      top: -20px;
   }
   
   .message.own{
@@ -42,5 +44,12 @@
   .message.own .messageText{
       background-color: rgb(245, 241, 241);
       color: black;
+      position: relative;
+      left: -20px;
+  }
+  .message.own   .messageImg{
+    position: relative;
+    top:20px;
+    left: -15px;
   }
   

@@ -29,13 +29,16 @@ import Cardfive from './newcomponents/Settings/Cardfive';
 import Topbar from './newcomponents/Topbar/Topbar'
 import Sidebar from './newcomponents/Sidebar/Sidebar'
 import Chats from './newcomponents/chats/Chats';
-import Forgotpassword from './newcomponents/forgot password/Forgotpassword';
+
 import Explore from './newcomponents/Explore/Explore';
 import Teamchats from './newcomponents/Teamchats/Teamchats';
 import Postbig from './newcomponents/Postbig/Postbig';
 import Sidebar2 from './newcomponents/Sidebar2/Sidebar2';
 
 import WebSocketInstance from './JS_Files/websocket';
+import Modal6 from './newcomponents/Modal6/Modal6';
+import Fp from './newcomponents/FP/Fp';
+import Resetpassword from './newcomponents/Resetpassword/Resetpassword';
 
 function App() {
 
@@ -137,8 +140,12 @@ function App() {
               <Route path="/chats" element={<Chats />} />
               <Route path="/teamchats" element={<Teamchats />} />
               <Route path="/explore" element={<Explore/>} />
-              <Route path="/forgotpassword" element={<Forgotpassword />} />
+              
               <Route path="/postbig" element={<Postbig />} />
+              <Route path="/codeconfirmation" element={<Modal6 />} />
+              <Route path="/codeconfirmation" element={<Modal6 />} />
+              <Route path="/forgotpassword" element={<Fp/>} />
+              <Route path="/resetpassword" element={<Resetpassword/>} />
             </Routes>
           </>
           :

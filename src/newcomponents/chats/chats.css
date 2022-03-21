@@ -16,11 +16,7 @@
 .chatMenu {
     flex: 3.5;
 }
-.chatlistli a{
-text-decoration: none;
-padding-left: 20px;
-padding-bottom: 5px;
-}
+
 .chat-menuwrapper {
     background-color: #fff;
     overflow-y: scroll;
@@ -35,7 +31,7 @@ padding-bottom: 5px;
 
 .profile-pic2 {
     position: relative;
-    left: -20px;
+    left: -5px;
     width: 30px;
     height: 30px;
     border-radius: 50%;
@@ -45,14 +41,16 @@ padding-bottom: 5px;
     position: relative;
     left: 5px;
     color: black;
-    top: -10px;
+    top: -5px;
+    font-size: 16px;
 }
 
-.chatlistli a:hover {
+ .chatlistli:hover {
     background-color: #efefef;
-    padding-left: 20px;
+ 
+border-radius: 5px;
     width: 100%;
-}
+} 
 
 .chat-title {
     font-size: 18px;
@@ -61,9 +59,14 @@ padding-bottom: 5px;
 }
 
 .chatlistli {
+    width: 300px;
+    position: relative;
+    left: -10px;
+  
     list-style: none;
-    padding: 0;
+padding: 7px;
     display: flex;
+    
 }
 
 

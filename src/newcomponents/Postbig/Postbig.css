@@ -59,9 +59,9 @@
 .comment-info{
     width: 400px;
     height: 50px;
-margin-left:-80px;
+margin-left:-120px;
     display: flex;
-    gap: 2rem;
+    gap: 2.5rem;
 }
 .comment{
     display: flex;

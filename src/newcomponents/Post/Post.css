@@ -97,17 +97,17 @@ left: -15px;
 .like-icon{
     color: #F7B53B;
     font-size: 20px; 
-    position: relative;
+    position: absolute;
     top:-20px;
-    left: -10px;
+    left: -5px;
 }
 
 .icontext{
    margin-left: -5px;
    margin-top: 3px;
-   position: relative;
+   position: absolute;
    top:-20px;
-   left: -15px;
+   left: 30px;
    color: gray;
 }
 .three-dots1{

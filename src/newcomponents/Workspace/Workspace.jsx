@@ -283,14 +283,18 @@ function Workspace(prop) {
             {
               folders.map((folder) =>
                 <div className="folders" key={folder.folderID} >
-                  <BsFillFolderFill className='folder-icon' onClick={() => enterFolder(folder.folderID, folder.folderName)} />
-                  <div className="folder-info"> {folder.folderName}
+                  <BsFillFolderFill className='folder-icon' onClick={() => enterFolder(folder.folderID, folder.folderName)}/>
+               
+                  <div className="folder-info"> 
+                  <h3 className='folder-text'>{folder.folderName}</h3>
                     <div class="dropdown-block">
-                      <BsThreeDots className='three-dots' class="dropdowns" />
+                    <BsThreeDots className='three-dots' class="dropdowns" />
+                   
                       <div class="dropdown-content">
                         <button class="dropdown-text" onClick={() => { setOpenModalRename(true); setModalVal("Rename"); setFolderId(folder.folderID) }}>Rename</button>
                         <button class="dropdown-text" onClick={() => deleteFolder(folder.folderID)}>Delete</button>
                       </div>
+                    
                     </div>
                   </div>
                 </div>
@@ -304,14 +308,14 @@ function Workspace(prop) {
                     <img className="image" src={image.imageVal} width={100} height={100} onClick={() => postImage(image.imageID)} />
                   </div>
                   <div className="folder-info">
-                    <h3 className='folder-text'>{image.fileName}</h3>
+                    <h3 className='folder-text1'>{image.fileName}</h3>
                     <div className="dropdown-block">
                       <BsThreeDots className='three-dots' class="dropdowns" />
                       <div class="dropdown-content">
                         <button className="dropdown-text" onClick={() => { setPostImageVal(image); setOpenModal(true) }}>Post</button>
                         <button className="dropdown-text" onClick={() => { setOpenModalRename(true); setModalVal("Rename"); setImageId(image.imageID) }}>Rename</button>
                         <button className="dropdown-text" onClick={() => deleteImage(image.imageID)}>Delete</button>
-                        <button className="dropdown-text">Download</button>
+                     
                       </div>
                     </div>
                   </div>

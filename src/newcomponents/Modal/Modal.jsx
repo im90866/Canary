@@ -44,7 +44,7 @@ function Modal(props) {
           <div className="body">
             <label for="pname" className='p1name'>Enter Project Name</label>
             <input type="text" 
-                  className='change-text10'  
+                  className='change-text101'  
                   name="Project Name" 
                   placeholder='Project Name'
                   onChange={event => setProjectName(event.target.value)}
