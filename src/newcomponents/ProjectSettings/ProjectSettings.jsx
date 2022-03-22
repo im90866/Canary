@@ -97,6 +97,7 @@ function ProjectSettings() {
                             type="button"
                             key={index}
                             className="list-group-item list-group-item-action"
+                            style={{display:'flex'}}
                           >
                             <div className="search-image-cropper">
                               <img style={{ width: '30px', height: '25px' }} className="search-image" src={res.profilePictureID} />
@@ -104,8 +105,8 @@ function ProjectSettings() {
                             &nbsp;
                             &nbsp;
                             {res.username}
+                            <button className='addButton'> Add + </button>
                           </button>
-                          <button className=''> Add + </button>
                         </div>
                       )
                     })
