@@ -105,9 +105,7 @@ class GetHomePosts(APIView):
         postList = []
 
         for val in allPosts:
-            print(val)
             metaval = meta_col.find_one({'_id': ObjectId(val['metadataID'])})
-            print(metaval)
             imageVal = FS.get(metaval['imageID'])
 
             updatedUpload = str(datetime.now() - datetime.strptime(val['uploadTime'], '%Y-%m-%d %H:%M:%S'))
@@ -156,28 +154,30 @@ class LikePost(APIView):
     def post(self, request, format=None):
         data = self.request.data
 
+        user_col = CLIENT_DATABASE['userInfo']
         post_col = CLIENT_DATABASE['postData']
 
-        postVal = post_col.find_one({'_id': data['postID']})
+        postVal = post_col.find_one({'_id': ObjectId(data['postID'])})
 
         check = False
         for memberID in postVal['memberList']:
-            if data['userID'] == memberID:
+            if data['userID'] == memberID['id']:
                 check = True
 
-        # Send notification to everyone in memberList
-        if not check:
-            pass
+        likeChange = 1
+        if data['userID'] in postVal['likedBy']:
+            likeChange = -1
 
         post_col.update_one({
             '_id' : ObjectId(data['postID'])
         }, {
             '$inc' : {
-                'likes' : data['likeChange']
+                'likes' : likeChange
             }
         })
 
-        if(data['likeChange'] == 1):
+
+        if likeChange == 1:
             post_col.update_one({
                 '_id' : ObjectId(data['postID'])
             }, {
@@ -194,7 +194,116 @@ class LikePost(APIView):
                 }
             })
 
+        # Send notification to everyone in memberList
+
+        if not check:
+            if likeChange == 1:
+                for memberID in postVal['memberList']:
+                    user_col.update_one({
+                        '_id': ObjectId(memberID['id'])
+                    }, {
+                        '$push': {
+                            'notificationList': {
+                                '$each': [Notification(data['userID'], "like", "", data['postID']).getModel()],
+                                '$position': 0
+                            }
+                        }
+                    })
+                    
+            elif likeChange == -1:
+                for memberID in postVal['memberList']:
+                    user_col.update_one({
+                        '_id': ObjectId(memberID['id'])
+                    }, {
+                        '$pull': {
+                            'notificationList': {
+                                '$and': [
+                                    {
+                                        'type': {
+                                            '$eq': 'like'
+                                        }
+                                    },
+                                    {   
+                                        'onPostID': {
+                                            '$eq': data['postID']
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    })
+
+
         return Response({
             'success': 'Home feed posts recieved',
             'likes' : (post_col.find_one({'_id': ObjectId(data['postID'])}))['likes'],
         })
+
+class GetNotifications(APIView):
+    permission_classes = (permissions.AllowAny, )
+
+    def get(self, request, userID, format=None):
+        user_col = CLIENT_DATABASE['userInfo']
+
+        notificationList = user_col.find_one({'_id': ObjectId(userID)})['notificationList']
+
+        newList = []
+
+        for val in notificationList:
+            info = ""
+            if val['type'] == 'like':
+                info = val['senderName'] + " has liked your post"
+            elif val['type'] == 'comment':
+                info = val['senderName'] + " has commented on your post"
+
+            dict = {
+                'senderID': val['senderID'],
+                'onPostID': val['onPostID'],
+                'info': info,
+                'createdAt': val['createdAt']
+            }
+
+            newList.append(dict)
+
+        return Response({
+            'success': 'Notifications succesfully recieved',
+            'notificationsList' : newList
+        })
+        
+            
+class GetPost(APIView):
+    permission_classes = (permissions.AllowAny, )
+
+    def get(self, request, postID, userID, format=None):
+        user_col = CLIENT_DATABASE['userInfo']
+        post_col = CLIENT_DATABASE['postData']
+        meta_col = CLIENT_DATABASE['imageData']
+
+        FS = gridfs.GridFS(CLIENT_DATABASE)
+
+        postVal = post_col.find_one({'_id': ObjectId(postID)})
+        imageString = FS.get(meta_col.find_one({'_id': ObjectId(postVal['metadataID'])})['imageID'])
+
+        updatedUpload = str(datetime.now() - datetime.strptime(postVal['uploadTime'], '%Y-%m-%d %H:%M:%S'))
+
+        memberList =[]
+        for id in postVal['memberList']:
+            memberList.append(user_col.find_one({'_id': ObjectId(id['id'])})['username'])
+
+        postData = {
+            'postID' : json.loads(json_util.dumps(postVal['_id']))['$oid'],
+            'imageVal' : imageString,
+            "memberList" : memberList,
+            "uploadTime" : updatedUpload,
+            "caption" : postVal['caption'],
+            "likedBy" : postVal['likedBy'],
+            "likes" : postVal['likes'],
+            "comments" : postVal['comments'],
+        }
+
+        return Response({
+            'success': 'Post obtained',
+            'postData' : postData
+        })
+
+

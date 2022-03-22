@@ -109,7 +109,7 @@ function App() {
           user !== null
            ?
           <>
-            <Topbar />
+            <Topbar cache={cache} setCache={setCache}/>
             {/* {
                 !check
                     ?
@@ -145,7 +145,7 @@ function App() {
               <Route path="/teamchats" element={<Teamchats />} />
               <Route path="/explore" element={<Explore/>} />
               
-              <Route path="/postbig" element={<Postbig />} />
+              <Route path="/post/:id" element={<Postbig />} />
               <Route path="/codeconfirmation" element={<Modal6 />} />
               <Route path="/codeconfirmation" element={<Modal6 />} />
               <Route path="/forgotpassword" element={<Fp/>} />

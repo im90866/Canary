@@ -21,8 +21,12 @@ import Sidebar2 from "../Sidebar2/Sidebar2";
 
 const isMobileContext = createContext()
 
-function Topbar() {
+function Topbar(prop) {
   const navigate = useNavigate()
+
+  const cache = prop.cache
+  const setCache = prop.setCache
+
   const [openModal, setOpenModal] = useState(false);
   const isMobile = useMediaQuery({ query: `(max-width: 800px)` })
   const [showSidebar, setShowSidebar] = useState(false)
@@ -32,6 +36,8 @@ function Topbar() {
 
   const [searchField, setSearchField] = useState("")
   const [searchRes, setSearchRes] = useState([])
+
+  const [notifList, setNotifList] = useState([])
 
   const [isSearching, setIsSearching] = useState(false)
 
@@ -80,11 +86,24 @@ function Topbar() {
   useEffect(() => {
     setPFP("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPEAAADRCAMAAAAquaQNAAAAA1BMVEX///+nxBvIAAAAR0lEQVR4nO3BMQEAAADCoPVP7WULoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABuxZIAAeHuCGgAAAAASUVORK5CYII=")
 
-    axios.get("http://localhost:8000/getProfilePicture/" + String(getCookie('userID'))).then((res) => {
-      if (res.data["success"]) {
-        setPFP(res.data['imageString'])
-      }
-    })
+    if(!('topbarProfilePicture' in cache)) {
+      axios.get("http://localhost:8000/getProfilePicture/" + String(getCookie('userID'))).then((res) => {
+        if (res.data["success"]) {
+          cache['topbarProfilePicture'] = res.data['imageString']
+          setCache(cache)
+
+          setPFP(res.data['imageString'])
+        }
+      })
+    }
+    else
+      setPFP(cache['topbarProfilePicture'])
+
+      axios.get("http://localhost:8000/getNotifications/" + String(getCookie('userID'))).then((res) => {
+        let notifList = res.data['notificationsList'].slice()
+        console.log(notifList)
+        setNotifList(notifList)
+      })
 
     // notifRef.current.addEventListener('click', (e) => {
     //   setOpenModal(true)
@@ -211,50 +230,14 @@ function Topbar() {
                         <h1 className="notifications">Notifications</h1>
 
                         <ul className="notifications-2">
-                          <li className="notificationslist">
-                            <img src="/images/avatar.png" alt="" className='profile-pic' />
-                            <div className="notif-text">User1 liked your post</div>
-                          </li>
-                          <li className="notificationslist">
-                            <img src="/images/avatar.png" alt="" className='profile-pic' />
-                            <div className="notif-text">User1 liked your post</div>
-                          </li>
-                          <li className="notificationslist">
-                            <img src="/images/avatar.png" alt="" className='profile-pic' />
-                            <div className="notif-text">User1 liked your post</div>
-                          </li>
-                          <li className="notificationslist">
-                            <img src="/images/avatar.png" alt="" className='profile-pic' />
-                            <div className="notif-text">User1 liked your post</div>
-                          </li>
-                          <li className="notificationslist">
-                            <img src="/images/avatar.png" alt="" className='profile-pic' />
-                            <div className="notif-text">User1 liked your post</div>
-                          </li>
-                          <li className="notificationslist">
-                            <img src="/images/avatar.png" alt="" className='profile-pic' />
-                            <div className="notif-text">User1 liked your post</div>
-                          </li>
-                          <li className="notificationslist">
-                            <img src="/images/avatar.png" alt="" className='profile-pic' />
-                            <div className="notif-text">User1 liked your post</div>
-                          </li>
-                          <li className="notificationslist">
-                            <img src="/images/avatar.png" alt="" className='profile-pic' />
-                            <div className="notif-text">User1 liked your post</div>
-                          </li>
-                          <li className="notificationslist">
-                            <img src="/images/avatar.png" alt="" className='profile-pic' />
-                            <div className="notif-text">User1 liked your post</div>
-                          </li>
-                          <li className="notificationslist">
-                            <img src="/images/avatar.png" alt="" className='profile-pic' />
-                            <div className="notif-text">User1 liked your post</div>
-                          </li>
-                          <li className="notificationslist">
-                            <img src="/images/avatar.png" alt="" className='profile-pic' />
-                            <div className="notif-text">User1 liked your post</div>
-                          </li>
+                         {
+                           notifList.map(notif => (
+                            <li className="notificationslist">
+                              <img src="/images/avatar.png" alt="" className='profile-pic' />
+                              <div className="notif-text">{notif.info}</div>
+                            </li>
+                           ))
+                         } 
                         </ul>
 
                       </div>

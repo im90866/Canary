@@ -38,6 +38,8 @@ urlpatterns = [
     path('getFeed/<str:userID>', GetHomePosts.as_view()),
     path('search/<str:value>', SearchProfiles.as_view()),
     path('likePost/', LikePost.as_view()),
+    path('getNotifications/<str:userID>', GetNotifications.as_view()),
+    path('getPost/<str:postID>/<str:userID>', GetPost.as_view()),
 
     # Profile Views
     path('getProfilePicture/<str:userID>', GetProfilePicture.as_view()),

@@ -22,8 +22,14 @@ class ChatConsumer(AsyncWebsocketConsumer):
         for x in self.scope['headers']:
             if x[0] == b'cookie':
                 text = x[1].decode('utf-8')
-                text = (re.search('userID.*', text).group(0)).replace("userID=", "")
-                
+                print(text)
+                try:
+                    text = (re.search('userID.*;', text).group(0))
+                    text = text.replace(";", "")
+                except:
+                    text = (re.search('userID.*', text).group(0))
+
+                text = text.replace("userID=", "")
                 self.userID = text
 
                 chatList = await self.getChats(text)

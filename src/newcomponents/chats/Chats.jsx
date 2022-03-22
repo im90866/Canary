@@ -62,21 +62,23 @@ function Chats() {
   }
 
   const sendMessage = async () => {
-    const req = {
-      'userID': getCookie('userID'),
-      'otherPersonsID': currentUserID,
-      'messageData': textBoxVal,
-      'chatID': currentChatID,
-    }
-
-    await axios.post("http://localhost:8000/sendMessage/", req).then((res) => {
-      if (res.data["error"]) {
-        console.log(res.data['error'])
+    if(textBoxVal != "") {
+      const req = {
+        'userID': getCookie('userID'),
+        'otherPersonsID': currentUserID,
+        'messageData': textBoxVal,
+        'chatID': currentChatID,
       }
-    })
-    setTextBoxVal("")
 
-    WebSocketInstance.sendToChat(textBoxVal, currentChatID, currentUserID)
+      await axios.post("http://localhost:8000/sendMessage/", req).then((res) => {
+        if (res.data["error"]) {
+          console.log(res.data['error'])
+        }
+      })
+      setTextBoxVal("")
+
+      WebSocketInstance.sendToChat(textBoxVal, currentChatID, currentUserID)
+    }
   }
 
   const handleMessageChange = (e) => {
@@ -114,6 +116,7 @@ function Chats() {
           'own': (updater['messageBy'] == getCookie('username'))
         })
         setMessageList(val)
+        scrollToBottomSmooth()
       }
     }
   }, [updater, u_flag]);

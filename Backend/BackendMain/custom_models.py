@@ -17,7 +17,9 @@ class userInfo():
     _userDetails = {}
     _postID = []
     _projectID = []
+
     _notificationList = []
+    _requestList = []
 
     _chatList = []
     _userSettings = {}
@@ -66,6 +68,7 @@ class userInfo():
             "projectID" : self._projectID,
             "chatList": self._chatList,
             "notificationList": self._notificationList,
+            "requestList": self._requestList,
             "userSettings" : self._userSettings,
             "DOB": self._DOB
         }
@@ -129,7 +132,6 @@ class projectImage():
 
         return model
     
-
 class project():
     _projectName = ""
     _projectAdminID = ""
@@ -264,19 +266,34 @@ class Message():
 
 class Notification():
     _senderID = ""
+    _senderName = ""
     _type = ""
     _info = ""
     _onPostID = ""
     _createdAt = ""
 
-    def __init__(self, info, by):
-        self._info = info
-        self._createdBy = by
+    def __init__(self, senderID, type, info, onPostID):
+        CLIENT_SERVER = getClient()
+        CLIENT_DATABASE = CLIENT_SERVER['mainDB']
+
+        user_col = CLIENT_DATABASE['userInfo']
+
+        self._senderID = senderID
+        self._senderName = user_col.find_one({'_id': ObjectId(senderID)})['username']
+        self._type = type 
+        self._onPostID = onPostID
+        self._info = info 
+        self._createdAt = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+
 
     def getModel(self):
         model = {
-            'messageVal' : self._info, 
-            'messageBy' : self._createdBy
+            'senderID': self._senderID,
+            'senderName':self._senderName,
+            'type': self._type,
+            'onPostID': self._onPostID,
+            "info": self._info,
+            'createdAt': self._createdAt
         }
 
         return model

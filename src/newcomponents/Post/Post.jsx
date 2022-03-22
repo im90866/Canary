@@ -16,20 +16,16 @@ function Post(post) {
   const vPost = post['post']
 
   const likeHandler = async ()=>{
-    let likeVal = isLiked ? -1 : 1
-
     const req = {
       'userID' : String(getCookie('userID')),
       'postID' : vPost.postID,
-      'likeChange' : likeVal
     }
 
     await axios.post('http://localhost:8000/likePost/', req).then((res) => {
       console.log(res)
       setLike(res.data['likes'])
+      setIsLiked(res.data['likeBoolean'])
     });
-
-    setIsLiked(!isLiked)
   }
 
   const getUploader = (post) => {
