@@ -44,6 +44,31 @@
     word-spacing: 0.25rem;
 
 }
+
+.results1 {
+    position: fixed;
+    width: 50%;
+    /* width: auto; */
+    overflow-y: scroll;
+    /* display: grid !important; */
+    top: 297px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.results1 button {
+    width: 100%;
+    display: block;
+    position: relative;
+}
+
+.items{
+    display: flex;
+}
+
+.addButton{
+    width: 20%;
+}
+
 @media(max-width:900px){
     .ps-box{
         z-index: 1;
