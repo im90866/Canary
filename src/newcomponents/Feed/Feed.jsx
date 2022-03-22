@@ -57,7 +57,7 @@ function Feed(prop) {
 
         {
           posts.map(p => (
-            <Post key={p.postID} post={p} />
+            <Post key={p.postID} post={p}/>
           ))
         }
 

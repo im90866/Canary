@@ -3,13 +3,14 @@ import "./Post.css"
  //import "../Home/Home.css"
 import { AiFillLike } from "react-icons/ai";
 import {BsFillBookmarkFill } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import { Users } from "../../dummy.js";
 import { useState, useEffect} from "react";
 import { useMediaQuery } from 'react-responsive';
 import axios from 'axios'
 import { BsThreeDots } from "react-icons/bs";
 function Post(post) {
+  const navigate = useNavigate()
   const [like,setLike] = useState(post['post']['likes'])
   const [isLiked,setIsLiked] = useState(false)
   
@@ -33,6 +34,10 @@ function Post(post) {
       return post.memberList[0]
   }
 
+  const goToPost = () => {
+    navigate('/post/' + vPost.postID)
+  }
+
   useEffect(() => {
     if((vPost.likedBy).includes(String(getCookie('userID')))) {
       setIsLiked(true)
@@ -42,7 +47,7 @@ function Post(post) {
   return (
     <>
    
-    <div className="card">
+    <div className="card" onClick={goToPost}>
       <div className="card__body">
         <div className="img">
 

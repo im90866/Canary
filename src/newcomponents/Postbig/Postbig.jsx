@@ -14,16 +14,33 @@ import axios from 'axios';
 function Postbig({ closeModal}) {
   const postId = useParams()['id']
 
-  const [like,setLike] = useState(post['post']['likes'])
+  const [like,setLike] = useState("")
   const [isLiked,setIsLiked] = useState(false)
   const [postData, setPostData] = useState({})
   const [openModal, setOpenModal] = useState(false);
+
+  const likeHandler = async ()=>{
+    const req = {
+      'userID' : String(getCookie('userID')),
+      'postID' : postData.postID,
+    }
+
+    await axios.post('http://localhost:8000/likePost/', req).then((res) => {
+      console.log(res)
+      setLike(res.data['likes'])
+    });
+  }
 
   useEffect(() => {
     axios.get("http://localhost:8000/getPost/" + postId + '/' + getCookie('userID'))
       .then((res) => {
         console.log(res.data['postData'])
         setPostData(res.data['postData'])
+        setLike(res.data['postData']['likes'])
+
+        if((postData.likedBy).includes(String(getCookie('userID')))) {
+          setIsLiked(true)
+        }
       })
   }, [])
 
@@ -53,7 +70,7 @@ function Postbig({ closeModal}) {
                 <ul className="comment-list">
                   <li className="commentli">
                     <img src="/images/avatar.png" alt="" className='pcimg'/>
-                    <p className='pctext'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. </p>
+                    <p className='pctext'>L. </p>
                   </li>
                 </ul>
               </div>
@@ -61,8 +78,8 @@ function Postbig({ closeModal}) {
               <div className="comment-info">
                 <div className="icons">
                   <div className="like1">
-                    <AiFillLike className='icon-info'/>
-                    <span className='likenumber'>{postData.likes}</span>
+                    <AiFillLike className='icon-info' onClick={likeHandler}/>
+                    <span className='likenumber'>{like}</span>
                   </div>
                   <FaShare  className='icon-info' onClick={() => setOpenModal(true)}/>
                   <h5 className='remix'>Remix</h5>
