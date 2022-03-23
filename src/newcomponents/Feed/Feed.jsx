@@ -15,7 +15,7 @@ function Feed(prop) {
 
   useEffect(() => {
     if(!('homePosts' in cache)) {
-      axios.get("http://localhost:8000/getFeed/" + String(getCookie('username')))
+      axios.get("http://localhost:8000/getFeed/" + String(getCookie('userID')))
               .then((res) => {
                   if (res.data["success"]) {
                       setPosts(res.data['posts'])

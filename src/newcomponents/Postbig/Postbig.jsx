@@ -16,8 +16,15 @@ function Postbig({ closeModal}) {
 
   const [like,setLike] = useState("")
   const [isLiked,setIsLiked] = useState(false)
+
+  const [commentVal, setCommentVal] = useState("")
+
   const [postData, setPostData] = useState({})
   const [openModal, setOpenModal] = useState(false);
+
+  const handleBoxChange = (e) => {
+    setCommentVal(e.target.value)
+  }
 
   const likeHandler = async ()=>{
     const req = {
@@ -31,6 +38,23 @@ function Postbig({ closeModal}) {
     });
   }
 
+  const sendComment = async () => {
+    if(commentVal != "") {
+      const req = {
+        'userID': getCookie('userID'),
+        'postID': postId,
+        'info': commentVal,
+      }
+
+      await axios.post("http://localhost:8000/sendComment/", req).then((res) => {
+        if (res.data["error"]) {
+          console.log(res.data['error'])
+        }
+      })
+      setCommentVal("")
+    }
+  }
+
   useEffect(() => {
     axios.get("http://localhost:8000/getPost/" + postId + '/' + getCookie('userID'))
       .then((res) => {
@@ -41,6 +65,8 @@ function Postbig({ closeModal}) {
         if((postData.likedBy).includes(String(getCookie('userID')))) {
           setIsLiked(true)
         }
+
+        console.log(res.data['postData'].comments)
       })
   }, [])
 
@@ -93,10 +119,12 @@ function Postbig({ closeModal}) {
               <textarea
                   className="chatMessageInput1"
                   placeholder="write something..."
+                  value={commentVal}
+                  onChange={handleBoxChange}
               ></textarea>
 
               <button className="chatSubmitButton1" >
-                <span className='send'>
+                <span className='send' onClick>
                   Send
                 </span>
               </button>

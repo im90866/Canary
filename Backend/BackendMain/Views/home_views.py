@@ -159,6 +159,7 @@ class LikePost(APIView):
 
         postVal = post_col.find_one({'_id': ObjectId(data['postID'])})
 
+        # For notification check
         check = False
         for memberID in postVal['memberList']:
             if data['userID'] == memberID['id']:
@@ -175,7 +176,6 @@ class LikePost(APIView):
                 'likes' : likeChange
             }
         })
-
 
         if likeChange == 1:
             post_col.update_one({
@@ -195,7 +195,6 @@ class LikePost(APIView):
             })
 
         # Send notification to everyone in memberList
-
         if not check:
             if likeChange == 1:
                 for memberID in postVal['memberList']:
@@ -233,10 +232,56 @@ class LikePost(APIView):
                         }
                     })
 
-
         return Response({
             'success': 'Home feed posts recieved',
             'likes' : (post_col.find_one({'_id': ObjectId(data['postID'])}))['likes'],
+        })
+
+class commentPost(APIView):
+    permission_classes = (permissions.AllowAny, )
+
+    def post(self, request, format=None):
+        data = self.request.data
+
+        user_col = CLIENT_DATABASE['userInfo']
+        post_col = CLIENT_DATABASE['postData']
+
+        postVal = post_col.find_one({'_id': ObjectId(data['postID'])})
+
+        # For notification check
+        check = False
+        for memberID in postVal['memberList']:
+            if data['userID'] == memberID['id']:
+                check = True
+
+        commentVal = comment(data['userID'], data['postID'], data['info']).getModel()
+
+        post_col.update_one({
+            '_id' : ObjectId(data['postID'])
+        }, {
+            '$push' : {
+                'comments' : {
+                    '$each': [commentVal],
+                    '$position': 0
+                }
+            }
+        })
+
+        if not check:
+            for member in postVal['memberList']:
+                user_col.update_one({
+                    '_id': ObjectId(member['id'])
+                }, {
+                    '$push': {
+                        'notificationList': {
+                            '$each': [Notification(data['userID'], "comment", data['info'], data['postID']).getModel()],
+                            '$position': 0
+                        }
+                    }
+                })
+            
+        return Response({
+            'success': 'Comment posted',
         })
 
 class GetNotifications(APIView):

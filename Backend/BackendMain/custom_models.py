@@ -200,6 +200,28 @@ class post():
 
         return model
 
+class comment():
+    _userID = ""
+    _onPostID = ""
+    _info = ""
+    _createdAt = ""
+
+    def __init__(self, userID, onPostID, info):
+        self._userID = userID
+        self._onPostID = onPostID
+        self._info = info
+        self._createdAt = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+
+    def getModel(self):
+        model = {
+            'userID': self._userID,
+            'onPostID': self._onPostID,
+            'info': self._info,
+            'createdAt': self._createdAt
+        }
+
+        return model
+
 class ChatStore():
     _otherPersonsID = ""
     _chatID = ""

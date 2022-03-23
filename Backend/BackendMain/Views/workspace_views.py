@@ -115,11 +115,12 @@ class GetFolder(APIView):
             
             for x in imageList:
                 metaval = meta_col.find_one({'_id': ObjectId(x)})
-                metvalID = json.loads(json_util.dumps(metaval['_id']))['$oid']
+                metavalID = json.loads(json_util.dumps(metaval['_id']))['$oid']
+                print(metavalID)
 
                 metaval = {
                     'projectID' : metaval['projectID'],
-                    'imageID': metvalID,
+                    'imageID': metavalID,
                     'imageVal' : FS.get(metaval['imageID']),
 
                     'uploadedTime' : metaval['uploadedTime'],
