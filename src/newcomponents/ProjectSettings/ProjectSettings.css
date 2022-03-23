@@ -44,6 +44,41 @@
     word-spacing: 0.25rem;
 
 }
+
+.results1 {
+    position: fixed;
+    width: 39%;
+    /* width: auto; */
+    overflow-y: scroll;
+    /* display: grid !important; */
+    top: 345px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.results1 button {
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+}
+
+.items{
+    display: flex;
+}
+
+.addButton{
+    width: 13% !important;
+    background-color: #f7b53b;
+    border: 1px solid #ffb53b;
+    border-radius: 40px;
+    height: 80%;
+}
+
+.addButton:hover{
+    background-color: #ffffff;
+      color: #ffb53b;
+  }
+
 @media(max-width:900px){
     .ps-box{
         z-index: 1;

@@ -4,7 +4,7 @@ import { RiChatSmile2Fill, RiContactsBookLine } from "react-icons/ri"
 import { BsFillPlusCircleFill } from "react-icons/bs"
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaBars } from 'react-icons/fa';
-import { GoThreeBars } from 'react-icons/go'
+import { GoThreeBars } from 'react-icons/go';
 import { useState, useEffect, useRef, createContext } from "react"
 import { MdExplore, MdOutlineNotificationsNone, MdSettings } from "react-icons/md"
 import axios from "axios"
@@ -111,8 +111,8 @@ function Topbar(prop) {
 
     inputRef.current.addEventListener('click', (e) => {
       e.stopPropagation()
-      listRef.current.style.display = 'flex'
-      // search()
+      listRef.current.style.display = 'grid'
+      // setIsSearching(true)
 
     })
 

@@ -1,7 +1,7 @@
 import json
 
 from channels.generic.websocket import AsyncWebsocketConsumer
-from matplotlib.pyplot import text
+# from matplotlib.pyplot import text
 from channels.layers import get_channel_layer
 
 from .helper_functions import *

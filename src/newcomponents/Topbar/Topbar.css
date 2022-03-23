@@ -178,9 +178,10 @@
 
 .results {
     position: fixed;
-    width: inherit;
+    width: 50%;
+    /* width: auto; */
     overflow-y: scroll;
-    display: none;
+    /* display: grid !important; */
     top: 51px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
@@ -188,6 +189,7 @@
 .results button {
     width: 100%;
     display: block;
+    position: relative;
 }
 
 
@@ -288,4 +290,5 @@
     .searchbar{
         width: auto;
     }
+
 }
