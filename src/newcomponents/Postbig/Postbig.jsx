@@ -18,11 +18,13 @@ function Postbig({ closeModal}) {
   const [isLiked,setIsLiked] = useState(false)
 
   const [commentVal, setCommentVal] = useState("")
+  const [commentList, setCommentList] = useState([])
 
   const [postData, setPostData] = useState({})
   const [openModal, setOpenModal] = useState(false);
 
   const handleBoxChange = (e) => {
+    console.log(e.target.value)
     setCommentVal(e.target.value)
   }
 
@@ -50,6 +52,16 @@ function Postbig({ closeModal}) {
         if (res.data["error"]) {
           console.log(res.data['error'])
         }
+        else {
+          let newCommentList = commentList.slice()
+          newCommentList.push({
+            'userID': getCookie('userID'),
+            'postID': postId,
+            'info': commentVal,
+            'createdAt': res.data['createdAt']
+          })
+          setCommentList(newCommentList)
+        }
       })
       setCommentVal("")
     }
@@ -61,8 +73,9 @@ function Postbig({ closeModal}) {
         console.log(res.data['postData'])
         setPostData(res.data['postData'])
         setLike(res.data['postData']['likes'])
+        setCommentList(res.data['postData']['comments'].slice())
 
-        if((postData.likedBy).includes(String(getCookie('userID')))) {
+        if((res.data['postData'].likedBy).includes(String(getCookie('userID')))) {
           setIsLiked(true)
         }
 
@@ -94,10 +107,13 @@ function Postbig({ closeModal}) {
 
               <div className="comment-containber">
                 <ul className="comment-list">
-                  <li className="commentli">
-                    <img src="/images/avatar.png" alt="" className='pcimg'/>
-                    <p className='pctext'>L. </p>
-                  </li>
+                  {
+                    commentList.map(comment => 
+                    <li className="commentli">
+                      <img src="/images/avatar.png" alt="" className='pcimg'/>
+                      <p className='pctext'>{comment.info} </p>
+                    </li>
+                  )}
                 </ul>
               </div>
               
@@ -123,8 +139,8 @@ function Postbig({ closeModal}) {
                   onChange={handleBoxChange}
               ></textarea>
 
-              <button className="chatSubmitButton1" >
-                <span className='send' onClick>
+              <button className="chatSubmitButton1" onClick={sendComment}>
+                <span className='send' >
                   Send
                 </span>
               </button>

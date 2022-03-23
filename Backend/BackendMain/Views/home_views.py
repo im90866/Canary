@@ -237,7 +237,7 @@ class LikePost(APIView):
             'likes' : (post_col.find_one({'_id': ObjectId(data['postID'])}))['likes'],
         })
 
-class commentPost(APIView):
+class CommentPost(APIView):
     permission_classes = (permissions.AllowAny, )
 
     def post(self, request, format=None):
@@ -262,7 +262,6 @@ class commentPost(APIView):
             '$push' : {
                 'comments' : {
                     '$each': [commentVal],
-                    '$position': 0
                 }
             }
         })
@@ -282,6 +281,7 @@ class commentPost(APIView):
             
         return Response({
             'success': 'Comment posted',
+            'createdAt': datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         })
 
 class GetNotifications(APIView):
