@@ -68,7 +68,7 @@ class CreateImage(APIView):
 
         return Response({ 
             'success' : 'Image properly stored',
-            'imageID' : json.loads(json_util.dumps(imageID))['$oid']
+            'imageID' : projectImageID
         })
 
 

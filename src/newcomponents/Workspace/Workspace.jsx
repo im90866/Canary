@@ -318,9 +318,12 @@ function Workspace(prop) {
                     <h3 className='folder-text1'>{image.fileName}</h3>
                     <div className="dropdown-block">
                       <BsThreeDots className='three-dots3' class="dropdowns" />
+                      {
+                        console.log(image.imageID)
+                      }
                       <div class="dropdown-content">
-                        <button className="dropdown-text" onClick={() => { setPostImageVal(image); setOpenModal(true); setImageId(image.imageID)}}>Post</button>
-                        <button className="dropdown-text" onClick={() => { setOpenModalRename(true); setModalVal("Rename"); setImageId(image.imageID) }}>Rename</button>
+                        <button className="dropdown-text" onClick={() => { setImageId(image.imageID); setPostImageVal(image); setOpenModal(true); }}>Post</button>
+                        <button className="dropdown-text" onClick={() => { setImageId(image.imageID); setOpenModalRename(true); setModalVal("Rename");}}>Rename</button>
                         <button className="dropdown-text" onClick={() => deleteImage(image.imageID)}>Delete</button>
                         <a className="dropdown-text1" href={image.imageVal} download>Download</a>
                      

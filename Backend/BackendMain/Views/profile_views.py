@@ -4,6 +4,9 @@ from rest_framework import permissions
 from rest_framework.response import Response
 from django.views.decorators.csrf import ensure_csrf_cookie, csrf_exempt, csrf_protect
 
+from PIL import Image # import pillow library (can install with "pip install pillow")
+
+
 import json
 import re
 import gridfs
@@ -23,11 +26,14 @@ class GetProfilePicture(APIView):
 
     def get(self, request, userID, format=None):
         FS = gridfs.GridFS(CLIENT_DATABASE)
+        
 
         user_col = CLIENT_DATABASE['userInfo']
     
         imageID = user_col.find_one({'_id': ObjectId(userID)})['profilePictureID']
         imageString = FS.get(ObjectId(imageID))
+
+        
 
         return Response({
             'success': 'Obtained image',
@@ -49,6 +55,7 @@ class GetProfileFeed(APIView):
         imageList = []
 
         for postID in postList:
+            print(postID)
             postData = post_col.find_one({'_id': ObjectId(postID)})
             metaID = postData['metadataID']
             imageID = meta_col.find_one({'_id': ObjectId(metaID)})['imageID']
