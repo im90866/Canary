@@ -37,7 +37,50 @@ function Sidebar2() {
               <span className="sidebarListItemText">Project</span>
             </Link>
           </li>
+          <li className="sidebarListItem" onClick={() => setSub(!sub)}>
 
+<span className="sidebarListItemText1">{window.sessionStorage.getItem("currentProjectName")}</span>
+{
+  sub
+    ?
+    <AiFillCaretUp className="sidebarIcon1" />
+    :
+    <AiFillCaretDown className="sidebarIcon1" />
+}
+
+{
+  sub
+    ?
+    <ul className="sidebarlistsub">
+      <li className="sidebarListItemsub">
+        <Link to="/workspace/:id">
+
+          <span className="sidebarListItemTextsub">Workspace</span>
+        </Link>
+      </li>
+      <li className="sidebarListItemsub">
+        <Link to="/projectsettings">
+
+          <span className="sidebarListItemTextsub">Teams</span>
+        </Link>
+      </li>
+      <li className="sidebarListItemsub">
+        <Link to="/teamchats">
+
+          <span className="sidebarListItemTextsub">Team chats</span>
+        </Link>
+      </li>
+      <li className="sidebarListItemsub">
+        <Link to="/team">
+
+          <span className="sidebarListItemTextsub">Project Settings</span>
+        </Link>
+      </li>
+    </ul>
+    :
+    null
+}
+</li>
           <li className="sidebarListItem">
             <Link to="/">
               <RiChatSmile2Line className="sidebarIcon" />
@@ -52,50 +95,7 @@ function Sidebar2() {
               <span className="sidebarListItemText">Settings</span>
             </Link>
           </li>
-          <li className="sidebarListItem" onClick={() => setSub(!sub)}>
-
-            <span className="sidebarListItemText1">{window.sessionStorage.getItem("currentProjectName")}</span>
-            {
-              sub
-                ?
-                <AiFillCaretUp className="sidebarIcon1" />
-                :
-                <AiFillCaretDown className="sidebarIcon1" />
-            }
-
-            {
-              sub
-                ?
-                <ul className="sidebarlistsub">
-                  <li className="sidebarListItemsub">
-                    <Link to="/workspace/:id">
-
-                      <span className="sidebarListItemTextsub">Workspace</span>
-                    </Link>
-                  </li>
-                  <li className="sidebarListItemsub">
-                    <Link to="/projectsettings">
-
-                      <span className="sidebarListItemTextsub">Teams</span>
-                    </Link>
-                  </li>
-                  <li className="sidebarListItemsub">
-                    <Link to="/teamchats">
-
-                      <span className="sidebarListItemTextsub">Team chats</span>
-                    </Link>
-                  </li>
-                  <li className="sidebarListItemsub">
-                    <Link to="/team">
-
-                      <span className="sidebarListItemTextsub">Project Settings</span>
-                    </Link>
-                  </li>
-                </ul>
-                :
-                null
-            }
-          </li>
+         
           <li className="sidebarListItem">
             <Link to="/">
               < IoLogOutOutline className="sidebarIcon" />

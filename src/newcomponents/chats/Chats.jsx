@@ -154,6 +154,10 @@ function Chats() {
           </div>
         </div>
         <div className="chat-box">
+          <div className="chatbox-name">
+            <img src="/images/avatar.png" alt="" className='profile-pic4' />
+            <div className="nameprof">crashland</div>
+          </div>
           <div className="chat-boxwrapper">
             
             {

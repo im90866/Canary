@@ -97,12 +97,14 @@ left: 480px;
             padding: 12px 45px;
             color:#fff;
             font-weight: bold;
+            transition: 0.25s;
 
 
           }
         .folder-btn6:hover{
           background-color: #ffffff;
           color: #ffb53b;
+          transition: 0.3s;
         }
         
           .folder-btn7{
@@ -114,9 +116,19 @@ left: 480px;
             text-align: center;
           }
       
-         .digit{
-             width: 50px;
-             height: 50px;
+         .digit12{
+          border: none;
+          background-color: #efefef;
+          padding: 8px 20px;
+      
+          position: relative;
+          top:10px;
+          border-radius: 5px;
+          width: 300px;
+          margin-top: 0px;
+          font-size: 10px;
+          left: 0px;
+          left: 70px;
          }
           
           .change-text10{
@@ -163,10 +175,12 @@ left: 480px;
                 left: 130px;
                 position: relative;
                 top: 50px;
+                transition: 0.25s;
                }
                .folder-btn60:hover{
                 background-color: #ffffff;
                 color: #ffb53b;
+                transition: 0.3s;
               }
 
               @media (max-width: 800px){
@@ -187,6 +201,7 @@ left: 480px;
                
                 position: relative;
                 top: 10px;
+                left: 60px;
                }
                            
         .six-digit1{
@@ -204,4 +219,18 @@ left: 480px;
           top: -5px;
           left: -3px;
               }
+              .digit12{
+                border: none;
+                background-color: #efefef;
+                padding: 8px 20px;
+            
+                position: relative;
+                top:5px;
+                border-radius: 5px;
+                width: 300px;
+                margin-top: 0px;
+                font-size: 10px;
+               
+                left: 10px;
+               }
             }

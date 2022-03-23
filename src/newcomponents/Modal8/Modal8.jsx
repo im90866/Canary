@@ -1,7 +1,7 @@
 import React from 'react'
 import "./Modal8.css"
 import {BsClipboard} from "react-icons/bs";
-function Modal8(closeModal) {
+function Modal8({closeModal}) {
   return (
     <div>
          <div className="modalBackground">

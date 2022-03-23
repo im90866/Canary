@@ -141,7 +141,7 @@ function Registrationpage() {
           </div>
         </div>
      
-        <button className='submit-changes' onClick={() => updateInfo()} type='submit'>Continue</button>
+        <button className='submit-changes1' onClick={() => updateInfo()} type='submit'>Continue</button>
 
       </div>
       </body>

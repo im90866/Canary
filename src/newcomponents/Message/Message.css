@@ -1,11 +1,15 @@
 .message {
     display: flex;
     flex-direction: column;
+  
    
   }
   
   .messageTop{
       display: flex;
+      position: relative;
+      left: 100px;
+     
   }
   
   .messageImg {
@@ -35,8 +39,17 @@
   
       position: relative;
       top: -20px;
+      left: 100px;
+     
   }
-  
+  .message.own .messageTop{
+      position: relative;
+      left: -100px;
+  }
+  .message.own .messageBottom{
+    position: relative;
+    left: -100px;
+}
   .message.own{
       align-items: flex-end;
   }

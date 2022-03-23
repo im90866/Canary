@@ -7,10 +7,13 @@
     top:-5px;
     margin-right: 150px;
     margin-left: 200px;
+    left: 50px;
 }
 
-.submit-changes{
-    border-radius: 5px;
+.submit-changes1{
+    border-radius: 40px;
+    position: relative;
+    left: 390px;
 }
 
 .change{
@@ -19,6 +22,7 @@
     border-radius: 5px; 
     position: relative;
     left: -170px;
+    transition: 0.25s;
 }
 
 .photo{
@@ -32,13 +36,13 @@
     font-weight: 500;
     position: relative;
     top:20px;
-    left: 200px;
+    left: 250px;
 }
 .profile-username1{
-    font-size: 24px;
+    font-size: 20px;
     position: relative;
-    top:-5px;
-    left: 10px;
+    top:5px;
+    left: -15px;
     font-weight: 500;
 }
 .change1{
@@ -47,7 +51,7 @@
 text-transform: none;
 width: 150px;
    height: 40px;
-border-radius: 5px;
+border-radius: 40px;
 position: relative;
 top:60px;
 left:-250px;
@@ -60,11 +64,13 @@ font-weight: bold;
 white-space: nowrap;
 
        text-overflow: clip;
+       transition: 0.3s;
 }
 .change1:hover{
     background-color: #fff;
 color: #ffb53b;
 border: 1px solid #ffb53b;
+transition: 0.25s;
 }
 .profile-picture-cropper{
     height: 80px;
@@ -72,6 +78,10 @@ border: 1px solid #ffb53b;
     overflow: hidden;
     border-radius: 50%;
    
+}
+.change-details{
+    position: relative;
+    top: -20px;
 }
  .profile-picture{
     height: 100%;
@@ -112,46 +122,20 @@ border: 1px solid #ffb53b;
         position: relative;
         border-radius: 5px;
         background-color: #fff;
-        width:500px;
-        height: 400px;
+        width:100%;
+     
         top:-35px;
-        margin-right: 150px;
-        margin-left: 200px;
+     left: -20px;
     }
     .registration{
-        font-size: 20px;
+        font-size: 18px;
         font-weight: 500;
         position: relative;
         top:20px;
-        left: 200px;
+        left: 150px;
     }
-    .profile-username1{
-        font-size: 20px;
-        position: relative;
-        top:-5px;
-        left: 30px;
-        font-weight: 500;
-    }
-    .change1{
-        font-weight: 400;
-        font-size: 12px;
-    text-transform: none;
-    width: 120px;
-       height: 40px;
-    border-radius: 5px;
-    position: relative;
-    top:40px;
-    left:-200px;
-    margin-left: 80px;
-    background-color: #ffb53b;
-    color: #FFFFFF;
-    border: 1px solid #ffb53b;
-    font-weight: bold;
-    
-    white-space: nowrap;
-    
-           text-overflow: clip;
-    }
+
+ 
     .change-text50{
         border: none;
         background-color: #efefef;
@@ -169,5 +153,10 @@ border: 1px solid #ffb53b;
         border-radius: 5px;
         width: 250px;
         margin-top: 20px;
+    }
+    .submit-change1{
+        position: relative;
+     margin-left: -100px;
+        width: 150px;
     }
 }
