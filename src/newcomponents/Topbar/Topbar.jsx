@@ -18,6 +18,8 @@ import { useMediaQuery } from 'react-responsive';
 import Sidebar from "../Sidebar/Sidebar";
 import Sidebar2 from "../Sidebar2/Sidebar2";
 
+import { GrFormClose } from "react-icons/gr"
+import { IoMdArrowBack } from "react-icons/io"
 
 const isMobileContext = createContext()
 
@@ -41,6 +43,8 @@ function Topbar(prop) {
   const [isSearching, setIsSearching] = useState(false)
 
   const [PFP, setPFP] = useState("")
+
+  const [showReq, setShowReq] = useState(false)
 
   const listRef = useRef()
   const inputRef = useRef()
@@ -83,7 +87,7 @@ function Topbar(prop) {
   }
 
   useEffect(() => {
-    if(!('topbarProfilePicture' in cache)) {
+    if (!('topbarProfilePicture' in cache)) {
       axios.get("http://localhost:8000/getProfilePicture/" + String(getCookie('userID'))).then((res) => {
         if (res.data["success"]) {
           cache['topbarProfilePicture'] = res.data['imageString']
@@ -96,11 +100,11 @@ function Topbar(prop) {
     else
       setPFP(cache['topbarProfilePicture'])
 
-      axios.get("http://localhost:8000/getNotifications/" + String(getCookie('userID'))).then((res) => {
-        let notifList = res.data['notificationsList'].slice()
-        console.log(notifList)
-        setNotifList(notifList)
-      })
+    axios.get("http://localhost:8000/getNotifications/" + String(getCookie('userID'))).then((res) => {
+      let notifList = res.data['notificationsList'].slice()
+      console.log(notifList)
+      setNotifList(notifList)
+    })
 
     // notifRef.current.addEventListener('click', (e) => {
     //   setOpenModal(true)
@@ -147,45 +151,45 @@ function Topbar(prop) {
 
 
 
-      <div className="topbarCenter">
-        <div className="searchbar">
-          <FaSearch className="searchIcon" />
-          <input
-            placeholder="Search for friend, post or video"
-            className="searchInput"
-            value={searchField}
-            onKeyUp={() => search()}
-            onChange={e => setSearchField(e.target.value)}
-            ref={inputRef}
-          />
-          <div id="results" className="results" ref={listRef}>
-            {
-              searchRes.length > 0
-                ?
-                searchRes.map((res, index) => {
-                  return (
-                    <button
-                      type="button"
-                      key={index}
-                      onClick={(e) => {
-                        inputRef.current.value = res.username;
-                        axios.get('http://localhost:8000/getUserID/'+res.username).then((response) => {
-                          navigate('profile/'+response.data['userID'])
-                          window.location.reload();
-                        });
-                      }}
-                      className="list-group-item list-group-item-action"
-                    >
-                      <div className="search-image-cropper">
-                        <img style={{ width: '30px', height: '25px' }} className="search-image" src={res.profilePictureID} />
-                      </div>
-                      &nbsp;
-                      &nbsp;
-                      {res.username}
-                    </button>
-                  )
-                })
-                :
+        <div className="topbarCenter">
+          <div className="searchbar">
+            <FaSearch className="searchIcon" />
+            <input
+              placeholder="Search for friend, post or video"
+              className="searchInput"
+              value={searchField}
+              onKeyUp={() => search()}
+              onChange={e => setSearchField(e.target.value)}
+              ref={inputRef}
+            />
+            <div id="results" className="results" ref={listRef}>
+              {
+                searchRes.length > 0
+                  ?
+                  searchRes.map((res, index) => {
+                    return (
+                      <button
+                        type="button"
+                        key={index}
+                        onClick={(e) => {
+                          inputRef.current.value = res.username;
+                          axios.get('http://localhost:8000/getUserID/' + res.username).then((response) => {
+                            navigate('profile/' + response.data['userID'])
+                            window.location.reload();
+                          });
+                        }}
+                        className="list-group-item list-group-item-action"
+                      >
+                        <div className="search-image-cropper">
+                          <img style={{ width: '30px', height: '25px' }} className="search-image" src={res.profilePictureID} />
+                        </div>
+                        &nbsp;
+                        &nbsp;
+                        {res.username}
+                      </button>
+                    )
+                  })
+                  :
                   isNotEmpty(searchField) && !isSearching &&
                   <button
                     type="button"
@@ -215,27 +219,61 @@ function Topbar(prop) {
                   <div >
                     <div className="modalBackground2">
                       <div className="modalContainer4">
-                        <div className="titleCloseBtn2">
-                          <button className='cross'
-                            onClick={() => {
-                              openClose();
-                            }}
-                          >
-                            x
-                          </button>
-                        </div>
-                        <h1 className="notifications">Notifications</h1>
 
-                        <ul className="notifications-2">
-                         {
-                           notifList.map(notif => (
-                            <li className="notificationslist">
-                              <img src="/images/avatar.png" alt="" className='profile-pic' />
-                              <div className="notif-text">{notif.info}</div>
-                            </li>
-                           ))
-                         } 
-                        </ul>
+                        {
+                          !showReq
+                            ?
+                            <>
+                              <div className="titleCloseBtn2">
+                                <button className='cross'
+                                  onClick={() => {
+                                    openClose();
+                                  }}
+                                >
+                                  x
+                                </button>
+                              </div>
+                              <h1 className="notifications">Notifications</h1>
+                              <ul className="notifications-2">
+                                <li className="notificationslist" onClick={() => setShowReq(!showReq)}>
+                                  <div className="notif-text">
+                                    <h3>Requests-></h3>
+                                  </div>
+                                </li>
+                                {
+                                  notifList.map(notif => (
+                                    <li className="notificationslist">
+                                      <img src="/images/avatar.png" alt="" className='profile-pic' />
+                                      <div className="notif-text">{notif.info}</div>
+
+                                    </li>
+                                  ))
+                                }
+                              </ul>
+                            </>
+                            :
+                            <>
+                              <div className="" style={{display:'inline'}}>
+                                <IoMdArrowBack onClick={() => setShowReq(!showReq)}/>
+                                <h1 className="notifications">
+                                  Requests
+                                </h1>
+                              </div>
+
+                              <ul className="notifications-2">
+                                {
+                                  notifList.map(notif => (
+                                    <li className="notificationslist">
+                                      <img src="/images/avatar.png" alt="" className='profile-pic' />
+                                      <div className="notif-text">{notif.info}</div>
+                                      <GrFormClose />
+                                    </li>
+                                  ))
+                                }
+                              </ul>
+                            </>
+                        }
+
 
                       </div>
                     </div>
@@ -262,19 +300,19 @@ function Topbar(prop) {
           !check
             ?
             <>
-              <Sidebar 
-                isMobile={isMobile} 
-                showSidebar={showSidebar} 
-                setShowSidebar={setShowSidebar} 
-                cache={cache} 
+              <Sidebar
+                isMobile={isMobile}
+                showSidebar={showSidebar}
+                setShowSidebar={setShowSidebar}
+                cache={cache}
                 setCache={setCache}
               />
-                {
-                  console.log("working")
-                }
+              {
+                console.log("working")
+              }
             </>
             :
-            <Sidebar2 cache={cache} setCache={setCache}/>
+            <Sidebar2 cache={cache} setCache={setCache} />
           :
           showSidebar
             ?
