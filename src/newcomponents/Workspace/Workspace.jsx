@@ -233,6 +233,7 @@ function Workspace(prop) {
   const getProjectName = async () => {
     await axios.get("http://localhost:8000/getProjectName/" + projectId).then((res) => {
       window.sessionStorage.setItem("currentProjectName", res.data['projectName']);
+      window.sessionStorage.setItem("currentProjectId", projectId);
     })
   }
 

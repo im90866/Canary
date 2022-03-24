@@ -32,7 +32,6 @@ function Topbar(prop) {
   const [showSidebar, setShowSidebar] = useState(false)
   const location = useLocation()
   const [check, setCheck] = useState()
-  console.log(isMobile)
 
   const [searchField, setSearchField] = useState("")
   const [searchRes, setSearchRes] = useState([])
@@ -84,8 +83,6 @@ function Topbar(prop) {
   }
 
   useEffect(() => {
-    setPFP("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPEAAADRCAMAAAAquaQNAAAAA1BMVEX///+nxBvIAAAAR0lEQVR4nO3BMQEAAADCoPVP7WULoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABuxZIAAeHuCGgAAAAASUVORK5CYII=")
-
     if(!('topbarProfilePicture' in cache)) {
       axios.get("http://localhost:8000/getProfilePicture/" + String(getCookie('userID'))).then((res) => {
         if (res.data["success"]) {
@@ -265,13 +262,19 @@ function Topbar(prop) {
           !check
             ?
             <>
-              <Sidebar isMobile={isMobile} showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
-              {
-                console.log("working")
-              }
+              <Sidebar 
+                isMobile={isMobile} 
+                showSidebar={showSidebar} 
+                setShowSidebar={setShowSidebar} 
+                cache={cache} 
+                setCache={setCache}
+              />
+                {
+                  console.log("working")
+                }
             </>
             :
-            <Sidebar2 />
+            <Sidebar2 cache={cache} setCache={setCache}/>
           :
           showSidebar
             ?

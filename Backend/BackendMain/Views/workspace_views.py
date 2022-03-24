@@ -1,10 +1,14 @@
-from pathlib import Path
 from rest_framework.views import APIView
 from rest_framework import permissions
 from rest_framework.response import Response
 from django.views.decorators.csrf import ensure_csrf_cookie, csrf_exempt, csrf_protect
 
+from PIL import Image
+from io import BytesIO
+
+import re
 import json
+import base64
 from bson import json_util, ObjectId
 
 from ..helper_functions import *
@@ -48,7 +52,6 @@ class CreateImage(APIView):
         targetFolder = ""
 
         if len(data['currentPath']) == 1 :
-            print("yesss")
             targetFolder = root
         else:
             targetFolder = searchFoldersWithPath(root, data['currentPath'], folder_col)
@@ -116,12 +119,15 @@ class GetFolder(APIView):
             for x in imageList:
                 metaval = meta_col.find_one({'_id': ObjectId(x)})
                 metavalID = json.loads(json_util.dumps(metaval['_id']))['$oid']
-                print(metavalID)
+
+                # Decode from bytes
+                imageVal = FS.get(metaval['imageID'])
+                imageVal = resizeImage(imageVal, 300)      # Custom function
 
                 metaval = {
                     'projectID' : metaval['projectID'],
                     'imageID': metavalID,
-                    'imageVal' : FS.get(metaval['imageID']),
+                    'imageVal' : imageVal,
 
                     'uploadedTime' : metaval['uploadedTime'],
                     'uploader' : metaval['uploader'],
@@ -130,11 +136,7 @@ class GetFolder(APIView):
                     'fileName' : metaval['fileName'],
                     'fileSize' : metaval['fileSize'],
                 }
-                print("after: ", metaval)
                 finalImageList.append(metaval)
-            
-            
-        print("stuff: ", finalFolderList)
         return Response({ 
             'success' : 'Successfully obtained folders',
             'folderList' : finalFolderList,
@@ -156,7 +158,6 @@ class CreateFolder(APIView):
 
         path = data['currentFolderPath']
         targetFolder = ""
-        print(path)
 
         if len(path) == 1:
             targetFolder = root
@@ -195,8 +196,6 @@ class RenameFolder(APIView):
         proj_col = CLIENT_DATABASE['projectData']
         folder_col = CLIENT_DATABASE['folder']
 
-        print(data)
-
         folder_col.update_one({
             '_id': ObjectId(data['folderID'])
         }, {
@@ -223,7 +222,6 @@ class DeleteFolder(APIView):
 
         path = data['folderPath']
         targetFolder = ""
-        print(path)
 
         if len(path) == 1:
             targetFolder = root
@@ -244,7 +242,6 @@ class DeleteFolder(APIView):
 
 def recursiveDelete(folderID, col):
     folderList = col.find_one({'_id': ObjectId(folderID)})['folderList']
-    print(folderList)
 
     col.delete_one({'_id': ObjectId(folderID)})  
     
@@ -303,7 +300,6 @@ class RenameImage(APIView):
 
         proj_col = CLIENT_DATABASE['projectData']
         meta_col = CLIENT_DATABASE['imageData']
-        print(data)
 
         meta_col.update_one({
             '_id': ObjectId(data['imageID'])
@@ -331,7 +327,6 @@ class DeleteImage(APIView):
 
         path = data['folderPath']
         targetFolder = ""
-        print(path)
 
         if len(path) == 1:
             targetFolder = root
@@ -373,7 +368,6 @@ class CreateSpecImage(APIView):
 def searchFoldersWithPath(root, folderPath, col):
     folderPath.pop(0)
 
-    print(root)
     curFolder = root['folderList']
 
     if not len(curFolder) > 0:
@@ -381,7 +375,6 @@ def searchFoldersWithPath(root, folderPath, col):
     else:
         while len(folderPath) > 0:
             for x in curFolder:
-                print(x)
                 val = col.find_one({'_id' : ObjectId(x)})
                 if x == folderPath[0]:
                     folderPath.pop(0)

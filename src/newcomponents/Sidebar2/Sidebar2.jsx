@@ -2,7 +2,7 @@ import React, { useState, useEffect} from 'react'
 
 import { RiChatSmile2Line } from "react-icons/ri"
 
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useNavigate} from "react-router-dom";
 
 
 import { MdOutlineExplore, MdWorkspacesOutline } from "react-icons/md"
@@ -10,12 +10,25 @@ import { BsChatSquareDots } from 'react-icons/bs';
 import { AiOutlineHome, AiFillCaretDown, AiOutlineTeam, AiFillCaretUp } from 'react-icons/ai';
 import { IoCreateOutline, IoSettingsOutline, IoLogOutOutline } from 'react-icons/io5';
 import "./Sidebar2.css"
-function Sidebar2() {
+function Sidebar2(prop) {
+  let navigate = useNavigate()
 
+  const cache = prop.cache
+  const setCache = prop.setCache
+
+  const [projectId, setProjectId] = useState()
   const [sub, setSub] = useState(false)
+
+  const logout = () => {
+    eraseCookie('username')
+    eraseCookie('userID')
+    setCache({})
+    navigate('/')
+  }
 
   useEffect(() => {
     window.sessionStorage.getItem("currentProjectName")
+    window.sessionStorage.getItem("currentProjectId")
   }, [])
 
   return (
@@ -68,7 +81,7 @@ function Sidebar2() {
                 ?
                 <ul className="sidebarlistsub">
                   <li className="sidebarListItemsub">
-                    <Link to="/workspace/:id">
+                    <Link to={"/workspace/" + window.sessionStorage.getItem("currentProjectId") + "/"}>
 
                       <span className="sidebarListItemTextsub">Workspace</span>
                     </Link>
@@ -96,7 +109,7 @@ function Sidebar2() {
                 null
             }
           </li>
-          <li className="sidebarListItem">
+          <li className="sidebarListItem" onClick={() => logout()}>
             <Link to="/">
               < IoLogOutOutline className="sidebarIcon" />
               <span className="sidebarListItemText">Signout</span>
@@ -109,6 +122,10 @@ function Sidebar2() {
       </div>
     </div>
   )
+}
+
+function eraseCookie(name) {
+  document.cookie = name + '=; Max-Age=-99999999;';
 }
 
 export default Sidebar2

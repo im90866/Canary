@@ -31,9 +31,9 @@ class GetProfilePicture(APIView):
         user_col = CLIENT_DATABASE['userInfo']
     
         imageID = user_col.find_one({'_id': ObjectId(userID)})['profilePictureID']
-        imageString = FS.get(ObjectId(imageID))
-
         
+        imageString = FS.get(ObjectId(imageID))        
+        imageString = resizeImage(imageString, 300)
 
         return Response({
             'success': 'Obtained image',

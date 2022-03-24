@@ -10,12 +10,16 @@ import { useContext } from "react";
 
 import { isMobileContext } from '../Topbar/Topbar'
 
-export default function Sidebar() {
+export default function Sidebar(prop) {
   let navigate = useNavigate()
+
+  const cache = prop.cache
+  const setCache = prop.setCache
 
   const logout = () => {
     eraseCookie('username')
     eraseCookie('userID')
+    setCache({})
     navigate('/')
   }
 

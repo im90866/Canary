@@ -66,8 +66,9 @@ function Project(prop) {
     setProjects(newProjectList)
   }
 
-  const setProjectName = async (projectId) => {
+  const setProjectName = async (projectName, projectId) => {
       window.sessionStorage.setItem("currentProjectName", projectId);
+      window.sessionStorage.setItem("currentProjectId", projectId);
   }
 
   useEffect(() => {
@@ -102,7 +103,10 @@ function Project(prop) {
             <ul className="project-list">
               {
                 projects.map(project =>
-                  <div className="projectlistname" key={project.id} onClick={() => setProjectName(project.projectName)}>
+                  <div className="projectlistname" 
+                    key={project.id} 
+                    onClick={() => setProjectName(project.projectName, project.projectId)
+                  }>
                     <Link to={`/workspace/${project.id}`}>
                       <li className="project-list-item">
                         <span className='project-name'>{project.projectName}</span>
