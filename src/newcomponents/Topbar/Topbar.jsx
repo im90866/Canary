@@ -19,6 +19,7 @@ import Sidebar from "../Sidebar/Sidebar";
 import Sidebar2 from "../Sidebar2/Sidebar2";
 
 import { GrFormClose } from "react-icons/gr"
+import { BsCheck } from "react-icons/bs";
 import { IoMdArrowBack } from "react-icons/io"
 
 const isMobileContext = createContext()
@@ -39,6 +40,7 @@ function Topbar(prop) {
   const [searchRes, setSearchRes] = useState([])
 
   const [notifList, setNotifList] = useState([])
+  const [requestList, setRequestList] = useState([])
 
   const [isSearching, setIsSearching] = useState(false)
 
@@ -265,6 +267,7 @@ function Topbar(prop) {
                                       <img src="/images/avatar.png" alt="" className='profile-pic' />
                                       <div className="notif-text">{notif.info}</div>
                                       <GrFormClose />
+                                      <BsCheck />
                                     </li>
                                   ))
                                 }
