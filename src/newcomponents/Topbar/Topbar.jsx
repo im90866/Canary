@@ -10,7 +10,7 @@ import { MdExplore, MdOutlineNotificationsNone, MdSettings } from "react-icons/m
 import axios from "axios"
 
 import { IconContext } from 'react-icons';
-import { IoIosNotificationsOutline } from "react-icons/io";
+import { IoIosNotificationsOutline, IoIosArrowForward } from "react-icons/io";
 import Modal4 from "../Modal4/Modal4";
 import ListGroup from 'react-bootstrap/ListGroup'
 import Res from './Res'
@@ -224,28 +224,27 @@ function Topbar(prop) {
                           !showReq
                             ?
                             <>
-                              <div className="titleCloseBtn2">
-                                <button className='cross'
-                                  onClick={() => {
-                                    openClose();
-                                  }}
-                                >
-                                  x
-                                </button>
+                              <div className="notifications">
+                                {/* <div className="titleCloseBtn2">
+                                  <button className='cross'
+                                    >
+                                    x
+                                  </button>
+                                </div> */}
+                                <div></div>
+                                <h3>Notifications</h3>
+                                <GrFormClose onClick={() => {openClose()}}/>
                               </div>
-                              <h1 className="notifications">Notifications</h1>
+                              {/* <br></br> */}
+                              <div className="requests" style={{ justifyContent: 'space-between' }} onClick={() => setShowReq(!showReq)}>
+                                <p>Requests</p> <IoIosArrowForward onClick={() => setShowReq(!showReq)}/>
+                              </div>
                               <ul className="notifications-2">
-                                <li className="notificationslist" onClick={() => setShowReq(!showReq)}>
-                                  <div className="notif-text">
-                                    <h3>Requests-></h3>
-                                  </div>
-                                </li>
                                 {
                                   notifList.map(notif => (
                                     <li className="notificationslist">
                                       <img src="/images/avatar.png" alt="" className='profile-pic' />
                                       <div className="notif-text">{notif.info}</div>
-
                                     </li>
                                   ))
                                 }
@@ -253,11 +252,10 @@ function Topbar(prop) {
                             </>
                             :
                             <>
-                              <div className="" style={{display:'inline'}}>
-                                <IoMdArrowBack onClick={() => setShowReq(!showReq)}/>
-                                <h1 className="notifications">
-                                  Requests
-                                </h1>
+                              <div className="requests2">
+                                <IoMdArrowBack onClick={() => setShowReq(!showReq)} />
+                                <h3>Requests</h3>
+                                <div></div>
                               </div>
 
                               <ul className="notifications-2">
