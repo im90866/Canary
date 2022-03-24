@@ -98,16 +98,19 @@
 	background-color: #ffb53b;
 	color: #FFFFFF;
     border-radius: 40px;
+    transition: 0.25s;
 }
 .folder-btn3:hover{
     border: 1px solid #ffb53b;
 	background-color: #ffff;
 	color: #ffb53b;
+    transition: 0.3s;
 }
 .folder-btn4:hover{
     border: 1px solid #ffb53b;
 	background-color: #ffff;
 	color: #ffb53b;
+    transition: 0.3s;
 }
 .folder-btn4 {
     border-radius: 40px;
@@ -116,6 +119,7 @@
 	color: #FFFFFF;
     width: 30%;
     height: 40px;
+    transition: 0.25s;
 }
 
 .div2 {

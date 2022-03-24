@@ -89,7 +89,9 @@ function Postbig({ closeModal}) {
         <div className="postbig-container">
           
           <div className="postimg-container">
+            <div className="postbig-cropper">
             <img src={postData['imageVal']} alt="" className='postimage'/>
+            </div>
           </div>
 
           <div className="post-bigdet">
@@ -111,6 +113,7 @@ function Postbig({ closeModal}) {
                     commentList.map(comment => 
                     <li className="commentli">
                       <img src="/images/avatar.png" alt="" className='pcimg'/>
+                      <h4 className='comment-username'>Newfez</h4>
                       <p className='pctext'>{comment.info} </p>
                     </li>
                   )}

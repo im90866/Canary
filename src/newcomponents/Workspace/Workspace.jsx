@@ -40,6 +40,7 @@ function Workspace(prop) {
   const [modalVal, setModalVal] = useState("")
   const [folderId, setFolderId] = useState("")
   const [imageId, setImageId] = useState("")
+  const MAX_LENGTH = 15;
 
   const RenameModalStatus = () => {
     if (folderId !== null) {

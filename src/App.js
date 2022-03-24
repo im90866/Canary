@@ -146,7 +146,7 @@ function App() {
               <Route path="/explore" element={<Explore/>} />
               
               <Route path="/post/:id" element={<Postbig />} />
-              <Route path="/codeconfirmation" element={<Modal6 />} />
+            
               <Route path="/codeconfirmation" element={<Modal6 />} />
               <Route path="/forgotpassword" element={<Fp/>} />
               <Route path="/resetpassword" element={<Resetpassword/>} />

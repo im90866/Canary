@@ -68,6 +68,12 @@ padding: 7px;
     display: flex;
     
 }
+.nameprof{
+    font-size: 18px;
+    position: relative;
+    left: 20px;
+    top:15px;
+}
 
 
 .chatMenuInput {
@@ -117,13 +123,24 @@ padding: 7px;
     position: relative;
     background-color: #fff;
     width: 800px;
-    height: 500px;
+    height: 450px;
     overflow-y: scroll;
     border-radius: 5px;
     left: 90px;
     top: 50px;
+    overflow-x: hidden;
 }
-
+.chatbox-name{
+    display: flex;
+    width: 800px;
+    position: relative;
+    top:50px;
+    border-radius: 5px;
+    left: 90px;
+    border-bottom: 2px solid #f1f1f1 ;
+    height: 50px;
+    background-color: #fff;
+}
 .conversation {
     position: relative;
     display: flex;
@@ -150,6 +167,15 @@ padding: 7px;
     border-radius: 50%;
     object-fit: cover;
     margin-right: 10px;
+}
+.profile-pic4 {
+    position: relative;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+  top:10px;
+  left: 10px;
 }
 
 .chatBoxBottom {

@@ -19,7 +19,7 @@
 }
 
 .fp-title{
-    font-weight: 550;
+    font-weight: 500;
     font-size: 20px;
     position: relative;
     left: 75px;
@@ -71,11 +71,19 @@ top: 10px;
     color: #ffb53b;
 }
 .back-to{
-font-weight: 550;
+font-weight: 500;
 font-size: 14px;
 text-decoration: none;
 color: black;
 position: relative;
 left: 145px;
 top:-10px;
+}
+@media (max-width: 900px){
+    .fp-container{
+        width: 100%;
+        position: relative;
+        left: -1px;
+     
+    }
 }

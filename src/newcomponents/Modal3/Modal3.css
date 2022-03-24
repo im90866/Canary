@@ -87,6 +87,7 @@
          margin-top: 5px;
               position: relative;
               border-radius: 40px;
+              transition: 0.25s;
           }
           .folder-btn3{
            

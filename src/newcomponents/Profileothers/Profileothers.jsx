@@ -3,7 +3,7 @@ import Topbar from '../Topbar/Topbar'
 import Sidebar from '../Sidebar/Sidebar'
 import { Link, useParams, useNavigate} from 'react-router-dom'
 import axios from 'axios'
-
+import "./Profileothers.css"
 function Profileothers() {
   const userID = useParams()['userID']
   const [PFP, setPFP] = useState("")
@@ -60,11 +60,9 @@ function Profileothers() {
         </div>
 
         <h1 className="profile-user">{username}</h1>
-        <button className="editp" onClick={() => {messageUser()}}>Message</button>
-
-        <div className="post-info">
-          <h2 className="collaborations"><Link to="/profile/collaborations">Collaborations</Link></h2>
-          <h2 className="posts1"><Link to="/profile/profileposts">Posts</Link></h2>
+        <div className="btn-class2">
+        <button className="editp1" onClick={() => {messageUser()}}>Message</button>
+        <button className="editp1">Follow</button>
         </div>
 
         <div className="wrapper">
