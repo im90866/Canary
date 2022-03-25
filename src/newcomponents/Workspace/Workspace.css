@@ -35,6 +35,7 @@ left: 80px;
     position: relative;
     left: 10px;
 }
+
 .workspace-container2{
     width: 1000px;
     height: 100%;
@@ -44,7 +45,7 @@ left: 80px;
     position: relative;
     top: 90px;
     left: 80px;
-    z-index: 999;
+    z-index: 99;
 }  
 
 .workspace-title{

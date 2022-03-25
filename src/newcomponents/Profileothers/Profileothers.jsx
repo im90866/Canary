@@ -4,12 +4,17 @@ import Sidebar from '../Sidebar/Sidebar'
 import { Link, useParams, useNavigate} from 'react-router-dom'
 import axios from 'axios'
 import "./Profileothers.css"
+import { BsThreeDots } from "react-icons/bs";
+import Modal8 from '../Modal8/Modal8'
+import Modal10 from '../Modal10/Modal10'
+import Modal11 from '../Modal11/Modal11'
 function Profileothers() {
   const userID = useParams()['userID']
   const [PFP, setPFP] = useState("")
   const [images, setImages] = useState([])
   const [username, setUsername] = useState("")
-
+  const [openModal, setOpenModal] = useState(false);
+  const [openModal2, setOpenModal2] = useState(false);
   const navigate = useNavigate()
 
   const messageUser = async() => {
@@ -59,10 +64,22 @@ function Profileothers() {
           <img src={PFP} className="profile-image"/>
         </div>
 
-        <h1 className="profile-user">{username}</h1>
+        <h1 className="profile-user2">{username}</h1>
+        <div className="follower-info">
+             <h1 className='follow-numbers'>0</h1>
+             <h1 className='followers'>Followers</h1>
+         </div>
         <div className="btn-class2">
         <button className="editp1" onClick={() => {messageUser()}}>Message</button>
         <button className="editp1">Follow</button>
+        <div class="dropdown-block3">
+        <BsThreeDots className='three-dots4' class="dropdowns3" />
+        <div class="dropdown-content3">
+                        <button class="dropdown-text3" onClick={() => { setOpenModal2(true);}}>Report</button><br></br>
+                        <button class="dropdown-text3" onClick={() => { setOpenModal(true);}}>Block</button>
+                      </div>
+                 
+                    </div>
         </div>
 
         <div className="wrapper">
@@ -77,8 +94,11 @@ function Profileothers() {
             </div>
           ))} 
         </div> 
-        
+    
+        {openModal && <Modal10 closeModal={setOpenModal} />}  
+        {openModal2 && <Modal11 closeModal={setOpenModal2} />}  
       </div>
+
       </body>
     </div>
   )
