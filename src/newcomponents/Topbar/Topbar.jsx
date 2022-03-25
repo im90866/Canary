@@ -152,7 +152,7 @@ function Topbar(prop) {
 
     if (location.pathname.includes("/workspace"))
       setCheck(location.pathname.includes("/workspace"))
-    else if (location.pathname === "/teamchats")
+    else if (location.pathname.includes("/teamchats"))
       setCheck(location.pathname.includes("/teamchats"))
     else if (location.pathname === "/team")
       setCheck(location.pathname.includes("/team"))
@@ -162,6 +162,8 @@ function Topbar(prop) {
       setCheck(false)
 
   }, [location.pathname])
+
+  console.log(check)
 
   return (
     <>
