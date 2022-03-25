@@ -3,16 +3,18 @@ import Sidebar from '../Sidebar/Sidebar'
 import Sidebar2 from '../Sidebar2/Sidebar2'
 import Topbar from '../Topbar/Topbar'
 import "./Workspace.css"
-import { BsFillFolderFill } from "react-icons/bs";
+import { AiFillFolderOpen} from "react-icons/ai";
+
 import { BsThreeDots } from "react-icons/bs";
 
 import { Link, useParams } from "react-router-dom";
 import { useState, useEffect, useRef } from "react"
 import axios from "axios"
-import { TiArrowBack } from "react-icons/ti";
 import Dropdown from '../Dropdown/Dropdown';
 import Modal5 from '../Modal5/Modal5';
 import Modal5_1 from '../Modal5/Modal5_1';
+
+import { BiArrowBack } from "react-icons/bi";
 import { FaPython } from 'react-icons/fa'
 
 function Workspace(prop) {
@@ -269,15 +271,24 @@ function Workspace(prop) {
                 <button className="wbtn1" onClick={() =>
                   setOpenDropdown(true)}><span className='btn-text'>New Folder</span></button>
               </div>
-              <div className="directory-path">
-           <div className="whitespace" onClick={exitFolder}>
-             <TiArrowBack className='back'/> 
-               </div>
-                <h3 className="directory">{folderPathString}</h3>
-              </div>
+              {
+                folderPath.length == 1 ?
+                  <div className="directory-path">
+                    <div className="inactive-whitespace" onClick={exitFolder}>
+                      <BiArrowBack className='inactive-back'/>
+                    </div>
+                    <h3 className="directory">{folderPathString}</h3>
+                  </div>
+                  :
+                  <div className="directory-path">
+                    <div className="whitespace" onClick={exitFolder}>
+                      <BiArrowBack className='back'/>
+                    </div>
+                    <h3 className="directory">{folderPathString}</h3>
+                  </div>
+              }
             </div>
           </div>
-
         </div>
 
         {openDropdown && <Dropdown closeModal={setOpenDropdown}
@@ -292,7 +303,7 @@ function Workspace(prop) {
             {
               folders.map((folder) =>
                 <div className="folders" key={folder.folderID} >
-                  <BsFillFolderFill className='folder-icon' onClick={() => enterFolder(folder.folderID, folder.folderName)}/>
+                  <AiFillFolderOpen className='folder-icon' onClick={() => enterFolder(folder.folderID, folder.folderName)}/>
                
                   <div className="folder-info"> 
                   <h3 className='folder-text'>{folder.folderName}</h3>

@@ -3,12 +3,7 @@ from rest_framework import permissions
 from rest_framework.response import Response
 from django.views.decorators.csrf import ensure_csrf_cookie, csrf_exempt, csrf_protect
 
-from PIL import Image
-from io import BytesIO
-
-import re
 import json
-import base64
 from bson import json_util, ObjectId
 
 from ..helper_functions import *
@@ -241,7 +236,9 @@ class DeleteFolder(APIView):
         })
 
 def recursiveDelete(folderID, col):
-    folderList = col.find_one({'_id': ObjectId(folderID)})['folderList']
+    folderVal = col.find_one({'_id': ObjectId(folderID)})
+
+    folderList = folderVal['folderList']
 
     col.delete_one({'_id': ObjectId(folderID)})  
     

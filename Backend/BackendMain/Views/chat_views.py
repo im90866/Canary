@@ -27,12 +27,23 @@ class GetChats(APIView):
         user_col = CLIENT_DATABASE['userInfo']
         chat_col = CLIENT_DATABASE['chatData']
 
+        FS = gridfs.GridFS(CLIENT_DATABASE)
+
         returnChatList = []
 
-        chatList = user_col.find_one({'_id': ObjectId(userID)})['chatList']
+        userOVal = user_col.find_one({'_id': ObjectId(userID)})
+
+        chatList = userOVal['chatList']
+        ownPicture = FS.get(userOVal['profilePictureID'])
+        ownPicture = resizeImage(ownPicture, 300)
 
         for x in chatList:
             userVal = user_col.find_one({'_id': ObjectId(x['otherPersonsID'])})
+            print(userVal)
+
+            imageString = FS.get(userVal['profilePictureID']) 
+            imageString = resizeImage(imageString, 300)   
+
             lastModified = chat_col.find_one({'_id': ObjectId(x['chatID'])})['lastModified']
             lastModified = datetime.strptime(lastModified, '%Y-%m-%d %H:%M:%S')
 
@@ -46,31 +57,35 @@ class GetChats(APIView):
                 'userID': x['otherPersonsID'],
                 'chatID': x['chatID'],
                 'username': userVal['username'],
-                'profilePicture': 'val', 
+                'profilePicture': imageString, 
                 'sentAt': lastModified,
             }
 
             returnChatList.insert(index, returnObject)
-        print(returnChatList)
-        print('sent')
 
         for x in returnChatList:
             x.pop('sentAt', None)
 
         return Response({
             'success': 'Obtained chats',
-            'chatList': returnChatList
+            'chatList': returnChatList,
+            'ownPicture': ownPicture
         })
 
 
 class GetMessages(APIView):
     permission_classes = (permissions.AllowAny, )
 
-    def get(self, request, chatID, userID, format=None):
+    def get(self, request, chatID, userID, otherUserID, format=None):
         data = self.request.data
 
         user_col = CLIENT_DATABASE['userInfo']
         chat_col = CLIENT_DATABASE['chatData']
+
+        FS = gridfs.GridFS(CLIENT_DATABASE)
+
+        imageVal = FS.get(ObjectId(user_col.find_one({'_id': ObjectId(otherUserID)})['profilePictureID']))  
+        imageVal = resizeImage(imageVal, 300)
 
         print(chatID)
         chatData = chat_col.find_one({'_id': ObjectId(chatID)})['messageList']
@@ -84,7 +99,8 @@ class GetMessages(APIView):
         
         return Response({
             'success': 'messages obtained',
-            'messageList': chatData
+            'messageList': chatData,
+            'otherProfilePicture': imageVal
         })
 
 

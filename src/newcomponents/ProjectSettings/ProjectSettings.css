@@ -1,6 +1,4 @@
-.ps-container{
 
-}
 .ps-box{
     z-index: 1;
     position: relative;
@@ -17,7 +15,7 @@
     font-size: 30px;
   font-weight: 400;
   position: relative;
-  left: 250px;
+  left: 200px;
 }
 .searchInput1{
     background-color: #efefef; 

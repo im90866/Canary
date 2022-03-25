@@ -40,7 +40,7 @@ function Topbar(prop) {
   const [searchRes, setSearchRes] = useState([])
 
   const [notifList, setNotifList] = useState([])
-  const [requestList, setRequestList] = useState([])
+  const [inviteList, setInviteList] = useState([])
 
   const [isSearching, setIsSearching] = useState(false)
 
@@ -79,6 +79,29 @@ function Topbar(prop) {
     }
   }
 
+  const acceptRequest = (projectId) => {
+    const request = {
+      'userID': getCookie('userID'),
+      'projectID': projectId,
+      'interact': 'accept'
+    }
+
+    axios.post("http://localhost:8000/interactInvite/", request).then((res) => {
+    })
+    
+  }
+
+  const rejectRequest = (projectId) => {
+    const request = {
+      'userID': getCookie('userID'),
+      'projectID': projectId,
+      'interact': 'reject'
+    }
+
+    axios.post("http://localhost:8000/interactInvite/", request).then((res) => {
+    })
+  }
+
   const openClose = () => {
     if (!openModal)
       setOpenModal(true)
@@ -104,8 +127,11 @@ function Topbar(prop) {
 
     axios.get("http://localhost:8000/getNotifications/" + String(getCookie('userID'))).then((res) => {
       let notifList = res.data['notificationsList'].slice()
-      console.log(notifList)
+      let requestList = res.data['inviteList'].slice()
+      
+      console.log(requestList)
       setNotifList(notifList)
+      setInviteList(requestList)
     })
 
     // notifRef.current.addEventListener('click', (e) => {
@@ -262,20 +288,18 @@ function Topbar(prop) {
 
                               <ul className="notifications-2">
                                 {
-                                  notifList.map(notif => (
+                                  inviteList.map(notif => (
                                     <li className="notificationslist">
                                       <img src="/images/avatar.png" alt="" className='profile-pic' />
                                       <div className="notif-text">{notif.info}</div>
-                                      <GrFormClose />
-                                      <BsCheck />
+                                      <GrFormClose onClick={() => rejectRequest(notif.projectID)}/>
+                                      <BsCheck onClick={() => acceptRequest(notif.projectID)}/>
                                     </li>
                                   ))
                                 }
                               </ul>
                             </>
                         }
-
-
                       </div>
                     </div>
                   </div>

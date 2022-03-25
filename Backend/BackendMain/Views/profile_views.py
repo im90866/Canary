@@ -27,7 +27,6 @@ class GetProfilePicture(APIView):
     def get(self, request, userID, format=None):
         FS = gridfs.GridFS(CLIENT_DATABASE)
         
-
         user_col = CLIENT_DATABASE['userInfo']
     
         imageID = user_col.find_one({'_id': ObjectId(userID)})['profilePictureID']

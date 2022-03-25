@@ -18,6 +18,9 @@ import Moda7 from '../Modal7/Moda7';
 
   const [username, setUsername] = useState("")
   const [fullname, setFullname] = useState("")
+  const [invalidName, setInvalidName] = useState(false)
+  const [invalidEmail, setInvalidEmail] = useState(false)
+
   const [email, setEmail] = useState("")
   const [DOB, setDOB] = useState("")
 
@@ -32,8 +35,18 @@ import Moda7 from '../Modal7/Moda7';
     setValues({ ...values, fullname: e.target.value })
   }
 
-  const handleUsernameInputChange = (e) => {
-    setValues({ ...values, username: e.target.value })
+  const handleUsernameInputChange =  (e) => {
+    if(e.target.value != " ") {
+      setValues({ ...values, username: e.target.value })
+      if(e.target.value != "") {
+        axios.get('http://localhost:8000/checkUsername/' + e.target.value).then((res) => {
+            if(res.data['exist'] == false || e.target.value == username) 
+              setInvalidName(false)
+            else
+              setInvalidName(true)
+        });
+      }
+    }
   }
 
   const handleEmailInputChange = (e) => {
@@ -80,11 +93,14 @@ import Moda7 from '../Modal7/Moda7';
 
   const updateInfo = async () => {
     let request = {
+      'userID': getCookie('userID'),
       'username': values.username
     }
 
-    if(username != values.username)
-      request['newUsername'] = values.username
+    if(username != values.username) {
+      if(!invalidName)
+        request['newUsername'] = values.username  
+    }
     if(fullname != values.fullname)
       request['fullname'] = values.fullname
     if(email != values.email) {
@@ -140,7 +156,7 @@ import Moda7 from '../Modal7/Moda7';
   }, [])
 
   return (
-    <div>
+    <div >
       <div className="edit-profile">
         <div className="existing-details">
           <div className='profile-picture-cropper'>
@@ -206,8 +222,8 @@ import Moda7 from '../Modal7/Moda7';
      
         <button className='submit-changes' type='submit' onClick={() => updateInfo()}>
           Update Profile
-          {openModal && <Moda7 closeModal={setOpenModal} />} 
         </button>
+        {openModal && <Moda7 setModal={setOpenModal} />} 
       </div>
     </div>
       

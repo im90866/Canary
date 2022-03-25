@@ -1,11 +1,22 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import "./Message.css"
+
 export default function Message(props) {
   const own = props.own
   const messageData = props.messageData
   const senderName = props.senderName
   const senderImage = props.senderImage
+  const ownImage = props.ownImage
   //const senderTime = props.senderTime
+
+  const [image, setImage] = useState("")
+
+  useEffect(() => {
+    if(own)
+      setImage(ownImage)
+    else
+      setImage(senderImage)
+  }, [])
 
   return (
     <div>
@@ -13,7 +24,7 @@ export default function Message(props) {
         <div className="messageTop">
           <img
             className="messageImg"
-            src="https://images.pexels.com/photos/3686769/pexels-photo-3686769.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+            src={image}
             alt=""
           />
           <p className="messageText">{messageData} </p>

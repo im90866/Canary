@@ -29,7 +29,41 @@ function Feed(prop) {
               })
     }
     else {
+      let postList = []
+
+      for(let i = 0; i < cache['homePosts'].length; ++i){
+        postList.push(cache['homePosts'][i]['postID'])
+      }
+      const request = {
+        'postList': postList
+      }
+
       setPosts(cache['homePosts'])
+
+      axios.post("http://localhost:8000/getFeedLikes/", request)
+              .then((res) => {
+                  if (res.data["success"]) {
+                    var val={};
+                    Object.assign(val, cache);
+
+                    console.log(res.data['postList'])
+
+                    for(let i = 0; i < val['homePosts'].length; ++i){
+                      for(let j = 0; j < res.data['postList'].length; ++j) {
+                        if(val['homePosts'][i]['postID'] == res.data['postList'][j]['postID']){
+                          val['homePosts'][i]['likes'] = res.data['postList'][j]['likes']
+                          console.log(val['homePosts'][i]['likes'])
+                          break
+                        }
+                      }
+                    }
+
+                    setPosts(val['homePosts'])
+                    setCache(val)
+                  }
+                  else
+                      console.log("Error: ")
+              })
     }
   }, [])
 

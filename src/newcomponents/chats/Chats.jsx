@@ -15,6 +15,9 @@ function Chats() {
   const [currentChatID, setCurrentChatID] = useState("")
   const [currentUser, setCurrentUser] = useState('zero')
   const [currentUserID, setCurrentUserID] = useState("")
+  const [currentUserPicture, setCurrentUserPicture] = useState("")
+
+  const [ownPicture, setOwnPicture] = useState("")
 
   const [updater, setUpdater] = useState({'unused': true}) 
   const [u_flag, set_u_flag] = useState(false)
@@ -34,12 +37,13 @@ function Chats() {
   }
 
   const changeChat = async (chatID, username, userID) => {
-    await axios.get("http://localhost:8000/getMessages/" + String(chatID) + '/' + String(getCookie('userID')) )
+    await axios.get("http://localhost:8000/getMessages/" + String(chatID) + '/' + String(getCookie('userID') + '/' + userID) )
       .then((res) => {
         if (res.data["success"]) {
             setCurrentChatID(chatID)
             setCurrentUser(username)
             setCurrentUserID(userID)
+            setCurrentUserPicture(res.data['otherProfilePicture'])
 
             let counter = 0;
             for(var i in chatList){
@@ -94,6 +98,7 @@ function Chats() {
               (res.data['chatList'])['messages'] = []
             }
             setChatList(res.data['chatList'])
+            setOwnPicture(res.data['ownPicture'])
           }
           else
               console.log("Error: ")
@@ -144,7 +149,7 @@ function Chats() {
             {
               chatList.map(chats => 
               <li className="chatlistli" onClick={() => {changeChat(chats.chatID, chats.username, chats.userID)}}>
-                <img src="/images/avatar.png" alt="" className='profile-pic2' />
+                <img src={chats.profilePicture} alt="" className='profile-pic2' />
                 <span className='chatlistlitext'>{chats.username}</span>
               </li>
               )
@@ -155,15 +160,21 @@ function Chats() {
         </div>
         <div className="chat-box">
           <div className="chatbox-name">
-            <img src="/images/avatar.png" alt="" className='profile-pic4' />
-            <div className="nameprof">crashland</div>
+            <img src={currentUserPicture} alt="" className='profile-pic4' />
+            <div className="nameprof">{currentUser}</div>
           </div>
           <div className="chat-boxwrapper">
             
             {
               messageList.map(message => 
                 <div>
-                  <Message own={message.own} messageData={message.messageVal} senderName={message.messageBy}/>
+                  <Message 
+                    own={message.own} 
+                    messageData={message.messageVal} 
+                    senderName={message.messageBy}
+                    senderImage={currentUserPicture}
+                    ownImage={ownPicture}
+                  />
                 </div>
               )
             }

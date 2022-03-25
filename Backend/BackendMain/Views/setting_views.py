@@ -46,10 +46,26 @@ class UsernameExistCheck(APIView):
 
         user_col = CLIENT_DATABASE['userInfo']
 
+        userval = user_col.find_one({'username': username})
+
+        print(userval)
+
+        if userval != None:
+            return(Response({
+                'success': 'Got result',
+                'exist': True
+            }))
+        else:
+            print("NPOOOOO")
+            return(Response({
+                'success': 'Got result',
+                'exist': False
+            }))
+
 class EmailExistCheck(APIView):
     permission_classes = (permissions.AllowAny, )
 
-    def get(self, request, username, format=None):
+    def get(self, request, email, format=None):
         data = self.request.data
 
         user_col = CLIENT_DATABASE['userInfo']
@@ -65,7 +81,7 @@ class UploadUserInfo(APIView):
 
         if 'fullname' in data:
             user_col.update_one({
-                '_id': data['userID']
+                '_id': ObjectId(data['userID'])
             }, {
                 '$set': {
                     'fullname': data['fullname']

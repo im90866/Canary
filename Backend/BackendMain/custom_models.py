@@ -17,6 +17,7 @@ class userInfo():
     _userDetails = {}
     _postID = []
     _projectID = []
+    _otherProjectID = []
 
     _notificationList = []
     _requestList = []
@@ -66,6 +67,7 @@ class userInfo():
             "userDetails": self._userDetails,
             "postID" : self._postID,
             "projectID" : self._projectID,
+            "otherProjectID" : self._otherProjectID,
             "chatList": self._chatList,
             "notificationList": self._notificationList,
             "requestList": self._requestList,
@@ -136,6 +138,7 @@ class project():
     _projectName = ""
     _projectAdminID = ""
     _projectMembers = []
+    _projectInviteList = []
     _projectRoot = ""
     _projectSettings = {}
 
@@ -161,6 +164,7 @@ class project():
             'projectName' : self._projectName,
             'projectAdminID' : self._projectAdminID,
             'projectMembers' : self._projectMembers,
+            'inviteList' : self._projectInviteList,
             'projectRoot' : self._projectRoot,
             'projectSettings' : self._projectSettings
         }
@@ -215,7 +219,6 @@ class comment():
     def getModel(self):
         model = {
             'userID': self._userID,
-            'onPostID': self._onPostID,
             'info': self._info,
             'createdAt': self._createdAt
         }
@@ -287,42 +290,81 @@ class Message():
         return model
 
 class Notification():
+    # Common atributes
     _senderID = ""
     _senderName = ""
     _type = ""
-    _info = ""
-    _onPostID = ""
     _createdAt = ""
 
-    def __init__(self, senderID, type, info, onPostID):
+    # For like and comment
+    _onPostID = ""
+
+    # For comment
+    _info = ""
+
+    # For project invitation
+    _projectID = ""
+    _projectName = ""
+
+    def __init__(self, data):
         CLIENT_SERVER = getClient()
         CLIENT_DATABASE = CLIENT_SERVER['mainDB']
 
         user_col = CLIENT_DATABASE['userInfo']
 
-        self._senderID = senderID
-        self._senderName = user_col.find_one({'_id': ObjectId(senderID)})['username']
-        self._type = type 
-        self._onPostID = onPostID
-        self._info = info 
+        # Format within data
+        # :userID
+        # :type
+        # :info (for comment)
+        # :postID (for like and comment)
+        #
+        # For project invitation
+        # :projectID
+        # :projectName
+
+        self._senderID = data['userID']
+        self._senderName = user_col.find_one({'_id': ObjectId(data['userID'])})['username']
+        self._type = data['type']
+
+        if 'postID' in data:
+            self._onPostID = data['postID']
+        
+        if data['type'] == 'comment':
+            self._info = data['info']
+
+        if data['type'] == 'invite': 
+            self._projectID = data['projectID']
+            self._projectName = data['projectName']
+
         self._createdAt = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
 
     def getModel(self):
-        model = {
-            'senderID': self._senderID,
-            'senderName':self._senderName,
-            'type': self._type,
-            'onPostID': self._onPostID,
-            "info": self._info,
-            'createdAt': self._createdAt
-        }
+        if self._type == 'like':
+            model = {
+                'senderID': self._senderID,
+                'senderName':self._senderName,
+                'type': self._type,
+                'onPostID': self._onPostID,
+                'createdAt': self._createdAt
+            }
+        elif self._type == 'comment':
+            model = {
+                'senderID': self._senderID,
+                'senderName':self._senderName,
+                'type': self._type,
+                'onPostID': self._onPostID,
+                "info": self._info,
+                'createdAt': self._createdAt
+            }
+        elif self._type == 'invite':
+            model = {
+                'senderID': self._senderID,
+                'senderName':self._senderName,
+                'type': self._type,
+                'createdAt': self._createdAt,
+                "projectID": self._projectID,
+                "projectName": self._projectName
+            }
 
         return model
-
-class ProjectInvite():
-    _senderID = ""
-    _projectID = ""
-    _info = ""
-    _onPostID = ""
-    _createdAt = ""

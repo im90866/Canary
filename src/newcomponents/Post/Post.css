@@ -30,7 +30,6 @@ left: -15px;
     /* flex-direction: column; */
     justify-content: space-between;
     cursor: pointer;
-    transition: transform 200ms ease-in;
 	background: #f5f5f5;
     border: none;
     width: 100%;
@@ -75,14 +74,15 @@ left: -15px;
 .profile{
   display: flex;
   align-items: center;
-  transform: translateY(-20px);
+  transform: translateY(-9px);
   opacity: 0; 
+  transition: 0.2s;
 }
 
 .card:hover .profile{
     opacity: 1;
     transform: translateY(0);
-  
+    transition: 0.4s;
 } 
 
   

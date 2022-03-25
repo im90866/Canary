@@ -23,6 +23,9 @@ function Postbig({ closeModal}) {
   const [postData, setPostData] = useState({})
   const [openModal, setOpenModal] = useState(false);
 
+  const [memberList, setMemberList] = useState([])
+  const [uploader, setUploader] = useState([])
+
   const handleBoxChange = (e) => {
     console.log(e.target.value)
     setCommentVal(e.target.value)
@@ -70,10 +73,15 @@ function Postbig({ closeModal}) {
   useEffect(() => {
     axios.get("http://localhost:8000/getPost/" + postId + '/' + getCookie('userID'))
       .then((res) => {
-        console.log(res.data['postData'])
         setPostData(res.data['postData'])
         setLike(res.data['postData']['likes'])
+
+        console.log(res.data['postData']['comments'])
         setCommentList(res.data['postData']['comments'].slice())
+        setMemberList(res.data['postData']['memberList'])
+
+        if(res.data['postData']['memberList'].length == 1)
+          setUploader(res.data['postData']['memberList'][0])
 
         if((res.data['postData'].likedBy).includes(String(getCookie('userID')))) {
           setIsLiked(true)
@@ -98,8 +106,8 @@ function Postbig({ closeModal}) {
             <div className="post-bigdetails">
               <div className="profile-post">
                 <div className="profilepost-img">
-                  <img src="/images/avatar.png" alt="" className='ppimg'/>
-                  <h4 className="ppname">Newfez</h4>
+                  <img src={uploader.profilePicture} alt="" className='ppimg'/>
+                  <h4 className="ppname">{uploader.username}</h4>
                 </div>
                 
                 <div className="captions">
@@ -112,8 +120,8 @@ function Postbig({ closeModal}) {
                   {
                     commentList.map(comment => 
                     <li className="commentli">
-                      <img src="/images/avatar.png" alt="" className='pcimg'/>
-                      <h4 className='comment-username'>Newfez</h4>
+                      <img src={comment.profilePicture} alt="" className='pcimg'/>
+                      <h4 className='comment-username'>{comment.username}</h4>
                       <p className='pctext'>{comment.info} </p>
                     </li>
                   )}
@@ -137,7 +145,7 @@ function Postbig({ closeModal}) {
               <img src="/images/avatar.png" alt="" className='pcimg1'/>
               <textarea
                   className="chatMessageInput1"
-                  placeholder="write something..."
+                  placeholder=" Add a comment"
                   value={commentVal}
                   onChange={handleBoxChange}
               ></textarea>

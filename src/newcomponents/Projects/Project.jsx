@@ -32,6 +32,20 @@ function Project(prop) {
     setProjects(response)
   }
 
+  const getGroupProjects = async () => {
+    const response = await axios.get("http://localhost:8000/getotherproject/" + String(getCookie('username')))
+      .then((res) => {
+        if (res.data["success"]) {
+          console.log("something " + (res.data['projectList'])['0'])
+          console.log(res)
+          return (res.data['projectList'])
+        }
+        else
+          console.log("Error: " + res.data["error"])
+      })
+    setProjects(response)
+  }
+
   const addProject = async (project) => {
     console.log(project)
 
@@ -67,7 +81,7 @@ function Project(prop) {
   }
 
   const setProjectName = async (projectName, projectId) => {
-      window.sessionStorage.setItem("currentProjectName", projectId);
+      window.sessionStorage.setItem("currentProjectName", projectName);
       window.sessionStorage.setItem("currentProjectId", projectId);
   }
 
@@ -81,50 +95,44 @@ function Project(prop) {
     getAll();
   }, [])
 
-
-
   return (
     <div>
-<body className="projectss">
-  
-
-        
- <div className="project-container">
- <div className="project">
-          <div className="project-title">
-            <h1 className='title'>Your Projects</h1>
-          <button className='hero-btn' onClick={() =>
-              setOpenModal(true)}>New Project</button> 
-         
-          </div>
-          </div> 
- </div>
-   <div className="project-container2"> 
-            <ul className="project-list">
+      <body className="projectss">
+        <div className="project-container">
+          <div className="project">
+            <div className="project-title">
+              <h1 className='title' onClick={getProjects}>Your Projects</h1>
+              <h1 className='title' onClick={getGroupProjects}>Other Projects</h1>
               {
-                projects.map(project =>
-                  <div className="projectlistname" 
-                    key={project.id} 
-                    onClick={() => setProjectName(project.projectName, project.projectId)
-                  }>
-                    <Link to={`/workspace/${project.id}`}>
-                      <li className="project-list-item">
-                        <span className='project-name'>{project.projectName}</span>
-                        
-                      </li>
-                    </Link>
-                  </div>
-                )
+                // Use this but clickable
+                // <h1 className='title'>Your Projects</h1>
               }
-            </ul>
-               
-      </div> 
+              <button className='hero-btn' onClick={() =>
+                  setOpenModal(true)}>New Project</button> 
+            </div>
+          </div> 
+        </div>
+        
+        <div className="project-container2"> 
+          <ul className="project-list">
+            {
+              projects.map(project =>
+                <div className="projectlistname" 
+                  key={project.id} 
+                  onClick={() => setProjectName(project.projectName, project.projectId)}>                  
+                  <Link to={`/${project.id}/workspace`}>
+                    <li className="project-list-item">
+                      <span className='project-name'>{project.projectName}</span>
+                    </li>
+                  </Link>
+                </div>
+              )
+            }
+          </ul>   
+        </div> 
 
-      {openModal && <Modal closeModal={setOpenModal} makeChange = {makeChange} projects={projects} setProjects={setProjects}/>}  
- </body>
-     
-    
-     
+        {openModal && <Modal closeModal={setOpenModal} makeChange = {makeChange} projects={projects} setProjects={setProjects}/>}  
+      </body>
     </div>
   )
 }

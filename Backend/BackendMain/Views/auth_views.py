@@ -4,7 +4,9 @@ from rest_framework.response import Response
 from django.views.decorators.csrf import ensure_csrf_cookie, csrf_exempt, csrf_protect
 from django.utils.decorators import method_decorator
 
+import pymongo, datetime
 import json
+from random import randint
 from rest_framework import filters
 from bson import json_util, ObjectId
 
@@ -18,29 +20,42 @@ CLIENT_DATABASE = CLIENT_SERVER['mainDB']
 # Views
 class SignupView(APIView):
     permission_classes = (permissions.AllowAny, )
-    something = 3
 
     def post(self, request, format=None):
         data = self.request.data
         
-        collection = CLIENT_DATABASE['userInfo']
+        user_col = CLIENT_DATABASE['userInfo']
+        temp_user_col = CLIENT_DATABASE['tempUserInfo']
         email_col = CLIENT_DATABASE['emailList']
         
         try:
-            if ifExists(data['username'], "username", 'userInfo'):
+            if ifExists(data['username'], "username", 'userInfo'):  # CHECK TEMP COL AS WELL
                 return Response({ 'error': 'Username already exists' })
             elif ifExists(data['email'], "email", 'emailList'):
                 return Response({ 'error: Account with given email already exists'})
             else:
-                userModel = userInfo(data['username'], data['password'], data['email'])
-                
-                user_info = userModel.getModel()
+                user_info = userInfo(data['username'], data['password'], data['email']).getModel()
 
-                collection.insert_one(user_info)
+                signCode = randint(100000,999999)
+                while(ifExists(signCode, "signCode", 'tempUserInfo')):
+                    signCode = randint(100000, 999999)
+
+                timestamp = datetime.datetime.now()
+                utc_timestamp = datetime.datetime.utcnow()
+
+                mergeVal = {
+                    'expireAt': utc_timestamp,
+                    'signCode': signCode 
+                }
+
+                tempVal = {**user_info, **mergeVal}
+
+                temp_user_col.create_index('expireAt', expireAfterSeconds=60)
+                temp_user_col.insert_one(tempVal)
 
                 # authenticate email
 
-                email_col.insert_one({'email': data['email']})
+                
                 return Response({ 'success': 'User created successfully' })
         except:
             return Response({ 'error': 'Something went wrong when registering account' })
@@ -79,21 +94,33 @@ class LoginView(APIView):
         else:
             return Response({ 'error': 'Error Authenticating' })
 
-# class Search(APIView):
-#     permission_classes = (permissions.AllowAny, )
-#     def get(self, request, format=None):
-#         queryset = CLIENT_DATABASE['userInfo'].find()
-#         users = []
-#         # for x in queryset:
-#         #     print(x['username'])
-#         #     # users.append(x)
-#         filter_backends = [filters.SearchFilter]
-#         search_fields = ['^username']
-#         return Response({
-#             'users working' : filter_backends
-#         })
-    
+class deleteTemp(APIView):
+    permission_classes = (permissions.AllowAny, )
 
+    def post(self, request, format=None):
+        data = self.request.data
+
+        user_col = CLIENT_DATABASE['userInfo']
+        temp_user_col = CLIENT_DATABASE['tempUserInfo']
+        email_col = CLIENT_DATABASE['emailList']
+        
+        email_col.insert_one({'email': data['email']})
+
+        return Response({ 'success': 'CSRF cookie set' })
+
+class VerifySignup(APIView):
+    permission_classes = (permissions.AllowAny, )
+
+    def post(self, request, format=None):
+        data = self.request.data
+
+        user_col = CLIENT_DATABASE['userInfo']
+        temp_user_col = CLIENT_DATABASE['tempUserInfo']
+        email_col = CLIENT_DATABASE['emailList']
+        
+        email_col.insert_one({'email': data['email']})
+
+        return Response({ 'success': 'CSRF cookie set' })
 
 @method_decorator(ensure_csrf_cookie, name='dispatch')
 class GetCSRFToken(APIView):

@@ -60,24 +60,46 @@ class DeleteProject(APIView):
     def post(self, request, format=None):
         data = self.request.data
 
-        proj_col = CLIENT_DATABASE['projectData']
         user_col = CLIENT_DATABASE['userInfo']
+        proj_col = CLIENT_DATABASE['projectData']
+        folder_col = CLIENT_DATABASE['folder']
 
-        userData = user_col.find_one({'_id' : ObjectId(data['projectAdminID'])})
-        userData['projectID'].remove(data['projectID'])
-        newProjectList = userData['projectID']
+        projVal = proj_col.find_one({'_id': ObjectId(data['projectID'])})
 
-        proj_col.delete_one({'_id' : ObjectId(data['projectID'])})
-
-        newUser = user_col.find_one({'_id' : ObjectId(data['projectAdminID'])})
-
-        user_col.update_one(newUser, {
-            '$set' : {
-                'projectID' : newProjectList
+        user_col.update_one({
+            '_id': ObjectId(projVal['projectAdminID'])
+        }, {
+            '$pull': {
+                'otherProjectID': {
+                    data['projectID']
+                }
             }
         })
 
+        for member in projVal['projectMembers']: 
+            user_col.update_one({
+                '_id': ObjectId(member['id'])
+            }, {
+                '$pull': {
+                    'otherProjectID': {
+                        data['projectID']
+                    }
+                }
+            })
+        
+        recursiveDelete(projVal['projectRoot'], folder_col)
+
+        proj_col.delete_one({'_id' : ObjectId(data['projectID'])})
+
         return Response({ 'success': 'Project Deleted' })
+
+def recursiveDelete(folderID, col):
+    folderList = col.find_one({'_id': ObjectId(folderID)})['folderList']
+
+    col.delete_one({'_id': ObjectId(folderID)})  
+    
+    for x in folderList:
+        recursiveDelete(x, col)
 
 class UpdateProjectName(APIView):
     permission_classes = (permissions.AllowAny, )
@@ -143,6 +165,33 @@ class GetProjects(APIView):
             'success': 'Projects obtained',
             'projectList': finalList
         })
+
+class GetGroupProjects(APIView):
+    permission_classes = (permissions.AllowAny, )
+
+    def get(self, request, username, format=None):
+        proj_col = CLIENT_DATABASE['projectData']
+        user_col = CLIENT_DATABASE['userInfo']
+
+        userProjects = (user_col.find_one({'username' : username}))['otherProjectID']
+        finalList = []
+
+        for projID in userProjects:
+            PROJ = proj_col.find_one({'_id' : ObjectId(projID)})
+            #ID = json.loads(json_util.dumps(projID))['$oid']
+            ID = projID
+            struct = {
+                'id' : ID,
+                'projectName' : PROJ['projectName'],
+            }
+            
+            finalList.append(struct)
+
+        return Response({ 
+            'success': 'Projects obtained',
+            'projectList': finalList
+        })
+
 
 
 

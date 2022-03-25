@@ -54,8 +54,8 @@ function Post(post) {
           <img src={vPost['imageVal'][0]} className="card__image" alt=""/>    
 
           <div className="profile">
-            <img src={post.imageVal} className='profilepic' />
-            <span className="card__title">{getUploader(vPost)}</span>
+            <img src={getUploader(vPost).profilePicture} className='profilepic' />
+            <span className="card__title">{getUploader(vPost).username}</span>
            
             <div className="icons">
          

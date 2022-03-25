@@ -56,7 +56,10 @@ class GetNotifications(APIView):
     def get(self, request, userID, format=None):
         user_col = CLIENT_DATABASE['userInfo']
 
-        notificationList = user_col.find_one({'_id': ObjectId(userID)})['notificationList']
+        userVal = user_col.find_one({'_id': ObjectId(userID)})
+
+        notificationList = userVal['notificationList']
+        requestList = userVal['requestList']
 
         notifList = []
         inviteList = []
@@ -71,17 +74,16 @@ class GetNotifications(APIView):
                 info = val['senderName'] + " has commented on your post"
                 val['info'] = info
                 notifList.append(val)
-            elif val['type'] == 'invite':
-                info = val['senderName'] + " has requested you to join their project: " + val['projectName']
-                val['info'] = info
-                inviteList.append(val)
 
-        print(notifList)
-        print(inviteList)
+        for val in requestList:
+            info = val['senderName'] + " has requested you to join their project: " + val['projectName']
+            val['info'] = info
+            inviteList.append(val)
+
+        print(userVal['username'])
 
         return Response({
             'success': 'Notifications succesfully recieved',
             'notificationsList' : notifList,
             'inviteList': inviteList
         })
-        

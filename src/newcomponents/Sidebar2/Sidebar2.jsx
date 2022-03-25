@@ -10,6 +10,7 @@ import { BsChatSquareDots } from 'react-icons/bs';
 import { AiOutlineHome, AiFillCaretDown, AiOutlineTeam, AiFillCaretUp } from 'react-icons/ai';
 import { IoCreateOutline, IoSettingsOutline, IoLogOutOutline } from 'react-icons/io5';
 import "./Sidebar2.css"
+
 function Sidebar2(prop) {
   let navigate = useNavigate()
 
@@ -54,57 +55,57 @@ function Sidebar2(prop) {
               <span className="sidebarListItemText">Project</span>
             </Link>
           </li>
+
           <li className="sidebarListItem" onClick={() => setSub(!sub)}>
 
-<span className="sidebarListItemText1">{getName()}</span>
-{
-  sub
-    ?
-    <AiFillCaretUp className="sidebarIcon1" />
-    :
-    <AiFillCaretDown className="sidebarIcon1" />
-}
+            <span className="sidebarListItemText1">{getName()}</span>
+            {
+              sub
+                ?
+                <AiFillCaretUp className="sidebarIcon1" />
+                :
+                <AiFillCaretDown className="sidebarIcon1" />
+            }
 
-{
-  sub
-    ?
-    <ul className="sidebarlistsub">
-      <li className="sidebarListItemsub">
-        <Link to="/workspace/:id">
+            {
+              sub
+                ?
+                <ul className="sidebarlistsub">
+                  <li className="sidebarListItemsub">
+                    <Link to={"/"+ window.sessionStorage.getItem("currentProjectId") +"/workspace/"}>
+                      <span className="sidebarListItemTextsub1">Workspace</span>
+                    </Link>
+                  </li>
+                  <li className="sidebarListItemsub">
+                    <Link to={"/" + window.sessionStorage.getItem("currentProjectId") +"/projectsettings"}>
+                      <span className="sidebarListItemTextsub2">Members</span>
+                    </Link>
+                  </li>
+                  <li className="sidebarListItemsub">
+                    <Link to={"/" + window.sessionStorage.getItem("currentProjectId") +"/teamchats"}>
 
-          <span className="sidebarListItemTextsub">Workspace</span>
-        </Link>
-      </li>
-      <li className="sidebarListItemsub">
-        <Link to="/projectsettings">
+                      <span className="sidebarListItemTextsub3">Team Chat</span>
+                    </Link>
+                  </li>
+                  <li className="sidebarListItemsub">
+                    <Link to={"/" + window.sessionStorage.getItem("currentProjectId") +"/team"}>
 
-          <span className="sidebarListItemTextsub">Members</span>
-        </Link>
-      </li>
-      <li className="sidebarListItemsub">
-        <Link to="/teamchats">
+                      <span className="sidebarListItemTextsub4">Project Settings</span>
+                    </Link>
+                  </li>
+                </ul>
+                :
+                null
+            }
+          </li>
 
-          <span className="sidebarListItemTextsub">Team Chat</span>
-        </Link>
-      </li>
-      <li className="sidebarListItemsub">
-        <Link to="/team">
-
-          <span className="sidebarListItemTextsub">Project Settings</span>
-        </Link>
-      </li>
-    </ul>
-    :
-    null
-}
-</li>
           <li className="sidebarListItem">
             <Link to="/">
               <RiChatSmile2Line className="sidebarIcon" />
               <span className="sidebarListItemText">Chats</span>
             </Link>
           </li>
-         
+          
 
           <li className="sidebarListItem">
             <Link to="/settings">
@@ -112,7 +113,7 @@ function Sidebar2(prop) {
               <span className="sidebarListItemText">Settings</span>
             </Link>
           </li>
-         
+          
           <li className="sidebarListItem">
             <Link to="/">
               < IoLogOutOutline className="sidebarIcon" />
