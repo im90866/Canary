@@ -1,0 +1,46 @@
+.modalContainer13{
+    width: 300px;
+    height: 210px;
+    border-radius: 12px;
+    background-color: #Ffff;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+   position: relative;
+   top:250px;
+   left: 200px;
+}
+.create-title13{
+  
+ font-size: 24px;
+ position: relative;
+ top:-70px;
+ left: -10px;
+
+}
+.p13name{
+    font-size: 14px;
+    position: relative;
+    top:-60px;
+    left: -5px;
+}
+.folderbtnsssss1:hover{
+    background-color: #ffffff;
+      color: #ffb53b;
+    transition: 0.3s;
+  }
+  .folderbtnsssss1{
+  
+    background-color: #f7b53b;
+    color: #FFFFFF;
+    border: 1px solid #ffb53b;;
+    font-weight: bold;
+    width: 150px;
+    position: relative;
+    top:-40px;
+    left: 50px;
+    height: 40px;
+    border-radius: 40px;
+    transition: 0.25s;
+  }

@@ -39,7 +39,7 @@ function Modal5(prop) {
       <div className="modalBackground">
         <div className="modalContaine3">
           
-          <div className="titleCloseBtn">
+          <div className="titleCloseBtn1">
             <button className='cross'
               onClick={() => {
                 closeModal(false);

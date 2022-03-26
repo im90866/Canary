@@ -5,7 +5,7 @@ import Sidebar from '../Sidebar/Sidebar'
 import Modal from "../Modal/Modal"
 import { v4 as uuidv4 } from 'uuid';
 import { useState, useEffect } from "react"
-import { Link } from 'react-router-dom'
+import { Link,NavLink } from 'react-router-dom'
 
 import axios from 'axios'
 
@@ -113,8 +113,9 @@ function Project(prop) {
           <div className="project-container">
             <div className="project">
               <div className="project-title">
-                <h1 className='title' onClick={getProjects}>Your Projects</h1>
-                <h1 className='title' onClick={getGroupProjects}>Other Projects</h1>
+                <h1 className='title' onClick={getProjects}><NavLink to="/project">Your Projects</NavLink></h1>
+                <h1 className='title'>|</h1>
+                <h1 className='title' onClick={getGroupProjects}><NavLink to="/">Other Projects</NavLink></h1>
                 {
                   // Use this but clickable
                   // <h1 className='title'>Your Projects</h1>

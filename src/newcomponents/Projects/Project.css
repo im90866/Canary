@@ -15,7 +15,7 @@
     background-color: #fff;
     border-radius: 5px;
     position: relative;
-    top:100px;
+    top:150px;
     left: 80px;
 
     
@@ -32,10 +32,17 @@
 .project-title{
      position: relative;
      display: flex;
-   
+   gap:1rem;
      top:5px; 
     left:-5px;
  }
+.title a{
+    text-decoration: none;
+    color: black;
+} 
+.title .active{
+    text-decoration: underline;
+}
 .title{
     font-size: 24px;
     font-weight: 400;
@@ -64,13 +71,13 @@
 	color: #ffb53b;
     transition: 0.3s;
 }
-.project-container2{
+ .project-container2{
     width: 1000px;
     height:700px;
     background-color: white;
     border-radius: 5px;
     position: relative;
-    top:50px;
+    top:130px;
     left: 80px;
     overflow-y: scroll;
 }
@@ -137,16 +144,21 @@ left: -5px;
     .hero-btn{
         position: relative;
   width: 150px;
-       left: 80px;
-      top:5px;
+  height: 30px;
+       left: 60px;
+      top:15px;
     }
     .title{
-        font-size: 20px;
+        font-size: 15px;
         font-weight: 400;
         position: relative;
-        left: 30px;
+        left: 20px;
         white-space: nowrap;
         text-overflow: clip;
+    }
+    .project-list{
+        position: relative;
+        left: 35px;
     }
   
 }
