@@ -44,3 +44,10 @@
     border-radius: 40px;
     transition: 0.25s;
   }
+  @media (max-width: 900px){
+    .modalContainer13{
+        position: relative;
+        top:-150px;
+        left: 0px;
+    }
+  }
