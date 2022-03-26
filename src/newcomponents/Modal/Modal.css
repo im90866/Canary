@@ -219,18 +219,16 @@ position: fixed;
  left: -40px;
   }
 
-.post-img{
-  height: auto;
-  width: 100%;
-}
-
-.post-img-cropper {
-  width: 600px;
-  height: 300px;
+.post-img-cropper1 {
+  width: 700;
+  height: 600px;
   position: relative;
   overflow: hidden;
   top: -40px;
-  left: 20px;
+  left: -20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
   .modalContaine3{

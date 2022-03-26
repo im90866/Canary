@@ -1,14 +1,14 @@
 import "./Topbar.css";
 import { FaSearch, FaHome } from 'react-icons/fa'
 import { RiChatSmile2Fill, RiContactsBookLine } from "react-icons/ri"
-import { BsFillPlusCircleFill } from "react-icons/bs"
+import { BsFillPlusCircleFill ,BsPlusCircle} from "react-icons/bs"
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaBars } from 'react-icons/fa';
 import { GoThreeBars } from 'react-icons/go';
 import { useState, useEffect, useRef, createContext } from "react"
 import { MdExplore, MdOutlineNotificationsNone, MdSettings } from "react-icons/md"
 import axios from "axios"
-
+import {AiOutlinePlusCircle} from "react-icons/ai"
 import { IconContext } from 'react-icons';
 import { IoIosNotificationsOutline, IoIosArrowForward } from "react-icons/io";
 import Modal4 from "../Modal4/Modal4";
@@ -21,6 +21,8 @@ import Sidebar2 from "../Sidebar2/Sidebar2";
 import { GrFormClose } from "react-icons/gr"
 import { BsCheck } from "react-icons/bs";
 import { IoMdArrowBack } from "react-icons/io"
+import Modal11 from "../Modal11/Modal11";
+import Modal12 from "../Modal12/Modal12";
 
 const isMobileContext = createContext()
 
@@ -31,6 +33,7 @@ function Topbar(prop) {
   const setCache = prop.setCache
 
   const [openModal, setOpenModal] = useState(false);
+  const [openModal3, setOpenModal3] = useState(false);
   const isMobile = useMediaQuery({ query: `(max-width: 800px)` })
   const [showSidebar, setShowSidebar] = useState(false)
   const location = useLocation()
@@ -238,6 +241,10 @@ function Topbar(prop) {
 
         <div className="topbarRight">
           <div className="topbarIcons">
+          <div className="topbarIconItem">
+              <BsPlusCircle className="icons12"
+                onClick={() => { setOpenModal3(true);}} />
+              </div>
             <div className="topbarIconItem">
               <IoIosNotificationsOutline
                 onClick={() => openClose()}
@@ -317,9 +324,9 @@ function Topbar(prop) {
             </div>
 
           </div>
-
+          {openModal3 && <Modal12 closeModal={setOpenModal3} />} 
         </div>
-        {/* {openModal && <Modal4 closeModal={setOpenModal} />} */}
+ 
       </div>
       {
         !isMobile

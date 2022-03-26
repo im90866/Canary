@@ -48,7 +48,7 @@ function Modal5(prop) {
             </button> 
           </div>
 
-          <div className="post-img-cropper">
+          <div className="post-img-cropper1">
             <img src={imageVal} alt=""  className='post-img'/>
           </div>
 

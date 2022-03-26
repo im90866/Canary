@@ -123,8 +123,10 @@ function Postbig({ closeModal}) {
                     commentList.map(comment => 
                     <li className="commentli">
                       <img src={comment.profilePicture} alt="" className='pcimg'/>
+                      <div className="comms">
                       <h4 className='comment-username'>{comment.username}</h4>
-                      <p className='pctext'>{comment.info} </p>
+                      <p className='pctext12'>{comment.info} </p>
+                      </div>
                     </li>
                   )}
                 </ul>
