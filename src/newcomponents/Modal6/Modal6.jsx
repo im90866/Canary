@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 import "./Modal6.css"
+
 function Modal6(props) {
   const username = props.username
   const closeModal = props.closeModal
@@ -33,31 +34,51 @@ function Modal6(props) {
     });
   }
 
+  useEffect(() => {
+    console.log('jalapeno sauce')
+  }, [])
+ 
   return (
     <div>
-      <div className="modalBackground6">
-        <div className="modalContainer6">
-          <h3 className="title6">Verify your email</h3>
-            <div className="titleCloseBtn6"></div>
-          
-            <div className="title6">
-              <p className='six-digit1'>Enter the 6-digit code sent to your email below</p>
-            </div>
+      <div className="bodyyy">
+        <div className="modalBackground6">
+          <div className="modalContainer6">
+            <div className="titleCloseBtn6">
+           </div>
 
-            <div className="div6">
+          <div className="title6">
+            <h1 className="code-conformation">Email Verification</h1>
+            <p className='six-digit1'>A 6-digit code is being sent to your email confiriming the details</p>
+          </div>
+
+          <div className="div6">
             <input 
               type="digit" 
+              value={code}  
+              onChange={handleCodeInputChange} 
               className='digit12' 
-              onChange={handleCodeInputChange}  
-              value={code}
-              maxlength="6" 
+              maxLength="6" 
               size="1" 
               min="0" 
               max="9" 
-              pattern="[0-9]" 
+              pattern="[0-9]"  
             />
           </div>
-          <button className='folder-btn60' onClick={verifyCode}>Submit Details</button>
+          <div className="timers">
+            <h3 className="timer1">Time Remaining 10:30</h3>
+          </div>
+
+          <h4 className='resend'>
+            Didn't receive the code yet? 
+            <Link to ="/codeconfirmation">
+              Resend code
+            </Link>
+          </h4>
+
+          <button className='folder-btn60' onClick={verifyCode}>Verify Account</button>
+          <Link to="/" className='back-login' >Back to login</Link>
+  
+          </div>
         </div>
       </div>
     </div>

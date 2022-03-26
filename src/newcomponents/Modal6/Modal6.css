@@ -119,8 +119,8 @@
           width: 300px;
           margin-top: 0px;
           font-size: 10px;
-          left: 0px;
-          left: 70px;
+       
+          left: 75px;
          }
           
           .change-text10{
@@ -166,7 +166,7 @@
                 font-weight: bold;
                 left: 130px;
                 position: relative;
-                top: 50px;
+                top: 0px;
                 transition: 0.25s;
                }
                .folder-btn60:hover{
@@ -174,6 +174,47 @@
                 color: #ffb53b;
                 transition: 0.3s;
               }
+              .code-conformation{
+                font-size: 20px;
+                font-weight: 500;
+                color: black;
+                position: relative;
+                top:-15px;
+
+              }
+              .resend{
+                font-size: 14px;
+                font-weight: 500;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+                top:-3px;
+              }
+              .resend a{
+                text-decoration: none;
+                color: #f7b53b;
+                position: relative;
+                left: 3px;
+              }
+              .timer1{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+                top:20px;
+                font-weight: 500;
+              }
+              .back-login{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-decoration: none;
+                color: black;
+                position: relative;
+                top:20px;
+              }
+
 
               @media (max-width: 800px){
                 .modalContainer6{
@@ -186,24 +227,17 @@
                   flex-direction: column;
                   padding: 25px;
                   position: relative;
-                  top:100px;
+                  top:20px;
                   left: -2px;        
                }
-               .folder-btn60{
+            .folder-btn60{
                
                 position: relative;
                 top: 10px;
                 left: 60px;
                }
                            
-        .six-digit1{
-          position: relative;
-          color: black;
-          font-weight: 500;
-          position: relative;
-          top:-15px;
-       
-        }
+    
         .div6{
           position: relative;
           display: flex;
@@ -224,5 +258,5 @@
                 font-size: 10px;
                
                 left: 10px;
-               }
+               } 
             }
