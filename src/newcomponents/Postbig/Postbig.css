@@ -39,14 +39,17 @@
 
 }
 .profile-post{
-    width: 500px;
+
+    width: 410px;
+  
     height: 70px;
+    border-bottom: 1px solid #efefef;
     
   
 }
 .captions{
     position: relative;
-    top:-10px;
+    top:-15px;
 }
 .cap{
     position: relative;
@@ -66,12 +69,14 @@
 margin-left:-120px;
     display: flex;
     gap: 2.5rem;
+
 }
 .comment{
     display: flex;
     width: 400px;
     height: 100px;
    top:30px;
+
     position: relative;
 }
 .profilepost-img{
@@ -88,14 +93,16 @@ margin-left:-120px;
 .ppname{
     position: relative;
     left: 30px;
-    top:-5px;
+    top:-7px;
     font-weight: 500;
+    font-size: 18px;
 }
 .comment-username{
     font-size: 12px;
     position: relative;
-    top:-15px;
-    left: -10px;
+    font-weight: 500;
+    top:15px;
+    left: -55px;
 }
 .pcimg{
     width: 32px;
@@ -109,13 +116,35 @@ margin-left:-120px;
     display: flex;
 }
 .pctext{
+    position:relative;
+    font-family: 14px;
+    left: -40px;
+    top:-10px;
+  
+  
+}
+.remix-btn{
+    width: 150px;
+    height: 30px;border-radius: 40px;
     position: relative;
-    top:-20px;
+    top:10px;
+    left: 150px;
+    border: 1px solid #ffb53b;
+	background-color: #ffb53b;
+	color: #FFFFFF;
+    font-weight: 550;
+    transition: 0.3s;
+}
+.remix-btn:hover{
+    border: 1px solid #ffb53b;
+	background-color: #fff;
+	color:#ffb53b;
+    transition: 0.2s;
 }
 .icon-info{
     font-size: 25px;
     left: 5px;
-    color: #f7b53b;
+    color: #ffb53b;
 
 }
 .icons{
@@ -129,7 +158,7 @@ margin-left:-120px;
     position: relative;
     font-size: 20px;
     top:-30px;
-    color: #f7b53b;
+    color: #ffb53b;
 }
 .chatMessageInput1{
     width: 60%;
@@ -148,12 +177,55 @@ margin-left:-120px;
     display: flex;
 }
 .three-dots2{
-    color: #f7b53b;
+    color: #ffb53b;
     font-size: 20px;
     position: relative;
-    left:100px;
+    left:150px;
     top:5px;
 
+}
+.dropdowns2{
+    position: relative;
+    left: 100px;
+    top:5px;
+    color: #ffb53b;
+    font-size: 20px;
+}
+.dropdown-block2:hover .dropdown-content2{
+  
+    color: rgb(0, 0, 0);
+    display:block;
+}
+
+.dropdown-content2 {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 11px;
+    box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
+    padding: 5px 16px;
+    z-index: 1;
+    left: 250px;
+}
+
+  .dropdown-content2 button{
+      margin: 5px;
+  }
+
+.dropdown-text2{
+    font-size: 10px;
+    /* width: 120px; */
+    background-color: #f9f9f9;
+    color: black;
+    border: none;
+    position: relative;
+    left: -5px;
+    overflow: clip;
+    white-space: nowrap;
+}
+.dropdown-text2:hover{
+    background-color: #f9f9f9;
+    color: black;
 }
 .chatSubmitButton1{
     width: 100px;
@@ -191,5 +263,17 @@ margin-left:-120px;
         position: relative;
         left: 150px;
         top:50px;
+    }
+    .remix-btn{
+        width: 150px;
+        height: 30px;border-radius: 40px;
+        position: relative;
+        top:10px;
+        left: 130px;
+        border: 1px solid #ffb53b;
+        background-color: #ffb53b;
+        color: #FFFFFF;
+        font-weight: 550;
+        transition: 0.3s;
     }
 }

@@ -1,0 +1,20 @@
+.change-text110{
+    border: none;
+    background-color: #efefef;
+    padding: 8px 20px;
+
+    position: relative;
+    top:-25px;
+    border-radius: 5px;
+    width: 400px;
+    margin-top: 0px;
+    font-size: 10px;
+    left: 25px;
+  }
+  @media (max-width: 900px){
+    .change-text110{
+    position: relative;
+    left: 120px;
+    width: 300px;
+    }
+  }

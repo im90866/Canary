@@ -1,0 +1,104 @@
+.modalContainer9{
+    width: 400px;
+    height: 450px;
+    border-radius: 15px;
+    background-color: #Ffff;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+   position: relative;
+   top:20px;
+   left: 550px;
+
+   
+}
+.reports{
+    width: 400px;
+    height: 350px;
+   
+    overflow-y: scroll;
+    position: relative;
+    left: -25px;
+    top:-50px;
+    overflow-x: hidden;
+    
+}
+.report-list{
+ padding: 0;
+   
+}
+
+.report-listitem{
+  padding-bottom: 25px;
+  padding-top: 10px;
+  padding-left: 10px;
+    width: 400px;
+    height: 30px;
+    
+    list-style: none;
+}
+.create-title9{
+    font-size: 25px;
+    position: relative;
+    top:5px;
+    font-size: 20px;
+    left: 150px;
+    font-weight: 500;
+}
+.titlereport{
+position: relative;
+width: 400px;
+height: 50px;
+top: -70px;
+
+left: -25px;
+border-bottom: 1px solid #efefef;
+}
+
+.report-btn{
+    width: 100%;
+    position: relative;
+    height: 40px;
+    font-size: 14px;
+    white-space: nowrap;
+    position: relative;
+    background-color: #ffb53b;
+    color: #FFFFFF;
+    border: 1px solid #ffb53b;
+    font-weight: bold;
+border-radius: 40px;
+    text-overflow: clip;
+    transition: 0.25s;
+    top:-30px;
+}
+.report-btn:hover{
+    transition: 0.25s;
+    background-color: #ffff;
+    color: #ffb53b;
+    border: 1px solid #ffb53b;
+}
+@media (max-width: 800px){
+    .modalContainer9{
+        width: 70%;
+        height: 100%;
+       position: relative;
+       top:-20px;
+       left: 30px;
+    
+       
+    }
+    .reports{
+        width: 115%;
+        height: 350px;   
+    }
+    .report-btn{
+        width: 80%;
+        position: relative;
+        
+        top:-30px;
+        left:15px;
+    }
+
+    
+}

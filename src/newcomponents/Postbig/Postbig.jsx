@@ -10,6 +10,7 @@ import Modal from "../Modal/Modal"
 import Modal8 from '../Modal8/Modal8';
 
 import axios from 'axios';
+import Modal9 from '../Modal9/Modal9';
 
 function Postbig({ closeModal}) {
   const postId = useParams()['id']
@@ -22,7 +23,7 @@ function Postbig({ closeModal}) {
 
   const [postData, setPostData] = useState({})
   const [openModal, setOpenModal] = useState(false);
-
+  const [openModal1, setOpenModal1] = useState(false);
   const [memberList, setMemberList] = useState([])
   const [uploader, setUploader] = useState([])
 
@@ -108,6 +109,7 @@ function Postbig({ closeModal}) {
                 <div className="profilepost-img">
                   <img src={uploader.profilePicture} alt="" className='ppimg'/>
                   <h4 className="ppname">{uploader.username}</h4>
+                  <button className="remix-btn">Remixed Image</button>
                 </div>
                 
                 <div className="captions">
@@ -136,7 +138,13 @@ function Postbig({ closeModal}) {
                   </div>
                   <FaShare  className='icon-info' onClick={() => setOpenModal(true)}/>
                   <h5 className='remix'>Remix</h5>
-                  <BsThreeDots className='three-dots2'/>
+                  <div class="dropdown-block2">
+                  <BsThreeDots className='three-dots2'  class="dropdowns2"/>
+                  <div class="dropdown-content2">
+                        <button class="dropdown-text2" onClick={() => { setOpenModal1(true);}}>Report Image</button>
+                        
+                      </div>
+                      </div>
                 </div>
               </div>
             </div>
@@ -159,7 +167,9 @@ function Postbig({ closeModal}) {
           </div>
         </div>
         {openModal && <Modal8 closeModal={setOpenModal} />}  
+        
       </div>
+      {openModal1 && <Modal9 closeModal1={setOpenModal1} />}  
     </div>
   )
 }

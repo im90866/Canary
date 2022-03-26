@@ -2,7 +2,7 @@
     border-radius: 40px;
     position: relative;
     top:10px;
-    left:455px;
+    left:430px;
     border: 1px solid #ffb53b;
 	background-color: #ffb53b;
 	color: #FFFFFF;
@@ -11,15 +11,172 @@
     font-weight: 600;
     transition: 0.25s;
 }
+.profile-user2
+{display: flex;
+    position: relative;
+    top:20px;
+    align-items: center;
+    justify-content: center;
+}
+.editp2{
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    padding: 20px;
+
+    border: none;
+    border: 1px solid #ffb53b;
+    background-color: #ffb53b;
+    position: relative;
+    left: 430px;
+    top: 10px;
+
+}
+.dots1{
+    font-size: 25px;
+    position: relative;
+    top:-20px;
+    left: -7px;
+    color: #fff;
+}
+.dots1:hover{
+   
+	color: #ffb53b;
+    transition: 0.3s;
+}
+/* .editp2:hover{
+background-color: black;
+color: #fff;
+} */
 .editp1:hover{
     border: 1px solid #ffb53b;
 	background-color:#fff;
 	color: #ffb53b;
     transition: 0.3s;
+    
+}
+.editp2:hover{
+    border: 1px solid #ffb53b;
+	background-color:#fff;
+	color: #ffb53b;
+    transition: 0.3s;
+    
+}
+.three-dots4{
+    position: relative;
+    top:20px;
+    left: -15px;
+    left: 450px;
 }
 .btn-class2{
     display: flex;
     gap: 2rem;
     position: relative;
     left: -60px;
+    top:10px;
 }
+.dropdowns3{
+    position: absolute;
+    font-size: 30px;
+    top:20px;
+    left: 800px;
+    }
+    .dropdown-block3:hover .dropdown-content3{
+  
+        color: rgb(0, 0, 0);
+        display:block;
+    }
+    
+    .dropdown-content3 {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 11px;
+        box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
+        padding: 5px 16px;
+        z-index: 1;
+        left: 800px;
+    }
+    
+      .dropdown-content3 button{
+          margin: 5px;
+      }
+    
+    .dropdown-text3{
+        font-size: 10px;
+        /* width: 120px; */
+        background-color: #f9f9f9;
+        color: black;
+        border: none;
+    }
+    .dropdown-text3:hover{
+        background-color: #f9f9f9;
+        color: black;
+    }
+    .follower-info{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+    }
+    .follow-numbers{
+font-size: 16px;
+font-weight: 500;
+    }
+    .followers{
+        font-size: 16px;
+        font-weight: 500; 
+    }
+
+    @media (max-width: 900px){
+        .profile-user2{
+    display: flex;
+    position: relative;
+    top:30px;
+    left: -80px;
+    align-items: center;
+    justify-content: center;
+}
+.btn-class2{
+    display: flex;
+    gap: 1rem;
+    position: relative;
+    left: -130px;
+    top:10px;
+}
+.editp1{
+    border-radius: 40px;
+    position: relative;
+    top:10px;
+    left:430px;
+    border: 1px solid #ffb53b;
+	background-color: #ffb53b;
+	color: #FFFFFF;
+    width: 120px;
+    height: 40px;
+    font-weight: 600;
+    transition: 0.25s;
+}
+.dropdowns3{
+    position: absolute;
+    font-size: 30px;
+    top:20px;
+    left: 700px;
+    }
+    .dropdown-content3 {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 11px;
+        box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
+        padding: 5px 16px;
+        z-index: 1;
+        left: 700px;
+    }
+    .follower-info{
+        position: relative;
+        top:10px;
+        left: -95px;
+    }
+
+    }
