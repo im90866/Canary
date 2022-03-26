@@ -1,7 +1,7 @@
 import React from 'react'
 import "./Modal.css"
 import axios from 'axios'
-import { useState} from 'react';
+import { useState, useEffect } from 'react';
 
 function Modal(props) {
   var closeModal = props.closeModal
@@ -36,10 +36,13 @@ function Modal(props) {
     })
   }
 
+  useEffect(() => {
+  }, [])
+
   return (
   
     <div>
-      <div className="modalBackground">
+      <div className="modalBackground" id='modalBackground'>
         <div className="modalContainer">
           <div className="titleCloseBtn">
             <button className='cross'

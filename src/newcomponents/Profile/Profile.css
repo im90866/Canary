@@ -28,8 +28,11 @@ left: 80px;
 }
 
 .profile-user{
-    margin-top: 50px;
-margin-left: 485px;
+    display: flex;
+    position: relative;
+    top:20px;
+    align-items: center;
+    justify-content: center;
 
  
 }
@@ -152,6 +155,17 @@ width: 100%;
         left: 300px;
 
     }
+    
+.profile-user{
+    display: flex;
+    position: relative;
+    top:40px;
+    left: -70px;
+    align-items: center;
+    justify-content: center;
+
+ 
+}
     .post-info{
         display: flex;
         gap: 2rem;
@@ -162,14 +176,10 @@ width: 100%;
     }
     .editp{
         position:relative ;
-        left: 370px;
-        top: -10px;
+        left: 380px;
+        top: 30px;
     }
-    .profile-user{
-        margin-top: 100px;
-    margin-left: 400px;
-     
-    }
+  
     .profile-image-cropper{
         width: 200px;
         height: 200px;

@@ -10,6 +10,7 @@ import Modal from "../Modal/Modal"
 import Modal8 from '../Modal8/Modal8';
 
 import axios from 'axios';
+import Modal9 from '../Modal9/Modal9';
 
 function Postbig({ closeModal}) {
   const postId = useParams()['id']
@@ -23,7 +24,7 @@ function Postbig({ closeModal}) {
 
   const [postData, setPostData] = useState({})
   const [openModal, setOpenModal] = useState(false);
-
+  const [openModal1, setOpenModal1] = useState(false);
   const [memberList, setMemberList] = useState([])
   const [uploader, setUploader] = useState([])
 
@@ -41,6 +42,7 @@ function Postbig({ closeModal}) {
     await axios.post('http://localhost:8000/likePost/', req).then((res) => {
       console.log(res)
       setLike(res.data['likes'])
+      setIsLiked(!isLiked)
     });
   }
 
@@ -103,6 +105,18 @@ function Postbig({ closeModal}) {
         if((res.data['postData'].likedBy).includes(String(getCookie('userID')))) {
           setIsLiked(true)
         }
+        
+        const req = {
+          'userID': getCookie('userID'),
+          'postID': postId,
+        }
+
+        axios.post("http://localhost:8000/likeStatus/", req)
+        .then((res) => {
+          if(res.data['success']){
+            setIsLiked(res.data['liked'])
+          }
+        })
 
         console.log(res.data['postData'].comments)
       })
@@ -125,6 +139,7 @@ function Postbig({ closeModal}) {
                 <div className="profilepost-img">
                   <img src={uploader.profilePicture} alt="" className='ppimg'/>
                   <h4 className="ppname">{uploader.username}</h4>
+                  <button className="remix-btn">Remixed Image</button>
                 </div>
                 
                 <div className="captions">
@@ -148,18 +163,29 @@ function Postbig({ closeModal}) {
               <div className="comment-info">
                 <div className="icons">
                   <div className="like1">
-                    <AiFillLike className='icon-info' onClick={likeHandler}/>
+                    {
+                      isLiked ?
+                       <AiFillLike className='icon-info-like-active' onClick={likeHandler}/>
+                      :
+                      <AiFillLike className='icon-info-like' onClick={likeHandler}/>
+                    }
+                    
                     <span className='likenumber'>{like}</span>
                   </div>
                   <FaShare  className='icon-info' onClick={() => setOpenModal(true)}/>
                   <h5 className='remix' onClick={remixPost}>Remix</h5>
-                  <BsThreeDots className='three-dots2'/>
+                  <div class="dropdown-block2">
+                    <BsThreeDots className='three-dots2'  class="dropdowns2"/>
+                    <div class="dropdown-content2">
+                      <button class="dropdown-text2" onClick={() => { setOpenModal1(true);}}>Report Image</button>    
+                    </div>
+                  </div>
+
                 </div>
               </div>
             </div>
           
             <div className="comment">
-              <img src="/images/avatar.png" alt="" className='pcimg1'/>
               <textarea
                   className="chatMessageInput1"
                   placeholder=" Add a comment"
@@ -167,7 +193,7 @@ function Postbig({ closeModal}) {
                   onChange={handleBoxChange}
               ></textarea>
 
-              <button className="chatSubmitButton1" onClick={sendComment}>
+              <button className="chatSubmitButton4" onClick={sendComment}>
                 <span className='send' >
                   Send
                 </span>
@@ -176,7 +202,9 @@ function Postbig({ closeModal}) {
           </div>
         </div>
         {openModal && <Modal8 closeModal={setOpenModal} />}  
+        
       </div>
+      {openModal1 && <Modal9 closeModal1={setOpenModal1} />}  
     </div>
   )
 }

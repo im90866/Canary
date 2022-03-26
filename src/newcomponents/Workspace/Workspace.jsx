@@ -3,7 +3,7 @@ import Sidebar from '../Sidebar/Sidebar'
 import Sidebar2 from '../Sidebar2/Sidebar2'
 import Topbar from '../Topbar/Topbar'
 import "./Workspace.css"
-import { AiFillFolderOpen} from "react-icons/ai";
+import { AiFillFolderOpen } from "react-icons/ai";
 
 import { BsThreeDots } from "react-icons/bs";
 
@@ -20,7 +20,7 @@ import { FaPython } from 'react-icons/fa'
 function Workspace(prop) {
   const cache = prop.cache
   const setCache = prop.setCache
-  
+
   const fileRef = useRef();
 
   const [openDropdown, setOpenDropdown] = useState(false);
@@ -43,6 +43,15 @@ function Workspace(prop) {
   const [folderId, setFolderId] = useState("")
   const [imageId, setImageId] = useState("")
   const MAX_LENGTH = 15;
+
+  const [showImg, setShowImg] = useState({
+    image: '',
+    state: false
+  })
+  const [showFolder, setShowFolder] = useState({
+    folder: '',
+    state: false
+  })
 
   const RenameModalStatus = () => {
     if (folderId !== null) {
@@ -85,7 +94,7 @@ function Workspace(prop) {
     console.log(req)
     await axios.post('http://localhost:8000/uploadImageWorkspace/', req).then((res) => {
       console.log(res)
-      if(res.data['success']){
+      if (res.data['success']) {
         const val = {
           'projectID': projectId,
           'imageID': res.data['imageID'],
@@ -164,7 +173,7 @@ function Workspace(prop) {
   }
 
   const exitFolder = async () => {
-    if(!(folderPath.length == 1)) {
+    if (!(folderPath.length == 1)) {
       let newPath = folderPath.slice()
       let newPathName = folderPathName.slice()
 
@@ -176,7 +185,7 @@ function Workspace(prop) {
     }
   }
 
-  const back = async ()=>{
+  const back = async () => {
     console.log("hello")
   }
 
@@ -191,12 +200,12 @@ function Workspace(prop) {
       if (res.data["error"]) {
         console.log(res.data['error'])
       }
-      else{
+      else {
         let newFolders = folders.slice()
 
-        for(let x = 0; x < folders.length;++x) {
-          console.log((folders[x])['folderID'] + " " +folderID)
-          if((folders[x])['folderID'] == folderID) {
+        for (let x = 0; x < folders.length; ++x) {
+          console.log((folders[x])['folderID'] + " " + folderID)
+          if ((folders[x])['folderID'] == folderID) {
             newFolders.splice(x, 1)
             break
           }
@@ -220,9 +229,9 @@ function Workspace(prop) {
       }
       else {
         let newImageList = images.slice()
-        for(let x = 0; x < images.length;++x) {
+        for (let x = 0; x < images.length; ++x) {
           console.log((images[x])['imageID'] + " " + imageID)
-          if((images[x])['imageID'] == imageID) {
+          if ((images[x])['imageID'] == imageID) {
             newImageList.splice(x, 1)
             break
           }
@@ -249,12 +258,25 @@ function Workspace(prop) {
       await getFolders()
     }
     getAll();
-  }, [folderPath])
 
+    document.addEventListener('click', (e) => {
+      if(showFolder.state)
+        setShowFolder(showFolder.state = false)
+      if(showImg.state)
+        setShowImg(showImg.state = false)
+    })
+
+    if (openDropdown) {
+      document.getElementById('workspace-body').style.filter = 'blur(5px) grayscale(0%)'
+    } else {
+      document.getElementById('workspace-body').style.filter = 'blur(0px) grayscale(0%)'
+    }
+
+  }, [folderPath, showImg, showFolder, openDropdown])
 
   return (
     <div>
-      <body className='workspace-body'>
+      <body className='workspace-body' id='workspace-body'>
         <div className="workspace-container">
           <div className="workspace">
             <div className="workspace-title">
@@ -275,14 +297,14 @@ function Workspace(prop) {
                 folderPath.length == 1 ?
                   <div className="directory-path">
                     <div className="inactive-whitespace" onClick={exitFolder}>
-                      <BiArrowBack className='inactive-back'/>
+                      <BiArrowBack className='inactive-back' />
                     </div>
                     <h3 className="directory">{folderPathString}</h3>
                   </div>
                   :
                   <div className="directory-path">
                     <div className="whitespace" onClick={exitFolder}>
-                      <BiArrowBack className='back'/>
+                      <BiArrowBack className='back' />
                     </div>
                     <h3 className="directory">{folderPathString}</h3>
                   </div>
@@ -296,25 +318,41 @@ function Workspace(prop) {
           projId={projectId}
           folders={folders}
           setFolder={setFolders}
-           />}
+        />}
 
         <div className="workspace-container2">
           <div className="folder">
             {
               folders.map((folder) =>
                 <div className="folders" key={folder.folderID} >
-                  <AiFillFolderOpen className='folder-icon' onClick={() => enterFolder(folder.folderID, folder.folderName)}/>
-               
-                  <div className="folder-info"> 
-                  <h3 className='folder-text'>{folder.folderName}</h3>
+                  <AiFillFolderOpen className='folder-icon' onClick={() => enterFolder(folder.folderID, folder.folderName)} />
+
+                  <div className="folder-info">
+                    <h3 className='folder-text'>{folder.folderName}</h3>
                     <div class="dropdown-block">
-                    <BsThreeDots className='three-dots' class="dropdowns" />
-                   
-                      <div class="dropdown-content">
-                        <button class="dropdown-text" onClick={() => { setOpenModalRename(true); setModalVal("Rename"); setFolderId(folder.folderID) }}>Rename</button>
-                        <button class="dropdown-text" onClick={() => deleteFolder(folder.folderID)}>Delete</button>
-                      </div>
-                    
+                      <BsThreeDots
+                        className='three-dots'
+                        class="dropdowns"
+                        onClick={
+                          (e) => {
+                            setShowFolder({
+                              folder: folder.folderID,
+                              state: !showFolder.state
+                            });
+                            e.stopPropagation()
+                          }
+                        }
+                      />
+                      {
+                        showFolder.folder === folder.folderID && showFolder.state
+                          ?
+                          <div class="dropdown-content">
+                            <button class="dropdown-text" onClick={() => { setOpenModalRename(true); setModalVal("Rename"); setFolderId(folder.folderID) }}>Rename</button>
+                            <button class="dropdown-text" onClick={() => deleteFolder(folder.folderID)}>Delete</button>
+                          </div>
+                          :
+                          null
+                      }
                     </div>
                   </div>
                 </div>
@@ -330,17 +368,30 @@ function Workspace(prop) {
                   <div className="folder-info">
                     <h3 className='folder-text1'>{image.fileName}</h3>
                     <div className="dropdown-block">
-                      <BsThreeDots className='three-dots3' class="dropdowns" />
+                      <BsThreeDots
+                        className='three-dots3'
+                        class="dropdowns"
+                        onClick={
+                          (e) => {
+                            setShowImg({ image: image.imageID, state: !showImg.state });
+                            e.stopPropagation()
+                          }
+                        }
+                      />
+
                       {
-                        console.log(image.imageID)
+                        showImg.image === image.imageID && showImg.state
+                          ?
+                          <div class="dropdown-content" id='dropdown-content'>
+                            <button className="dropdown-text" onClick={() => { setImageId(image.imageID); setPostImageVal(image); setOpenModal(true); }}>Post</button>
+                            <button className="dropdown-text" onClick={() => { setImageId(image.imageID); setOpenModalRename(true); setModalVal("Rename"); }}>Rename</button>
+                            <button className="dropdown-text" onClick={() => deleteImage(image.imageID)}>Delete</button>
+                            <a className="dropdown-text1" href={image.imageVal} download>Download</a>
+                          </div>
+                          :
+                          null
                       }
-                      <div class="dropdown-content">
-                        <button className="dropdown-text" onClick={() => { setImageId(image.imageID); setPostImageVal(image); setOpenModal(true); }}>Post</button>
-                        <button className="dropdown-text" onClick={() => { setImageId(image.imageID); setOpenModalRename(true); setModalVal("Rename");}}>Rename</button>
-                        <button className="dropdown-text" onClick={() => deleteImage(image.imageID)}>Delete</button>
-                        <a className="dropdown-text1" href={image.imageVal} download>Download</a>
-                     
-                      </div>
+
                     </div>
                   </div>
                 </div>
@@ -350,16 +401,16 @@ function Workspace(prop) {
         </div>
       </body>
       {openModal && <Modal5 projectID={projectId} image={postImageVal} closeModal={setOpenModal} makeChange={makeChange} />}
-      {openModalRename && 
-        <Modal5_1 
-          closeModal={RenameModalStatus} 
+      {openModalRename &&
+        <Modal5_1
+          closeModal={RenameModalStatus}
           folderList={folders}
           imageList={images}
           setFolders={setFolders}
           setImages={setImages}
-          name={modalVal} 
-          folderId={folderId} 
-          imageId={imageId} 
+          name={modalVal}
+          folderId={folderId}
+          imageId={imageId}
         />}
 
     </div>

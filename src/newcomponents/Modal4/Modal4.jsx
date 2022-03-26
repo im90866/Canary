@@ -6,15 +6,9 @@ function Modal4({ closeModal }) {
       <div className="modalBackground2">
         <div className="modalContainer4">
           <div className="titleCloseBtn2">
-            <button className='cross'
-              onClick={() => {
-                closeModal(false);
-              }}
-            >
-              x
-            </button>
+          
           </div>
-          <h1 className="notifications">Notifications</h1>
+          <h1 className="notifications1">Notifications</h1>
 
           <ul className="notifications-2">
             <li className="notificationslist">

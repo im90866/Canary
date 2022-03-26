@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import "./Project.css"
-import Topbar  from "../Topbar/Topbar"
+import Topbar from "../Topbar/Topbar"
 import Sidebar from '../Sidebar/Sidebar'
 import Modal from "../Modal/Modal"
 import { v4 as uuidv4 } from 'uuid';
-import { useState, useEffect} from "react"
+import { useState, useEffect } from "react"
 import { Link } from 'react-router-dom'
 
 import axios from 'axios'
@@ -12,7 +12,7 @@ import axios from 'axios'
 function Project(prop) {
   const cache = prop.cache
   const setCache = prop.setCache
-  
+
   const [openModal, setOpenModal] = useState(false);
 
   const [projects, setProjects] = useState([])
@@ -68,12 +68,12 @@ function Project(prop) {
       'projectID': id,
     }
 
-    await axios.post("http://localhost:8000/deleteproject/", request).then((res) =>{
+    await axios.post("http://localhost:8000/deleteproject/", request).then((res) => {
       if (res.data["error"]) {
         console.log(res.data['error'])
       }
     })
-    
+
     const newProjectList = projects.filter((project) => {
       return project.id !== id
     })
@@ -81,8 +81,8 @@ function Project(prop) {
   }
 
   const setProjectName = async (projectName, projectId) => {
-      window.sessionStorage.setItem("currentProjectName", projectName);
-      window.sessionStorage.setItem("currentProjectId", projectId);
+    window.sessionStorage.setItem("currentProjectName", projectName);
+    window.sessionStorage.setItem("currentProjectId", projectId);
   }
 
   useEffect(() => {
@@ -93,47 +93,61 @@ function Project(prop) {
         setProjects(allProjects)
     }
     getAll();
-  }, [])
+    if (openModal) {
+      document.getElementById('projectss').style.filter = 'blur(5px) grayscale(0%)'
+    } else {
+      document.getElementById('projectss').style.filter = 'blur(0px) grayscale(0%)'
+    }
+
+    document.addEventListener('click', (e) => {
+      if(openModal)
+        setOpenModal(false)
+    })
+
+  }, [openModal])
 
   return (
     <div>
-      <body className="projectss">
-        <div className="project-container">
-          <div className="project">
-            <div className="project-title">
-              <h1 className='title' onClick={getProjects}>Your Projects</h1>
-              <h1 className='title' onClick={getGroupProjects}>Other Projects</h1>
-              {
-                // Use this but clickable
-                // <h1 className='title'>Your Projects</h1>
-              }
-              <button className='hero-btn' onClick={() =>
-                  setOpenModal(true)}>New Project</button> 
+      <body className="projectss" >
+        <div id='projectss'>
+          <div className="project-container">
+            <div className="project">
+              <div className="project-title">
+                <h1 className='title' onClick={getProjects}>Your Projects</h1>
+                <h1 className='title' onClick={getGroupProjects}>Other Projects</h1>
+                {
+                  // Use this but clickable
+                  // <h1 className='title'>Your Projects</h1>
+                }
+                <button className='hero-btn' onClick={(e) =>{
+                  setOpenModal(true); e.stopPropagation()}}>New Project</button>
+              </div>
             </div>
-          </div> 
-        </div>
-        
-        <div className="project-container2"> 
-          <ul className="project-list">
-            {
-              projects.map(project =>
-                <div className="projectlistname" 
-                  key={project.id} 
-                  onClick={() => setProjectName(project.projectName, project.projectId)}>                  
-                  <Link to={`/${project.id}/workspace`}>
-                    <li className="project-list-item">
-                      <span className='project-name'>{project.projectName}</span>
-                    </li>
-                  </Link>
-                </div>
-              )
-            }
-          </ul>   
-        </div> 
+          </div>
 
-        {openModal && <Modal closeModal={setOpenModal} makeChange = {makeChange} projects={projects} setProjects={setProjects}/>}  
-      </body>
-    </div>
+          <div className="project-container2">
+            <ul className="project-list">
+              {
+                projects.map(project =>
+                  <div className="projectlistname"
+                    key={project.id}
+                    onClick={() => setProjectName(project.projectName, project.projectId)}>
+                    <Link to={`/${project.id}/workspace`}>
+                      <li className="project-list-item">
+                        <span className='project-name'>{project.projectName}</span>
+                      </li>
+                    </Link>
+                  </div>
+                )
+              }
+            </ul>
+          </div>
+        </div>
+        <div onClick={(e) => e.stopPropagation()}>
+          {openModal && <Modal closeModal={setOpenModal} makeChange={makeChange} projects={projects} setProjects={setProjects} />}
+        </div>
+      </body >
+    </div >
   )
 }
 
@@ -147,6 +161,6 @@ function getCookie(name) {
   }
   return null;
 }
-  
+
 
 export default Project
