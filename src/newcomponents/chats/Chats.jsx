@@ -195,7 +195,7 @@ function Chats() {
                 position: 'relative',
                 left: '20px',
                 borderRadius: '25px',
-                border: '2px solid #ffb53b'
+                border: '2px solid #ffb53b',
               }}
               value={textBoxVal}
               onChange={handleMessageChange}

@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react'
 import "./Feed.css"
 import Post from '../Post/Post'
 
-import { Posts } from "../../dummy.js";
-
 import { AiOutlineArrowRight } from "react-icons/ai";
 import axios from 'axios'
 

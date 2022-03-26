@@ -16,6 +16,8 @@ urlpatterns = [
     # Auth Views
     path('signup/', SignupView.as_view()),
     path('login/', LoginView.as_view()),
+    path('verifySignup/', VerifySignup.as_view()),
+    path('deleteTemp/', DeleteTemp.as_view()),
 
     # Project Views
     path('createproject/', CreateProject.as_view()),
@@ -46,11 +48,14 @@ urlpatterns = [
     # Home Views
     path('getFeed/<str:userID>', GetHomePosts.as_view()),
     path('search/<str:value>', SearchProfiles.as_view()),
+    path('getNotifications/<str:userID>', GetNotifications.as_view()),
+    path('getFeedLikes/', GetFeedLikes.as_view()),
+
+    # Post Views
+    path('getPost/<str:postID>/<str:userID>', GetPost.as_view()),
     path('likePost/', LikePost.as_view()),
     path('sendComment/', CommentPost.as_view()),
-    path('getNotifications/<str:userID>', GetNotifications.as_view()),
-    path('getPost/<str:postID>/<str:userID>', GetPost.as_view()),
-    path('getFeedLikes/', GetFeedLikes.as_view()),
+    path('remixPost/', RemixPost.as_view()),
 
     # Profile Views
     path('getProfilePicture/<str:userID>', GetProfilePicture.as_view()),

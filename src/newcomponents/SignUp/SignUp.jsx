@@ -39,7 +39,7 @@ function SignUp(props) {
     }).then((res) => {
         if(res.data["success"]) { 
           console.log('sucess')
-          navigate('/')
+          setOpenModal(true)
         }
         else  
           console.log("Error "+res.data["error"])
@@ -74,7 +74,7 @@ function SignUp(props) {
           <button className='signup' type="submit" >Sign Up</button>
         </form>
       </div>
-      {openModal && <Modal6 closeModal={setOpenModal} />} 
+      {openModal && <Modal6 username={username} closeModal={setOpenModal} />} 
     </div>
   )
 }

@@ -147,8 +147,7 @@ function App() {
               
               <Route path="/post/:id" element={<Postbig />} />
             
-              <Route path="/codeconfirmation" element={<Modal6 />} />
-              <Route path="/forgotpassword" element={<Fp/>} />
+              
               <Route path="/resetpassword" element={<Resetpassword/>} />
               <Route path="/privacy" element={<Cardsix/>} />
               <Route path="/admin" element={<Team1/>} />
@@ -162,6 +161,8 @@ function App() {
             <Routes>
               <Route path="/" element={protectLogin()} />
               <Route path="/home" element={protectOther(<Home />)} />
+              <Route path="/forgotpassword" element={<Fp/>} />
+              <Route path="/codeconfirmation" element={<Modal6 />} />
             </Routes>
           </>
         }

@@ -20,7 +20,6 @@
   }
 
 
-
   .sidebarWrapper {
   padding-top: 20px;
   padding-bottom: 20px;
@@ -32,6 +31,7 @@ padding-right: 0px;
     margin: 0;
     list-style: none;
   }
+
   .sidebarListItem a{
     padding: 1px;
     list-style: none;
@@ -39,6 +39,15 @@ padding-right: 0px;
     color: black;
     transition: width 2s;
   }
+
+  .sidebarListItemActive a{
+    padding: 1px;
+    list-style: none;
+    text-decoration: none;
+    color: black;
+    transition: width 2s;
+  }
+
   .sidebarListItem:hover{
       background-color: #efefef;
       width: 300px; 
@@ -51,8 +60,14 @@ padding-right: 0px;
     margin-bottom: 5px;
   
   }
- 
+
+  .sidebarListItemActive {
+    display: block;
+    align-items: center;
+    margin-bottom: 5px;
   
+  }
+
   .sidebarIcon  {
     margin-right:80px;
     font-size: 23px;
@@ -67,18 +82,13 @@ position:absolute;
   }
   
   
-  .sidebarListItemText{
+.sidebarListItemText{
+  margin-left: 60px;
+  color: black;
+  font-size: 18px;
+  margin-top: 10px;
+}
 
-   
-margin-left: 60px;
-color: black;
-font-size: 18px;
-margin-top: 10px;
-
-
-
-
-  }
  .sidebarListItemText1{
     margin-left: 25px;
     color: black;

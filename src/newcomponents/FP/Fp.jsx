@@ -12,7 +12,7 @@ function Fp() {
               <input type="text" 
                   className='change-text103'  
                   name="Project Name" 
-                  placeholder='Project Name'
+                  placeholder='Email Address'
                 
             />
             <button className="fpbtn">< Link to="/codeconfirmation">

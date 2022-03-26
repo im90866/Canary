@@ -1,6 +1,6 @@
 import React from 'react'
 import "./Postbig.css"
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import Message from '../Message/Message'
 import { AiFillLike,AiOutlineDownload } from "react-icons/ai";
 import { FaShare } from "react-icons/fa";
@@ -13,6 +13,7 @@ import axios from 'axios';
 
 function Postbig({ closeModal}) {
   const postId = useParams()['id']
+  const navigate = useNavigate()
 
   const [like,setLike] = useState("")
   const [isLiked,setIsLiked] = useState(false)
@@ -68,6 +69,22 @@ function Postbig({ closeModal}) {
       })
       setCommentVal("")
     }
+  }
+
+  const remixPost = async () => {
+    const req = {
+      'userID': getCookie('userID'),
+      'postID' : postId,
+    }
+
+    await axios.post("http://localhost:8000/remixPost/", req).then((res) => {
+      if (res.data["error"]) {
+        console.log(res.data['error'])
+      }
+      else{
+        navigate('/project')
+      }
+    })
   }
 
   useEffect(() => {
@@ -135,7 +152,7 @@ function Postbig({ closeModal}) {
                     <span className='likenumber'>{like}</span>
                   </div>
                   <FaShare  className='icon-info' onClick={() => setOpenModal(true)}/>
-                  <h5 className='remix'>Remix</h5>
+                  <h5 className='remix' onClick={remixPost}>Remix</h5>
                   <BsThreeDots className='three-dots2'/>
                 </div>
               </div>

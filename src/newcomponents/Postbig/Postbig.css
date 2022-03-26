@@ -135,6 +135,9 @@ margin-left:-120px;
     width: 60%;
     height: 50px;
     position: relative;
+    resize: none;
+    border-radius: 5px;
+    overflow:hidden;
     left: 10px;
 }
 .pcimg1{

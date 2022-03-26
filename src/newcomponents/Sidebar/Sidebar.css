@@ -22,6 +22,7 @@ padding-right: 0px;
     margin: 0;
     list-style: none;
   }
+
   .sidebarListItem  {
     padding-bottom:10px ;
     padding-top:10px ;
@@ -34,6 +35,22 @@ padding-right: 0px;
     align-items: center;
     margin-bottom: 15px;
   }
+
+  .sidebarListItemActive  {
+    padding-bottom:10px ;
+    padding-top:10px ;
+    padding-right: -5px;
+    list-style: none;
+    text-decoration: none;
+    color: black;
+    transition: width 2s;
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    background-color: #efefef; 
+  }
+
+
   .sidebarListItem:hover{
       background-color: #efefef; 
       width: 300px;    
@@ -49,9 +66,8 @@ padding-right: 0px;
   
   
 .sidebarListItemText{
-margin-left: 60px;
-color: black;
-font-size: 18px;
-margin-top: 10px;
-  }
- 
+  margin-left: 60px;
+  color: black;
+  font-size: 18px;
+  margin-top: 10px;
+}

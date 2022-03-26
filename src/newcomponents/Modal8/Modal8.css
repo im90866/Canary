@@ -12,6 +12,26 @@
    left: -50px;
    
 }
+.change-text106 {
+    background-color: rgb(248, 248, 248);;
+    text-decoration: none;
+    resize: none;
+    caret-color: transparent;
+
+    border: none;
+    background-color: #efefef;
+    padding: 8px 20px;
+
+    position: relative;
+    top:-45px;
+    border-radius: 5px;
+    overflow: hidden;
+    width: 193px;
+    margin-top: 0px;
+    font-size: 10px;
+    left: 0px;
+}
+
 .body1{
     display: flex;
     flex-wrap: wrap;

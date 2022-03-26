@@ -221,14 +221,89 @@ class GetPost(APIView):
             'postData' : postData
         })
 
+# Requires userID, postID
 class RemixPost(APIView):
     permission_classes = (permissions.AllowAny, )
 
     def post(self, request, format=None):
         data = self.request.data
 
+        FS = gridfs.GridFS(CLIENT_DATABASE)
+
+        user_col = CLIENT_DATABASE['userInfo']
+        proj_col = CLIENT_DATABASE['projectData']
+        meta_col = CLIENT_DATABASE['imageData']
+        post_col = CLIENT_DATABASE['postData']
+        folder_col = CLIENT_DATABASE['folder']
+
+        # Creates the project name
+        userVal = user_col.find_one({'_id': ObjectId(data['userID'])})
+        remixCount = 1
+        if 'remixCount' not in userVal:
+            user_col.update_one({
+                '_id': ObjectId(data['userID'])
+            }, {
+                '$set': {
+                    'remixCount': 2
+                }
+            })
+        else:
+            remixCount = userVal['remixCount']
+            user_col.update_one({
+                '_id': ObjectId(data['userID'])
+            }, {
+                '$inc': {
+                    'remixCount': 1
+                }
+            })
+
+        username = userVal['username']
+
         # Add new project to user, labelled remix and add reference to original post
+        rootFolderID = folder_col.insert_one(folder("&root&", username + '\'s Remix #' + str(remixCount)).getModel()).inserted_id
+        rootFolderID = json.loads(json_util.dumps(rootFolderID))['$oid']
+
+        projectModel = project(username + '\'s Remix #' + str(remixCount), data['userID'], username, rootFolderID).getModel()
+        projectModel['isRemix'] = True
+        projectModel['originalPost'] = data['postID']
+        
+        # Stores the project, gets the ID and appends it to the user
+        projectID = (proj_col.insert_one(projectModel)).inserted_id
+        projectID = json.loads(json_util.dumps(projectID))['$oid']
+
         # Add post image to project
+        metadataID = post_col.find_one({'_id': ObjectId(data['postID'])})['metadataID']
+        
+        metaVal = meta_col.find_one({'_id': ObjectId(metadataID)})
+        metaVal['projectID'] = projectID
+        metaVal.pop('_id', None)
+
+        newMetavalID = (meta_col.insert_one(metaVal)).inserted_id
+        newMetavalID = json.loads(json_util.dumps(newMetavalID))['$oid']
+
+        folder_col.update_one({
+            '_id': ObjectId(rootFolderID)
+        }, {
+            '$set' : {
+                'imageList' : [newMetavalID]
+            }
+        })
+
+        user_col.update_one({
+            '_id': ObjectId(data['userID'])
+        }, {
+            '$push': {
+                'projectID': {
+                    '$each': [projectID],
+                    '$position': 0
+                }
+            }
+        })
+
+        return Response({ 
+            'success': 'Remix project Added',
+            'projectID': projectID
+        })
         
         # NOT HERE 
         # but when posting image from remix project, add this post to remix list of original post and vice
