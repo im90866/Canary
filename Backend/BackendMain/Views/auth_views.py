@@ -43,6 +43,8 @@ class SignupView(APIView):
             while(ifExists(signCode, "signCode", 'tempUserInfo')):
                 signCode = randint(100000, 999999)
 
+            signCode = str(signCode)
+
             utc_timestamp = datetime.utcnow()
 
             mergeVal = {
@@ -51,15 +53,16 @@ class SignupView(APIView):
             }
 
             tempVal = {**user_info, **mergeVal}
-            print(tempVal)
 
-            temp_user_col.create_index('expireAt', expireAfterSeconds=60)
+            temp_user_col.create_index('expireAt', expireAfterSeconds=65)
             temp_user_col.insert_one(tempVal)
+
+            print(tempVal)
 
             # send code to email
             body = 'You\'re almost there!\n To finish setting up your account, enter the following code:\n\t'
-            + str(signCode) + '\nThe following code will expire on '+ datetime.utcnow().strftime("%B %-d, %Y %-I:%M:%S %p") + 'UTC'
-            + '\n\nIf the code does not work, please request a new verification code.'
+            body = body + signCode + '\nThe following code will expire on '+ datetime.utcnow().strftime("%B %-d, %Y %-I:%M:%S %p") + 'UTC'
+            body = body + '\n\nIf the code does not work, please request a new verification code.'
 
             send_mail(
                 'Verify Your Canary Email Address',
@@ -113,6 +116,20 @@ class LoginView(APIView):
             return Response({ 'error': 'Error Authenticating' })
 
 class DeleteTemp(APIView):
+    permission_classes = (permissions.AllowAny, )
+
+    def post(self, request, format=None):
+        data = self.request.data
+
+        user_col = CLIENT_DATABASE['userInfo']
+        temp_user_col = CLIENT_DATABASE['tempUserInfo']
+        email_col = CLIENT_DATABASE['emailList']
+        
+        email_col.insert_one({'email': data['email']})
+
+        return Response({ 'success': 'CSRF cookie set' })
+
+class ResendCode(APIView):
     permission_classes = (permissions.AllowAny, )
 
     def post(self, request, format=None):

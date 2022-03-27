@@ -127,11 +127,9 @@ function Workspace(prop) {
     })
   }
 
-  const postImage = async (imageID) => {
+  const openImage = async (imageID) => {
     const req = {
-      'projectID': projectId,
       'metadataID': imageID,
-      "uploader": String(getCookie('username')),
     }
 
     console.log("HOOOHHAAA")
@@ -362,8 +360,10 @@ function Workspace(prop) {
             {
               images.map(image =>
                 <div >
-                  <div className="image-cropper">
-                    <img className="image" src={image.imageVal} width={100} height={100} onClick={() => postImage(image.imageID)} />
+                  <div className="shadowbox">
+                    <div className="image-cropper">
+                      <img className="image" src={image.imageVal} width={100} height={100} onClick={() => openImage(image.imageID)} />
+                    </div>
                   </div>
                   <div className="folder-info">
                     <h3 className='folder-text1'>{image.fileName}</h3>

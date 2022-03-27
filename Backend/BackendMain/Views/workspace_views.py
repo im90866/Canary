@@ -117,7 +117,7 @@ class GetFolder(APIView):
 
                 # Decode from bytes
                 imageVal = FS.get(metaval['imageID'])
-                imageVal = resizeImage(imageVal, 300)      # Custom function
+                imageVal = resizeImage(imageVal, 400)      # Custom function
 
                 metaval = {
                     'projectID' : metaval['projectID'],
@@ -137,6 +137,25 @@ class GetFolder(APIView):
             'folderList' : finalFolderList,
             'imageList' : finalImageList
         })
+
+class GetImage(APIView):
+    permission_classes = (permissions.AllowAny, )
+
+    def get(self, request, metaID, format=None):
+        data = self.request.data
+
+        FS = gridfs.GridFS(CLIENT_DATABASE)
+
+        meta_col = CLIENT_DATABASE['imageData']
+
+        imageID = meta_col.find_one({'_id': ObjectId(metaID)})['imageID']
+        imageVal = FS.get(ObjectId(imageID))
+
+        return Response({
+            'success': 'Obtained image',
+            'imageVal': imageVal
+        })
+
 
 # Requires: new folder name, projectID, curFolder path
 class CreateFolder(APIView):

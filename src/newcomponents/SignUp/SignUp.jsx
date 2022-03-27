@@ -39,7 +39,7 @@ function SignUp(props) {
     }).then((res) => {
         if(res.data["success"]) { 
           console.log('sucess')
-          setOpenModal(true)
+          navigate('/codeconfirmation')
         }
         else  
           console.log("Error "+res.data["error"])

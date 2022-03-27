@@ -48,6 +48,7 @@
   
 }
 .captions{
+    width: 30px;
     position: relative;
     top:-15px;
 }
@@ -76,6 +77,7 @@ margin-left:-120px;
     width: 400px;
     height: 100px;
    top:30px;
+   left: 20px;
 
     position: relative;
 }
@@ -144,9 +146,39 @@ margin-left:-120px;
 .icon-info{
     font-size: 25px;
     left: 5px;
-    color: #ffb53b;
-
+    color: #4e4e4e;
+    transition: 0.08s;
 }
+
+.icon-info-like{
+    font-size: 25px;
+    left: 5px;
+    color: #4e4e4e;
+    transition: 0.08s;
+}
+
+.icon-info-like-active{
+    font-size: 25px;
+    left: 5px;
+    color: #ffb53b;
+    transition: 0.08s;
+}
+
+.icon-info-like:hover{
+    transition: 0.2s;
+    color:#ffb53b
+}
+
+.icon-info-like-active:hover{
+    transition: 0.2s;
+    color:#4e4e4e
+}
+
+.icon-info:hover{
+    transition: 0.2s;
+    color:#ffb53b
+}
+
 .icons{
     display: flex;
     gap: 1rem;
@@ -230,11 +262,11 @@ margin-left:-120px;
     background-color: #f9f9f9;
     color: black;
 }
-.chatSubmitButton1{
+.chatSubmitButton4{
     width: 100px;
     height: 40px;border-radius: 40px;
     position: relative;
-    left: 15px;
+    left: 25px;
     border: 1px solid #ffb53b;
 	background-color: #ffb53b;
 	color: #FFFFFF;

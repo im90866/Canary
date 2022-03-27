@@ -110,6 +110,28 @@ class LikePost(APIView):
             'likes' : (post_col.find_one({'_id': ObjectId(data['postID'])}))['likes'],
         })
 
+class LikeStatus(APIView):
+    permission_classes = (permissions.AllowAny, )
+
+    def post(self, request, format=None):
+        data = self.request.data
+
+        post_col = CLIENT_DATABASE['postData']
+
+        likedBy = post_col.find_one({'_id': ObjectId(data['postID'])})['likedBy']
+
+        if data['userID'] in likedBy:
+            return Response({
+                'success': 'Got like status',
+                'liked' : True,
+            })
+        else:
+            return Response({
+                'success': 'Got like status',
+                'liked' : False,
+            })
+
+
 class CommentPost(APIView):
     permission_classes = (permissions.AllowAny, )
 

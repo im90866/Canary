@@ -10,9 +10,20 @@
    position: relative;
    top:20px;
    left: 550px;
-
-   
 }
+
+.crossBlocker {
+    color: rgb(87, 87, 87);
+    margin-right: -20px;
+    padding: 12px 12px;
+    z-index: 99;
+    left: -10px;
+}
+
+.crossBlocker:hover {
+    color: black;
+}
+
 .reports{
     width: 400px;
     height: 350px;

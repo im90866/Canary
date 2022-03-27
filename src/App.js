@@ -58,7 +58,6 @@ function App() {
     let navigate = useNavigate()
 
     const user = getCookie('username')
-    console.log(user)
 
     useEffect(() => {
         console.log("change")

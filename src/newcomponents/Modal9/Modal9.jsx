@@ -1,17 +1,23 @@
 import React from 'react'
 import {BsClipboard} from "react-icons/bs";
 import"./Modal9.css"
-function Modal9({ closeModal1}) {
+function Modal9(prop) {
+  const closeModal1 = prop.closeModal1
+  const close = () => {
+    console.log('3ss')
+    closeModal1(false)
+  }
+
   return (
     <div>
          <div className="modalBackground">
         <div className="modalContainer9">
           <div className="titleCloseBtn">
-            <button className='cross'
+            <button className='crossBlocker'
               onClick={() => {
-                closeModal1(false);
+                close()
               }}>
-              x
+              X
             </button> 
           </div>
           <div className="titlereport">
