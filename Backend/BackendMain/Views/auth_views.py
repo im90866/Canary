@@ -138,10 +138,41 @@ class ResendCode(APIView):
         user_col = CLIENT_DATABASE['userInfo']
         temp_user_col = CLIENT_DATABASE['tempUserInfo']
         email_col = CLIENT_DATABASE['emailList']
-        
-        email_col.insert_one({'email': data['email']})
 
-        return Response({ 'success': 'CSRF cookie set' })
+        temp_user_col.delete_one({'username': data['username']})
+
+        tempVal = userInfo(data['username'], data['password'], data['email']).getModel()
+
+        signCode = randint(100000,999999)
+        while(ifExists(signCode, "signCode", 'tempUserInfo')):
+            signCode = randint(100000, 999999)
+
+        signCode = str(signCode)
+
+        tempVal['expireAt'] = datetime.utcnow()
+        tempVal['signCode'] = signCode
+
+        temp_user_col.create_index('expireAt', expireAfterSeconds=65)
+        temp_user_col.insert_one(tempVal)
+
+        print(tempVal)
+
+        # send code to email
+        body = 'You\'re almost there!\n To finish setting up your account, enter the following code:\n\t'
+        body = body + signCode + '\nThe following code will expire on '+ datetime.utcnow().strftime("%B %-d, %Y %-I:%M:%S %p") + 'UTC'
+        body = body + '\n\nIf the code does not work, please request a new verification code.'
+
+        send_mail(
+            'Verify Your Canary Email Address',
+            body,
+            'madebyteamcanary@gmail.com',
+            [data['email']],
+            fail_silently=False,
+        )
+
+        return Response({
+            'success':'Request sent to mail'
+        })        
 
 class VerifySignup(APIView):
     permission_classes = (permissions.AllowAny, )
@@ -177,6 +208,78 @@ class VerifySignup(APIView):
             })
         else:
             return Response({ 'error': 'Wrong code' })
+
+class ForgotPassword(APIView):
+    permission_classes = (permissions.AllowAny, )
+
+    def post(self, request, format=None):
+        data = self.request.data
+
+        user_col = CLIENT_DATABASE['userInfo']
+        temp_user_col = CLIENT_DATABASE['tempUserInfo']
+        email_col = CLIENT_DATABASE['emailList']
+
+        emailData = email_col.find_one({'email': data['email']})
+        if emailData == None:
+            return(Response({
+                'error': 'Entered email does not exist'
+            }))
+
+        signCode = randint(100000,999999)
+        while(ifExists(signCode, "signCode", 'tempUserInfo') or ifExists(signCode, "signCode", 'userInfo')):
+            signCode = randint(100000, 999999)
+
+        signCode = str(signCode)
+
+        user_col.update_one({
+            'username': data['username']
+        }, {
+            '$set': {
+                'signCode': signCode
+            }
+        })
+
+         # send code to email
+        body = 'Your account\'s password was requested to be changed. Enter the following code:\n\t'
+        body = body + signCode + '\nThe following code will expire on '+ datetime.utcnow().strftime("%B %-d, %Y %-I:%M:%S %p") + 'UTC'
+        body = body + '\n\nIf the code does not work, please request a new verification code.'
+        body = body + '\n\nIf this was not you, ignore this email as no changes will be made to your account.'
+
+        send_mail(
+            'Forgot your Canary password',
+            body,
+            'madebyteamcanary@gmail.com',
+            [data['email']],
+            fail_silently=False,
+        )
+
+        return Response({
+            'success':'Request sent to mail'
+        })
+
+class ForgotPasswordVerify(APIView):
+    permission_classes = (permissions.AllowAny, )
+
+    def post(self, request, format=None):
+        data = self.request.data
+
+        user_col = CLIENT_DATABASE['userInfo']
+        temp_user_col = CLIENT_DATABASE['tempUserInfo']
+        email_col = CLIENT_DATABASE['emailList']
+
+        print(data)
+        
+        userVal = user_col.find_one({'username': data['username']})
+
+        if str(data['signCode']) == str(userVal['signCode']):
+            # add the tempval value to usercol
+             user_col.update_one({
+                'username': data['username']
+            }, {
+                '$unset': {
+                    'signCode': data['signCode']
+                }
+            })
 
 @method_decorator(ensure_csrf_cookie, name='dispatch')
 class GetCSRFToken(APIView):

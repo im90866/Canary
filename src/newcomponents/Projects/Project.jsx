@@ -18,6 +18,8 @@ function Project(prop) {
   const [projects, setProjects] = useState([])
   const [changed, makeChange] = useState(false)
 
+  const [active, setActive] = useState(false)
+
   const getProjects = async () => {
     const response = await axios.get("http://localhost:8000/getproject/" + String(getCookie('username')))
       .then((res) => {
@@ -29,6 +31,7 @@ function Project(prop) {
         else
           console.log("Error: " + res.data["error"])
       })
+    setActive(false)
     setProjects(response)
   }
 
@@ -43,6 +46,7 @@ function Project(prop) {
         else
           console.log("Error: " + res.data["error"])
       })
+      setActive(true)
     setProjects(response)
   }
 
@@ -113,9 +117,20 @@ function Project(prop) {
           <div className="project-container">
             <div className="project">
               <div className="project-title">
-                <h1 className='title' onClick={getProjects}><NavLink to="/project">Your Projects</NavLink></h1>
-                <h1 className='title'>|</h1>
-                <h1 className='title' onClick={getGroupProjects}><NavLink to="/">Other Projects</NavLink></h1>
+                {
+                  active?
+                  <h1 className='title' onClick={getProjects}>Your Projects</h1>
+                  :
+                  <h1 className='title-active' onClick={getProjects}>Your Projects</h1>
+                }
+                
+                <h1 className='separator'>|</h1>
+                {
+                  active?
+                  <h1 className='title-active' onClick={getGroupProjects}>Other Projects</h1>
+                  :
+                  <h1 className='title' onClick={getGroupProjects}>Other Projects</h1>
+                }
                 {
                   // Use this but clickable
                   // <h1 className='title'>Your Projects</h1>

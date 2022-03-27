@@ -1,7 +1,17 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { useNavigate} from 'react-router-dom'
 import './Fp.css'
 function Fp() {
+  const navigate = useNavigate()
+
+  const codeConfirm = () => {
+    navigate('/codeconfirmation')
+  }
+
+  const back = () => {
+    navigate('/')
+  }
+
   return (
     <div>
       <body className="fp">
@@ -15,12 +25,11 @@ function Fp() {
                   placeholder='Email Address'
                 
             />
-            <button className="fpbtn">< Link to="/codeconfirmation">
+            <button className="fpbtn" onClick={codeConfirm}>
                 Send
-                </Link>
             </button>
             <br></br>
-            <Link to="/" className='back-to'>Back to Login</Link>
+            <div className='back-to' onClick={back} >Back to Login</div>
           </div>
       </body>
     </div>

@@ -31,29 +31,35 @@ function SignUp(props) {
     event.preventDefault();
   
     // ADD CODE FOR ERROR CHECKING HERE
-
-    axios.post("http://localhost:8000/signup/", {
-          'username': String(username),
-          'password': String(password),
-          'email': String(email),
-    }).then((res) => {
-        if(res.data["success"]) { 
-          console.log('sucess')
-          navigate('/codeconfirmation')
-        }
-        else  
-          console.log("Error "+res.data["error"])
-    })
+    if(username && password && email) {
+      axios.post("http://localhost:8000/signup/", {
+            'username': String(username),
+            'password': String(password),
+            'email': String(email),
+      }).then((res) => {
+          if(res.data["success"]) { 
+            window.sessionStorage.setItem("username", username);
+            window.sessionStorage.setItem("password", password);
+            window.sessionStorage.setItem("email", email);
+            navigate('/codeconfirmation')
+          }
+          else  
+            console.log("Error "+res.data["error"])
+      })
+    }
     
     //changeContainer(false)
     setSubmitted(true)
   }
 
-  useEffect(() => setValidate(
-    email !== "" &&
-    username !== "" &&
-    password !== "" 
-    ), [username, password, email])
+  useEffect(() => {
+    sessionStorage.clear();
+    setValidate(
+      email !== "" &&
+      username !== "" &&
+      password !== "" 
+    )
+  }, [username, password, email])
 
   return (
     <div>
@@ -74,7 +80,7 @@ function SignUp(props) {
           <button className='signup' type="submit" >Sign Up</button>
         </form>
       </div>
-      {openModal && <Modal6 username={username} closeModal={setOpenModal} />} 
+      {openModal && <Modal6 username={username} email={email} password={password} closeModal={setOpenModal} />} 
     </div>
   )
 }

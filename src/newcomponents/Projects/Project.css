@@ -51,7 +51,44 @@
     white-space: nowrap;
     text-overflow: clip;
     top:10px;
+    cursor: pointer;
+    color: #8d8d8d;
+    transition: 0.2s;
+    user-select: none; 
 }
+
+.title-active{
+    font-size: 24px;
+    font-weight: 500;
+    position: relative;
+    left: 52px;
+    white-space: nowrap;
+    text-overflow: clip;
+    top:10px;
+    cursor: pointer;
+    color: #080808;
+    transition: 0.1s;
+    user-select: none; 
+}
+
+
+.separator{
+    font-size: 24px;
+    font-weight: 400;
+    position: relative;
+    left: 52px;
+    white-space: nowrap;
+    text-overflow: clip;
+    cursor: default;
+    top:10px;
+    color: #131313;
+}
+
+.title:hover{
+    color: #131313;
+    transition: 0.35s;
+}
+
 .hero-btn{
     position: relative;
     border-radius: 40px;

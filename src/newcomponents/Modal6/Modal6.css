@@ -199,13 +199,14 @@ left: 80px;
               position: relative;
               top:-3px;
             }
+            
             .resend a{
               text-decoration: none;
               color: #f7b53b;
               position: relative;
               left: 3px;
             }
-            .timer1{
+            .timerbefore{
               display: flex;
               justify-content: center;
               align-items: center;
@@ -213,6 +214,17 @@ left: 80px;
               top:20px;
               font-weight: 500;
             }
+
+            .timer1{
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              position: relative;
+              top:2px;
+              font-weight: 500;
+            }
+
+
             .back-login{
               display: flex;
               justify-content: center;

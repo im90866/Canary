@@ -28,7 +28,12 @@ function Sidebar2(prop) {
   }
 
   const getName = () => {
-    return window.sessionStorage.getItem("currentProjectName")
+    let name = window.sessionStorage.getItem("currentProjectName")
+    
+    if(name.length > 13)
+      return name.slice(0, 13) + '...'
+    else
+      return name
   }
 
   useEffect(() => {

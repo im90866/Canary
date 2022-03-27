@@ -39,6 +39,7 @@ function Login() {
             console.log('Succesfully logged in')
             setCookie("username", values.username, 2)
             setCookie("userID", res.data['userID'], 2)
+            window.sessionStorage.clear()
             navigate('/home')
           }
           else

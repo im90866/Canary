@@ -246,6 +246,12 @@ function Workspace(prop) {
       window.sessionStorage.setItem("currentProjectId", projectId);
     })
   }
+  
+  const nameHandler = (name) => {
+    if(name.length > 15) 
+      return name.slice(0, 15) + '...'
+    else return name
+  }
 
   useEffect(() => {
     console.log(folderPath)
@@ -326,7 +332,7 @@ function Workspace(prop) {
                   <AiFillFolderOpen className='folder-icon' onClick={() => enterFolder(folder.folderID, folder.folderName)} />
 
                   <div className="folder-info">
-                    <h3 className='folder-text'>{folder.folderName}</h3>
+                    <h3 className='folder-text'>{nameHandler(folder.folderName)}</h3>
                     <div class="dropdown-block">
                       <BsThreeDots
                         className='three-dots'
@@ -366,7 +372,7 @@ function Workspace(prop) {
                     </div>
                   </div>
                   <div className="folder-info">
-                    <h3 className='folder-text1'>{image.fileName}</h3>
+                    <h3 className='folder-text1'>{nameHandler(image.fileName)}</h3>
                     <div className="dropdown-block">
                       <BsThreeDots
                         className='three-dots3'

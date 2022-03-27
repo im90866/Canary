@@ -18,6 +18,7 @@ urlpatterns = [
     path('login/', LoginView.as_view()),
     path('verifySignup/', VerifySignup.as_view()),
     path('deleteTemp/', DeleteTemp.as_view()),
+    path('resendCode/', ResendCode.as_view()),
 
     # Project Views
     path('createproject/', CreateProject.as_view()),
