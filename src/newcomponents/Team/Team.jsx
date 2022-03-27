@@ -10,7 +10,7 @@ import Modal2 from '../Modal2/Modal2'
 
 import { Link } from 'react-router-dom'
 function Team() {
-  const [openModal, setOpenModal] = useState(false);
+  const [openModal5, setOpenModal5] = useState(false);
   return (
     <div>
       
@@ -23,17 +23,15 @@ function Team() {
     
       <ul className="settinglist">
           <div className="settinglistname">
-  <li  className='setting-listli'> <Link to ="/team">Rename Project</Link></li>
+  <li  className='setting-listli'> <Link to ="/team">Edit  Project</Link></li>
           </div>
           <div className="settinglistname">
-            <li  className='setting-listli'><Link to ="/admin">Admin</Link></li>  
+            <li  className='setting-listli'><Link to ="/admin">Permissions</Link></li>  
           </div>
           <div className="settinglistname">
-            <li  className='setting-listli'><Link to ="/remove">Remove Member</Link></li>  
+          <li  className='setting-listli'  onClick={() => { setOpenModal5(true);}}>Delete Project</li>  
           </div>
-          <div className="settinglistname">
-            <li  className='setting-listli'><Link to ="/deleteproject">Delete Project</Link></li>  
-          </div>
+        
       
         
       </ul>
@@ -41,15 +39,17 @@ function Team() {
 </div>
       
 
-        <div className="change-password3">
+        <div className="change-password4">
        <div className="change-password-title">
-           <h1 className="cptitle2">Rename Project</h1>
-           <p>We can rename our project file by entering an new name for the project and updating it</p>
-           <label for="vehicle1"> Project Name</label>
+           <h1 className="cptitle4">Edit Project</h1>
+          
+           <label for="vehicle1"  className='ad'> Project Name</label>
           <input type="text" className='change-text105'/><br></br>
-  <button className='rename-btn'>Rename project</button>
+          <label for="vehicle1" className='ad'> Admin Name</label>
+            <input type="text" className='change-text105'/><br></br>
+  <button className='rename-btn'>Edit project</button>
        </div>
-   
+       {openModal5 && <Modal2 closeModal={setOpenModal5} />} 
   </div>
 
   </div>

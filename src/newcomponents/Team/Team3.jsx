@@ -13,17 +13,15 @@ function Team3() {
       
         <ul className="settinglist">
             <div className="settinglistname">
-    <li  className='setting-listli'> <Link to ="/team">Rename Project</Link></li>
+    <li  className='setting-listli'> <Link to ="/team">Edit Project</Link></li>
             </div>
             <div className="settinglistname">
-              <li  className='setting-listli'><Link to ="/admin">Admin</Link></li>  
+              <li  className='setting-listli'><Link to ="/admin">Permissions</Link></li>  
             </div>
             <div className="settinglistname">
-              <li  className='setting-listli'><Link to ="/remove">Remove Member</Link></li>  
+              <li  className='setting-listli'>Delete Project</li>  
             </div>
-            <div className="settinglistname">
-              <li  className='setting-listli'><Link to ="/deleteproject">Delete Project</Link></li>  
-            </div>
+           
         
           
         </ul>
