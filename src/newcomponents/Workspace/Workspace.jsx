@@ -16,6 +16,7 @@ import Modal5_1 from '../Modal5/Modal5_1';
 
 import { BiArrowBack } from "react-icons/bi";
 import { FaPython } from 'react-icons/fa'
+import Modal14 from '../Modal14/Modal14'
 
 function Workspace(prop) {
   const cache = prop.cache
@@ -38,6 +39,8 @@ function Workspace(prop) {
   const [postImageVal, setPostImageVal] = useState("")
 
   const [openModal, setOpenModal] = useState(false)
+  
+  const [openModal3, setOpenModal3] = useState(false)
   const [openModalRename, setOpenModalRename] = useState(false)
   const [modalVal, setModalVal] = useState("")
   const [folderId, setFolderId] = useState("")
@@ -368,7 +371,9 @@ function Workspace(prop) {
                 <div >
                   <div className="shadowbox">
                     <div className="image-cropper">
-                      <img className="image" src={image.imageVal} width={100} height={100} onClick={() => openImage(image.imageID)} />
+                      <img className="image" src={image.imageVal} width={100} height={100}    onClick={() =>
+          setOpenModal3(true)} />
+                      {/* onClick={() => openImage(image.imageID)} */}
                     </div>
                   </div>
                   <div className="folder-info">
@@ -404,8 +409,12 @@ function Workspace(prop) {
               )
             }
           </div>
+       
         </div>
+        {openModal3 && <Modal14 closeModal={setOpenModal3} />} 
       </body>
+    
+
       {openModal && <Modal5 projectID={projectId} image={postImageVal} closeModal={setOpenModal} makeChange={makeChange} />}
       {openModalRename &&
         <Modal5_1
