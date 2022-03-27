@@ -30,6 +30,10 @@ export default function Sidebar(prop) {
     navigate('/')
   }
 
+  const goTo = (loc) => {
+    navigate(loc)
+  }
+
   useEffect(() => {
     
   }, [])
@@ -40,34 +44,25 @@ export default function Sidebar(prop) {
       <div className="sidebar">
         <div className="sidebarWrapper">
           <ul className="sidebarList">
-            <li className={active['home']}>
-              <NavLink to="/home">
+            <li className={active['home']} onClick={() => goTo('/home')}>
                 <AiOutlineHome className="sidebarIcon" />
                 <span className="sidebarListItemText">Home</span>
-              </NavLink>
+              
             </li>
 
-            <li className="sidebarListItem">
-              <NavLink to="/project">
+            <li className="sidebarListItem" onClick={() => goTo('/project')}>
                 <IoCreateOutline className="sidebarIcon" />
                 <span className="sidebarListItemText">Project</span>
-              </NavLink>
             </li>
 
-            <li className="sidebarListItem">
-              <NavLink to="/chats">
+            <li className="sidebarListItem" onClick={() => goTo('/chats')}>
                 <RiChatSmile2Line className="sidebarIcon" />
                 <span className="sidebarListItemText">Chats</span>
-              </NavLink>
             </li>
 
-
-
-            <li className="sidebarListItem">
-              <NavLink to="/settings">
+            <li className="sidebarListItem" onClick={() => goTo('/settings')}>
                 <IoSettingsOutline className="sidebarIcon" />
                 <span className="sidebarListItemText">Settings</span>
-              </NavLink>
             </li>
 
             <li className="sidebarListItem" onClick={() => logout()}>
