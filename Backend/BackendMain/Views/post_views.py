@@ -226,7 +226,6 @@ class GetPost(APIView):
                 'createdAt': comment['createdAt']
             })
 
-
         postData = {
             'postID' : json.loads(json_util.dumps(postVal['_id']))['$oid'],
             'imageVal' : imageString,
@@ -237,6 +236,9 @@ class GetPost(APIView):
             "likes" : postVal['likes'],
             "comments" : commentList,
         }
+
+        if 'remixPostID' in postVal:
+            postData['remixPostID'] = postVal['remixPostID']
 
         return Response({
             'success': 'Post obtained',

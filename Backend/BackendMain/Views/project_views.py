@@ -23,9 +23,13 @@ class CreateProject(APIView):
         proj_col = CLIENT_DATABASE['projectData']
         user_col = CLIENT_DATABASE['userInfo']
         folder_col = CLIENT_DATABASE['folder']
+        chat_col = CLIENT_DATABASE['chatData']
 
         #if ifExistsExtra(data['projectName'], 'projectName', data['projectAdmin'], 'projectAdmin', 'projectData'):
         #    return Response({ 'error': 'You have another project with the same name' })
+
+        chatID = chat_col.insert_one(groupChat('General').getModel()).inserted_id
+        chatID = json.loads(json_util.dumps(chatID))['$oid']
 
         # Stores the created root folder, gets the ID and appends it to the new project
         rootFolderID = folder_col.insert_one(folder("&root&", data['projectName']).getModel()).inserted_id
@@ -35,6 +39,8 @@ class CreateProject(APIView):
         projectModel = project(data['projectName'], data['projectAdminID'], username, rootFolderID)
         
         # Stores the project, gets the ID and appends it to the user
+        projectVal = proj_col.insert_one(projectModel.getModel())
+        projectVal['projectChannels'].insert(0, chatID)
         projectID = (proj_col.insert_one(projectModel.getModel())).inserted_id
         projectID = json.loads(json_util.dumps(projectID))['$oid']
 

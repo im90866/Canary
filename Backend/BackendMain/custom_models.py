@@ -139,6 +139,7 @@ class project():
     _projectAdminID = ""
     _projectMembers = []
     _projectInviteList = []
+    _projectChannels = []
     _projectRoot = ""
     _projectSettings = {}
 
@@ -164,6 +165,7 @@ class project():
             'projectName' : self._projectName,
             'projectAdminID' : self._projectAdminID,
             'projectMembers' : self._projectMembers,
+            "projectChannels": self._projectChannels,
             'inviteList' : self._projectInviteList,
             'projectRoot' : self._projectRoot,
             'projectSettings' : self._projectSettings
@@ -253,9 +255,6 @@ class chat():
         time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
         self._createdAt = time
-        self._lastModified = time
-        self._personAID = idA
-        self._personBID =idB
 
     def getModel(self):
         model = {
@@ -266,6 +265,25 @@ class chat():
 
         return model
 
+class groupChat():
+    _name = ""
+    _createdAt = ""
+    _messageList = []
+
+    def __init__(self, name):
+        time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        self._name = name
+        self._createdAt = time
+        self._lastModified = time
+
+    def getModel(self):
+        model = {
+            'name' : self._name,
+            'createdAt' : self._createdAt,
+            'messageList' : self._messageList,
+        }
+
+        return model
 
 class Message():
     _chatId = ""

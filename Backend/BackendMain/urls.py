@@ -11,6 +11,7 @@ from .Views.setting_views import *
 from .Views.other_workspace_views import *
 from .Views.topbar_views import *
 from .Views.post_views import *
+from .Views.group_chat_views import *
 
 urlpatterns = [
     # Auth Views
@@ -45,6 +46,12 @@ urlpatterns = [
     path('inviteUser/', SendRequest.as_view()),
     path('interactInvite/', InteractRequest.as_view()),
     path('getProjectMembers/<str:projectID>', GetProjectMembers().as_view()),
+
+    # Group Chat Views
+    path('getChannels/<str:projectID>/<str:userID>', GetChannels.as_view()),
+    path('getGroupMessages/<str:chatID>/<str:userID>', GetGroupMessages.as_view()),
+    path('sendGroupMessage/', SendGroupMessage.as_view()),
+    path('addChannel/', AddChannel.as_view()),
 
     # Home Views
     path('getFeed/<str:userID>', GetHomePosts.as_view()),

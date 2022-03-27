@@ -17,8 +17,23 @@
  position: relative;
  top:-70px;
  left: -10px;
-
 }
+
+.title13{
+  font-size: 24px;
+  font-weight: 400;
+  position: relative;
+  left: 52px;
+  white-space: nowrap;
+  text-overflow: clip;
+  top:10px;
+  cursor: pointer;
+  color: #1f1f1f;
+  transition: 0.2s;
+  user-select: none; 
+  cursor: default;
+}
+
 .p13name{
     font-size: 14px;
     position: relative;

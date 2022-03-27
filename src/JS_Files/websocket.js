@@ -36,6 +36,29 @@ class WebSocketService {
       };
     }
 
+    connectGroup(setUpdater) { 
+      //const path = config.API_PATH;
+      this.socketRef = new WebSocket('ws://localhost:8000/group/');
+      this.socketRef.onopen = () => {
+        console.log('WebSocket open');
+      };
+
+      this.socketRef.onmessage = e => {
+        let info = JSON.parse(e.data)
+        console.log(info)
+
+        setUpdater(info)
+      };
+  
+      this.socketRef.onerror = e => {
+        console.log(e);
+      };
+      this.socketRef.onclose = () => {
+        console.log("WebSocket closed let's reopen");
+        this.connect();
+      };
+    }
+
     sendToChat(message, chatID, otherID) {
         try{
             this.socketRef.send(JSON.stringify({
@@ -50,29 +73,23 @@ class WebSocketService {
             console.log('could not connect to the websockets')
         }
     }
-  
-    socketNewMessage(data) {
-        console.log(data)
-      const parsedData = JSON.parse(data);
-      const command = parsedData.command;
-      if (Object.keys(this.callbacks).length === 0) {
-        return;
-      }
-      if (command === 'messages') {
-        this.callbacks[command](parsedData.messages);
-      }
-      if (command === 'new_message') {
-        this.callbacks[command](parsedData.message);
+
+    sendToGroupChat(message, chatID, projectID) {
+      try{
+          this.socketRef.send(JSON.stringify({
+              'send_to_group_chat': true,
+              'userID': getCookie('userID'),
+              'projectID': projectID,
+              'username': getCookie('username'),
+              'message': message,
+              'chatID': chatID
+          }));
+      } catch(e){
+          console.log('could not connect to the group websockets')
       }
     }
   
-    initChatUser(username) {
-      this.sendMessage({ command: 'init_chat', username: username });
-    }
-  
-    fetchMessages(username) {
-      this.sendMessage({ command: 'fetch_messages', username: username });
-    }
+    
   
     newChatMessage(message) {
       this.sendMessage({ command: 'new_message', from: message.from, text: message.text }); 

@@ -105,15 +105,11 @@ function Chats() {
         })
       WebSocketInstance.connect(setUpdater)
     }
-    else if(u_flag == uc_flag) {
-      set_uc_flag(!uc_flag)
-      scrollToBottomSmooth()
-    }
     else {
       console.log("working....");
       updateChatList()
       if(updater['chatID'] == currentChatID) {
-        let val = messageList
+        let val = messageList.slice()
         val.push({
           'chatID': updater['chatID'],
           'messageVal': updater['messageVal'],
@@ -124,15 +120,15 @@ function Chats() {
         scrollToBottomSmooth()
       }
     }
-  }, [updater, u_flag]);
+  }, [updater]);
 
   const updateChatList = async () => {
     console.log("im updated")
     await axios.get("http://localhost:8000/getChat/" + String(getCookie('userID')))
     .then((res) => {
       setChatList(res.data['chatList'])
+      scrollToBottomSmooth()
     })
-    set_u_flag(!u_flag)
 
   }
 
@@ -196,6 +192,7 @@ function Chats() {
                 left: '20px',
                 borderRadius: '25px',
                 border: '2px solid #ffb53b',
+                resize: 'none',
               }}
               value={textBoxVal}
               onChange={handleMessageChange}

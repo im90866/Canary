@@ -57,8 +57,6 @@ function Topbar(prop) {
 
   const search = async () => {
     setIsSearching(true)
-    console.log(searchField)
-    console.log(searchRes.length)
 
     if (searchField == "")
       setSearchRes([])
@@ -67,8 +65,6 @@ function Topbar(prop) {
         .then((res) => {
           setIsSearching(false)
           if (res.data["success"]) {
-            console.log("working")
-            console.log(res)
             // return (res.data['results'])
             setSearchRes(res.data['results'])
           }
@@ -77,8 +73,6 @@ function Topbar(prop) {
             setSearchRes([])
           }
         })
-      console.log(searchRes)
-      console.log(response)
     }
   }
 
@@ -110,8 +104,6 @@ function Topbar(prop) {
       setOpenModal(true)
     else
       setOpenModal(false)
-
-    console.log(openModal)
   }
 
   useEffect(() => {
@@ -132,7 +124,6 @@ function Topbar(prop) {
       let notifList = res.data['notificationsList'].slice()
       let requestList = res.data['inviteList'].slice()
       
-      console.log(requestList)
       setNotifList(notifList)
       setInviteList(requestList)
     })
@@ -157,16 +148,15 @@ function Topbar(prop) {
       setCheck(location.pathname.includes("/workspace"))
     else if (location.pathname.includes("/teamchats"))
       setCheck(location.pathname.includes("/teamchats"))
-    else if (location.pathname === "/team")
-      setCheck(location.pathname.includes("/team"))
-    else if (location.pathname === "/projectsettings")
+    else if (location.pathname.includes("/projectmembers"))
+      setCheck(location.pathname.includes("/projectmembers"))
+    else if (location.pathname.includes("/projectsettings"))
       setCheck(location.pathname.includes("/projectsettings"))
     else
       setCheck(false)
 
   }, [location.pathname])
 
-  console.log(check)
 
   return (
     <>
@@ -342,7 +332,6 @@ function Topbar(prop) {
                 setCache={setCache}
               />
               {
-                console.log("working")
               }
             </>
             :
@@ -355,7 +344,6 @@ function Topbar(prop) {
               <>
                 <Sidebar />
                 {
-                  console.log("working")
                 }
               </>
               :

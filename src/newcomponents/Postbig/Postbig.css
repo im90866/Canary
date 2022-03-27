@@ -132,11 +132,11 @@ margin-left:-120px;
   
 }
 .remix-btn{
-    width: 150px;
+    width: 100px;
     height: 30px;border-radius: 40px;
     position: relative;
     top:10px;
-    left: 150px;
+    left: 180px;
     border: 1px solid #ffb53b;
 	background-color: #ffb53b;
 	color: #FFFFFF;
@@ -160,7 +160,7 @@ margin-left:-120px;
     font-size: 25px;
     left: 5px;
     color: #4e4e4e;
-    transition: 0.08s;
+    transition: 0.1s;
 }
 
 .icon-info-like-active{
@@ -174,12 +174,6 @@ margin-left:-120px;
     transition: 0.2s;
     color:#ffb53b
 }
-
-.icon-info-like-active:hover{
-    transition: 0.2s;
-    color:#4e4e4e
-}
-
 .icon-info:hover{
     transition: 0.2s;
     color:#ffb53b

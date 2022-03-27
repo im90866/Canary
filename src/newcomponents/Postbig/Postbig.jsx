@@ -11,6 +11,7 @@ import Modal8 from '../Modal8/Modal8';
 
 import axios from 'axios';
 import Modal9 from '../Modal9/Modal9';
+import Res from '../Topbar/Res';
 
 function Postbig({ closeModal}) {
   const postId = useParams()['id']
@@ -28,9 +29,16 @@ function Postbig({ closeModal}) {
   const [memberList, setMemberList] = useState([])
   const [uploader, setUploader] = useState([])
 
+  const [remixID, setRemixID] = useState("")
+
   const handleBoxChange = (e) => {
     console.log(e.target.value)
     setCommentVal(e.target.value)
+  }
+
+  const gotToRemix = () => {
+    console.log(remixID)
+    navigate('/post/' + remixID)
   }
 
   const likeHandler = async ()=>{
@@ -95,7 +103,6 @@ function Postbig({ closeModal}) {
         setPostData(res.data['postData'])
         setLike(res.data['postData']['likes'])
 
-        console.log(res.data['postData']['comments'])
         setCommentList(res.data['postData']['comments'].slice())
         setMemberList(res.data['postData']['memberList'])
 
@@ -104,6 +111,12 @@ function Postbig({ closeModal}) {
 
         if((res.data['postData'].likedBy).includes(String(getCookie('userID')))) {
           setIsLiked(true)
+        }
+        
+        console.log(res.data['remixPostID'])
+        if(res.data['postData']['remixPostID'] != undefined) {
+          
+          setRemixID(res.data['postData']['remixPostID'])
         }
         
         const req = {
@@ -117,8 +130,6 @@ function Postbig({ closeModal}) {
             setIsLiked(res.data['liked'])
           }
         })
-
-        console.log(res.data['postData'].comments)
       })
   }, [])
 
@@ -139,7 +150,12 @@ function Postbig({ closeModal}) {
                 <div className="profilepost-img">
                   <img src={uploader.profilePicture} alt="" className='ppimg'/>
                   <h4 className="ppname">{uploader.username}</h4>
-                  <button className="remix-btn">Remixed Image</button>
+                  {
+                    remixID != "" ?
+                    <button className="remix-btn" onClick={gotToRemix}>Remixed</button>
+                    :
+                    <h1></h1>
+                  }
                 </div>
                 
                 <div className="captions">

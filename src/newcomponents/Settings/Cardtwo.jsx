@@ -163,7 +163,7 @@ import Moda7 from '../Modal7/Moda7';
 
 <div className="settings">
   <div className="settings-pic">
-    <img src="/images/avatar.png" alt="" className='pic-sett'/>
+    <img src="" alt="" className='pic-sett'/>
     <h3 className="pic-sett-title">Welcome Newfez</h3>
   </div>
     <ul className="settinglist">

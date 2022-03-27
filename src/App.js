@@ -134,8 +134,8 @@ function App() {
               <Route path="/project" element={<Project cache={cache} setCache={setCache}/>} />
               <Route path="/profile/:userID" element={<Profileothers />} />
 
-              <Route path="/:id/team" element={<Team />} />
-              <Route path="/:id/projectsettings" element={<ProjectSettings />} />
+              <Route path="/:id/projectmembers" element={<ProjectSettings/>} />
+              <Route path="/:id/projectsettings" element={<Team />} />
               <Route path="/registrationpage" element={<Registrationpage />} />
               <Route path="/settings" element={<Settingsbar cache={cache} setCache={setCache}/>} />
               <Route path="/changepassword" element={<Cardthree />} />

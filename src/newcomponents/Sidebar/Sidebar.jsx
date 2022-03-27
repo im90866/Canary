@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { RiChatSmile2Line } from "react-icons/ri"
 import { NavLink, Link, useParams} from "react-router-dom";
 import { MdOutlineExplore } from "react-icons/md"
-import { AiOutlineHome,AiFillHome } from 'react-icons/ai';
+import { AiOutlineHome} from 'react-icons/ai';
 import { IoCreateOutline, IoSettingsOutline, IoLogOutOutline } from 'react-icons/io5';
 import { useContext, useEffect,useState} from "react";
 
@@ -41,7 +41,7 @@ export default function Sidebar(prop) {
         <div className="sidebarWrapper">
           <ul className="sidebarList">
             <li className={active['home']}>
-              <NavLink to="/home"AiFillHome>
+              <NavLink to="/home">
                 <AiOutlineHome className="sidebarIcon" />
                 <span className="sidebarListItemText">Home</span>
               </NavLink>

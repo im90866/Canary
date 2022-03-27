@@ -82,7 +82,7 @@ function Sidebar2(prop) {
                     </Link>
                   </li>
                   <li className="sidebarListItemsub">
-                    <Link to={"/" + window.sessionStorage.getItem("currentProjectId") +"/projectsettings"}>
+                    <Link to={"/" + window.sessionStorage.getItem("currentProjectId") +"/projectmembers"}>
                       <span className="sidebarListItemTextsub2">Members</span>
                     </Link>
                   </li>
@@ -93,8 +93,7 @@ function Sidebar2(prop) {
                     </Link>
                   </li>
                   <li className="sidebarListItemsub">
-                    <Link to={"/" + window.sessionStorage.getItem("currentProjectId") +"/team"}>
-
+                    <Link to={"/" + window.sessionStorage.getItem("currentProjectId") +"/projectsettings"}>
                       <span className="sidebarListItemTextsub4">Project Settings</span>
                     </Link>
                   </li>

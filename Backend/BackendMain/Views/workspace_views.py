@@ -285,6 +285,8 @@ class PostImage(APIView):
         projectVal = proj_col.find_one({'_id': ObjectId(data['projectID'])})
         
         newPost = post(data, projectVal['projectMembers']).getModel()
+        if 'isRemix' in projectVal:
+            newPost['remixPostID'] = projectVal['originalPost']
 
         postID = post_col.insert_one(newPost).inserted_id
         postID = json.loads(json_util.dumps(postID))['$oid']

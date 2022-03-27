@@ -22,7 +22,6 @@ class ChatConsumer(AsyncWebsocketConsumer):
         for x in self.scope['headers']:
             if x[0] == b'cookie':
                 text = x[1].decode('utf-8')
-                print(text)
                 try:
                     text = (re.search('userID.*;', text).group(0))
                     text = text.replace(";", "")
@@ -48,7 +47,6 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 self.channel_name
         )
 
-        print('connected')
         await self.accept()
 
     async def disconnect(self, close_code):
@@ -58,16 +56,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
         text_data_json = json.loads(text_data)
         layer = get_channel_layer()
 
-        if 'connect_to_chat' in text_data_json:
-            chatID_list = await self.getChats(text_data_json['userID'])
-
-            for x in chatID_list:
-                await layer.group_add(
-                    x,
-                    self.channel_name
-                )
-        elif 'send_to_chat' in text_data_json:
-            print(text_data_json)
+        if 'send_to_chat' in text_data_json:
             await layer.group_send(
                     text_data_json['userID'],
                     {
@@ -121,5 +110,64 @@ class ChatConsumer(AsyncWebsocketConsumer):
         
         return finalChatList
 
-    
+
+class GroupChatConsumer(AsyncWebsocketConsumer):
+    async def connect(self):
+        self.room_group_name = 'chat'
+
+        self.userID = ""
+
+        for x in self.scope['headers']:
+            if x[0] == b'cookie':
+                text = x[1].decode('utf-8')
+                print(text)
+                try:
+                    text = (re.search('userID.*;', text).group(0))
+                    text = text.replace(";", "")
+                except:
+                    text = (re.search('userID.*', text).group(0))
+
+                text = text.replace("userID=", "")
+                self.userID = text
+
+        # Join your own userID group
+        await self.channel_layer.group_add(
+                self.userID,
+                self.channel_name
+        )
+
+        print('connected')
+        await self.accept()
+
+    async def disconnect(self, close_code):
+        print('disconnected')
+
+    async def receive(self, text_data):
+        proj_col = CLIENT_DATABASE['projectData']
+
+        text_data_json = json.loads(text_data)
+        layer = get_channel_layer()
+
+        if 'send_to_group_chat' in text_data_json:
+            projectMembers = proj_col.find_one({'_id': ObjectId(text_data_json['projectID'])})['projectMembers']
+
+            for member in projectMembers:
+                await layer.group_send(
+                        member['id'],
+                        {
+                            'type': 'group_chat_message',
+                            'userID': text_data_json['userID'],
+                            'username': text_data_json['username'],
+                            'message': text_data_json['message'],
+                            'chatID': text_data_json['chatID']
+                        }
+                    )
+
+    async def group_chat_message(self, data):
+        print('yas', data)
+        await self.send(json.dumps({
+            'messageBy': data['username'],
+            'messageVal': data['message'],
+            'chatID': data['chatID']
+        }))
 

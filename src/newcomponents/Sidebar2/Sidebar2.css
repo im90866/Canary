@@ -58,7 +58,7 @@ padding-right: 0px;
     display: block;
     align-items: center;
     margin-bottom: 5px;
-  
+    cursor: pointer;
   }
 
   .sidebarListItemActive {
@@ -97,6 +97,7 @@ position:absolute;
     margin-bottom: 10px;
     max-width: 10px;
     word-wrap:break-word;
+    cursor: pointer;
  }
  .sidebarIcon1{
     font-size: 14px;
