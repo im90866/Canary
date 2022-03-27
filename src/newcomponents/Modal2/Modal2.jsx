@@ -21,7 +21,7 @@ function Modal2({ closeModal}) {
        
            <div className="div2">
            <button className='folder-btn4'>Yes</button>
-           <button className='folder-btn3'>Cancel</button>
+           <button className='folder-btn35'>Cancel</button>
            </div>
          
          

@@ -26,12 +26,7 @@ function Cardfive() {
               <div className="settinglistname">
                 <li  className='setting-listli'><Link to ="/changepassword">Change Password</Link></li>  
               </div>
-              <div className="settinglistname">
-                <li  className='setting-listli'><Link to ="/blocked">Block Users</Link></li>  
-              </div>
-              <div className="settinglistname">
-                <li  className='setting-listli'><Link to ="/privacy">Privacy And Security</Link></li>  
-              </div>
+             
           
               <div className="settinglistname">
               <li  className='setting-listli'><Link to ="/delete">Delete Account</Link></li>

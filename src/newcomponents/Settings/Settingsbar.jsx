@@ -6,7 +6,7 @@ import Cardtwo from './Cardtwo'
 import Cardthree from './Cardthree'
 import Cardfour from './Cardfour'
 import Cardfive from './Cardfive'
-
+import { Link } from 'react-router-dom'
 function Settingsbar(prop) {
   const cache = prop.cache
   const setCache = prop.setCache
@@ -16,11 +16,10 @@ function Settingsbar(prop) {
         <body className="settingscc1">
           
        
-        <div className="settings-container">
-       
-         <Cardone/>
-          <Cardtwo cache={cache} setCache={setCache}/>  
-        </div>
+    
+ 
+          <Cardtwo cache={cache} setCache={setCache}/> 
+    
         </body>
     </div>
   )
