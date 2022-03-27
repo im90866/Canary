@@ -85,8 +85,8 @@ margin-left:-120px;
     display: flex;
 }
 .ppimg{
-    width: 32px;
-    height: 32px;
+    width: 38px;
+    height: 38px;
     border-radius: 50%;
     position: relative;
     left: 20px;
@@ -100,15 +100,21 @@ margin-left:-120px;
     font-size: 18px;
 }
 .comment-username{
-    font-size: 12px;
-    position: relative;
+    font-size: 14px;
+  position: relative;
+  top:-13px;
     font-weight: 500;
-    top:15px;
-    left: -55px;
+    left: -40px;
+    
+}
+.comms{
+    position: relative;
+    top:-5px;
+    left: 30px;
 }
 .pcimg{
-    width: 32px;
-    height: 32px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     position: relative;
     left: -20px;
@@ -117,11 +123,11 @@ margin-left:-120px;
     list-style: none;
     display: flex;
 }
-.pctext{
+.pctext12{
     position:relative;
-    font-family: 14px;
+    font-size: 12px;
     left: -40px;
-    top:-10px;
+    top:-30px;
   
   
 }

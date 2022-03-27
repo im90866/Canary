@@ -15,7 +15,7 @@
     font-size: 30px;
   font-weight: 400;
   position: relative;
-  left: 200px;
+  left: 150px;
 }
 .searchInput1{
     background-color: #efefef; 
@@ -69,9 +69,27 @@
     background-color: #f7b53b;
     border: 1px solid #ffb53b;
     border-radius: 40px;
+    color: #fff;
     height: 80%;
 }
-
+.Remove2{
+    display: flex;
+}
+.remove-mem{
+    width: 100px;
+    background-color: #f7b53b;
+    border: 1px solid #ffb53b;
+    border-radius: 40px;
+    color: #fff;
+    height:25px;
+    position: relative;
+    top:15px;
+    left: 350px;
+}
+.remove-mem:hover{
+    background-color: #ffffff;
+    color: #ffb53b;
+}
 .addButton:hover{
     background-color: #ffffff;
       color: #ffb53b;
@@ -82,7 +100,7 @@
         z-index: 1;
         position: relative;
         background-color: #fff;
-        width: 350px;
+        width: 400px;
         height: 100%;
         
         left: 5px;
@@ -95,7 +113,7 @@
         font-size: 20px;
       font-weight: 400;
       position: relative;
-      left: 150px;
+      left: 100px;
     }
     .searchbar1{
         width: 90%;
@@ -105,5 +123,16 @@
         display: flex;
         align-items: center;
         margin-left: 25px;
+    }
+    .remove-mem{
+        width: 100px;
+        background-color: #f7b53b;
+        border: 1px solid #ffb53b;
+        border-radius: 40px;
+        color: #fff;
+        height:25px;
+        position: relative;
+        top:15px;
+        left: 150px;
     }
 }

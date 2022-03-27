@@ -39,7 +39,7 @@ function Modal5(prop) {
       <div className="modalBackground">
         <div className="modalContaine3">
           
-          <div className="titleCloseBtn">
+          <div className="titleCloseBtn1">
             <button className='cross'
               onClick={() => {
                 closeModal(false);
@@ -48,7 +48,7 @@ function Modal5(prop) {
             </button> 
           </div>
 
-          <div className="post-img-cropper">
+          <div className="post-img-cropper1">
             <img src={imageVal} alt=""  className='post-img'/>
           </div>
 

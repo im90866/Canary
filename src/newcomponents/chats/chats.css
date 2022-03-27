@@ -41,7 +41,7 @@
     position: relative;
     left: 5px;
     color: black;
-    top: -5px;
+    top: 5px;
     font-size: 16px;
 }
 
@@ -55,7 +55,8 @@ border-radius: 5px;
 .chat-title {
     font-size: 18px;
     position: relative;
-    left: 50px;
+    font-weight: 500;
+    left: 110px;
 }
 
 .chatlistli {

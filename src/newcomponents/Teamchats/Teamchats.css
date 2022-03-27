@@ -1,13 +1,43 @@
 .chatlistli2{
+    width: 300px;
+    position: relative;
+    left: -10px;
+  
     list-style: none;
-    padding: 0;
+padding: 10px;
     display: flex;
 }
 .chatlistli2 a{
-    padding-left:20px;
+
+    text-decoration: none;
 }
-.chatlistlitext{
+ .chatlistlitext1{
+    color: black;
+    position: relative;
+    top:-10px;
+    left: -10px;
     font-size: 14px;
     padding: 10px;
-}
+} 
+.chatlistli2:hover {
+    background-color: #efefef;
+ 
+border-radius: 5px;
+    width: 100%;
+} 
 
+.chat-title1{
+    font-weight: 500;
+    font-size: 20px;
+    position: relative;
+    left: 90px;
+}
+.newchannel{
+    position: relative;
+    left: 100px;
+    top:12px;
+    font-size: 24px;
+}
+.newmessages{
+    display: flex;
+}
