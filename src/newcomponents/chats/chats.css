@@ -247,6 +247,11 @@ padding: 7px;
         left: 10px;
         top: 100px;
     }
+    .chatbox-name{
+        width: 300px;
+        position: relative;
+        left: 8px;
+    }
     .chatbar{
         position: relative;
         left: -20px;
