@@ -43,6 +43,7 @@ import Cardsix from './newcomponents/Settings/Cardsix';
 import Team1 from './newcomponents/Team/Team1';
 import Team2 from './newcomponents/Team/Team2';
 import Team3 from './newcomponents/Team/Team3';
+import Moderator from './newcomponents/Moderator/Moderator';
 
 function App() {
 
@@ -152,6 +153,7 @@ function App() {
               <Route path="/admin" element={<Team1/>} />
               <Route path="/remove" element={<Team2/>} />
               <Route path="/deleteproject" element={<Team3/>} />
+              <Route path="/moderator" element={<Moderator/>} />
             </Routes>
           </>
           :
