@@ -1,6 +1,7 @@
  import React, {useState, useEffect, useRef} from 'react'
  import axios from 'axios'
  import Modal6 from '../Modal6/Modal6';
+ import { Link } from 'react-router-dom'
 import Moda7 from '../Modal7/Moda7';
  function Cardtwo(prop) {
   const cache = prop.cache
@@ -157,14 +158,37 @@ import Moda7 from '../Modal7/Moda7';
 
   return (
     <div >
-      <div className="edit-profile">
+      <div className="settings-container">
+      <div className="settings-bar">
+
+<div className="settings">
+  <div className="settings-pic">
+    <img src="/images/avatar.png" alt="" className='pic-sett'/>
+    <h3 className="pic-sett-title">Welcome Newfez</h3>
+  </div>
+    <ul className="settinglist">
+        <div className="settinglistname">
+<li  className='setting-listli'> <Link to ="/settings">Edit Profile</Link></li>
+        </div>
+        <div className="settinglistname">
+          <li  className='setting-listli'><Link to ="/changepassword">Change Password</Link></li>  
+        </div>
+      
+    
+        <div className="settinglistname">
+        <li  className='setting-listli'><Link to ="/delete">Delete Account</Link></li>
+        </div>
+    </ul>
+</div>
+</div>
+     <div className="edit-profile">
         <div className="existing-details">
           <div className='profile-picture-cropper'>
             <img src={PFP} alt="" className='profile-picture' />
           </div>
 
           <h3 className="profile-username">{getCookie('username')}</h3>
-          <button className='change-photo' onClick={()=> fileRef.current.click()}><span className="photo">Upload photo</span></button>
+          <button className='change-photo' onClick={()=> fileRef.current.click()}><span className="photo13">Upload photo</span></button>
           <input
             ref={fileRef}
             onChange={fileSelect}
@@ -225,6 +249,7 @@ import Moda7 from '../Modal7/Moda7';
         </button>
         {openModal && <Moda7 setModal={setOpenModal} />} 
       </div>
+      </div> 
     </div>
       
   )

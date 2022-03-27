@@ -5,9 +5,18 @@
     padding-top: 100px;
     position: sticky;
 }
-.photo{
+.photo13{
     position: relative;
-    left: 30px;
+    left: 0px;
+}
+.profile-username4{
+    font-size: 24px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    left: 120px;
 }
 
 .settingscc1{
@@ -48,8 +57,7 @@ top:300px;
     width:250px;
     top:-20px;
     left: 80px;
-    overflow-y: scroll;
-    overflow-x:hidden ;
+
   
 }
 .settinglist{
@@ -97,10 +105,10 @@ top:300px;
     position: relative;
  border-radius: 5px;
     background-color: #fff;
-    width:570;
+    width:610;
     height: 450px;
 top:-20px;
-left:80px;
+left:90px;
 
 
 }
@@ -115,6 +123,10 @@ left:80px;
     border-radius: 50%;
     margin-left: 20px;
     margin-top: 10px;
+}
+.fname1{
+    position: relative;
+    left: 10px;
 }
  .profile-picture{
     height: 100%;
@@ -365,7 +377,7 @@ width: 180px;
   
     width:600px;
     height: 450px;
-left: 80px;
+left: 90px;
 top:-20px;
 }
 .account-pr{
@@ -433,7 +445,7 @@ top:-20px;
            background-color: #fff;
            height: 100%;
            width:100%;
-           top:50px;
+           top:80px;
            left: 5px;
            overflow-y: scroll;
        
@@ -448,8 +460,13 @@ top:-20px;
            left: 5px;
          
        } 
-       .change-text3,.change-text1,.change-text2,.change-text4,.change-text5{
+       .change-text3,.change-text1,.change-text2,.change-text4{
            width: 250px;
+       }
+       .change-text5{
+           width: 200px;
+           position: relative;
+           left: 35px;
        }
        .submit-changes{
            position: relative;
@@ -482,12 +499,11 @@ top:-20px;
            overflow-y: scroll;
        
        }
-       .change-password{
-           position: relative;
-           top:300px;
-           left: -170px;
-           width: 60%;
-           height: 60%;
+       .change-password1{
+          width: 300px;
+          position: relative;
+          top:90px;
+          left: 5px;
        }
        .cptitle{
         font-weight: 400;
@@ -499,20 +515,20 @@ top:-20px;
     .change-text6{
         position: relative;
        left: 40px;
-        width: 80%;
+        width: 200px;
         margin-top: 20px;
 
     }
     .change-text7{
         position: relative;
-       left: -25px;
-        width: 80%;
+       left: 30px;
+        width: 200px;
         margin-top: 20px;
     }
     .change-text8{
        position: relative;
-       left: -30px;
-        width: 80%;
+       left: 30px;
+        width: 200px;
         margin-top: 20px;
         
     }
@@ -547,5 +563,9 @@ top:-20px;
            font-size: 20px;
            position: relative;
            left: 100px;
+       }
+       .fname1{
+           position: relative;
+           left: 50px;
        }
 }

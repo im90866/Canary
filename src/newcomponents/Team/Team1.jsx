@@ -61,6 +61,15 @@ function Team1() {
  <input type="radio" value="no" className='no'/>
  <label for="vehicle1" className='yes'>No</label><br></br>
  </div>
+
+ <label for="vehicle1"className='limit'>Allow Users to remix the images posted</label>
+  <div className="yesno">
+ <input type="radio" value="yes" className='no'/>
+ <label for="vehicle1" className='yes'>Yes</label>
+
+ <input type="radio" value="no" className='no'/>
+ <label for="vehicle1" className='yes'>No</label><br></br>
+ </div>
     <button className='rename-btn'>Update </button>
          </div>
          {openModal5 && <Modal2 closeModal={setOpenModal5} />} 

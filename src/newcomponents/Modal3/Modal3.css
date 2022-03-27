@@ -90,12 +90,17 @@
               transition: 0.25s;
           }
           .folder-btn3{
-           
+            background-color: #f7b53b;
+            border-radius: 40px;
+            border: 1px solid #f7b53b;
             margin-left: 10px;
             width: 30%;
             height: 40px;
             text-transform: none;
+            color: #fff;
+            font-weight: 600;
             text-align: center;
+            transition: 0.25s;
           }
          .div3{
           text-align: center;
@@ -105,7 +110,12 @@
            position: relative;
            left: -50px;
          }
-          
+         .folder-btn3:hover{
+          border: 1px solid #f7b53b;
+          background-color: #fff;
+          color: #f7b53b;
+          transition: 0.30s;
+         }
           .change-text10{
             border: none;
             background-color: #efefef;
@@ -122,4 +132,24 @@
           .p1name2{
             font-size: 16px;
             margin-left: -165px;
+          }
+          @media (max-width: 900px){
+            .modalContainer3 {
+              width: 500px;
+              height: 250px;
+              border-radius: 5px;
+              background-color: #Ffff;
+              box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+              display: flex;
+              flex-direction: column;
+              padding: 25px;
+              position: relative;
+              top:100px;
+              left: -50px;
+              z-index: 9999;
+       
+             
+            
+              
+            }
           }
