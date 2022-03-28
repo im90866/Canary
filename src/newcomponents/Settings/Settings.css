@@ -63,8 +63,6 @@ top:300px;
 .settinglist{
     padding: 15px;
     margin-top: -10px;
-
-    
 }
 .settings1{ 
     position: relative;
@@ -89,7 +87,13 @@ top:300px;
     font-weight: 400;
     padding-left: 5px;
     display: flex;
+    cursor: pointer;
 }
+
+.settinglistname:hover{
+    background-color: #ebebeb;
+}
+
 .settinglistname a{
    font-size: 16px;
    color: black;

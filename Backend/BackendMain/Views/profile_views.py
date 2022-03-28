@@ -85,3 +85,56 @@ class GetProfileFeed(APIView):
             'postData': imageList
         })
 
+class blockUser(APIView):
+    permission_classes = (permissions.AllowAny, )
+
+    def post(self, request, format=None):
+        data = self.request.data
+
+        user_col = CLIENT_DATABASE['userInfo']
+        post_col = CLIENT_DATABASE['postData']
+
+        user_col.update_one({
+            '_id': ObjectId(data['userID'])
+        }, {
+            '$push': {
+                'blockList': data['otherUserID']
+            }
+        })
+
+        user_col.update_one({
+            '_id': ObjectId(data['otherUserID'])
+        }, {
+            '$push': {
+                'blockedByList': data['otherUserID']
+            }
+        })
+
+        return Response({
+            'success': 'Blocked user',
+        })
+
+class unblockUser(APIView):
+    permission_classes = (permissions.AllowAny, )
+
+    def post(self, request, format=None):
+        data = self.request.data
+
+        user_col = CLIENT_DATABASE['userInfo']
+        post_col = CLIENT_DATABASE['postData']
+
+        user_col.update_one({
+            '_id': ObjectId(data['userID'])
+        }, {
+            '$pull': {
+                'blockList': data['otherUserID']
+            }
+        })
+
+        user_col.update_one({
+            '_id': ObjectId(data['otherUserID'])
+        }, {
+            '$pull': {
+                'blockedByList': data['otherUserID']
+            }
+        })

@@ -61,6 +61,7 @@ urlpatterns = [
 
     # Post Views
     path('getPost/<str:postID>/<str:userID>', GetPost.as_view()),
+    path('deletePost/',DeletePost.as_view()),
     path('likePost/', LikePost.as_view()),
     path('likeStatus/', LikeStatus.as_view()),
     path('sendComment/', CommentPost.as_view()),

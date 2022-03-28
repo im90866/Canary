@@ -22,6 +22,9 @@ class userInfo():
     _notificationList = []
     _requestList = []
 
+    _blockedList = []
+    _blockedByList = []
+
     _chatList = []
     _userSettings = {}
     _DOB = ""
@@ -71,6 +74,8 @@ class userInfo():
             "chatList": self._chatList,
             "notificationList": self._notificationList,
             "requestList": self._requestList,
+            "blockedList": self._blockedList,
+            "blockedByList": self._blockedByList,
             "userSettings" : self._userSettings,
             "DOB": self._DOB
         }
@@ -185,7 +190,11 @@ class post():
     _engagement = 0
 
     def __init__(self, jsonFile, memberList):
-        self._fromProjectID = jsonFile['projectID']
+        try:
+            self._fromProjectID = jsonFile['projectID']
+        except:
+            pass
+
         self._metadataID = jsonFile['metadataID']
         self._memberList = memberList
         self._uploadTime = datetime.now().strftime('%Y-%m-%d %H:%M:%S')

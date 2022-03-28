@@ -162,9 +162,7 @@ function ProjectSettings() {
                 </div>
               )
             }
-              
             </ul>
-           
             </div>
           </div>
         </div>

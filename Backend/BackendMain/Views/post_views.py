@@ -191,6 +191,7 @@ class GetPost(APIView):
         user_col = CLIENT_DATABASE['userInfo']
         post_col = CLIENT_DATABASE['postData']
         meta_col = CLIENT_DATABASE['imageData']
+        proj_col = CLIENT_DATABASE['projectData']
 
         FS = gridfs.GridFS(CLIENT_DATABASE)
 
@@ -237,6 +238,13 @@ class GetPost(APIView):
             "comments" : commentList,
         }
 
+        if postVal['projectID'] != "":
+            projVal = proj_col.find_one({'_id': ObjectId(postVal['projectID'])})
+            if userID == projVal['projectAdminID']:
+                postData['isAdmin'] = True
+        else:
+            postData['isAdmin'] = True
+
         if 'remixPostID' in postVal:
             postData['remixPostID'] = postVal['remixPostID']
 
@@ -244,6 +252,34 @@ class GetPost(APIView):
             'success': 'Post obtained',
             'postData' : postData
         })
+
+# Requires 
+class DeletePost(APIView):
+    permission_classes = (permissions.AllowAny, )
+
+    def post(self, request, format=None):
+        data = self.request.data
+
+        user_col = CLIENT_DATABASE['userInfo']
+        post_col = CLIENT_DATABASE['postData']
+
+        postVal = post_col.find_one({'_id': ObjectId(data['postID'])})
+
+        for member in postVal['memberList']:
+            user_col.update_one({
+                '_id': ObjectId(member['id'])
+            }, {
+                '$pull': {
+                    'postID': data['postID']
+                }
+            })
+
+        post_col.delete_one({'_id': ObjectId(data['postID'])})
+
+        return Response({
+            'success': 'Post deleted',
+        })
+
 
 # Requires userID, postID
 class RemixPost(APIView):
