@@ -41,6 +41,7 @@ class WebSocketService {
       this.socketRef = new WebSocket('ws://localhost:8000/group/');
       this.socketRef.onopen = () => {
         console.log('WebSocket open');
+        console.log('sus')
       };
 
       this.socketRef.onmessage = e => {
