@@ -61,6 +61,7 @@ class WebSocketService {
 
     sendToChat(message, chatID, otherID) {
         try{
+          console.log('sending '+message)
             this.socketRef.send(JSON.stringify({
                 'send_to_chat': true,
                 'userID': getCookie('userID'),
