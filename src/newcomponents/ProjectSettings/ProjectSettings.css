@@ -82,9 +82,9 @@
     border-radius: 40px;
     color: #fff;
     height:25px;
-    position: relative;
-    top:15px;
-    left: 350px;
+    position: absolute;
+    top:120px;
+    left: 400px;
 }
 .remove-mem:hover{
     background-color: #ffffff;
@@ -132,7 +132,7 @@
         color: #fff;
         height:25px;
         position: relative;
-        top:15px;
-        left: 150px;
+        top:-35px;
+        left: 200px;
     }
 }
