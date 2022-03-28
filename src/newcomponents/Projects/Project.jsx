@@ -5,7 +5,7 @@ import Sidebar from '../Sidebar/Sidebar'
 import Modal from "../Modal/Modal"
 import { v4 as uuidv4 } from 'uuid';
 import { useState, useEffect } from "react"
-import { Link,NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
 import axios from 'axios'
 
@@ -46,7 +46,7 @@ function Project(prop) {
         else
           console.log("Error: " + res.data["error"])
       })
-      setActive(true)
+    setActive(true)
     setProjects(response)
   }
 
@@ -104,7 +104,7 @@ function Project(prop) {
     }
 
     document.addEventListener('click', (e) => {
-      if(openModal)
+      if (openModal)
         setOpenModal(false)
     })
 
@@ -118,25 +118,31 @@ function Project(prop) {
             <div className="project">
               <div className="project-title">
                 {
-                  active?
-                  <h1 className='title' onClick={getProjects}>Your Projects</h1>
-                  :
-                  <h1 className='title-active' onClick={getProjects}>Your Projects</h1>
+                  active ?
+                    <h1 className='title' onClick={getProjects}>Your Projects</h1>
+                    :
+                    <h1 className='title-active' onClick={getProjects}>Your Projects</h1>
                 }
-                
+
                 <h1 className='separator'>|</h1>
                 {
-                  active?
-                  <h1 className='title-active' onClick={getGroupProjects}>Other Projects</h1>
-                  :
-                  <h1 className='title' onClick={getGroupProjects}>Other Projects</h1>
+                  active ?
+                    <h1 className='title-active' onClick={getGroupProjects}>Other Projects</h1>
+                    :
+                    <h1 className='title' onClick={getGroupProjects}>Other Projects</h1>
                 }
                 {
                   // Use this but clickable
                   // <h1 className='title'>Your Projects</h1>
                 }
-                <button className='hero-btn' onClick={(e) =>{
-                  setOpenModal(true); e.stopPropagation()}}>New Project</button>
+                <button
+                  className='hero-btn'
+                  onClick={
+                    (e) => {
+                      setOpenModal(true); e.stopPropagation()
+                    }}>
+                  New Project
+                </button>
               </div>
             </div>
           </div>
@@ -148,7 +154,13 @@ function Project(prop) {
                   <div className="projectlistname"
                     key={project.id}
                     onClick={() => setProjectName(project.projectName, project.projectId)}>
-                    <Link to={`/${project.id}/workspace`}>
+                    <Link to={
+                      !openModal
+                        ?
+                        `/${project.id}/workspace`
+                        :
+                        ''
+                    }>
                       <li className="project-list-item">
                         <span className='project-name'>{project.projectName}</span>
                       </li>
@@ -159,10 +171,11 @@ function Project(prop) {
             </ul>
           </div>
         </div>
-        <div onClick={(e) => e.stopPropagation()}>
-          {openModal && <Modal closeModal={setOpenModal} makeChange={makeChange} projects={projects} setProjects={setProjects} />}
-        </div>
+
       </body >
+      <div onClick={(e) => e.stopPropagation()}>
+        {openModal && <Modal closeModal={setOpenModal} makeChange={makeChange} projects={projects} setProjects={setProjects} />}
+      </div>
     </div >
   )
 }

@@ -6,11 +6,10 @@
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     display: flex;
     flex-direction: column;
-   
     padding: 25px;
-   position: relative;
-   top:100px;
-   left: -150px;
+   position: fixed;
+   top:25%;
+   left: 45%;
 }
 .img-workspacee{
     width: 400px;

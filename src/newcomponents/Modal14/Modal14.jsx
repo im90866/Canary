@@ -1,9 +1,9 @@
 import React from 'react'
 import "./Modal14.css"
-function Modal14({closeModal}) {
+function Modal14({ closeModal }) {
   return (
-    <div>
-          <div className="modalBackground" id='modalBackground'>
+    <div onClick={(e) => e.stopPropagation()}>
+      <div className="modalBackground" id='modalBackground'>
         <div className="modalContainer14">
           <div className="titleCloseBtn">
             <button className='cross'
@@ -11,12 +11,12 @@ function Modal14({closeModal}) {
                 closeModal(false);
               }}>
               x
-            </button> 
+            </button>
           </div>
-        
-        <div className="img-workspacee">
+
+          <div className="img-workspacee">
             <img src="/images/avatar4.png" alt="" className='wimg1' />
-        </div>
+          </div>
         </div>
       </div>
     </div>

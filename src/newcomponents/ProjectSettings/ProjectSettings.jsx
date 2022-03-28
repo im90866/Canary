@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef}from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useParams } from "react-router-dom";
 import Sidebar from '../Sidebar/Sidebar'
 import Topbar from '../Topbar/Topbar'
@@ -59,7 +59,7 @@ function ProjectSettings() {
     })
   }
 
-  const getProjectMembers = async() =>{
+  const getProjectMembers = async () => {
     await axios.get("http://localhost:8000/getProjectMembers/" + projectId,).then((res) => {
       if (res.data["success"]) {
         setMemberList(res.data['memberList'])
@@ -116,6 +116,7 @@ function ProjectSettings() {
                 onChange={e => setSearchField(e.target.value)}
                 ref={inputRef1}
               />
+              <br></br>
               <div id="results1" className="results1" ref={listRef1}>
                 {
                   searchRes.length > 0
@@ -127,7 +128,7 @@ function ProjectSettings() {
                             type="button"
                             key={index}
                             className="list-group-item list-group-item-action"
-                            style={{display:'flex'}}
+                            style={{ display: 'flex' }}
                           >
                             <div className="search-image-cropper">
                               <img style={{ width: '30px', height: '25px' }} className="search-image" src={res.profilePictureID} />
@@ -153,16 +154,16 @@ function ProjectSettings() {
               </div>
             </div>
             <div className="Remove2">
-            <ul className="project-memberslist">
-            {
-              memberList.map(member =>
-                <div className="memberlist1">
-                <li className="members">{member}</li>
-                <button className='remove-mem'>Remove</button>
-                </div>
-              )
-            }
-            </ul>
+              <ul className="project-memberslist">
+                {
+                  memberList.map(member =>
+                    <div className="memberlist1">
+                      <li className="members">{member}</li>
+                      <button className='remove-mem'>Remove</button>
+                    </div>
+                  )
+                }
+              </ul>
             </div>
           </div>
         </div>

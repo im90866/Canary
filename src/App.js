@@ -112,18 +112,7 @@ function App() {
            ?
           <>
             <Topbar cache={cache} setCache={setCache}/>
-            {/* {
-                !check
-                    ?
-                    <>
-                        <Sidebar />
-                        {
-                            console.log("working")
-                        }
-                    </>
-                    :
-                    <Sidebar2 />
-            } */}
+            
             <CSRFToken />
             <Routes>
               <Route path="/" element={protectLogin()} />
