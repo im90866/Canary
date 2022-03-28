@@ -39,7 +39,7 @@ function Workspace(prop) {
   const [postImageVal, setPostImageVal] = useState("")
 
   const [openModal, setOpenModal] = useState(false)
-  
+
   const [openModal3, setOpenModal3] = useState(false)
   const [openModalRename, setOpenModalRename] = useState(false)
   const [modalVal, setModalVal] = useState("")
@@ -249,9 +249,9 @@ function Workspace(prop) {
       window.sessionStorage.setItem("currentProjectId", projectId);
     })
   }
-  
+
   const nameHandler = (name) => {
-    if(name.length > 15) 
+    if (name.length > 15)
       return name.slice(0, 15) + '...'
     else return name
   }
@@ -267,19 +267,23 @@ function Workspace(prop) {
     getAll();
 
     document.addEventListener('click', (e) => {
-      if(showFolder.state)
+      if (showFolder.state)
         setShowFolder(showFolder.state = false)
-      if(showImg.state)
+      if (showImg.state)
         setShowImg(showImg.state = false)
+      if (openDropdown)
+        setOpenDropdown(false)
+      if (openModal3)
+        setOpenModal3(false)
     })
 
-    if (openDropdown) {
+    if (openDropdown || openModal3) {
       document.getElementById('workspace-body').style.filter = 'blur(5px) grayscale(0%)'
     } else {
       document.getElementById('workspace-body').style.filter = 'blur(0px) grayscale(0%)'
     }
 
-  }, [folderPath, showImg, showFolder, openDropdown])
+  }, [folderPath, showImg, showFolder, openDropdown, openModal3])
 
   return (
     <div>
@@ -297,8 +301,14 @@ function Workspace(prop) {
                   type="file"
                   hidden
                 />
-                <button className="wbtn1" onClick={() =>
-                  setOpenDropdown(true)}><span className='btn-text'>New Folder</span></button>
+                <button className="wbtn1"
+                  onClick={(e) => {
+                    setOpenDropdown(true);
+                    e.stopPropagation();
+                  }
+                  }>
+                  <span className='btn-text'>New Folder</span>
+                </button>
               </div>
               {
                 folderPath.length == 1 ?
@@ -320,20 +330,17 @@ function Workspace(prop) {
           </div>
         </div>
 
-        {openDropdown && <Dropdown closeModal={setOpenDropdown}
-          path={folderPath}
-          projId={projectId}
-          folders={folders}
-          setFolder={setFolders}
-        />}
 
         <div className="workspace-container2">
           <div className="folder">
             {
               folders.map((folder) =>
                 <div className="folders" key={folder.folderID} >
-                  <AiFillFolderOpen className='folder-icon' onClick={() => enterFolder(folder.folderID, folder.folderName)} />
-
+                  <AiFillFolderOpen
+                    id='folder-icon'
+                    className='folder-icon'
+                    onClick={!openModal3 && !openDropdown ? () => enterFolder(folder.folderID, folder.folderName) : null}
+                  />
                   <div className="folder-info">
                     <h3 className='folder-text'>{nameHandler(folder.folderName)}</h3>
                     <div class="dropdown-block">
@@ -371,8 +378,15 @@ function Workspace(prop) {
                 <div >
                   <div className="shadowbox">
                     <div className="image-cropper">
-                      <img className="image" src={image.imageVal} width={100} height={100}    onClick={() =>
-          setOpenModal3(true)} />
+                      <img className="image" src={image.imageVal} width={100} height={100}
+                        onClick={!openModal3 && !openDropdown ? (e) => {
+                          setOpenModal3(true);
+                          e.stopPropagation();
+                        }
+                          :
+                          null
+                        }
+                      />
                       {/* onClick={() => openImage(image.imageID)} */}
                     </div>
                   </div>
@@ -409,11 +423,17 @@ function Workspace(prop) {
               )
             }
           </div>
-       
+
         </div>
-        {openModal3 && <Modal14 closeModal={setOpenModal3} />} 
       </body>
-    
+      {openModal3 && <Modal14 closeModal={setOpenModal3} />}
+
+      {openDropdown && <Dropdown closeModal={setOpenDropdown}
+        path={folderPath}
+        projId={projectId}
+        folders={folders}
+        setFolder={setFolders}
+      />}
 
       {openModal && <Modal5 projectID={projectId} image={postImageVal} closeModal={setOpenModal} makeChange={makeChange} />}
       {openModalRename &&

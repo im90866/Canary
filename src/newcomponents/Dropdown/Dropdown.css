@@ -8,9 +8,9 @@ z-index: 9999;
     background-color: white;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     border-radius: 5px;
-    position: relative;
-    left: -40px;
-    top:100px;
+    position: fixed;
+    left: 45%;
+    top:25%;
     z-index: -1;
 }
 .titleCloseBtn3 {
