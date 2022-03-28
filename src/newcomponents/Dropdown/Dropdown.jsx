@@ -38,7 +38,7 @@ export default function Dropdown(props) {
 
   return (
     <div>
-      <div className="modalBackground3" onClick={e => e.stopPropagation()}>
+      <div className="modalBackground3">
         <div className="modalContainerdrop">
           <div className="titleCloseBtn3">
             <button className='crossbtnss'

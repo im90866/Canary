@@ -8,6 +8,7 @@ export default function Message(props) {
   const senderImage = props.senderImage
   const ownImage = props.ownImage
   const chatUserList = props.chatUserList
+  const sentAt = props.sentAt
 
   //const senderTime = props.senderTime
 
@@ -44,7 +45,7 @@ export default function Message(props) {
           />
           <p className="messageText">{messageData} </p>
         </div>
-        <div className="messageBottom">1 hour ago</div>
+        <div className="messageBottom">{sentAt}</div>
       </div>
     </div>
   )

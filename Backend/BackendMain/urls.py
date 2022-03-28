@@ -23,8 +23,8 @@ urlpatterns = [
 
     # Project Views
     path('createproject/', CreateProject.as_view()),
-    path('deleteproject/', DeleteProject.as_view()),
-    path('updateproject/', UpdateProjectName.as_view()),
+    path('deleteProject/', DeleteProject.as_view()),
+    path('updateProjectName/', UpdateProjectName.as_view()),
     path('getproject/<str:username>', GetProjects.as_view()),
     path('getotherproject/<str:username>', GetGroupProjects.as_view()),
     path('getProjectName/<str:projectID>', GetProjectName.as_view()),

@@ -14,9 +14,12 @@ position: fixed;
     display: flex;
     flex-direction: column;
     padding: 25px;
-   position: fixed;
-   top:25%;
-   left: 45%;
+   position: relative;
+   top:50px;
+   left: -100px;
+   
+  
+   
   }
   .modalContainer5{
     width: 250px;

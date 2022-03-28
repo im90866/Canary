@@ -1,14 +1,14 @@
 import "./Topbar.css";
 import { FaSearch, FaHome } from 'react-icons/fa'
 import { RiChatSmile2Fill, RiContactsBookLine } from "react-icons/ri"
-import { BsFillPlusCircleFill, BsPlusCircle } from "react-icons/bs"
+import { BsFillPlusCircleFill ,BsPlusCircle} from "react-icons/bs"
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaBars } from 'react-icons/fa';
 import { GoThreeBars } from 'react-icons/go';
 import { useState, useEffect, useRef, createContext } from "react"
-import { MdExplore, MdOutlineEmail, MdOutlineNotificationsNone, MdSettings } from "react-icons/md"
+import { MdExplore,MdOutlineEmail, MdOutlineNotificationsNone, MdSettings } from "react-icons/md"
 import axios from "axios"
-import { AiOutlinePlusCircle } from "react-icons/ai"
+import {AiOutlinePlusCircle} from "react-icons/ai"
 import { IconContext } from 'react-icons';
 import { IoIosNotificationsOutline, IoIosArrowForward } from "react-icons/io";
 import Modal4 from "../Modal4/Modal4";
@@ -17,7 +17,7 @@ import Res from './Res'
 import { useMediaQuery } from 'react-responsive';
 import Sidebar from "../Sidebar/Sidebar";
 import Sidebar2 from "../Sidebar2/Sidebar2";
-import { AiOutlineMail } from "react-icons/ai"
+import {AiOutlineMail} from "react-icons/ai"
 import { GrFormClose } from "react-icons/gr"
 import { BsCheck } from "react-icons/bs";
 import { IoMdArrowBack } from "react-icons/io"
@@ -85,7 +85,7 @@ function Topbar(prop) {
 
     axios.post("http://localhost:8000/interactInvite/", request).then((res) => {
     })
-
+    
   }
 
   const rejectRequest = (projectId) => {
@@ -123,7 +123,7 @@ function Topbar(prop) {
     axios.get("http://localhost:8000/getNotifications/" + String(getCookie('userID'))).then((res) => {
       let notifList = res.data['notificationsList'].slice()
       let requestList = res.data['inviteList'].slice()
-
+      
       setNotifList(notifList)
       setInviteList(requestList)
     })
@@ -141,17 +141,8 @@ function Topbar(prop) {
 
     document.addEventListener('click', (e) => {
       listRef.current.style.display = 'none'
-      if (openModal)
-        setOpenModal(false)
-      if (openModal3)
-        setOpenModal3(false)
+      // setOpenModal(false)
     })
-
-    if (openModal3) {
-      document.body.style.filter = 'blur(5px) grayscale(0%)'
-    } else {
-      document.body.style.filter = 'blur(0px) grayscale(0%)'
-    }
 
     if (location.pathname.includes("/workspace"))
       setCheck(location.pathname.includes("/workspace"))
@@ -164,12 +155,12 @@ function Topbar(prop) {
     else
       setCheck(false)
 
-  }, [location.pathname, openModal3, openModal])
+  }, [location.pathname])
 
 
   return (
     <>
-      <div className="topbarContainer" id="topbarContainer">
+      <div className="topbarContainer">
 
         <div className="topbarLeft">
           {
@@ -201,7 +192,6 @@ function Topbar(prop) {
                   searchRes.map((res, index) => {
                     return (
                       <button
-                        type="button"
                         key={index}
                         onClick={(e) => {
                           inputRef.current.value = res.username;
@@ -210,7 +200,7 @@ function Topbar(prop) {
                             window.location.reload();
                           });
                         }}
-                        className="list-group-item list-group-item-action"
+                        className="list-group-item"
                       >
                         <div className="search-image-cropper">
                           <img style={{ width: '30px', height: '25px' }} className="search-image" src={res.profilePictureID} />
@@ -240,13 +230,14 @@ function Topbar(prop) {
 
         <div className="topbarRight">
           <div className="topbarIcons">
-            <div className="topbarIconItem">
+         
+          <div className="topbarIconItem">
               <BsPlusCircle className="icons12"
-                onClick={(e) => { setOpenModal3(!openModal3); e.stopPropagation() }} />
-            </div>
+                onClick={() => { setOpenModal3(true);}} />
+              </div>
             <div className="topbarIconItem">
               <IoIosNotificationsOutline
-                onClick={(e) => { openClose(); e.stopPropagation() }}
+                onClick={() => openClose()}
               />
               <div ref={notifRef}>
                 {
@@ -254,13 +245,13 @@ function Topbar(prop) {
                   &&
                   <div >
                     <div className="modalBackground2">
-                      <div className="modalContainer4" onClick={e => e.stopPropagation()}>
+                      <div className="modalContainer4">
 
                         {
                           !showReq
                             ?
                             <>
-                              <div className="notifications" >
+                              <div className="notifications">
                                 {/* <div className="titleCloseBtn2">
                                   <button className='cross'
                                     >
@@ -269,17 +260,17 @@ function Topbar(prop) {
                                 </div> */}
                                 <div></div>
                                 <h3>Notifications</h3>
-                                <GrFormClose onClick={() => { openClose() }} />
+                                <GrFormClose onClick={() => {openClose()}}/>
                               </div>
                               {/* <br></br> */}
-                              <div className="requests" style={{ justifyContent: 'space-between' }} onClick={(e) => { setShowReq(!showReq);}}>
-                                <p>Requests</p> <IoIosArrowForward onClick={() => setShowReq(!showReq)} />
+                              <div className="requests" style={{ justifyContent: 'space-between' }} onClick={() => setShowReq(!showReq)}>
+                                <p>Requests</p> <IoIosArrowForward onClick={() => setShowReq(!showReq)}/>
                               </div>
                               <ul className="notifications-2">
                                 {
                                   notifList.map(notif => (
                                     <li className="notificationslist">
-                                      <img src="/images/avatar.png" alt="" className='profile-pic' />
+                                      <img src={notif.imageVal} alt="" className='profile-pic' />
                                       <div className="notif-text">{notif.info}</div>
                                     </li>
                                   ))
@@ -300,8 +291,8 @@ function Topbar(prop) {
                                     <li className="notificationslist">
                                       <img src="/images/avatar.png" alt="" className='profile-pic' />
                                       <div className="notif-text">{notif.info}</div>
-                                      <GrFormClose onClick={() => rejectRequest(notif.projectID)} />
-                                      <BsCheck onClick={() => acceptRequest(notif.projectID)} />
+                                      <GrFormClose onClick={() => rejectRequest(notif.projectID)}/>
+                                      <BsCheck onClick={() => acceptRequest(notif.projectID)}/>
                                     </li>
                                   ))
                                 }
@@ -321,10 +312,11 @@ function Topbar(prop) {
                 <Link to="/profile"><img src={PFP} alt="" className="topbarImg" /> </Link>
               </div>
             </div>
-
+         
           </div>
+          {openModal3 && <Modal12 closeModal={setOpenModal3} />} 
         </div>
-
+ 
       </div>
       {
         !isMobile
@@ -359,7 +351,6 @@ function Topbar(prop) {
             :
             null
       }
-      {openModal3 && <Modal12 closeModal={setOpenModal3} />}
     </>
   );
 }

@@ -92,6 +92,8 @@ class GetGroupMessages(APIView):
             else:
                 x['own '] = False
             x['messageBy'] = user_col.find_one({'_id': ObjectId(x['messageBy'])})['username']
+
+            x['createdAt']  = humanize_date_difference(datetime.now(), datetime.strptime(x['createdAt'], '%Y-%m-%d %H:%M:%S'))
         
         return Response({
             'success': 'messages obtained',

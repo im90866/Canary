@@ -39,7 +39,7 @@ class CreateProject(APIView):
         projectModel = project(data['projectName'], data['projectAdminID'], username, rootFolderID)
         
         # Stores the project, gets the ID and appends it to the user
-        projectVal = proj_col.insert_one(projectModel.getModel())
+        projectVal = projectModel.getModel()
         projectVal['projectChannels'].insert(0, chatID)
         projectID = (proj_col.insert_one(projectModel.getModel())).inserted_id
         projectID = json.loads(json_util.dumps(projectID))['$oid']
@@ -76,9 +76,7 @@ class DeleteProject(APIView):
             '_id': ObjectId(projVal['projectAdminID'])
         }, {
             '$pull': {
-                'otherProjectID': {
-                    data['projectID']
-                }
+                'projectID': data['projectID']   
             }
         })
 
@@ -87,9 +85,7 @@ class DeleteProject(APIView):
                 '_id': ObjectId(member['id'])
             }, {
                 '$pull': {
-                    'otherProjectID': {
-                        data['projectID']
-                    }
+                    'otherProjectID': data['projectID']
                 }
             })
         
@@ -116,11 +112,12 @@ class UpdateProjectName(APIView):
         proj_col = CLIENT_DATABASE['projectData']
 
         try:
-            userProject = proj_col.find_one({'_id' : ObjectId(data['projectID'])})
-            proj_col.update_one(userProject, {
+            proj_col.update_one({
+                '_id' : ObjectId(data['projectID'])
+            }, {
                 '$set' : {
-                            'projectName' : data['newProjectName']
-                        }
+                    'projectName' : data['newProjectName']
+                }
             })
         except:
             return Response({ 'error': 'Something went wrong' })
