@@ -44,6 +44,8 @@ import Team1 from './newcomponents/Team/Team1';
 import Team2 from './newcomponents/Team/Team2';
 import Team3 from './newcomponents/Team/Team3';
 import Moderator from './newcomponents/Moderator/Moderator';
+import Chats1 from './newcomponents/Chats1/Chats1';
+import Teamchats1 from './newcomponents/Teamchats1/Teamchats1';
 
 function App() {
 
@@ -154,6 +156,8 @@ function App() {
               <Route path="/remove" element={<Team2/>} />
               <Route path="/deleteproject" element={<Team3/>} />
               <Route path="/moderator" element={<Moderator/>} />
+              <Route path="/chats1" element={<Chats1/>} />
+              <Route path="/teamchats1" element={<Teamchats1/>} />
             </Routes>
           </>
           :

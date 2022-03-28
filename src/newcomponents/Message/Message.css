@@ -20,7 +20,7 @@
     margin-right: 10px;
     position: relative;
     top:20px;
-    left: 20px;
+    left: -25px;
   }
   
   .messageText{
@@ -31,7 +31,7 @@
       max-width: 300px;
       position: relative;
       top:-15px;
-      left: 10px;
+      left: -25px;
   }
   
   .messageBottom{
@@ -58,11 +58,11 @@
       background-color: rgb(245, 241, 241);
       color: black;
       position: relative;
-      left: 10px;
+      left: 30px;
   }
   .message.own   .messageImg{
     position: relative;
     top:20px;
-    left: 5px;
+    left: 35px;
   }
   
