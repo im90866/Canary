@@ -156,13 +156,14 @@ function ProjectSettings() {
             <ul className="project-memberslist">
             {
               memberList.map(member =>
-                <li className="members">{member}</li>
-               
+                <div>
+                  <li className="members">{member}</li>
+                </div>
               )
             }
               
             </ul>
-            <button className='remove-mem'>Remove</button>
+              <button className='remove-mem'>Remove</button>
             </div>
           </div>
         </div>

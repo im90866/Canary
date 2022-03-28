@@ -7,6 +7,7 @@ import { FaShare } from "react-icons/fa";
 import { BsThreeDots } from "react-icons/bs";
 import { useState, useEffect} from "react"
 import Modal from "../Modal/Modal"
+import Modal2 from "../Modal2/Modal2"
 import Modal8 from '../Modal8/Modal8';
 
 import axios from 'axios';
@@ -26,10 +27,12 @@ function Postbig({ closeModal}) {
   const [postData, setPostData] = useState({})
   const [openModal, setOpenModal] = useState(false);
   const [openModal1, setOpenModal1] = useState(false);
+  const [openModal2, setOpenModal2] = useState(false);
   const [memberList, setMemberList] = useState([])
   const [uploader, setUploader] = useState([])
 
   const [remixID, setRemixID] = useState("")
+  const [isAdmin, setIsAdmin] = useState(false)
 
   const handleBoxChange = (e) => {
     console.log(e.target.value)
@@ -97,6 +100,8 @@ function Postbig({ closeModal}) {
     })
   }
 
+
+
   useEffect(() => {
     axios.get("http://localhost:8000/getPost/" + postId + '/' + getCookie('userID'))
       .then((res) => {
@@ -113,10 +118,12 @@ function Postbig({ closeModal}) {
           setIsLiked(true)
         }
         
-        console.log(res.data['remixPostID'])
         if(res.data['postData']['remixPostID'] != undefined) {
-          
           setRemixID(res.data['postData']['remixPostID'])
+        }
+
+        if(res.data['postData']['isAdmin']) {
+          setIsAdmin(true)
         }
         
         const req = {
@@ -195,8 +202,12 @@ function Postbig({ closeModal}) {
                   <div class="dropdown-block2">
                     <BsThreeDots className='three-dots2'  class="dropdowns2"/>
                     <div class="dropdown-content2">
-                      <button class="dropdown-text2" onClick={() => { setOpenModal1(true);}}>Report Image</button>    
+                      <button class="dropdown-text2" onClick={() => { setOpenModal1(true);}}>Report Image</button>   
+                      {
+                        isAdmin && <button class="dropdown-text2" onClick={() => setOpenModal2(true)}>Delete Image</button>  
+                      }
                     </div>
+                    
                   </div>
 
                 </div>
@@ -220,6 +231,7 @@ function Postbig({ closeModal}) {
           </div>
         </div>
         {openModal && <Modal8 closeModal={setOpenModal} />}  
+        {openModal2 && <Modal2 type="post" postID={postId} closeModal={setOpenModal} />}  
         
       </div>
       {openModal1 && <Modal9 closeModal1={setOpenModal1} />}  

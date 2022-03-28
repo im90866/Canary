@@ -150,7 +150,7 @@ function App() {
               
               <Route path="/resetpassword" element={<Resetpassword/>} />
               <Route path="/privacy" element={<Cardsix/>} />
-              <Route path="/admin" element={<Team1/>} />
+              <Route path="/:id/projectsettings/permissions" element={<Team1/>} />
               <Route path="/remove" element={<Team2/>} />
               <Route path="/deleteproject" element={<Team3/>} />
               <Route path="/moderator" element={<Moderator/>} />
