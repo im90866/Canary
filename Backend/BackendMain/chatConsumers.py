@@ -17,6 +17,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
         self.room_group_name = 'chat'
 
         self.userID = ""
+        userID = ""
         chatList = []
 
         for x in self.scope['headers']:
@@ -29,23 +30,19 @@ class ChatConsumer(AsyncWebsocketConsumer):
                     text = (re.search('userID.*', text).group(0))
 
                 text = text.replace("userID=", "")
-                self.userID = text
-
-                chatList = await self.getChats(text)
                 
-
-        # Join all chatID groups
-        for room in chatList:
-            await self.channel_layer.group_add(
-                room,
-                self.channel_name
-            )
-
+                self.userID = str(text)
+                userID = str(text)
+                print(userID)
+                
         # Join your own userID group
-        await self.channel_layer.group_add(
-                self.userID,
-                self.channel_name
-        )
+        try:
+            await self.channel_layer.group_add(
+                    userID,
+                    self.channel_name
+            )
+        except:
+            print("Does not go through")
 
         await self.accept()
 

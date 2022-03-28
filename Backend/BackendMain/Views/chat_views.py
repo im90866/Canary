@@ -39,17 +39,23 @@ class GetChats(APIView):
 
         for x in chatList:
             userVal = user_col.find_one({'_id': ObjectId(x['otherPersonsID'])})
-            print(userVal)
 
             imageString = FS.get(userVal['profilePictureID']) 
             imageString = resizeImage(imageString, 300)   
 
             lastModified = chat_col.find_one({'_id': ObjectId(x['chatID'])})['lastModified']
-            lastModified = datetime.strptime(lastModified, '%Y-%m-%d %H:%M:%S')
+
+            print(lastModified + ' ssssssssssssss')
+            try:
+                lastModified = datetime.strptime(lastModified, '%Y-%m-%d %H:%M:%S')
+            except:
+                print(x)
+                
 
             index = 0 
             #comparisondatetime.strptime(val['uploadTime'], '%Y-%m-%d %H:%M:%S')
             if returnChatList:
+                print((returnChatList[index])['sentAt'])
                 while index < len(returnChatList) and lastModified < (returnChatList[index])['sentAt']:
                     index += 1
             
