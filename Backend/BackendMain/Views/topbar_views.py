@@ -56,6 +56,8 @@ class GetNotifications(APIView):
     def get(self, request, userID, format=None):
         user_col = CLIENT_DATABASE['userInfo']
 
+        FS = gridfs.GridFS(CLIENT_DATABASE)
+
         userVal = user_col.find_one({'_id': ObjectId(userID)})
 
         notificationList = userVal['notificationList']
@@ -67,17 +69,41 @@ class GetNotifications(APIView):
         for val in notificationList:
             info = ""
             if val['type'] == 'like':
+                imageID = user_col.find_one({'_id': ObjectId(val['senderID'])})['profilePictureID']
+
+                imageString = FS.get(ObjectId(imageID))        
+                imageString = resizeImage(imageString, 300)
+
+                val['imageVal'] = imageString
+
                 info = val['senderName'] + " has liked your post"
                 val['info'] = info
+
                 notifList.append(val)
             elif val['type'] == 'comment':
+                imageID = user_col.find_one({'_id': ObjectId(val['senderID'])})['profilePictureID']
+
+                imageString = FS.get(ObjectId(imageID))        
+                imageString = resizeImage(imageString, 300)
+
+                val['imageVal'] = imageString
+
                 info = val['senderName'] + " has commented on your post"
                 val['info'] = info
+
                 notifList.append(val)
 
         for val in requestList:
+            imageID = user_col.find_one({'_id': ObjectId(val['senderID'])})['profilePictureID']
+
+            imageString = FS.get(ObjectId(imageID))        
+            imageString = resizeImage(imageString, 300)
+
+            val['imageVal'] = imageString
+
             info = val['senderName'] + " has requested you to join their project: " + val['projectName']
             val['info'] = info
+            
             inviteList.append(val)
 
         print(userVal['username'])

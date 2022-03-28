@@ -192,7 +192,6 @@ function Topbar(prop) {
                   searchRes.map((res, index) => {
                     return (
                       <button
-                        type="button"
                         key={index}
                         onClick={(e) => {
                           inputRef.current.value = res.username;
@@ -201,7 +200,7 @@ function Topbar(prop) {
                             window.location.reload();
                           });
                         }}
-                        className="list-group-item list-group-item-action"
+                        className="list-group-item"
                       >
                         <div className="search-image-cropper">
                           <img style={{ width: '30px', height: '25px' }} className="search-image" src={res.profilePictureID} />
@@ -271,7 +270,7 @@ function Topbar(prop) {
                                 {
                                   notifList.map(notif => (
                                     <li className="notificationslist">
-                                      <img src="/images/avatar.png" alt="" className='profile-pic' />
+                                      <img src={notif.imageVal} alt="" className='profile-pic' />
                                       <div className="notif-text">{notif.info}</div>
                                     </li>
                                   ))

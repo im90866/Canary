@@ -4,6 +4,7 @@ from io import BytesIO
 import base64
 import pymongo
 import re
+import datetime
 
 client = pymongo.MongoClient("mongodb+srv://User1:password1234@zinasktest.uxarp.mongodb.net/mainDB?retryWrites=true&w=majority", 
         serverSelectionTimeoutMS=5000, maxPoolSize = 1000)
@@ -81,5 +82,33 @@ def resizeImage(imageVal, basewidth):
     imageVal = imageTag + base64.b64encode(bytes).decode('utf-8') 
 
     return imageVal
+
+def humanize_date_difference(now, otherdate=None, offset=None):
+    if otherdate:
+        dt = now - otherdate
+        offset = dt.seconds + (dt.days * 60*60*24)
+    if offset:
+        delta_s = offset % 60
+        offset /= 60
+        delta_m = offset % 60
+        offset /= 60
+        delta_h = offset % 24
+        offset /= 24
+        delta_d = offset
+    else:
+        raise ValueError("Must supply otherdate or offset (from now)")
+
+    if delta_d >= 1:
+        date = now + datetime.timedelta(days=-delta_d, hours=-delta_h, minutes=-delta_m)
+        return "%dd ago" % (delta_d)
+    if delta_h >= 1:
+        return "%dh ago" % (delta_h)
+    if delta_m >= 1:
+        return "%dm ago" % (delta_m)
+    else:
+        return "%ds ago" % delta_s
+
+    print(datetime.datetime.now(), "and", datetime.datetime.now() + datetime.timedelta(days=-3))
+    print(humanize_date_difference(datetime.datetime.now(), datetime.datetime.now() + datetime.timedelta(seconds=-10)))
 
           

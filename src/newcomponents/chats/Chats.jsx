@@ -170,6 +170,7 @@ function Chats() {
                     senderName={message.messageBy}
                     senderImage={currentUserPicture}
                     ownImage={ownPicture}
+                    sentAt={message.createdAt}
                   />
                 </div>
               )

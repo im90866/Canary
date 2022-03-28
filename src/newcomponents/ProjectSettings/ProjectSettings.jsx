@@ -5,6 +5,7 @@ import Topbar from '../Topbar/Topbar'
 import "./ProjectSettings.css"
 import { FaSearch, FaHome } from 'react-icons/fa'
 import axios from "axios"
+import Res from '../Topbar/Res';
 
 function ProjectSettings() {
 
@@ -15,6 +16,7 @@ function ProjectSettings() {
   const [isSearching, setIsSearching] = useState(false)
 
   const [memberList, setMemberList] = useState([])
+  const [isAdmin, setIsAdmin] = useState(false)
 
   const projectId = useParams()['id']
 
@@ -62,7 +64,11 @@ function ProjectSettings() {
   const getProjectMembers = async() =>{
     await axios.get("http://localhost:8000/getProjectMembers/" + projectId,).then((res) => {
       if (res.data["success"]) {
+        console.log(res.data['memberList'])
         setMemberList(res.data['memberList'])
+
+        if(res.data['adminID'] == getCookie('userID'))
+          setIsAdmin(true)
       }
       else {
       }
@@ -157,8 +163,13 @@ function ProjectSettings() {
             {
               memberList.map(member =>
                 <div className="memberlist1">
-                <li className="members">{member}</li>
-                <button className='remove-mem'>Remove</button>
+                <li className="members">{member['username']}</li>
+                {
+                  isAdmin 
+                    && member['id'] != getCookie('userID')
+                    && <button className='remove-mem'>Remove</button>
+                }
+                
                 </div>
               )
             }

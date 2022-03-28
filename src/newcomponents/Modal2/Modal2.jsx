@@ -8,6 +8,7 @@ function Modal2(props) {
   const closeModal = props.closeModal
   const type = props.type
   const postID = props.postID
+  const projectID = props.projectID
 
   const navigate = useNavigate()
 
@@ -26,6 +27,26 @@ function Modal2(props) {
 
     navigate('/home')
     window.location.reload();
+  }
+
+  const deleteProject = async () => {
+    console.log(projectID)
+    const req = {
+      'projectID' : projectID,
+    }
+
+    await axios.post("http://localhost:8000/deleteProject/", req).then((res) => {
+      if (res.data["error"]) {
+        console.log(res.data['error'])
+      }
+      else {
+        closeModal(false)
+
+      navigate('/project')
+      }
+    })
+
+    
   }
 
   return (
@@ -52,7 +73,7 @@ function Modal2(props) {
           </div>
             <div className="div2">
               {
-                type == "project" && <button className='folder-btn4'>Yes</button>
+                type == "project" && <button className='folder-btn4' onClick={deleteProject}>Yes</button>
               }
 
               {

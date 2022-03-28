@@ -117,7 +117,8 @@ function Teamchats() {
           'chatID': updater['chatID'],
           'messageVal': updater['messageVal'],
           'messageBy': updater['messageBy'],
-          'own': (updater['messageBy'] == getCookie('username'))
+          'own': (updater['messageBy'] == getCookie('username')),
+          'createdAt': '1s ago'
         })
         setMessageList(val)
       } 
@@ -162,6 +163,7 @@ function Teamchats() {
                     senderName={message.messageBy}
                     chatUserList={currentChatUserList}
                     ownImage={ownPicture}
+                    sentAt={message.createdAt}
                   />
                 </div>
               )

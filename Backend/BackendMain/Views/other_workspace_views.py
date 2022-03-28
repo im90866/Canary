@@ -145,16 +145,19 @@ class GetProjectMembers(APIView):
     def get(self, request, projectID, format=None):
         proj_col = CLIENT_DATABASE['projectData']
 
-        memberVal = proj_col.find_one({'_id': ObjectId(projectID)})['projectMembers']
+        projectVal = proj_col.find_one({'_id': ObjectId(projectID)})
+        memberVal = projectVal['projectMembers']
 
         memberList = []
-
         for member in memberVal:
-            memberList.append(member['username'])
-
+            memberList.append({
+                'id': member['id'],
+                'username': member['username']
+            })
 
         print(memberList)
         return Response({
                 'success': 'Obtained project members',
-                'memberList': memberList
+                'memberList': memberList,
+                'adminID': projectVal['projectAdminID']
         })

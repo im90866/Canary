@@ -81,7 +81,7 @@ function Team1() {
  </div>
     <button className='rename-btn'>Update </button>
          </div>
-         {openModal5 && <Modal2 type="project" closeModal={setOpenModal5} />} 
+         {openModal5 && <Modal2 type="project" projectID={projectId} closeModal={setOpenModal5} />} 
     </div>
  
     </div>

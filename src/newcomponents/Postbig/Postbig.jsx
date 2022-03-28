@@ -21,6 +21,8 @@ function Postbig({ closeModal}) {
   const [like,setLike] = useState("")
   const [isLiked,setIsLiked] = useState(false)
 
+  const [username, setUsername] = useState("")
+
   const [commentVal, setCommentVal] = useState("")
   const [commentList, setCommentList] = useState([])
 
@@ -73,7 +75,7 @@ function Postbig({ closeModal}) {
           let newCommentList = commentList.slice()
           newCommentList.push({
             'userID': getCookie('userID'),
-            'postID': postId,
+            'username': username,
             'info': commentVal,
             'createdAt': res.data['createdAt']
           })
@@ -137,6 +139,15 @@ function Postbig({ closeModal}) {
             setIsLiked(res.data['liked'])
           }
         })
+
+        axios.get("http://localhost:8000/getUsername/" + getCookie('userID'))
+        .then((res) => {
+          if(res.data['success']){
+            setUsername(res.data['username'])
+          }
+        })
+
+        
       })
   }, [])
 

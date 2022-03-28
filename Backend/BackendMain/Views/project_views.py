@@ -76,9 +76,7 @@ class DeleteProject(APIView):
             '_id': ObjectId(projVal['projectAdminID'])
         }, {
             '$pull': {
-                'otherProjectID': {
-                    data['projectID']
-                }
+                'projectID': data['projectID']   
             }
         })
 
@@ -87,9 +85,7 @@ class DeleteProject(APIView):
                 '_id': ObjectId(member['id'])
             }, {
                 '$pull': {
-                    'otherProjectID': {
-                        data['projectID']
-                    }
+                    'otherProjectID': data['projectID']
                 }
             })
         
@@ -116,11 +112,12 @@ class UpdateProjectName(APIView):
         proj_col = CLIENT_DATABASE['projectData']
 
         try:
-            userProject = proj_col.find_one({'_id' : ObjectId(data['projectID'])})
-            proj_col.update_one(userProject, {
+            proj_col.update_one({
+                '_id' : ObjectId(data['projectID'])
+            }, {
                 '$set' : {
-                            'projectName' : data['newProjectName']
-                        }
+                    'projectName' : data['newProjectName']
+                }
             })
         except:
             return Response({ 'error': 'Something went wrong' })
