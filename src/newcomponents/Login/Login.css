@@ -186,7 +186,6 @@ form {
 .overlay {
 	background: #ffb53b;
 
-	background: linear-gradient(to all,  #ffb53b,#FF4B2B);
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: 0 0;
@@ -326,7 +325,6 @@ form {
 
 	.overlay {
 		background: #ffb53b;
-		background: linear-gradient(to all,  #ffb53b,#FF4B2B);
 		background-repeat: no-repeat;
 		background-size: cover;
 		background-position: 0 0;

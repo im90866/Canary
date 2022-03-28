@@ -7,7 +7,7 @@ import axios from 'axios'
 import Home from './newcomponents/Home/Home';
 import Team from './newcomponents/Team/Team'
 import Workspace from './newcomponents/Workspace/Workspace';
-import CSRFToken from './Componenets/Auth/CSRF.js'
+import CSRFToken from './newcomponents/Auth/CSRF.js'
 // import Projects from './Componenets/Projects/Projects';
 import Profile from './newcomponents/Profile/Profile';
 //import Profilepost from './Componenets/Profileposts/Profilepost';
@@ -44,8 +44,6 @@ import Team1 from './newcomponents/Team/Team1';
 import Team2 from './newcomponents/Team/Team2';
 import Team3 from './newcomponents/Team/Team3';
 import Moderator from './newcomponents/Moderator/Moderator';
-import Chats1 from './newcomponents/Chats1/Chats1';
-import Teamchats1 from './newcomponents/Teamchats1/Teamchats1';
 
 function App() {
 
@@ -152,12 +150,10 @@ function App() {
               
               <Route path="/resetpassword" element={<Resetpassword/>} />
               <Route path="/privacy" element={<Cardsix/>} />
-              <Route path="/:id/projectsettings/permissions" element={<Team1/>} />
+              <Route path="/admin" element={<Team1/>} />
               <Route path="/remove" element={<Team2/>} />
               <Route path="/deleteproject" element={<Team3/>} />
               <Route path="/moderator" element={<Moderator/>} />
-              <Route path="/chats1" element={<Chats1/>} />
-              <Route path="/teamchats1" element={<Teamchats1/>} />
             </Routes>
           </>
           :
