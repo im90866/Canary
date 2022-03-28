@@ -39,7 +39,7 @@ class CreateProject(APIView):
         projectModel = project(data['projectName'], data['projectAdminID'], username, rootFolderID)
         
         # Stores the project, gets the ID and appends it to the user
-        projectVal = proj_col.insert_one(projectModel.getModel())
+        projectVal = projectModel.getModel()
         projectVal['projectChannels'].insert(0, chatID)
         projectID = (proj_col.insert_one(projectModel.getModel())).inserted_id
         projectID = json.loads(json_util.dumps(projectID))['$oid']
