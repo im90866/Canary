@@ -81,6 +81,7 @@ function Chats() {
       })
       setTextBoxVal("")
 
+      console.log('sending in chat')
       WebSocketInstance.sendToChat(textBoxVal, currentChatID, currentUserID)
     }
   }
