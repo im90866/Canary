@@ -15,6 +15,7 @@ class WebSocketService {
   
     connect(setUpdater) {
       //const path = config.API_PATH;
+      console.log('wheee')
       this.socketRef = new WebSocket('wss://localhost:8000/ws/');
       this.socketRef.onopen = () => {
         console.log('WebSocket open');
