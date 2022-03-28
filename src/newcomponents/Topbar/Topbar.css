@@ -25,6 +25,11 @@
     /* display: inline-block; */
     min-width: 25%;
 }
+/* .reports{
+    position: relative;
+    left: 10px;
+    font-size: 10px;
+} */
 
 .logo {
     font-size: 36px;

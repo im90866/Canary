@@ -6,7 +6,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaBars } from 'react-icons/fa';
 import { GoThreeBars } from 'react-icons/go';
 import { useState, useEffect, useRef, createContext } from "react"
-import { MdExplore, MdOutlineNotificationsNone, MdSettings } from "react-icons/md"
+import { MdExplore,MdOutlineEmail, MdOutlineNotificationsNone, MdSettings } from "react-icons/md"
 import axios from "axios"
 import {AiOutlinePlusCircle} from "react-icons/ai"
 import { IconContext } from 'react-icons';
@@ -17,7 +17,7 @@ import Res from './Res'
 import { useMediaQuery } from 'react-responsive';
 import Sidebar from "../Sidebar/Sidebar";
 import Sidebar2 from "../Sidebar2/Sidebar2";
-
+import {AiOutlineMail} from "react-icons/ai"
 import { GrFormClose } from "react-icons/gr"
 import { BsCheck } from "react-icons/bs";
 import { IoMdArrowBack } from "react-icons/io"
@@ -231,6 +231,7 @@ function Topbar(prop) {
 
         <div className="topbarRight">
           <div className="topbarIcons">
+         
           <div className="topbarIconItem">
               <BsPlusCircle className="icons12"
                 onClick={() => { setOpenModal3(true);}} />
@@ -312,7 +313,7 @@ function Topbar(prop) {
                 <Link to="/profile"><img src={PFP} alt="" className="topbarImg" /> </Link>
               </div>
             </div>
-
+         
           </div>
           {openModal3 && <Modal12 closeModal={setOpenModal3} />} 
         </div>
