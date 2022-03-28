@@ -2,7 +2,7 @@ import React from 'react'
 import "./Modal14.css"
 function Modal14({closeModal}) {
   return (
-    <div>
+    <div onClick={(e) => e.stopPropagation()}>
           <div className="modalBackground" id='modalBackground'>
         <div className="modalContainer14">
           <div className="titleCloseBtn">

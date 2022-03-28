@@ -1,8 +1,8 @@
 import React, { useState, useRef } from 'react'
 import "./Modal12.css"
-import {BsFillCloudUploadFill} from "react-icons/bs";
+import { BsFillCloudUploadFill } from "react-icons/bs";
 
-function Modal12({closeModal}) {
+function Modal12({ closeModal }) {
   const [image64, setImage64] = useState("")
   const [imagePresent, setImagePresent] = useState(false)
   const fileRef = useRef();
@@ -41,8 +41,8 @@ function Modal12({closeModal}) {
   }
 
   return (
-    <div>
-         <div className="modalBackground">
+    <div onClick={e => e.stopPropagation()}>
+      <div className="modalBackground">
         <div className="modalContainer12">
           <div className="titleCloseBtn">
             <button className='cross'
@@ -50,39 +50,39 @@ function Modal12({closeModal}) {
                 closeModal(false);
               }}>
               x
-            </button> 
+            </button>
           </div>
           {
             imagePresent
-            ?
-            <img src={image64} width={300} height={300}></img>
-            :
-            <div className="post-img-cropper13"  onClick={() => fileRef.current.click()}>
-              <input
+              ?
+              <img src={image64} width={300} height={300}></img>
+              :
+              <div className="post-img-cropper13" onClick={() => fileRef.current.click()}>
+                <input
                   ref={fileRef}
                   onChange={fileSelect}
                   multiple={false}
                   type="file"
                   hidden
                 />
-              <BsFillCloudUploadFill className="upload-imgg"/>
-              <p className='upload-text'>Upload images from your device</p>
-            </div>
+                <BsFillCloudUploadFill className="upload-imgg" />
+                <p className='upload-text'>Upload images from your device</p>
+              </div>
           }
-          
 
-          <input 
-            type="text" 
-            placeholder='Enter a caption' 
-            className='change-text150' 
-          
+
+          <input
+            type="text"
+            placeholder='Enter a caption'
+            className='change-text150'
+
           />
-              <div className="div">
-              <button className='folder-btn61' 
-                >Post
-              </button>
-            </div>  
-      
+          <div className="div">
+            <button className='folder-btn61'
+            >Post
+            </button>
+          </div>
+
         </div>
       </div>
 

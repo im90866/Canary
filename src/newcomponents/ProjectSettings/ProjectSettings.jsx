@@ -122,6 +122,7 @@ function ProjectSettings() {
                 onChange={e => setSearchField(e.target.value)}
                 ref={inputRef1}
               />
+              <br></br>
               <div id="results1" className="results1" ref={listRef1}>
                 {
                   searchRes.length > 0

@@ -10,6 +10,9 @@
     border-radius: 10px;
     overflow-y: scroll;
     overflow-x: hidden;
+} 
+.searchIcon{
+    align-items: center;
 }
 .ttitle{
     font-size: 30px;
@@ -29,12 +32,14 @@
     height: 30px;
     background-color: #efefef;
     border-radius: 30px;
-    display: flex;
+    display: block;
     align-items: center;
     margin-left: 30px;
 }
 .project-memberslist{
     margin-top: 20px;
+    width: inherit;
+    padding-right: 40px;
 }
 .members{
     list-style: none;
@@ -44,13 +49,13 @@
 }
 
 .results1 {
-    position: fixed;
-    width: 39%;
-    /* width: auto; */
+    /* position: fixed; */
+    width: 103%;
     overflow-y: scroll;
     /* display: grid !important; */
     top: 345px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    z-index: 5;
 }
 
 .results1 button {
@@ -73,7 +78,7 @@
     height: 80%;
 }
 .Remove2{
-    display: flex;
+    /* display: flex; */
 }
 .remove-mem{
     width: 100px;
@@ -94,6 +99,11 @@
     background-color: #ffffff;
       color: #ffb53b;
   }
+
+  .memberlist1{
+    display: flex;
+    justify-content: space-between;
+}
 
 @media(max-width:900px){
     .ps-box{

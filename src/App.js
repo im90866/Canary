@@ -51,6 +51,7 @@ function App() {
     const [logged, setLogged] = useState(false)
     const [change, setChange] = useState(false)
     const [check, setCheck] = useState()
+    const [checkTop, setCheckTop] = useState()
 
     const [cache, setCache] = useState({})
 
@@ -64,7 +65,7 @@ function App() {
         console.log("change")
         setLogged(getCookie('username') != null)
 
-        if (getCookie('username') != null && logged){
+        if (getCookie('username') != null && logged) {
             navigate('/home')
         }
 
@@ -101,73 +102,73 @@ function App() {
             setCheck(location.pathname.includes("/projectsettings"))
         else
             setCheck(false)
+
+        if (location.pathname.includes('/moderator'))
+            setCheckTop(true)
     }, [location.pathname]);
 
     return (
-      <>
-        {
-          user !== null
-           ?
-          <>
-            <Topbar cache={cache} setCache={setCache}/>
-            {/* {
-                !check
+        <>
+            {
+                user !== null
                     ?
                     <>
-                        <Sidebar />
                         {
-                            console.log("working")
+                            !checkTop
+                                ?
+                                <Topbar cache={cache} setCache={setCache} />
+
+                                :
+                                null
                         }
+
+
+                        <CSRFToken />
+                        <Routes>
+                            <Route path="/" element={protectLogin()} />
+                            <Route path="/home" element={protectOther(<Home cache={cache} setCache={setCache} />)} />
+
+                            <Route path="/:id/workspace" element={<Workspace />} />
+                            <Route path="/profile" element={<Profile cache={cache} setCache={setCache} />} />
+                            <Route path="/profile/collaborations" element={<Collaboration />} />
+                            <Route path="/profile/profileposts" element={<Profileposts />} />
+                            <Route path="/project" element={<Project cache={cache} setCache={setCache} />} />
+                            <Route path="/profile/:userID" element={<Profileothers />} />
+
+                            <Route path="/:id/projectmembers" element={<ProjectSettings />} />
+                            <Route path="/:id/projectsettings" element={<Team />} />
+                            <Route path="/registrationpage" element={<Registrationpage />} />
+                            <Route path="/settings" element={<Settingsbar cache={cache} setCache={setCache} />} />
+                            <Route path="/changepassword" element={<Cardthree />} />
+                            <Route path="/blocked" element={<Cardfour />} />
+                            <Route path="/delete" element={<Cardfive />} />
+                            <Route path="/chats" element={<Chats />} />
+                            <Route path="/:id/teamchats" element={<Teamchats />} />
+                            <Route path="/explore" element={<Explore />} />
+
+                            <Route path="/post/:id" element={<Postbig />} />
+
+
+                            <Route path="/resetpassword" element={<Resetpassword />} />
+                            <Route path="/privacy" element={<Cardsix />} />
+                            <Route path="/admin" element={<Team1 />} />
+                            <Route path="/remove" element={<Team2 />} />
+                            <Route path="/deleteproject" element={<Team3 />} />
+                            <Route path="/moderator" element={<Moderator />} />
+                        </Routes>
                     </>
                     :
-                    <Sidebar2 />
-            } */}
-            <CSRFToken />
-            <Routes>
-              <Route path="/" element={protectLogin()} />
-              <Route path="/home" element={protectOther(<Home cache={cache} setCache={setCache}/>)} />
-   
-              <Route path="/:id/workspace" element={<Workspace />} />
-              <Route path="/profile" element={<Profile cache={cache} setCache={setCache}/>} />
-              <Route path="/profile/collaborations" element={<Collaboration />} />
-              <Route path="/profile/profileposts" element={<Profileposts />} />
-              <Route path="/project" element={<Project cache={cache} setCache={setCache}/>} />
-              <Route path="/profile/:userID" element={<Profileothers />} />
-
-              <Route path="/:id/projectmembers" element={<ProjectSettings/>} />
-              <Route path="/:id/projectsettings" element={<Team />} />
-              <Route path="/registrationpage" element={<Registrationpage />} />
-              <Route path="/settings" element={<Settingsbar cache={cache} setCache={setCache}/>} />
-              <Route path="/changepassword" element={<Cardthree />} />
-              <Route path="/blocked" element={<Cardfour />} />
-              <Route path="/delete" element={<Cardfive />} />
-              <Route path="/chats" element={<Chats />} />
-              <Route path="/:id/teamchats" element={<Teamchats />} />
-              <Route path="/explore" element={<Explore/>} />
-              
-              <Route path="/post/:id" element={<Postbig />} />
-            
-              
-              <Route path="/resetpassword" element={<Resetpassword/>} />
-              <Route path="/privacy" element={<Cardsix/>} />
-              <Route path="/admin" element={<Team1/>} />
-              <Route path="/remove" element={<Team2/>} />
-              <Route path="/deleteproject" element={<Team3/>} />
-              <Route path="/moderator" element={<Moderator/>} />
-            </Routes>
-          </>
-          :
-          <>
-            <CSRFToken />
-            <Routes>
-              <Route path="/" element={protectLogin()} />
-              <Route path="/home" element={protectOther(<Home />)} />
-              <Route path="/forgotpassword" element={<Fp/>} />
-              <Route path="/codeconfirmation" element={<Modal6 />} />
-            </Routes>
-          </>
-        }
-      </>
+                    <>
+                        <CSRFToken />
+                        <Routes>
+                            <Route path="/" element={protectLogin()} />
+                            <Route path="/home" element={protectOther(<Home />)} />
+                            <Route path="/forgotpassword" element={<Fp />} />
+                            <Route path="/codeconfirmation" element={<Modal6 />} />
+                        </Routes>
+                    </>
+            }
+        </>
     );
 }
 
