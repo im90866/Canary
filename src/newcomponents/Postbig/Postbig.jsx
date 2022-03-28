@@ -240,11 +240,14 @@ function Postbig({ closeModal}) {
               </button>
             </div>
           </div>
+         
         </div>
-        {openModal && <Modal8 closeModal={setOpenModal} />}  
         {openModal2 && <Modal2 type="post" postID={postId} closeModal={setOpenModal} />}  
+        {openModal && <Modal8 closeModal={setOpenModal} />}  
+      
         
       </div>
+    
       {openModal1 && <Modal9 closeModal1={setOpenModal1} />}  
     </div>
   )

@@ -11,6 +11,7 @@ import Modal2 from '../Modal2/Modal2'
 import { useNavigate, useParams} from 'react-router-dom'
 
 import { Link } from 'react-router-dom'
+import Modal15 from '../Modal15/Modal15'
 function Team() {
   const projectId = useParams()['id']
   const [openModal5, setOpenModal5] = useState(false);
@@ -88,7 +89,7 @@ function Team() {
           <input type="text" className='change-text105'/><br></br>
           <button className='rename-btn' onClick={() => updateName()}>Make changes</button>
        </div>
-       {openModal5 && <Modal2 type="project" projectID={projectId} closeModal={setOpenModal5} />} 
+       {openModal5 && <Modal15 type="project" projectID={projectId} closeModal={setOpenModal5} />} 
   </div>
 
   </div>

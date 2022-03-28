@@ -1,4 +1,4 @@
-.change-text110{
+.change-text130{
     border: none;
     background-color: #efefef;
     padding: 8px 20px;
@@ -6,15 +6,15 @@
     position: relative;
     top:-25px;
     border-radius: 5px;
-    width: 400px;
+    width: 250px;
     margin-top: 0px;
     font-size: 10px;
     left: 25px;
   }
   @media (max-width: 900px){
-    .change-text110{
+    .change-text130{
     position: relative;
-    left: 120px;
-    width: 300px;
+  
+    width: 250px;
     }
   }

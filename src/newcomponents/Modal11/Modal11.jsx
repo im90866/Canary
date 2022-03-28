@@ -18,7 +18,7 @@ function Modal11({closeModal}) {
              <h1 className="block-tt">Report User</h1>
              <p className='block-pp'>Why are you reporting this account?</p>
              <input type="text" 
-                  className='change-text110'  
+                  className='change-text130'  
                   name="Report" 
                   placeholder='Report'
             />

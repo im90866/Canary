@@ -19,7 +19,7 @@ function Modal10({closeModal}) {
              <p className='block-pp'>Blocking Kyle, stops messages, follows, and comments. You can still view each other’s profiles.</p>
          </div>
         
-         <div className="div-blockbtns">
+         <div className="div-blockbtns1">
              <button className="bbtn1">Cancel</button>
              <button className="bbtn1">Block</button>
          </div>

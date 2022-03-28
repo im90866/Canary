@@ -127,6 +127,15 @@ font-weight: 500;
         font-size: 16px;
         font-weight: 500; 
     }
+    .wrapper2{
+        display: flex;
+        flex-wrap:wrap ; 
+        width: 100%;
+            gap: 2rem;
+            position: relative;
+            left: 10px;
+            top:100px;
+    }
 
     @media (max-width: 900px){
         .profile-user2{
@@ -177,6 +186,12 @@ font-weight: 500;
         position: relative;
         top:10px;
         left: -95px;
+    }
+    .wrapper2{
+        flex-direction: column;
+        position: relative;
+        left: 300px;
+
     }
 
     }

@@ -82,7 +82,7 @@ function Profileothers() {
                     </div>
         </div>
 
-        <div className="wrapper">
+        <div className="wrapper2">
           {
             images.map(image => (
             <div className="card1">
@@ -94,10 +94,11 @@ function Profileothers() {
             </div>
           ))} 
         </div> 
-    
-        {openModal && <Modal10 closeModal={setOpenModal} />}  
+   
         {openModal2 && <Modal11 closeModal={setOpenModal2} />}  
+        {openModal && <Modal10 closeModal={setOpenModal} />}  
       </div>
+  
 
       </body>
     </div>

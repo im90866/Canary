@@ -1,0 +1,14 @@
+.modalContainer15{
+    width: 350px;
+    height: 250px;
+    border-radius: 5px;
+    background-color: #Ffff;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    margin-left: 50px;
+    position: relative;
+    top:-200px;
+    left: -50px;
+}
