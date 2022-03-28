@@ -15,7 +15,7 @@ class WebSocketService {
   
     connect(setUpdater) {
       //const path = config.API_PATH;
-      this.socketRef = new WebSocket('ws://localhost:8000/ws/');
+      this.socketRef = new WebSocket('wss://localhost:8000/ws/');
       this.socketRef.onopen = () => {
         console.log('WebSocket open');
       };
@@ -38,7 +38,7 @@ class WebSocketService {
 
     connectGroup(setUpdater) { 
       //const path = config.API_PATH;
-      this.socketRef = new WebSocket('ws://localhost:8000/group/');
+      this.socketRef = new WebSocket('wss://localhost:8000/group/');
       this.socketRef.onopen = () => {
         console.log('WebSocket open');
         console.log('sus')
