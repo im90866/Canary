@@ -35,3 +35,29 @@ python Backend/manage.py runserver  OR  python manage.py runserver
 
 
 ------------------------------------------------------------
+
+
+heroku login
+cd Canary
+git init
+heroku git:remote -a canary-art
+git commit -am "Initial deploy"
+heroku config:set NODE_OPTIONS="--max_old_space_size=2560" -a Canary
+git push heroku master
+heroku labs:enable log-runtime-metrics
+heroku buildpacks:add --index 1 https://github.com/gaffneyc/heroku-buildpack-jemalloc.git
+heroku config:set JEMALLOC_ENABLED=true
+heroku create -b https://github.com/mars/create-react-app-buildpack.git
+
+
+npm install -g create-react-app
+create-react-app canary-react
+cd canary-react
+git init
+heroku create -b https://github.com/mars/create-react-app-buildpack.git
+git add .
+git commit -m "react-create-app on Heroku"
+git push heroku master
+heroku open
+
+
