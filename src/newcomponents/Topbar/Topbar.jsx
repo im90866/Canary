@@ -106,8 +106,10 @@ function Topbar(prop) {
   const openClose = () => {
     if (!openModal)
       setOpenModal(true)
-    else
+    else{
       setOpenModal(false)
+      setShowReq(false)
+    }
   }
 
   const goToPost = (type, postID) => {
@@ -374,8 +376,6 @@ function Topbar(prop) {
               ?
               <>
                 <Sidebar />
-                {
-                }
               </>
               :
               <Sidebar2 />

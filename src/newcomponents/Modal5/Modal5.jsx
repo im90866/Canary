@@ -35,7 +35,7 @@ function Modal5(prop) {
 
   return (
   
-    <div>
+    <div onClick={e => e.stopPropagation()}>
       <div className="modalBackground">
         <div className="modalContaine3">
           

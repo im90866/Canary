@@ -27,9 +27,9 @@ position: fixed;
     display: flex;
     flex-direction: column;
     padding: 25px;
-   position: relative;
-   top:100px;
-   left: 620px;
+    position: fixed;
+    top:25%;
+    left: 45%;
    
   }
   
@@ -99,7 +99,8 @@ position: fixed;
    position: relative;
    top:-70px;
    left: -50px;
-   
+   width: 200px;
+      text-align: center;
        text-overflow: clip;
       white-space: nowrap;
   }
@@ -263,9 +264,9 @@ position: fixed;
     display: flex;
     flex-direction: column;
     padding: 25px;
-   position: relative;
-   top:5px;
-   left: 400px;
+    position: fixed;
+    top:25%;
+    left: 30%;
   }
   .change-text15{
     border: none;

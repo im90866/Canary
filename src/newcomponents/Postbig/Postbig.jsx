@@ -2,10 +2,10 @@ import React from 'react'
 import "./Postbig.css"
 import { useParams, useNavigate } from 'react-router-dom'
 import Message from '../Message/Message'
-import { AiFillLike,AiOutlineDownload } from "react-icons/ai";
+import { AiFillLike, AiOutlineDownload } from "react-icons/ai";
 import { FaShare } from "react-icons/fa";
 import { BsThreeDots } from "react-icons/bs";
-import { useState, useEffect} from "react"
+import { useState, useEffect } from "react"
 import Modal from "../Modal/Modal"
 import Modal2 from "../Modal2/Modal2"
 import Modal8 from '../Modal8/Modal8';
@@ -14,12 +14,12 @@ import axios from 'axios';
 import Modal9 from '../Modal9/Modal9';
 import Res from '../Topbar/Res';
 
-function Postbig({ closeModal}) {
+function Postbig({ closeModal }) {
   const postId = useParams()['id']
   const navigate = useNavigate()
 
-  const [like,setLike] = useState("")
-  const [isLiked,setIsLiked] = useState(false)
+  const [like, setLike] = useState("")
+  const [isLiked, setIsLiked] = useState(false)
 
   const [username, setUsername] = useState("")
 
@@ -46,10 +46,10 @@ function Postbig({ closeModal}) {
     navigate('/post/' + remixID)
   }
 
-  const likeHandler = async ()=>{
+  const likeHandler = async () => {
     const req = {
-      'userID' : String(getCookie('userID')),
-      'postID' : postData.postID,
+      'userID': String(getCookie('userID')),
+      'postID': postData.postID,
     }
 
     await axios.post('http://localhost:8000/likePost/', req).then((res) => {
@@ -60,7 +60,7 @@ function Postbig({ closeModal}) {
   }
 
   const sendComment = async () => {
-    if(commentVal != "") {
+    if (commentVal != "") {
       const req = {
         'userID': getCookie('userID'),
         'postID': postId,
@@ -89,20 +89,20 @@ function Postbig({ closeModal}) {
   const remixPost = async () => {
     const req = {
       'userID': getCookie('userID'),
-      'postID' : postId,
+      'postID': postId,
     }
 
     await axios.post("http://localhost:8000/remixPost/", req).then((res) => {
       if (res.data["error"]) {
         console.log(res.data['error'])
       }
-      else{
+      else {
         navigate('/project')
       }
     })
   }
 
-
+  const [threedots, setThreeDots] = useState(false)
 
   useEffect(() => {
     axios.get("http://localhost:8000/getPost/" + postId + '/' + getCookie('userID'))
@@ -113,52 +113,71 @@ function Postbig({ closeModal}) {
         setCommentList(res.data['postData']['comments'].slice())
         setMemberList(res.data['postData']['memberList'])
 
-        if(res.data['postData']['memberList'].length == 1)
+        if (res.data['postData']['memberList'].length == 1)
           setUploader(res.data['postData']['memberList'][0])
 
-        if((res.data['postData'].likedBy).includes(String(getCookie('userID')))) {
+        if ((res.data['postData'].likedBy).includes(String(getCookie('userID')))) {
           setIsLiked(true)
         }
-        
-        if(res.data['postData']['remixPostID'] != undefined) {
+
+        if (res.data['postData']['remixPostID'] != undefined) {
           setRemixID(res.data['postData']['remixPostID'])
         }
 
-        if(res.data['postData']['isAdmin']) {
+        if (res.data['postData']['isAdmin']) {
           setIsAdmin(true)
         }
-        
+
         const req = {
           'userID': getCookie('userID'),
           'postID': postId,
         }
 
         axios.post("http://localhost:8000/likeStatus/", req)
-        .then((res) => {
-          if(res.data['success']){
-            setIsLiked(res.data['liked'])
-          }
-        })
+          .then((res) => {
+            if (res.data['success']) {
+              setIsLiked(res.data['liked'])
+            }
+          })
 
         axios.get("http://localhost:8000/getUsername/" + getCookie('userID'))
-        .then((res) => {
-          if(res.data['success']){
-            setUsername(res.data['username'])
-          }
-        })
+          .then((res) => {
+            if (res.data['success']) {
+              setUsername(res.data['username'])
+            }
+          })
 
-        
+
       })
-  }, [])
+
+    document.addEventListener('click', (e) => {
+      if (openModal1)
+        setOpenModal1(false)
+      if (openModal)
+        setOpenModal(false)
+      if (openModal2)
+        setOpenModal2(false)
+      if(threedots)
+        setThreeDots(false)
+    })
+
+    if (openModal1 || openModal || openModal2) {
+      document.getElementById('bodyyy').style.filter = 'blur(5px) grayscale(0%)'
+      if(threedots)
+        setThreeDots(false)
+    } else {
+      document.getElementById('bodyyy').style.filter = 'blur(0px) grayscale(0%)'
+    }
+  }, [openModal1, openModal, openModal2, threedots])
 
   return (
     <div>
-      <div className="bodyyy">
+      <div className="bodyyy" id='bodyyy'>
         <div className="postbig-container">
-          
+
           <div className="postimg-container">
             <div className="postbig-cropper">
-            <img src={postData['imageVal']} alt="" className='postimage'/>
+              <img src={postData['imageVal']} alt="" className='postimage' />
             </div>
           </div>
 
@@ -166,16 +185,16 @@ function Postbig({ closeModal}) {
             <div className="post-bigdetails">
               <div className="profile-post">
                 <div className="profilepost-img">
-                  <img src={uploader.profilePicture} alt="" className='ppimg'/>
+                  <img src={uploader.profilePicture} alt="" className='ppimg' />
                   <h4 className="ppname">{uploader.username}</h4>
                   {
                     remixID != "" ?
-                    <button className="remix-btn" onClick={gotToRemix}>Remixed</button>
-                    :
-                    <h1></h1>
+                      <button className="remix-btn" onClick={gotToRemix}>Remixed</button>
+                      :
+                      <h1></h1>
                   }
                 </div>
-                
+
                 <div className="captions">
                   <p className='cap'>{postData.caption}</p>
                 </div>
@@ -184,53 +203,58 @@ function Postbig({ closeModal}) {
               <div className="comment-containber">
                 <ul className="comment-list">
                   {
-                    commentList.map(comment => 
-                    <li className="commentli">
-                      <img src={comment.profilePicture} alt="" className='pcimg'/>
-                      <div className="comms">
-                      <h4 className='comment-username'>{comment.username}</h4>
-                      <p className='pctext12'>{comment.info} </p>
-                      </div>
-                    </li>
-                  )}
+                    commentList.map(comment =>
+                      <li className="commentli">
+                        <img src={comment.profilePicture} alt="" className='pcimg' />
+                        <div className="comms">
+                          <h4 className='comment-username'>{comment.username}</h4>
+                          <p className='pctext12'>{comment.info} </p>
+                        </div>
+                      </li>
+                    )}
                 </ul>
               </div>
-              
+
               <div className="comment-info">
                 <div className="icons">
                   <div className="like1">
                     {
                       isLiked ?
-                       <AiFillLike className='icon-info-like-active' onClick={likeHandler}/>
-                      :
-                      <AiFillLike className='icon-info-like' onClick={likeHandler}/>
+                        <AiFillLike className='icon-info-like-active' onClick={likeHandler} />
+                        :
+                        <AiFillLike className='icon-info-like' onClick={likeHandler} />
                     }
-                    
+
                     <span className='likenumber'>{like}</span>
                   </div>
-                  <FaShare  className='icon-info' onClick={() => setOpenModal(true)}/>
+                  <FaShare className='icon-info' onClick={(e) => { setOpenModal(true); e.stopPropagation() }} />
                   <h5 className='remix' onClick={remixPost}>Remix</h5>
                   <div class="dropdown-block2">
-                    <BsThreeDots className='three-dots2'  class="dropdowns2"/>
-                    <div class="dropdown-content2">
-                      <button class="dropdown-text2" onClick={() => { setOpenModal1(true);}}>Report Image</button>   
-                      {
-                        isAdmin && <button class="dropdown-text2" onClick={() => setOpenModal2(true)}>Delete Image</button>  
-                      }
-                    </div>
-                    
+                    <BsThreeDots className='three-dots2' class="dropdowns2" onClick={(e) => {setThreeDots(!threedots); e.stopPropagation()}}/>
+                    {
+                      threedots
+                        ?
+                        <div class="dropdown-content2" style={{display:'block'}}>
+                          <button class="dropdown-text2" onClick={(e) => { setOpenModal1(true); e.stopPropagation() }}>Report Image</button>
+                          {
+                            isAdmin && <button class="dropdown-text2" onClick={(e) => { setOpenModal2(true); e.stopPropagation() }}>Delete Image</button>
+                          }
+                        </div>
+                        :
+                        null
+                    }
                   </div>
 
                 </div>
               </div>
             </div>
-          
+
             <div className="comment">
               <textarea
-                  className="chatMessageInput1"
-                  placeholder=" Add a comment"
-                  value={commentVal}
-                  onChange={handleBoxChange}
+                className="chatMessageInput1"
+                placeholder=" Add a comment"
+                value={commentVal}
+                onChange={handleBoxChange}
               ></textarea>
 
               <button className="chatSubmitButton4" onClick={sendComment}>
@@ -240,15 +264,15 @@ function Postbig({ closeModal}) {
               </button>
             </div>
           </div>
-         
+
         </div>
-        {openModal2 && <Modal2 type="post" postID={postId} closeModal={setOpenModal} />}  
-        {openModal && <Modal8 closeModal={setOpenModal} />}  
-      
-        
+
+
       </div>
-    
-      {openModal1 && <Modal9 closeModal1={setOpenModal1} />}  
+
+      {openModal2 && <Modal2 type="post" postID={postId} closeModal={setOpenModal2} />}
+      {openModal && <Modal8 closeModal={setOpenModal} />}
+      {openModal1 && <Modal9 closeModal1={setOpenModal1} />}
     </div>
   )
 }

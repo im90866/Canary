@@ -49,7 +49,7 @@ function Modal15(props) {
   }
 
   return (
-    <div>
+    <div onClick={e => e.stopPropagation()}>
           <div className="modalBackground2">
         <div className="modalContainer15">
           <div className="titleCloseBtn2">

@@ -230,8 +230,8 @@ margin-left:-120px;
 }
 .dropdown-block2:hover .dropdown-content2{
   
-    color: rgb(0, 0, 0);
-    display:block;
+    /* color: rgb(0, 0, 0);
+    display:block; */
 }
 
 .dropdown-content2 {
