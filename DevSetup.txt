@@ -24,6 +24,7 @@ Prerequisites: Have python and pip installed
     pip install -U channels  
     pip install channels-redis
     pip install redis
+    pip install redis-cache
 
 In case of a pyOpenSSL error, do the following:
 pip install pyOpenSSL -U
