@@ -1,6 +1,9 @@
 import React from 'react'
 import "./Modal14.css"
-function Modal14({closeModal}) {
+function Modal14(props) {
+  const closeModal = props.closeModal
+  const imageVal = props.imageVal
+
   return (
     <div onClick={(e) => e.stopPropagation()}>
           <div className="modalBackground" id='modalBackground'>
@@ -15,7 +18,7 @@ function Modal14({closeModal}) {
           </div>
         
         <div className="img-workspacee">
-            <img src="/images/avatar4.png" alt="" className='wimg1' />
+            <img src={imageVal} alt="" className='wimg1' />
         </div>
         </div>
     

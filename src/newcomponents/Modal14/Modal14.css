@@ -13,14 +13,14 @@
     left: 35%;
 }
 .img-workspacee{
-    width: 400px;
-    height: 250px;
+    width: 100%;
+    height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-    top:-100px;
-    left: 20px;
+    top:-240px;
+    left: 80px;
 
 }
 .wimg1{
@@ -42,8 +42,8 @@
     font-size: 35px;
     cursor: pointer;
     position: relative;
-    top:-20px;
-    left: 600px;
+    top:-30px;
+    left: 620px;
   }
 .cross14{
     font-size:30px ;

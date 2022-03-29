@@ -120,7 +120,7 @@ function Sidebar2(prop) {
           <li className="sidebarListItem">
               <NavLink to="/summary">
                 <MdOutlineSummarize className="sidebarIcon" />
-                <span className="sidebarListItemText">Summary</span>
+                <span className="sidebarListItemText">Report</span>
               </NavLink>
             </li>
           

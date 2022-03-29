@@ -38,6 +38,8 @@ function Workspace(prop) {
 
   const [postImageVal, setPostImageVal] = useState("")
 
+  const [imageToOpen, setImageToOpen] = useState("")
+
   const [openModal, setOpenModal] = useState(false)
 
   const [openModal3, setOpenModal3] = useState(false)
@@ -385,6 +387,7 @@ function Workspace(prop) {
                     <div className="image-cropper">
                       <img className="image" src={image.imageVal} width={100} height={100}
                         onClick={!openModal3 && !openDropdown ? (e) => {
+                          setImageToOpen(image.imageVal)
                           setOpenModal3(true);
                           e.stopPropagation();
                         }
@@ -431,7 +434,7 @@ function Workspace(prop) {
 
         </div>
       </body>
-      {openModal3 && <Modal14 closeModal={setOpenModal3} />}
+      {openModal3 && <Modal14 imageVal={imageToOpen} closeModal={setOpenModal3} />}
 
       {openDropdown && <Dropdown closeModal={setOpenDropdown}
         path={folderPath}

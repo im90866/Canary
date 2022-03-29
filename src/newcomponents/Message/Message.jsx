@@ -15,7 +15,9 @@ export default function Message(props) {
   const [image, setImage] = useState("")
 
   useEffect(() => {
+    console.log(ownImage)
     if(chatUserList != undefined) {
+      console.log('its defined')
       if(own)
         setImage(ownImage)
       else{

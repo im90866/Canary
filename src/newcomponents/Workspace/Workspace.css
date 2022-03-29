@@ -23,6 +23,8 @@ left: 80px;
 .three-dots3{
     left: 135px;
 }
+
+
 .dropdown-text1{
     text-decoration: none;
     font-size: 10px;
@@ -104,9 +106,16 @@ border-radius: 40px;
     color: #ffb53b;
 }
 .dropdowns{
-position: absolute;
-left: 135px;
+    position: absolute;
+    left: 135px;
+    transition: 0.1s;
 }
+
+.dropdowns:hover{
+    transition: 0.2s;
+    color: #929292;
+}
+
 .wbtn1{
     position: relative;
     white-space: nowrap;

@@ -95,10 +95,6 @@ function Chats() {
     let username = window.sessionStorage.getItem("username");
     let userID = window.sessionStorage.getItem("userID");
 
-    window.sessionStorage.removeItem("chatID");
-    window.sessionStorage.removeItem("username");
-    window.sessionStorage.removeItem("userID");
-
     if(!chatID) 
       throw("something went wrong")
     if(updater['unused']) {
@@ -109,6 +105,7 @@ function Chats() {
               (res.data['chatList'])['messages'] = []
             }
             setChatList(res.data['chatList'])
+            console.log(res.data['ownPicture'])
             setOwnPicture(res.data['ownPicture'])
           }
           else
