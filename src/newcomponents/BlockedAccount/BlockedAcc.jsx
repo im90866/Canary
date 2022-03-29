@@ -17,6 +17,10 @@ function BlockedAcc() {
   const [username, setUsername] = useState("")
   const [openModal, setOpenModal] = useState(false);
   const [openModal2, setOpenModal2] = useState(false);
+
+  const [blockedBy, setBlockedBy] = useState(false) // Account is blocked by you
+  const [isBlocked, setIsBlocked] = useState(false) // You are blocked by account
+
   const navigate = useNavigate()
 
   const messageUser = async() => {
@@ -86,8 +90,8 @@ function BlockedAcc() {
 
      <div className="acc-private">
          <AiOutlineLock className="lock"/>
-         <h1 className='this-acc'>This Account Is Private</h1>
-         <p className='follow-acc'>Follow this account to see their pictures</p>
+         <h1 className='this-acc'>This Account Is Blocked By You</h1>
+         <p className='follow-acc'>Unblock to view their profile</p>
      </div>
    
         {openModal2 && <Modal11 closeModal={setOpenModal2} />}  

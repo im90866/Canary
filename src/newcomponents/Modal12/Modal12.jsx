@@ -3,7 +3,9 @@ import axios from 'axios'
 import "./Modal12.css"
 import { BsFillCloudUploadFill } from "react-icons/bs";
 
-function Modal12({ closeModal }) {
+function Modal12(props) {
+  const closeModal = props.closeModal
+
   const [fileVal, setFileVal] = useState("")
   const [image64, setImage64] = useState("")
   const [caption, setCaption] = useState("")
@@ -37,10 +39,11 @@ function Modal12({ closeModal }) {
           'uploader': String(getCookie('username')),
           'userID': String(getCookie('userID')),
         }
-    
+        
         console.log("HOOOHHAAA")
         axios.post("http://localhost:8000/postImage/", req).then((res) => {
-         console.log(res)
+          closeModal(false)
+          window.location.reload();
         })
       }
     });

@@ -2,16 +2,22 @@ import React, {useState, useEffect} from 'react'
 import Topbar from '../Topbar/Topbar'
 import Sidebar from '../Sidebar/Sidebar'
 import "./Profile.css"
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 function Profile(prop) {
+  const navigate = useNavigate()
+
   const cache = prop.cache
   const setCache = prop.setCache
 
   const [username, setUsername] = useState("")
   const [PFP, setPFP] = useState("")
   const [images, setImages] = useState([])
+
+  const goToPost = (postID) => {
+    navigate('/post/' + postID)
+  }
 
   useEffect(() => {
     setUsername(String(getCookie('username')))
@@ -67,10 +73,11 @@ function Profile(prop) {
         <div className="wrapper">
           {
             images.map(image => (
-            <div className="card1">
+            <div className="card1" onClick={() => goToPost(image.postID)}>
               <div className="card__body1">
                 <div className="img1">
-                  <img src={image.imageVal} className="card__image1" alt=""/>    
+                  <img src={image.imageVal} className="card__image1" alt=""/>  
+                    
                 </div>
               </div>
             </div>

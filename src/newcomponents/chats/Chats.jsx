@@ -13,7 +13,7 @@ function Chats() {
   const [messageList, setMessageList] = useState([])
 
   const [currentChatID, setCurrentChatID] = useState("")
-  const [currentUser, setCurrentUser] = useState('zero')
+  const [currentUser, setCurrentUser] = useState('')
   const [currentUserID, setCurrentUserID] = useState("")
   const [currentUserPicture, setCurrentUserPicture] = useState("")
 
@@ -91,12 +91,17 @@ function Chats() {
   }
 
   useEffect(() => {
-    if(updater['unused']) {
-      let chatID = window.sessionStorage.getItem("chatID");
-      let username = window.sessionStorage.getItem("username");
-      let userID = window.sessionStorage.getItem("userID");
+    let chatID = window.sessionStorage.getItem("chatID");
+    let username = window.sessionStorage.getItem("username");
+    let userID = window.sessionStorage.getItem("userID");
 
-      
+    window.sessionStorage.removeItem("chatID");
+    window.sessionStorage.removeItem("username");
+    window.sessionStorage.removeItem("userID");
+
+    if(!chatID) 
+      throw("something went wrong")
+    if(updater['unused']) {
       axios.get("http://localhost:8000/getChat/" + String(getCookie('userID')))
         .then((res) => {
           if (res.data["success"]) {
@@ -129,6 +134,7 @@ function Chats() {
         scrollToBottomSmooth()
       }
     }
+    
   }, [updater]);
 
   const updateChatList = async () => {

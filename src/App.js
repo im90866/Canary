@@ -147,7 +147,7 @@ function App() {
                             <Route path="/blocked" element={<Cardfour />} />
                             <Route path="/delete" element={<Cardfive />} />
                             <Route path="/chats" element={<Chats1 />} />
-                            <Route path="/chat/active" element={<Chats />} />
+                            <Route path="/chats/active" element={<Chats />} />
                             <Route path="/:id/teamchats" element={<Teamchats />} />
                             <Route path="/explore" element={<Explore />} />
 

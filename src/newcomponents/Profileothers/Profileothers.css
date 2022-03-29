@@ -11,6 +11,21 @@
     font-weight: 600;
     transition: 0.25s;
 }
+
+.editp1spec{
+    border-radius: 40px;
+    position: relative;
+    top:10px;
+    left:430px;
+    border: 1px solid #ffd693;
+	background-color: #ffd693;
+	color: #FFFFFF;
+    width: 150px;
+    height: 40px;
+    font-weight: 600;
+    transition: 0.25s;
+}
+
 .profile-user2
 {display: flex;
     position: relative;

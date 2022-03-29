@@ -85,6 +85,7 @@ margin-left:-120px;
 }
 .profilepost-img{
     display: flex;
+    cursor: pointer;
 }
 .ppimg{
     width: 38px;

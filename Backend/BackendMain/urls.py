@@ -76,6 +76,9 @@ urlpatterns = [
     path('getUserID/<str:username>', GetUserID.as_view()),
     path('getUsername/<str:userID>', GetUsername.as_view()),
     path('followUser/', FollowUser.as_view()),
+    path('blockUser/', BlockUser.as_view()),
+    path('isBlocked/', IsBlocked.as_view()),
+    
 
     # Chat Views
     path('checkChat/', CheckChat.as_view()),

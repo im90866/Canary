@@ -8,6 +8,10 @@ import { BsThreeDots } from "react-icons/bs";
 import Modal8 from '../Modal8/Modal8'
 import Modal10 from '../Modal10/Modal10'
 import Modal11 from '../Modal11/Modal11'
+
+import {AiOutlineLock} from "react-icons/ai";
+import Modal17 from '../Modal17/Modal17'
+
 function Profileothers() {
   const userID = useParams()['userID']
   const [PFP, setPFP] = useState("")
@@ -17,6 +21,10 @@ function Profileothers() {
   const [username, setUsername] = useState("")
   const [openModal, setOpenModal] = useState(false);
   const [openModal2, setOpenModal2] = useState(false);
+
+  const [blocked, setBlocked] = useState(false) // Account is blocked by you
+  const [isBlocked, setIsBlocked] = useState(false) // You are blocked by account
+
   const navigate = useNavigate()
 
   const messageUser = async() => {
@@ -59,6 +67,17 @@ function Profileothers() {
     if(userID == String(getCookie('userID')))
       navigate('/profile')
 
+
+    const req = {
+      'userID': String(getCookie('userID')),
+      'otherUserID': userID
+    }
+    axios.post("http://localhost:8000/isBlocked/", req).then((res) => {
+      if(res.data["success"]) {
+        setBlocked(res.data['blocked'])
+      }
+    })
+
     axios.get('http://localhost:8000/getUsername/'+ userID).then((res) => {
       setUsername(res.data['username'])
       setFollowers(res.data['followers'])
@@ -79,53 +98,99 @@ function Profileothers() {
   }, [])
 
   return (
-    <div>
-        <body className="profilecc">
-    
-      <div className="profile-container">
+    <>
+    {
+      !blocked
+      ?
+      <div>
+          <body className="profilecc">
       
-        <div className='profile-image-cropper'>
-          <img src={PFP} className="profile-image"/>
-        </div>
+        <div className="profile-container">
+        
+          <div className='profile-image-cropper'>
+            <img src={PFP} className="profile-image"/>
+          </div>
 
-        <h1 className="profile-user2">{username}</h1>
-        <div className="follower-info">
-             <h1 className='follow-numbers'>{followers}</h1>
-             <h1 className='followers'>Followers</h1>
-         </div>
-        <div className="btn-class2">
-        <button className="editp1" onClick={() => {messageUser()}}>Message</button>
-        <button className="editp1" onClick={() => follow()}>Follow</button>
-        <div class="dropdown-block3">
-        <BsThreeDots className='three-dots4' class="dropdowns3" />
-        <div class="dropdown-content3">
-                        <button class="dropdown-text3" onClick={() => { setOpenModal2(true);}}>Report</button><br></br>
-                        <button class="dropdown-text3" onClick={() => { setOpenModal(true);}}>Block</button>
+          <h1 className="profile-user2">{username}</h1>
+          <div className="follower-info">
+              <h1 className='follow-numbers'>{followers}</h1>
+              <h1 className='followers'>Followers</h1>
+          </div>
+          <div className="btn-class2">
+          <button className="editp1" onClick={() => {messageUser()}}>Message</button>
+          <button className="editp1" onClick={() => follow()}>Follow</button>
+          <div class="dropdown-block3">
+          <BsThreeDots className='three-dots4' class="dropdowns3" />
+          <div class="dropdown-content3">
+                          <button class="dropdown-text3" onClick={() => { setOpenModal2(true);}}>Report</button><br></br>
+                          <button class="dropdown-text3" onClick={() => { setOpenModal(true);}}>Block</button>
+                        </div>
+                  
                       </div>
-                 
-                    </div>
-        </div>
+          </div>
 
-        <div className="wrapper2">
-          {
-            images.map(image => (
-            <div className="card1">
-              <div className="card__body1">
-                <div className="img1">
-                  <img src={image.imageVal} className="card__image" alt=""/>    
+          <div className="wrapper2">
+            {
+              images.map(image => (
+              <div className="card1">
+                <div className="card__body1">
+                  <div className="img1">
+                    <img src={image.imageVal} className="card__image" alt=""/>    
+                  </div>
+                </div>
+              </div>
+            ))} 
+          </div> 
+    
+          {openModal2 && <Modal11 closeModal={setOpenModal2} />}  
+          {openModal && <Modal10 userID={userID} setBlocked={setBlocked} closeModal={setOpenModal} />}  
+        </div>
+    
+
+        </body>
+      </div>
+      :
+      <div>
+        <body className="profilecc">
+          <div className="profile-container">
+
+            <div className='profile-image-cropper'>
+              <img src={PFP} className="profile-image"/>
+            </div>
+
+            <h1 className="profile-user2">{username}</h1>
+            <div className="follower-info">
+                <h1 className='follow-numbers'>0</h1>
+                <h1 className='followers'>Followers</h1>
+            </div>
+
+            <div className="btn-class2">
+              <button className="editp1spec">Message</button>
+              <button className="editp1spec">Follow</button>
+              <div class="dropdown-block3">
+                <BsThreeDots className='three-dots4' class="dropdowns3" />
+                <div class="dropdown-content3">
+                  <button class="dropdown-text3" onClick={() => { setOpenModal2(true);}}>Report</button>
+                  <br></br>
+                  <button class="dropdown-text3" onClick={() => { setOpenModal(true);}}>Unblock</button>
                 </div>
               </div>
             </div>
-          ))} 
-        </div> 
-   
-        {openModal2 && <Modal11 closeModal={setOpenModal2} />}  
-        {openModal && <Modal10 closeModal={setOpenModal} />}  
-      </div>
-  
 
-      </body>
-    </div>
+            <div className="acc-private">
+                <AiOutlineLock className="lock"/>
+                <h1 className='this-acc'>This Account Is Blocked By You</h1>
+                <p className='follow-acc'>Unblock to view their profile</p>
+            </div>
+   
+            {openModal2 && <Modal11 closeModal={setOpenModal2} />}  
+            {openModal && <Modal17 userID={userID} setBlocked={setBlocked} closeModal={setOpenModal} />}  
+          </div>
+
+        </body>
+      </div>
+    }
+  </>
   )
 }
 

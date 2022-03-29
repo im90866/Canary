@@ -10,7 +10,7 @@ import TextareaAutosize from 'react-textarea-autosize';
 import WebSocketInstance from '../../JS_Files/websocket'
 
 function Chats1() {
-  const navigate = useNavigate
+  const navigate = useNavigate()
 
   const [chatList, setChatList] = useState([])
   const [messageList, setMessageList] = useState([])
@@ -39,8 +39,11 @@ function Chats1() {
     messagesEndRef.current?.scrollIntoView({ block: "end" })
   }
 
-  const changeChat = (chatID, username, userID) => {
-    navigate('/chatsActive')
+  const changeChat = async (chatID, username, userID) => {
+    window.sessionStorage.setItem("chatID", chatID);
+    window.sessionStorage.setItem("username", username);
+    window.sessionStorage.setItem("userID", userID);
+    navigate('/chats/active')
   }
 
   const sendMessage = async () => {
@@ -122,7 +125,7 @@ function Chats1() {
             <ul className="chatlist">
             {
               chatList.map(chats => 
-              <li className="chatlistli" onClick={() => changeChat(chats.chatID, chats.username, chats.userID)}>
+              <li className="chatlistli" onClick={() => {changeChat(chats.chatID, chats.username, chats.userID)}}>
                 <img src={chats.profilePicture} alt="" className='profile-pic2' />
                 <span className='chatlistlitext'>{chats.username}</span>
               </li>

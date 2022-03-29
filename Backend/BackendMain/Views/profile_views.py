@@ -85,7 +85,28 @@ class GetProfileFeed(APIView):
             'postData': imageList
         })
 
-class blockUser(APIView):
+class IsBlocked(APIView):
+    permission_classes = (permissions.AllowAny, )
+
+    def post(self, request, format=None):
+        data = self.request.data
+
+        user_col = CLIENT_DATABASE['userInfo']
+
+        userVal = user_col.find_one({'_id': ObjectId(data['userID'])})
+
+        if data['otherUserID'] in userVal['blockedList']:
+            return Response({
+                'success': 'Got information',
+                'blocked': True
+            })
+        else:
+            return Response({
+                'success': 'Got information',
+                'blocked': False
+            })
+
+class BlockUser(APIView):
     permission_classes = (permissions.AllowAny, )
 
     def post(self, request, format=None):
@@ -94,54 +115,69 @@ class blockUser(APIView):
         user_col = CLIENT_DATABASE['userInfo']
         post_col = CLIENT_DATABASE['postData']
 
-        user_col.update_one({
-            '_id': ObjectId(data['userID'])
-        }, {
-            '$push': {
-                'blockList': data['otherUserID']
-            }
-        })
+        userVal = user_col.find_one({'_id': ObjectId(data['userID'])})
 
-        user_col.update_one({
-            '_id': ObjectId(data['otherUserID'])
-        }, {
-            '$push': {
-                'blockedByList': data['otherUserID']
-            }
-        })
+        if data['otherUserID'] not in userVal['blockedList']:
+            user_col.update_one({
+                '_id': ObjectId(data['userID'])
+            }, {
+                '$push': {
+                    'blockedList': data['otherUserID']
+                }
+            })
 
-        return Response({
-            'success': 'Blocked user',
-        })
+            user_col.update_one({
+                '_id': ObjectId(data['otherUserID'])
+            }, {
+                '$push': {
+                    'blockedByList': data['otherUserID']
+                }
+            })
 
-class unblockUser(APIView):
+            return Response({
+                'success': 'Blocked user',
+            })
+        else:
+            user_col.update_one({
+                '_id': ObjectId(data['userID'])
+            }, {
+                '$pull': {
+                    'blockedList': data['otherUserID']
+                }
+            })
+
+            user_col.update_one({
+                '_id': ObjectId(data['otherUserID'])
+            }, {
+                '$pull': {
+                    'blockedByList': data['otherUserID']
+                }
+            })
+
+            return Response({
+                'success': 'Unblocked user',
+            })
+
+class IsFollowing(APIView):
     permission_classes = (permissions.AllowAny, )
 
     def post(self, request, format=None):
         data = self.request.data
 
         user_col = CLIENT_DATABASE['userInfo']
-        post_col = CLIENT_DATABASE['postData']
 
-        user_col.update_one({
-            '_id': ObjectId(data['userID'])
-        }, {
-            '$pull': {
-                'blockList': data['otherUserID']
-            }
-        })
+        userVal = user_col.find_one({'_id': ObjectId(data['userID'])})
 
-        user_col.update_one({
-            '_id': ObjectId(data['otherUserID'])
-        }, {
-            '$pull': {
-                'blockedByList': data['otherUserID']
-            }
-        })
-
-        return Response({
-            'success': 'Unlocked user',
-        })
+        if data['otherUserID'] in userVal['following']:
+            return Response({
+                'success': 'Got information',
+                'following': True
+            })
+        else:
+            return Response({
+                'success': 'Got information',
+                'blocked': False
+            })
 
 class FollowUser(APIView):
     permission_classes = (permissions.AllowAny, )
@@ -150,7 +186,6 @@ class FollowUser(APIView):
         data = self.request.data
     
         user_col = CLIENT_DATABASE['userInfo']
-        
 
         userVal = user_col.find_one({'_id': ObjectId(data['userID'])})
 

@@ -59,6 +59,13 @@ function Postbig({ closeModal}) {
     });
   }
 
+  const goToProfile = async () => {
+    await axios.get('http://localhost:8000/getUserID/' + uploader.username).then((res) => {
+      console.log(username)
+      navigate('/profile' + '/' + res.data['userID'])
+    });
+  }
+
   const sendComment = async () => {
     if(commentVal != "") {
       const req = {
@@ -165,7 +172,7 @@ function Postbig({ closeModal}) {
           <div className="post-bigdet">
             <div className="post-bigdetails">
               <div className="profile-post">
-                <div className="profilepost-img">
+                <div className="profilepost-img" onClick={goToProfile}>
                   <img src={uploader.profilePicture} alt="" className='ppimg'/>
                   <h4 className="ppname">{uploader.username}</h4>
                   {
