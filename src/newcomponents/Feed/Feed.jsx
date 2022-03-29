@@ -9,18 +9,28 @@ function Feed(prop) {
   const cache = prop.cache
   const setCache = prop.setCache
 
-  const [posts, setPosts] = useState([])
+  const [discoverPosts, setDiscoverPosts] = useState([])
+  const [hotPosts, setHotPosts] = useState([])
+  const [followingPosts, setFollowingPosts] = useState([])
 
   useEffect(() => {
     if(!('homePosts' in cache)) {
       axios.get("http://localhost:8000/getFeed/" + String(getCookie('userID')))
         .then((res) => {
             if (res.data["success"]) {
-                setPosts(res.data['posts'])
+                setDiscoverPosts(res.data['discoverPosts'])
+                setHotPosts(res.data['hotPosts'])
+                if(res.data['followingPosts'])
+                  setFollowingPosts(res.data['followingPosts'])
 
-                cache['homePosts'] = res.data['posts']
+                cache['discoverPosts'] = res.data['discoverPosts']
+                cache['hotPosts'] = res.data['hotPosts']
+                cache['followingPosts'] = res.data['followingPosts']
+
+                console.log(res.data['followingPosts'])
+
                 setCache(cache)
-                console.log(res.data['posts'])
+                console.log(res.data['discoverPosts'])
             }
             else
                 console.log("Error: ")
@@ -29,14 +39,25 @@ function Feed(prop) {
     else {
       let postList = []
 
-      for(let i = 0; i < cache['homePosts'].length; ++i){
-        postList.push(cache['homePosts'][i]['postID'])
+      for(let i = 0; i < cache['discoverPosts'].length; ++i){
+        postList.push(cache['discoverPosts'][i]['postID'])
       }
+
+      for(let i = 0; i < cache['hotPosts'].length; ++i){
+        postList.push(cache['hotPosts'][i]['postID'])
+      }
+
+      for(let i = 0; i < cache['followingPosts'].length; ++i){
+        postList.push(cache['followingPosts'][i]['postID'])
+      }
+
       const request = {
         'postList': postList
       }
 
-      setPosts(cache['homePosts'])
+      setDiscoverPosts(cache['discoverPosts'])
+      setHotPosts(cache['hotPosts'])
+      setFollowingPosts(cache['followingPosts'])
 
       axios.post("http://localhost:8000/getFeedLikes/", request)
               .then((res) => {
@@ -56,7 +77,7 @@ function Feed(prop) {
                       }
                     }
 
-                    setPosts(val['homePosts'])
+                    //etPosts(val['homePosts'])
                     setCache(val)
                   }
                   else
@@ -70,30 +91,43 @@ function Feed(prop) {
     <div className="feed-container">
       {/* <CreatePost/> */}
       <div className="explore-title">
-        <h1 className='etitle'>Recommended For You <AiOutlineArrowRight className='arrow' /></h1>
+        <h1 className='etitle'>Discover New Works <AiOutlineArrowRight className='arrow' /></h1>
       </div>
       <div className="wrapper1">
-
         {
-          posts.map(p => (
+          discoverPosts.map(p => (
             <Post key={p.postID} post={p} />
           ))
         }
-
       </div>
-      <div className="explore-title">
-        <h1 className='etitle'>Recommended For You  <AiOutlineArrowRight className='arrow' /></h1>
 
+      <div className="explore-title">
+        <h1 className='etitle'>Popular Posts right now <AiOutlineArrowRight className='arrow' /></h1>
       </div>
       <div className="wrapper1">
-
         {
-          posts.map(p => (
-            <Post key={p.postID} post={p}/>
+          hotPosts.map(p => (
+            <Post key={p.postID} post={p} />
           ))
         }
-
       </div>
+
+      {
+        followingPosts.length > 0 &&
+        <>
+          <div className="explore-title">
+            <h1 className='etitle'>From Profiles You Follow <AiOutlineArrowRight className='arrow' /></h1>
+          </div>
+          <div className="wrapper1">
+
+            {
+              followingPosts.map(p => (
+                <Post key={p.postID} post={p}/>
+              ))
+            }
+          </div>
+        </>
+      }
     </div>
   )
 }

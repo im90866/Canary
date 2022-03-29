@@ -12,6 +12,8 @@ function Profileothers() {
   const userID = useParams()['userID']
   const [PFP, setPFP] = useState("")
   const [images, setImages] = useState([])
+  const [following, setFollowing] = useState([])
+  const [followers, setFollowers] = useState(0)
   const [username, setUsername] = useState("")
   const [openModal, setOpenModal] = useState(false);
   const [openModal2, setOpenModal2] = useState(false);
@@ -29,6 +31,27 @@ function Profileothers() {
 
     navigate('/chats')
   }
+
+  const follow = async () => {
+    const req = {
+      'userID': getCookie('userID'),
+      'otherUserID': userID
+    }
+
+    await axios.post('http://localhost:8000/followUser/', req).then((res) => {
+      if(res.data['success']){
+        if(res.data['follow']) {
+          setFollowing(true)
+          setFollowers(followers + 1)
+        }
+        else {
+          setFollowing(false)
+          setFollowers(followers - 1)
+        }
+      }
+    });
+
+  }
   
   useEffect(() => {
     setPFP("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPEAAADRCAMAAAAquaQNAAAAA1BMVEX///+nxBvIAAAAR0lEQVR4nO3BMQEAAADCoPVP7WULoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABuxZIAAeHuCGgAAAAASUVORK5CYII=")
@@ -38,6 +61,7 @@ function Profileothers() {
 
     axios.get('http://localhost:8000/getUsername/'+ userID).then((res) => {
       setUsername(res.data['username'])
+      setFollowers(res.data['followers'])
     });
 
     axios.get("http://localhost:8000/getProfilePicture/" + userID).then((res) => {
@@ -66,12 +90,12 @@ function Profileothers() {
 
         <h1 className="profile-user2">{username}</h1>
         <div className="follower-info">
-             <h1 className='follow-numbers'>0</h1>
+             <h1 className='follow-numbers'>{followers}</h1>
              <h1 className='followers'>Followers</h1>
          </div>
         <div className="btn-class2">
         <button className="editp1" onClick={() => {messageUser()}}>Message</button>
-        <button className="editp1">Follow</button>
+        <button className="editp1" onClick={() => follow()}>Follow</button>
         <div class="dropdown-block3">
         <BsThreeDots className='three-dots4' class="dropdowns3" />
         <div class="dropdown-content3">

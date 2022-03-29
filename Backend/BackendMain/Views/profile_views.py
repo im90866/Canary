@@ -138,3 +138,63 @@ class unblockUser(APIView):
                 'blockedByList': data['otherUserID']
             }
         })
+
+        return Response({
+            'success': 'Unlocked user',
+        })
+
+class FollowUser(APIView):
+    permission_classes = (permissions.AllowAny, )
+
+    def post(self, request, format=None):
+        data = self.request.data
+    
+        user_col = CLIENT_DATABASE['userInfo']
+        
+
+        userVal = user_col.find_one({'_id': ObjectId(data['userID'])})
+
+        if data['otherUserID'] not in userVal['following']:
+            user_col.update_one({
+                '_id': ObjectId(data['userID'])
+            }, {
+                '$push': {
+                    'following': data['otherUserID']
+                }
+            })
+
+            user_col.update_one({
+                '_id': ObjectId(data['otherUserID'])
+            }, {
+                '$push': {
+                    'followedBy': data['userID']
+                }
+            })
+            return Response({
+                'success': 'Followed user',
+                'follow': True
+            })
+        else:
+            user_col.update_one({
+                '_id': ObjectId(data['userID'])
+            }, {
+                '$pull': {
+                    'following': data['otherUserID']
+                }
+            })
+
+            user_col.update_one({
+                '_id': ObjectId(data['otherUserID'])
+            }, {
+                '$pull': {
+                    'followedBy': data['userID']
+                }
+            })
+
+            return Response({
+                'success': 'Unfollowed user',
+                'follow': False
+            })
+
+        
+

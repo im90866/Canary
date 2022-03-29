@@ -28,6 +28,9 @@ class userInfo():
     _likedPosts = []
     _seenPosts = []
 
+    _following = []
+    _followedBy = []
+
     _chatList = []
     _userSettings = {}
     _DOB = ""
@@ -79,6 +82,8 @@ class userInfo():
             "requestList": self._requestList,
             "blockedList": self._blockedList,
             "blockedByList": self._blockedByList,
+            "following": self._following,
+            "followedBy": self._followedBy,
             "seenPosts": self._seenPosts,
             "likedPosts": self._likedPosts,
             "userSettings" : self._userSettings,

@@ -23,13 +23,16 @@ class GetUsername(APIView):
     def get(self, request, userID, format=None):
         user_col = CLIENT_DATABASE['userInfo']
 
-        username = user_col.find_one({'_id': ObjectId(userID)})['username']
+        userVal = user_col.find_one({'_id': ObjectId(userID)})
+        username = userVal['username']
+        followedBy = len(userVal['followedBy'])
 
         print(username)
 
         return Response({
             'success': 'Obtained username',
             'username': username,
+            'followers': followedBy
         })
 
 class GetUserID(APIView):

@@ -64,63 +64,81 @@ class GetHomePosts(APIView):
         meta_col = CLIENT_DATABASE['imageData']
 
         FS = gridfs.GridFS(CLIENT_DATABASE)
+        print(userID)
+        postCount = 0
+        followPost = []
+        following = user_col.find_one({'_id': ObjectId(userID)})['following']
 
-        allPosts = post_col.find({})
-        postList = []
+        if following != None:
+            for user in following:
+                if postCount > 4:
+                    break
+                posts = user_col.find_one({'_id': ObjectId(user)})['postID']
+                for post in posts:
+                    if postCount > 4:
+                        break
+                    postVal = post_col.find_one({'_id': ObjectId(post)})
+                    followPost.append(postVal)
+                    postCount += 1
 
-        counter = 0
-        for val in allPosts:
-            metaval = meta_col.find_one({'_id': ObjectId(val['metadataID'])})
-            imageVal = FS.get(metaval['imageID'])
+        discoverPosts = post_col.aggregate([{'$sample': {'size': 4}}])
+        hotPosts = post_col.find().sort('likes', -1).limit(4)
+        followingPosts = followPost
 
-            updatedUpload = str(datetime.now() - datetime.strptime(val['uploadTime'], '%Y-%m-%d %H:%M:%S'))
-
-            memberList =[]
-            for id in val['memberList']:
-                memberVal = user_col.find_one({'_id': ObjectId(id['id'])})
-
-                imageValue = FS.get(ObjectId(memberVal['profilePictureID']))
-                imageValue = resizeImage(imageValue, 300)
-
-                memberList.append({
-                    'username': memberVal['username'],
-                    'profilePicture': imageValue
-                })
-
-            postData = {
-                'postID' : json.loads(json_util.dumps(val['_id']))['$oid'],
-                'imageVal' : imageVal,
-                "memberList" : memberList,
-                "uploadTime" : updatedUpload,
-                "caption" : val['caption'],
-                "likedBy" : val['likedBy'],
-                "likes" : val['likes'],
-                "comments" : val['comments'],
-            }
-
-            print('sent')
-
-            """
-            postData = {
-                'postID' : json.loads(json_util.dumps(val['_id']))['$oid'],
-                'projectID' : val['projectID'],
-                'imageVal' : imageVal,
-                "uploader" : val['uploader'],
-                "uploadTime" : upadatedUpload,
-                "caption" : val['caption'],
-                "likedBy" : val['likedBy'],
-                "likes" : val['likes'],
-                "comments" : val['comments'],
-                "engagement" : val['engagement'],
-            }
-            """
-
-            postList.append(postData)
-
+        discoverList = getPostData(discoverPosts)
+        hotList = getPostData(hotPosts)
+        followingList = getPostData(followingPosts)
+        
         return Response({
             'success': 'Home feed posts recieved',
-            'posts' : postList,
+            'discoverPosts' : discoverList,
+            'hotPosts': hotList,
+            'followingPosts': followingList
         })
+
+def getPostData(postVal):
+    user_col = CLIENT_DATABASE['userInfo']
+    post_col = CLIENT_DATABASE['postData']
+    meta_col = CLIENT_DATABASE['imageData']
+
+    FS = gridfs.GridFS(CLIENT_DATABASE)
+
+    postList = []
+
+    for val in postVal:
+        metaval = meta_col.find_one({'_id': ObjectId(val['metadataID'])})
+        imageVal = FS.get(metaval['imageID'])
+
+        updatedUpload = str(datetime.now() - datetime.strptime(val['uploadTime'], '%Y-%m-%d %H:%M:%S'))
+
+        memberList =[]
+        for id in val['memberList']:
+            memberVal = user_col.find_one({'_id': ObjectId(id['id'])})
+
+            imageValue = FS.get(ObjectId(memberVal['profilePictureID']))
+            imageValue = resizeImage(imageValue, 300)
+
+            memberList.append({
+                'username': memberVal['username'],
+                'profilePicture': imageValue
+            })
+
+        postData = {
+            'postID' : json.loads(json_util.dumps(val['_id']))['$oid'],
+            'imageVal' : imageVal,
+            "memberList" : memberList,
+            "uploadTime" : updatedUpload,
+            "caption" : val['caption'],
+            "likedBy" : val['likedBy'],
+            "likes" : val['likes'],
+            "comments" : val['comments'],
+        }
+
+        print('sent')
+        postList.append(postData)
+    
+    return postList
+
 
 class GetFeedLikes(APIView):
     permission_classes = (permissions.AllowAny, )
