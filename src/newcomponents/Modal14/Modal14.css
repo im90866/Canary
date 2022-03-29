@@ -27,30 +27,46 @@
     width: 100%;
     height: 300px;
    position: relative;
-   top:100px;
+   top:200px;
+   left: 500px;
 
 }
+.titleCloseBtn14{
+    display: flex;
+    justify-content: flex-end;
+    cursor: pointer;
+}
+.titleCloseBtn14 button {
+    background-color: transparent;
+    border: none;
+    font-size: 35px;
+    cursor: pointer;
+    position: relative;
+    top:-20px;
+    left: 600px;
+  }
+.cross14{
+    font-size:30px ;
+    position: absolute;
+    top:100px;
+}
 @media (max-width: 900px){
-    .modalContainer14{
-        width: 350px;
-        height: 300px;
-        border-radius: 12px;
-        background-color: #Ffff;
-        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-        display: flex;
-        flex-direction: column;
-       
-        padding: 25px;
-       position: relative;
-       top:100px;
-       left: -170px;
-    }
+    
     .wimg1{
         width: 80%;
         height: 250px;
        position: relative;
-       top:70px;
-       left: -70px;
+       top:150px;
+       left: 10px;
     
     }
+    .titleCloseBtn14 button {
+        background-color: transparent;
+        border: none;
+        font-size: 35px;
+        cursor: pointer;
+        position: relative;
+        top:50px;
+        left: 600px;
+      }
 }

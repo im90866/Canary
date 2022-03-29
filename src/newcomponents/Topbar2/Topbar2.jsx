@@ -1,4 +1,4 @@
-import "./Topbar.css";
+
 import { FaSearch, FaHome } from 'react-icons/fa'
 import { RiChatSmile2Fill, RiContactsBookLine } from "react-icons/ri"
 import { BsFillPlusCircleFill, BsPlusCircle } from "react-icons/bs"
@@ -13,7 +13,7 @@ import { IconContext } from 'react-icons';
 import { IoIosNotificationsOutline, IoIosArrowForward } from "react-icons/io";
 import Modal4 from "../Modal4/Modal4";
 import ListGroup from 'react-bootstrap/ListGroup'
-import Res from './Res'
+
 import { useMediaQuery } from 'react-responsive';
 import Sidebar from "../Sidebar/Sidebar";
 import Sidebar2 from "../Sidebar2/Sidebar2";
@@ -23,11 +23,10 @@ import { BsCheck } from "react-icons/bs";
 import { IoMdArrowBack } from "react-icons/io"
 import Modal11 from "../Modal11/Modal11";
 import Modal12 from "../Modal12/Modal12";
-import Modal16 from "../Modal16/Modal16";
 
 const isMobileContext = createContext()
 
-function Topbar(prop) {
+function Topbar2(prop) {
   const navigate = useNavigate()
 
   const cache = prop.cache
@@ -35,7 +34,6 @@ function Topbar(prop) {
 
   const [openModal, setOpenModal] = useState(false);
   const [openModal3, setOpenModal3] = useState(false);
-  const [openModal4, setOpenModal4] = useState(false);
   const isMobile = useMediaQuery({ query: `(max-width: 800px)` })
   const [showSidebar, setShowSidebar] = useState(false)
   const location = useLocation()
@@ -242,17 +240,13 @@ function Topbar(prop) {
 
         <div className="topbarRight">
           <div className="topbarIcons">
-          <div className="topbarIconItem">
-              <AiOutlineMail className="icons13"
-              onClick={() =>
-                setOpenModal4(true)} />
-            </div>
+
             <div className="topbarIconItem">
               <BsPlusCircle className="icons12"
                 onClick={(e) => { setOpenModal3(!openModal3); e.stopPropagation() }} />
             </div>
             <div className="topbarIconItem">
-              <IoIosNotificationsOutline className="noti-icon"
+              <IoIosNotificationsOutline
                 onClick={(e) => { openClose(); e.stopPropagation() }}
               />
               <div ref={notifRef}>
@@ -331,7 +325,7 @@ function Topbar(prop) {
 
           </div>
         </div>
-  
+
       </div>
       {
         !isMobile
@@ -367,7 +361,6 @@ function Topbar(prop) {
             null
       }
       {openModal3 && <Modal12 closeModal={setOpenModal3} />}
-      {openModal4 && <Modal16 closeModal={setOpenModal4} />}
     </>
   );
 }
@@ -392,5 +385,5 @@ function isNotEmpty(val) {
 }
 
 
-export default Topbar
+export default Topbar2
 export { isMobileContext }
