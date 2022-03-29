@@ -14,17 +14,17 @@ function Feed(prop) {
   useEffect(() => {
     if(!('homePosts' in cache)) {
       axios.get("http://localhost:8000/getFeed/" + String(getCookie('userID')))
-              .then((res) => {
-                  if (res.data["success"]) {
-                      setPosts(res.data['posts'])
+        .then((res) => {
+            if (res.data["success"]) {
+                setPosts(res.data['posts'])
 
-                      cache['homePosts'] = res.data['posts']
-                      setCache(cache)
-                      console.log(res.data['posts'])
-                  }
-                  else
-                      console.log("Error: ")
-              })
+                cache['homePosts'] = res.data['posts']
+                setCache(cache)
+                console.log(res.data['posts'])
+            }
+            else
+                console.log("Error: ")
+        })
     }
     else {
       let postList = []

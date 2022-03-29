@@ -54,12 +54,28 @@ class LikePost(APIView):
                     'likedBy' : data['userID']
                 }
             })
+
+            user_col.update_one({
+                '_id': ObjectId(data['userID'])
+            }, {
+                '$push' : {
+                    'likedPosts': data['postID']
+                }
+            })
         else:
             post_col.update_one({
                 '_id' : ObjectId(data['postID'])
             }, {
                 '$pull' : {
                     'likedBy' : data['userID']
+                }
+            })
+
+            user_col.update_one({
+                '_id': ObjectId(data['userID'])
+            }, {
+                '$pull' : {
+                    'likedPosts': data['postID']
                 }
             })
 
@@ -271,6 +287,15 @@ class DeletePost(APIView):
             }, {
                 '$pull': {
                     'postID': data['postID']
+                }
+            })
+
+        for user in postVal['likedBy']:
+            user_col.update_one({
+                '_id': ObjectId(user)
+            }, {
+                '$pull' : {
+                    'likedPosts': data['postID']
                 }
             })
 

@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'BackendMain',
     'rest_framework',
     'corsheaders',
-    'channels'
 ]
 
 MIDDLEWARE = [
@@ -73,26 +72,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'CanaryBackend.wsgi.application'
-ASGI_APPLICATION = 'CanaryBackend.asgi.application'
-
-CHANNEL_LAYERS = {
-    "default": {
-        "BACKEND": "channels_redis.core.RedisChannelLayer",
-        "CONFIG": {
-            "hosts": ['redis://localhost:6379/4']
-        }
-    },
-}
-
-CACHES = {
-    "default": {
-        "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": os.environ.get('REDIS_URL'),
-        "OPTIONS": {
-            "CLIENT_CLASS": "django_redis.client.DefaultClient",
-        }
-    }
-}
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases

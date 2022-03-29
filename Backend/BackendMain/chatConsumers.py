@@ -33,7 +33,6 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 
                 self.userID = str(text)
                 userID = str(text)
-                print(userID)
                 
         # Join your own userID group
         try:

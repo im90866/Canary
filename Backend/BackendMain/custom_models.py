@@ -13,7 +13,7 @@ class userInfo():
     _password = ""
     _fullname = ""
     _email = ""
-    _profilePictureID = ObjectId("6228f291957de3501a1e7fd7")
+    _profilePictureID = ObjectId("6242ebdd952aac1d7585a58d")
     _userDetails = {}
     _postID = []
     _projectID = []
@@ -24,6 +24,9 @@ class userInfo():
 
     _blockedList = []
     _blockedByList = []
+
+    _likedPosts = []
+    _seenPosts = []
 
     _chatList = []
     _userSettings = {}
@@ -76,6 +79,8 @@ class userInfo():
             "requestList": self._requestList,
             "blockedList": self._blockedList,
             "blockedByList": self._blockedByList,
+            "seenPosts": self._seenPosts,
+            "likedPosts": self._likedPosts,
             "userSettings" : self._userSettings,
             "DOB": self._DOB
         }

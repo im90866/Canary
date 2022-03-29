@@ -5,9 +5,12 @@ import base64
 import pymongo
 import re
 import datetime
-
+"""
 client = pymongo.MongoClient("mongodb+srv://User1:password1234@zinasktest.uxarp.mongodb.net/mainDB?retryWrites=true&w=majority", 
-        serverSelectionTimeoutMS=5000, maxPoolSize = 1000)
+        serverSelectionTimeoutMS=5000, maxPoolSize = 10000)
+"""
+client = pymongo.MongoClient("mongodb+srv://User1:password1234@cluster0.xzj5i.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", 
+        serverSelectionTimeoutMS=5000, maxPoolSize = 10000)
 
 # Helper functions
 def getClient():

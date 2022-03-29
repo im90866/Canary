@@ -68,6 +68,7 @@ class GetHomePosts(APIView):
         allPosts = post_col.find({})
         postList = []
 
+        counter = 0
         for val in allPosts:
             metaval = meta_col.find_one({'_id': ObjectId(val['metadataID'])})
             imageVal = FS.get(metaval['imageID'])
@@ -97,6 +98,8 @@ class GetHomePosts(APIView):
                 "comments" : val['comments'],
             }
 
+            print('sent')
+
             """
             postData = {
                 'postID' : json.loads(json_util.dumps(val['_id']))['$oid'],
@@ -110,7 +113,6 @@ class GetHomePosts(APIView):
                 "comments" : val['comments'],
                 "engagement" : val['engagement'],
             }
-
             """
 
             postList.append(postData)

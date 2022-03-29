@@ -55,6 +55,7 @@ urlpatterns = [
 
     # Home Views
     path('getFeed/<str:userID>', GetHomePosts.as_view()),
+    #path('getIndivPosts/<str:postID>/<str:userID>', GetIndividualPosts.as_view()),
     path('search/<str:value>', SearchProfiles.as_view()),
     path('getNotifications/<str:userID>', GetNotifications.as_view()),
     path('getFeedLikes/', GetFeedLikes.as_view()),
