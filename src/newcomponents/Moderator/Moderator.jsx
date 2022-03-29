@@ -1,9 +1,16 @@
 import React from 'react'
 import"./Moderator.css"
+import Sidebar from "../Sidebar/Sidebar"
+
+import Topbar2 from '../Topbar2/Topbar2'
+import Topbar from '../Topbar/Topbar'
 function Moderator() {
   return (
     <div>
     <body className="profilecc">
+    <Topbar2/> 
+      <Sidebar/>
+  
     <div className="profile-container">
         <div className="profileconc">
       
