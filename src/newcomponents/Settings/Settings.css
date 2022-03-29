@@ -223,12 +223,16 @@ white-space: nowrap;
 }
 .change-text4{
     border: none;
-    background-color: #efefef;
+    background-color: #d6d6d6;
     padding: 8px 20px;
     margin-left: 47px;
     border-radius: 5px;
     width: 300px;
     margin-top: 20px;
+    user-select: none;
+    cursor:default;
+    caret-color: transparent;
+    pointer-events:none;
 }
 .date{
     margin-left: 50px;

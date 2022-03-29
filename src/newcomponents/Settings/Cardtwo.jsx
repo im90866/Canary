@@ -224,7 +224,6 @@ import Moda7 from '../Modal7/Moda7';
               type="email" 
               className='change-text4' 
               name="Email" 
-              onChange={handleEmailInputChange}  
               value={values.email} 
             />
           </div>

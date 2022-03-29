@@ -41,23 +41,24 @@ class CreateImage(APIView):
         projectImageID = (meta_col.insert_one(projectImageModel.getModel())).inserted_id
         projectImageID = json.loads(json_util.dumps(projectImageID))['$oid']
 
-        proj= (proj_col.find_one({'_id' : ObjectId(data['projectID'])}))
-        root = folder_col.find_one({'_id' : ObjectId(proj['projectRoot'])})
+        if 'projectID' in data:
+            proj= (proj_col.find_one({'_id' : ObjectId(data['projectID'])}))
+            root = folder_col.find_one({'_id' : ObjectId(proj['projectRoot'])})
 
-        targetFolder = ""
+            targetFolder = ""
 
-        if len(data['currentPath']) == 1 :
-            targetFolder = root
-        else:
-            targetFolder = searchFoldersWithPath(root, data['currentPath'], folder_col)
+            if len(data['currentPath']) == 1 :
+                targetFolder = root
+            else:
+                targetFolder = searchFoldersWithPath(root, data['currentPath'], folder_col)
 
-        newImageList = [projectImageID] + targetFolder['imageList']
+            newImageList = [projectImageID] + targetFolder['imageList']
 
-        folder_col.update_one(targetFolder, {
-            '$set' : {
-                'imageList' : newImageList
-            }
-        })
+            folder_col.update_one(targetFolder, {
+                '$set' : {
+                    'imageList' : newImageList
+                }
+            })
 
             #image = FS.get(imageID)
         #except:
@@ -282,28 +283,51 @@ class PostImage(APIView):
         post_col = CLIENT_DATABASE['postData']
         proj_col = CLIENT_DATABASE['projectData']
 
-        projectVal = proj_col.find_one({'_id': ObjectId(data['projectID'])})
-        
-        newPost = post(data, projectVal['projectMembers']).getModel()
-        if 'isRemix' in projectVal:
-            newPost['remixPostID'] = projectVal['originalPost']
+        if 'projectID' in data:
+            projectVal = proj_col.find_one({'_id': ObjectId(data['projectID'])})
+            
+            newPost = post(data, projectVal['projectMembers']).getModel()
+            if 'isRemix' in projectVal:
+                newPost['remixPostID'] = projectVal['originalPost']
 
-        postID = post_col.insert_one(newPost).inserted_id
-        postID = json.loads(json_util.dumps(postID))['$oid']
-        
-        for x in projectVal['projectMembers']:
-            userVal = user_col.find_one({'_id': ObjectId(x['id'])}) # SUBJECT TO CHANGE - CHANGE TO ALL USERS INSTEAD OF JUST ADMIN
-            newPostVal = [postID] + userVal['postID'] 
+            postID = post_col.insert_one(newPost).inserted_id
+            postID = json.loads(json_util.dumps(postID))['$oid']
+            
+            for x in projectVal['projectMembers']:
+                userVal = user_col.find_one({'_id': ObjectId(x['id'])}) # SUBJECT TO CHANGE - CHANGE TO ALL USERS INSTEAD OF JUST ADMIN
+                newPostVal = [postID] + userVal['postID'] 
 
-            user_col.update_one(userVal, {
-                '$set' : {
-                    'postID' : newPostVal
+                user_col.update_one(userVal, {
+                    '$set' : {
+                        'postID' : newPostVal
+                    }
+                })
+
+            return Response({ 
+                'success': 'Post added',
+            })
+        else:
+
+            username = user_col.find_one({'_id': ObjectId(data['userID'])})['username']
+            newPost = post(data, [{'id': data['userID'], 'username': username}]).getModel()
+
+            postID = post_col.insert_one(newPost).inserted_id
+            postID = json.loads(json_util.dumps(postID))['$oid']
+
+            user_col.update_one({
+                '_id': ObjectId(data['userID'])
+            }, {
+                '$push' : {
+                    'postID' : {
+                        '$each': [postID],
+                        '$position': 0
+                    }
                 }
             })
-
-        return Response({ 
-            'success': 'Post added',
-        })
+            
+            return Response({ 
+                'success': 'Post added',
+            })
 
         """
         for x in projectVal['projectMembers']:

@@ -129,7 +129,10 @@ class projectImage():
 
     def __init__(self, jsonFile): 
         self._imageID = jsonFile['imageID']
-        self._projectID = jsonFile['projectID']
+        try:
+            self._projectID = jsonFile['projectID']
+        except:
+            pass
         self._imageName = jsonFile['fileName']
         self._uploadedTime = jsonFile['uploadedTime']
         self._uploader = jsonFile['uploader']
@@ -139,13 +142,15 @@ class projectImage():
     def getModel(self):
         model = {
             'imageID' : self._imageID,
-            'projectID' : self._projectID,
             'fileName' : self._imageName,
             'uploadedTime' : self._uploadedTime,
             'uploader' : self._uploader,
             'fileSize' : self._fileSize,
             'fileType' : self._fileType,
         }
+
+        if self._projectID != "":
+            model['projectID'] = self._projectID
 
         return model
     
@@ -212,7 +217,6 @@ class post():
 
     def getModel(self):
         model = {
-            'projectID' : self._fromProjectID,
             'metadataID' : self._metadataID,
             "memberList" : self._memberList,
             "uploadTime" : self._uploadTime,
@@ -222,6 +226,9 @@ class post():
             "comments" : self._comments,
             "engagement" : self._engagement,
         }
+
+        if self._fromProjectID != "":
+            model['projectID'] = self._fromProjectID,
 
         return model
 
