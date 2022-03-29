@@ -168,7 +168,7 @@ function ProjectSettings() {
                 {
                   isAdmin 
                     && member['id'] != getCookie('userID')
-                    && <button className='remove-mem'>Remove</button>
+                    && <button className='remove-mem1'>Remove</button>
                 }
                 
                 </div>

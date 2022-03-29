@@ -1,5 +1,6 @@
 import React from 'react'
 import"./Modal10.css"
+import { Link} from 'react-router-dom'
 function Modal10({closeModal}) {
   return (
     <div>
@@ -21,7 +22,7 @@ function Modal10({closeModal}) {
         
          <div className="div-blockbtns1">
              <button className="bbtn1">Cancel</button>
-             <button className="bbtn1">Block</button>
+             <button className="bbtn1"><Link to="/blockedacc">Block</Link></button>
          </div>
         </div>
       </div>

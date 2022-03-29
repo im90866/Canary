@@ -80,18 +80,18 @@
 .Remove2{
     /* display: flex; */
 }
-.remove-mem{
+.remove-mem1{
     width: 100px;
     background-color: #f7b53b;
     border: 1px solid #ffb53b;
     border-radius: 40px;
     color: #fff;
     height:25px;
-    position: absolute;
+    /* position: absolute;
     top:120px;
-    left: 400px;
+    left: 400px; */
 }
-.remove-mem:hover{
+.remove-mem1:hover{
     background-color: #ffffff;
     color: #ffb53b;
 }
@@ -134,15 +134,15 @@
         align-items: center;
         margin-left: 25px;
     }
-    .remove-mem{
-        width: 100px;
+    .remove-mem1{
+        /* width: 100px;
         background-color: #f7b53b;
         border: 1px solid #ffb53b;
         border-radius: 40px;
         color: #fff;
         height:25px;
-        position: relative;
-        top:-35px;
-        left: 200px;
+        position: absolute;
+        top:-55px;
+        left: 200px; */
     }
 }
