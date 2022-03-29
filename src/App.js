@@ -45,6 +45,7 @@ import Team2 from './newcomponents/Team/Team2';
 import Team3 from './newcomponents/Team/Team3';
 import Moderator from './newcomponents/Moderator/Moderator';
 import BlockedAcc from './newcomponents/BlockedAccount/BlockedAcc';
+import Feed2 from './newcomponents/Feed2/Feed2';
 
 function App() {
 
@@ -148,7 +149,7 @@ function App() {
                             <Route path="/explore" element={<Explore />} />
 
                             <Route path="/post/:id" element={<Postbig />} />
-
+                            <Route path="/feed2" element={<Feed2 />} />
 
                             <Route path="/resetpassword" element={<Resetpassword />} />
                             <Route path="/privacy" element={<Cardsix />} />
@@ -157,6 +158,7 @@ function App() {
                             <Route path="/deleteproject" element={<Team3 />} />
                             <Route path="/moderator" element={<Moderator />} />
                             <Route path="/blockedacc" element={<BlockedAcc />} />
+                           
                         </Routes>
                     </>
                     :

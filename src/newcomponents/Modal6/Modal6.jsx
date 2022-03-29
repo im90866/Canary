@@ -167,13 +167,13 @@ function Modal6(props) {
           </div>
 
           <h4 className='resend'>
-            Didn't receive the code yet? 
+            Didn't receive the code yet?
+         
           </h4>
-          <h4 className='resend' onClick={resendCode}>Resend code</h4>
-          
+          <h4 className='resend2' onClick={resendCode}>Resend code</h4>
 
           <button className='folder-btn60' onClick={verifyCode}>Verify Account</button>
-          <div className='back-login' onClick={goBack}>Back </div>
+          <div className='back-login' onClick={goBack}>Back to Login</div>
   
           </div>
         </div>
