@@ -1,5 +1,5 @@
 import React, {useRef, useEffect, useState} from 'react'
-import { Link} from 'react-router-dom'
+import { Link, useNavigate} from 'react-router-dom'
 import Message from '../Message/Message'
 import "./Chats1.css"
 
@@ -10,6 +10,8 @@ import TextareaAutosize from 'react-textarea-autosize';
 import WebSocketInstance from '../../JS_Files/websocket'
 
 function Chats1() {
+  const navigate = useNavigate
+
   const [chatList, setChatList] = useState([])
   const [messageList, setMessageList] = useState([])
 
@@ -37,33 +39,8 @@ function Chats1() {
     messagesEndRef.current?.scrollIntoView({ block: "end" })
   }
 
-  const changeChat = async (chatID, username, userID) => {
-    await axios.get("http://localhost:8000/getMessages/" + String(chatID) + '/' + String(getCookie('userID') + '/' + userID) )
-      .then((res) => {
-        if (res.data["success"]) {
-            setCurrentChatID(chatID)
-            setCurrentUser(username)
-            setCurrentUserID(userID)
-            setCurrentUserPicture(res.data['otherProfilePicture'])
-
-            let counter = 0;
-            for(var i in chatList){
-              if(chatList[i].userID == userID){
-                  let val = chatList
-                  val[i].messageList = res.data['messageList']
-
-                  setChatList(val)
-                  break;
-              }
-              counter += 1
-            }
-            console.log(res.data['messageList'])
-            setMessageList(res.data['messageList'])
-            scrollToBottom()
-        }
-        else
-            console.log("Error: ")
-      })
+  const changeChat = (chatID, username, userID) => {
+    navigate('/chatsActive')
   }
 
   const sendMessage = async () => {
@@ -145,7 +122,7 @@ function Chats1() {
             <ul className="chatlist">
             {
               chatList.map(chats => 
-              <li className="chatlistli" onClick={() => {changeChat(chats.chatID, chats.username, chats.userID)}}>
+              <li className="chatlistli" onClick={() => changeChat(chats.chatID, chats.username, chats.userID)}>
                 <img src={chats.profilePicture} alt="" className='profile-pic2' />
                 <span className='chatlistlitext'>{chats.username}</span>
               </li>

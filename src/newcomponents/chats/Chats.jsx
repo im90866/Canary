@@ -92,6 +92,11 @@ function Chats() {
 
   useEffect(() => {
     if(updater['unused']) {
+      let chatID = window.sessionStorage.getItem("chatID");
+      let username = window.sessionStorage.getItem("username");
+      let userID = window.sessionStorage.getItem("userID");
+
+      
       axios.get("http://localhost:8000/getChat/" + String(getCookie('userID')))
         .then((res) => {
           if (res.data["success"]) {
@@ -104,6 +109,8 @@ function Chats() {
           else
               console.log("Error: ")
         })
+
+      changeChat(chatID, username, userID)
       WebSocketInstance.connect(setUpdater)
     }
     else {

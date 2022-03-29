@@ -46,6 +46,7 @@ import Team3 from './newcomponents/Team/Team3';
 import Moderator from './newcomponents/Moderator/Moderator';
 import BlockedAcc from './newcomponents/BlockedAccount/BlockedAcc';
 import Feed2 from './newcomponents/Feed2/Feed2';
+import Chats1 from './newcomponents/Chats1/Chats1';
 
 function App() {
 
@@ -144,7 +145,8 @@ function App() {
                             <Route path="/changepassword" element={<Cardthree />} />
                             <Route path="/blocked" element={<Cardfour />} />
                             <Route path="/delete" element={<Cardfive />} />
-                            <Route path="/chats" element={<Chats />} />
+                            <Route path="/chats" element={<Chats1 />} />
+                            <Route path="/chat/active" element={<Chats />} />
                             <Route path="/:id/teamchats" element={<Teamchats />} />
                             <Route path="/explore" element={<Explore />} />
 
