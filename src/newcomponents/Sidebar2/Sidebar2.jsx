@@ -5,7 +5,7 @@ import { RiChatSmile2Line } from "react-icons/ri"
 import { NavLink, Link, useNavigate} from "react-router-dom";
 
 
-import { MdOutlineExplore, MdWorkspacesOutline } from "react-icons/md"
+import { MdOutlineExplore, MdWorkspacesOutline,MdOutlineSummarize } from "react-icons/md"
 import { BsChatSquareDots } from 'react-icons/bs';
 import { AiOutlineHome, AiFillCaretDown, AiOutlineTeam, AiFillCaretUp } from 'react-icons/ai';
 import { IoCreateOutline, IoSettingsOutline, IoLogOutOutline } from 'react-icons/io5';
@@ -117,6 +117,12 @@ function Sidebar2(prop) {
               <span className="sidebarListItemText">Settings</span>
             </Link>
           </li>
+          <li className="sidebarListItem">
+              <NavLink to="/summary">
+                <MdOutlineSummarize className="sidebarIcon" />
+                <span className="sidebarListItemText">Summary</span>
+              </NavLink>
+            </li>
           
           <li className="sidebarListItem">
             <Link to="/">
