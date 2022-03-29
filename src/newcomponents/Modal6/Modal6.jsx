@@ -20,24 +20,28 @@ function Modal6(props) {
   }
 
   const verifyCode = async () => {
-    const req = {
-      'username': window.sessionStorage.getItem("username"),
-      'signCode': code
+    if(email && !(username)){
+
     }
+    else {
+      const req = {
+        'username': window.sessionStorage.getItem("username"),
+        'email': email,
+        'signCode': code
+      }
 
-    console.log(req)
-
-    await axios.post('http://localhost:8000/verifySignup/', req).then((res) => {
+      await axios.post('http://localhost:8000/verifySignup/', req).then((res) => {
       console.log(res)
       if(res.data['success']){
-        if(props != {})
-          closeModal(false)
         setCookie("username", res.data['username'], 2)
         setCookie("userID", res.data['userID'], 2)
         window.sessionStorage.clear()
         navigate('/home')
+        console.log('yes')
       }
     });
+    }
+    
   }
 
   const Ref = useRef(null);

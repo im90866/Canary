@@ -20,6 +20,7 @@ urlpatterns = [
     path('verifySignup/', VerifySignup.as_view()),
     path('deleteTemp/', DeleteTemp.as_view()),
     path('resendCode/', ResendCode.as_view()),
+    path('forgotPassword/', ForgotPassword.as_view()),
 
     # Project Views
     path('createproject/', CreateProject.as_view()),

@@ -95,7 +95,7 @@ function Workspace(prop) {
 
     console.log(image64)
     console.log(req)
-    await axios.post('http://localhost:8000/uploadImageWorkspace/', req).then((res) => {
+    await axios.post('http://localhost:8000/uploadIm/', req).then((res) => {
       console.log(res)
       if (res.data['success']) {
         const val = {

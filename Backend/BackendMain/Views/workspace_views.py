@@ -378,7 +378,7 @@ class CreateSpecImage(APIView):
 
         model = {
             'imageID' : imageID,
-            'fileName' : data['specName'],
+            'fileName' : 'profilePicture',
         }
         
         meta_col.insert_one(model)

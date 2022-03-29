@@ -13,7 +13,7 @@ class userInfo():
     _password = ""
     _fullname = ""
     _email = ""
-    _profilePictureID = ObjectId("6242ebdd952aac1d7585a58d")
+    _profilePictureID = ObjectId("62431293c37748932d862b8d")
     _userDetails = {}
     _postID = []
     _projectID = []

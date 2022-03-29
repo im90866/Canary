@@ -69,6 +69,20 @@ class EmailExistCheck(APIView):
         data = self.request.data
 
         user_col = CLIENT_DATABASE['userInfo']
+        email_col = CLIENT_DATABASE['emailList']
+
+        value = email_col.find_one({'email': email})
+
+        if value != None:
+            return(Response({
+                    'success': 'Got result',
+                    'exist': True
+                }))
+        else:
+            return(Response({
+                    'success': 'Got result',
+                    'exist': False
+                }))
 
 
 class UploadUserInfo(APIView):

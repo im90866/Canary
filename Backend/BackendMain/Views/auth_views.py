@@ -219,12 +219,6 @@ class ForgotPassword(APIView):
         temp_user_col = CLIENT_DATABASE['tempUserInfo']
         email_col = CLIENT_DATABASE['emailList']
 
-        emailData = email_col.find_one({'email': data['email']})
-        if emailData == None:
-            return(Response({
-                'error': 'Entered email does not exist'
-            }))
-
         signCode = randint(100000,999999)
         while(ifExists(signCode, "signCode", 'tempUserInfo') or ifExists(signCode, "signCode", 'userInfo')):
             signCode = randint(100000, 999999)
@@ -232,7 +226,7 @@ class ForgotPassword(APIView):
         signCode = str(signCode)
 
         user_col.update_one({
-            'username': data['username']
+            'email': data['email']
         }, {
             '$set': {
                 'signCode': signCode
@@ -245,6 +239,7 @@ class ForgotPassword(APIView):
         body = body + '\n\nIf the code does not work, please request a new verification code.'
         body = body + '\n\nIf this was not you, ignore this email as no changes will be made to your account.'
 
+        print(body)
         send_mail(
             'Forgot your Canary password',
             body,
@@ -256,6 +251,31 @@ class ForgotPassword(APIView):
         return Response({
             'success':'Request sent to mail'
         })
+
+class VerifyForgotPassword(APIView):
+    permission_classes = (permissions.AllowAny, )
+
+    def post(self, request, format=None):
+        data = self.request.data
+
+        user_col = CLIENT_DATABASE['userInfo']
+        temp_user_col = CLIENT_DATABASE['tempUserInfo']
+        email_col = CLIENT_DATABASE['emailList']
+
+        userVal = user_col.find_one({'email': data['email']})
+
+        if str(data['signCode']) == str(userVal['signCode']):
+            
+            # add the tempval value to usercol
+            user_col.update_one({
+                
+            })
+
+            return Response({ 
+                'success': 'Created account',
+            })
+        else:
+            return Response({ 'error': 'Wrong code' })
 
 class ForgotPasswordVerify(APIView):
     permission_classes = (permissions.AllowAny, )
