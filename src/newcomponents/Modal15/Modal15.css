@@ -8,7 +8,7 @@
     flex-direction: column;
     padding: 25px;
     margin-left: 50px;
-    position: relative;
-    top:-200px;
-    left: -50px;
+    position: fixed;
+    top:25%;
+    left: 40%;
 }

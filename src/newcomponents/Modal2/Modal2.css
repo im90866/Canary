@@ -11,9 +11,9 @@
     flex-direction: column;
     padding: 25px;
     margin-left: 50px;
-    position: relative;
-    top:-350px;
-left: -150px;
+    position: fixed;
+    top:25%;
+    left: 40%;
     margin-top: -50px;
     z-index: 9999;
 }

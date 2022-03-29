@@ -11,7 +11,7 @@ function Modal8({closeModal}) {
   }
 
   return (
-    <div>
+    <div onClick={e => e.stopPropagation()}>
       <div className="modalBackground">
         <div className="modalContainer8">
           <div className="titleCloseBtn">

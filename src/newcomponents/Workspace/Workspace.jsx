@@ -79,7 +79,7 @@ function Workspace(prop) {
     var file = event.target.files[0]
     console.log(file['type'] == 'image/jpeg')
     console.log(file['type'])
-    if(file['type'] == 'image/jpeg' || file['type'] ==  'image/png') {
+    if (file['type'] == 'image/jpeg' || file['type'] == 'image/png') {
       const image64 = await base64(file)
       setImage({
         selectedFile: file,
@@ -119,7 +119,7 @@ function Workspace(prop) {
         }
       });
     }
-    
+
   }
 
   const base64 = (file) => {
@@ -282,15 +282,19 @@ function Workspace(prop) {
         setOpenDropdown(false)
       if (openModal3)
         setOpenModal3(false)
+      if (openModalRename)
+        setOpenModalRename(false)
+      if (openModal)
+        setOpenModal(false)
     })
 
-    if (openDropdown || openModal3) {
+    if (openDropdown || openModal3 || openModalRename || openModal) {
       document.getElementById('workspace-body').style.filter = 'blur(5px) grayscale(0%)'
     } else {
       document.getElementById('workspace-body').style.filter = 'blur(0px) grayscale(0%)'
     }
 
-  }, [folderPath, showImg, showFolder, openDropdown, openModal3])
+  }, [folderPath, showImg, showFolder, openDropdown, openModal3, openModalRename, openModal])
 
   return (
     <div>
@@ -368,7 +372,7 @@ function Workspace(prop) {
                         showFolder.folder === folder.folderID && showFolder.state
                           ?
                           <div class="dropdown-content">
-                            <button class="dropdown-text" onClick={() => { setOpenModalRename(true); setModalVal("Rename"); setFolderId(folder.folderID) }}>Rename</button>
+                            <button class="dropdown-text" onClick={(e) => { setOpenModalRename(true); setModalVal("Rename"); setFolderId(folder.folderID); e.stopPropagation() }}>Rename</button>
                             <button class="dropdown-text" onClick={() => deleteFolder(folder.folderID)}>Delete</button>
                           </div>
                           :
@@ -416,7 +420,7 @@ function Workspace(prop) {
                         showImg.image === image.imageID && showImg.state
                           ?
                           <div class="dropdown-content" id='dropdown-content'>
-                            <button className="dropdown-text" onClick={() => { setImageId(image.imageID); setPostImageVal(image); setOpenModal(true); }}>Post</button>
+                            <button className="dropdown-text" onClick={(e) => { setImageId(image.imageID); setPostImageVal(image); setOpenModal(true); e.stopPropagation() }}>Post</button>
                             <button className="dropdown-text" onClick={() => { setImageId(image.imageID); setOpenModalRename(true); setModalVal("Rename"); }}>Rename</button>
                             <button className="dropdown-text" onClick={() => deleteImage(image.imageID)}>Delete</button>
                             <a className="dropdown-text1" href={image.imageVal} download>Download</a>
@@ -446,7 +450,7 @@ function Workspace(prop) {
       {openModal && <Modal5 projectID={projectId} image={postImageVal} closeModal={setOpenModal} makeChange={makeChange} />}
       {openModalRename &&
         <Modal5_1
-          closeModal={RenameModalStatus}
+          closeModal={setOpenModalRename}
           folderList={folders}
           imageList={images}
           setFolders={setFolders}
