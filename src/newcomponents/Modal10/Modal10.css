@@ -58,6 +58,14 @@
 	color: #ffb53b;
     transition: 0.3s;
 }
+.bbtn1 a{
+    text-decoration: none;
+    color: #FFFFFF;
+
+}
+.bbtn1 a:hover{
+    color: #ffb53b;
+}
 @media (max-width: 900px){
     .modalContainer10{
         width: 350px;

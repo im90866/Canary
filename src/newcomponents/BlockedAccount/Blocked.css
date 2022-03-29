@@ -1,0 +1,23 @@
+.this-acc{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    top:100px;
+}
+.follow-acc{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    top:100px;
+}
+.lock{
+    display: flex;
+    align-items: center;
+    font-size: 100px;
+    justify-content: center;
+    position: relative;
+    top:100px;
+    left: 500px;
+}
