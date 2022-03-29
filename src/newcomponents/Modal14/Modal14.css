@@ -27,8 +27,28 @@
     width: 100%;
     height: 300px;
    position: relative;
-   top:100px;
+   top:200px;
+   left: 500px;
 
+}
+.titleCloseBtn14{
+    display: flex;
+    justify-content: flex-end;
+    cursor: pointer;
+}
+.titleCloseBtn14 button {
+    background-color: transparent;
+    border: none;
+    font-size: 35px;
+    cursor: pointer;
+    position: relative;
+    top:-20px;
+    left: 600px;
+  }
+.cross14{
+    font-size:30px ;
+    position: absolute;
+    top:100px;
 }
 @media (max-width: 900px){
     .modalContainer14{

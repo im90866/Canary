@@ -4,9 +4,9 @@ function Modal14({closeModal}) {
   return (
     <div onClick={(e) => e.stopPropagation()}>
           <div className="modalBackground" id='modalBackground'>
-        <div className="modalContainer14">
-          <div className="titleCloseBtn">
-            <button className='cross'
+       
+          <div className="titleCloseBtn14">
+            <button className='cross14'
               onClick={() => {
                 closeModal(false);
               }}>
@@ -18,7 +18,7 @@ function Modal14({closeModal}) {
             <img src="/images/avatar4.png" alt="" className='wimg1' />
         </div>
         </div>
-      </div>
+    
     </div>
   )
 }
