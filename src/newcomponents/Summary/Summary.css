@@ -1,0 +1,15 @@
+.use12{
+    display: flex;
+}
+.use3{
+    font-size: 20px;
+    font-weight: 500;
+    color: black;
+}
+.use4{
+    font-size: 20px;
+    font-weight: 500;
+    color: black;
+    position: relative;
+    left: 10px;
+}

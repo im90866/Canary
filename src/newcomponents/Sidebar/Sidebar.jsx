@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import { RiChatSmile2Line } from "react-icons/ri"
 import { NavLink, Link, useParams} from "react-router-dom";
-import { MdOutlineExplore } from "react-icons/md"
+import { MdOutlineExplore ,MdOutlineSummarize} from "react-icons/md"
 import { AiOutlineHome} from 'react-icons/ai';
 import { IoCreateOutline, IoSettingsOutline, IoLogOutOutline } from 'react-icons/io5';
 import { useContext, useEffect,useState} from "react";
@@ -63,6 +63,12 @@ export default function Sidebar(prop) {
             <li className="sidebarListItem" onClick={() => goTo('/settings')}>
                 <IoSettingsOutline className="sidebarIcon" />
                 <span className="sidebarListItemText">Settings</span>
+            </li>
+            <li className="sidebarListItem">
+              <NavLink to="/summary">
+                <MdOutlineSummarize className="sidebarIcon" />
+                <span className="sidebarListItemText">Summary</span>
+              </NavLink>
             </li>
 
             <li className="sidebarListItem" onClick={() => logout()}>

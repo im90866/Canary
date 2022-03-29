@@ -46,6 +46,7 @@ import Team3 from './newcomponents/Team/Team3';
 import Moderator from './newcomponents/Moderator/Moderator';
 import BlockedAcc from './newcomponents/BlockedAccount/BlockedAcc';
 import Feed2 from './newcomponents/Feed2/Feed2';
+import Summary from './newcomponents/Summary/Summary';
 
 function App() {
 
@@ -158,6 +159,7 @@ function App() {
                             <Route path="/deleteproject" element={<Team3 />} />
                             <Route path="/moderator" element={<Moderator />} />
                             <Route path="/blockedacc" element={<BlockedAcc />} />
+                            <Route path="/summary" element={<Summary />} />
                            
                         </Routes>
                     </>
