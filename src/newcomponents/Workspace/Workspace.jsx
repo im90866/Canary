@@ -75,44 +75,49 @@ function Workspace(prop) {
 
   const fileSelect = async (event) => {
     var file = event.target.files[0]
-    const image64 = await base64(file)
-    setImage({
-      selectedFile: file,
-    })
+    console.log(file['type'] == 'image/jpeg')
+    console.log(file['type'])
+    if(file['type'] == 'image/jpeg' || file['type'] ==  'image/png') {
+      const image64 = await base64(file)
+      setImage({
+        selectedFile: file,
+      })
 
-    const req = {
-      'projectID': projectId,
-      'currentPath': folderPath,
+      const req = {
+        'projectID': projectId,
+        'currentPath': folderPath,
 
-      'imageString': image64,
+        'imageString': image64,
 
-      'fileName': file['name'],
-      'uploadedTime': file['lastModifiedDate'],
-      'uploader': String(getCookie('username')),
-      'fileSize': file['size'],
-      'fileType': file['type'],
-    }
-
-    console.log(image64)
-    console.log(req)
-    await axios.post('http://localhost:8000/uploadIm/', req).then((res) => {
-      console.log(res)
-      if (res.data['success']) {
-        const val = {
-          'projectID': projectId,
-          'imageID': res.data['imageID'],
-          'imageVal': image64,
-          'uploadedTime': file['lastModifiedDate'],
-          'uploader': String(getCookie('username')),
-          'fileType': file['type'],
-          'fileName': file['name'],
-          'fileSize': file['size'],
-        }
-        let newImageList = images.slice()
-        newImageList.unshift(val)
-        setImages(newImageList)
+        'fileName': file['name'],
+        'uploadedTime': file['lastModifiedDate'],
+        'uploader': String(getCookie('username')),
+        'fileSize': file['size'],
+        'fileType': file['type'],
       }
-    });
+
+      console.log(image64)
+      console.log(req)
+      await axios.post('http://localhost:8000/uploadImageWorkspace/', req).then((res) => {
+        console.log(res)
+        if (res.data['success']) {
+          const val = {
+            'projectID': projectId,
+            'imageID': res.data['imageID'],
+            'imageVal': image64,
+            'uploadedTime': file['lastModifiedDate'],
+            'uploader': String(getCookie('username')),
+            'fileType': file['type'],
+            'fileName': file['name'],
+            'fileSize': file['size'],
+          }
+          let newImageList = images.slice()
+          newImageList.unshift(val)
+          setImages(newImageList)
+        }
+      });
+    }
+    
   }
 
   const base64 = (file) => {

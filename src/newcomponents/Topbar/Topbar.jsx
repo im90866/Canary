@@ -49,6 +49,8 @@ function Topbar(prop) {
 
   const [isSearching, setIsSearching] = useState(false)
 
+  const [isAdmin, setIsAdmin] = useState(false)
+
   const [PFP, setPFP] = useState("")
 
   const [showReq, setShowReq] = useState(false)
@@ -108,6 +110,13 @@ function Topbar(prop) {
       setOpenModal(false)
   }
 
+  const goToPost = (type, postID) => {
+    if(type == 'comment' || type == 'like') {
+      setOpenModal(false)
+      navigate('/post/' + postID)
+    }
+  }
+
   useEffect(() => {
     if (!('topbarProfilePicture' in cache)) {
       axios.get("http://localhost:8000/getProfilePicture/" + String(getCookie('userID'))).then((res) => {
@@ -126,8 +135,11 @@ function Topbar(prop) {
       let notifList = res.data['notificationsList'].slice()
       let requestList = res.data['inviteList'].slice()
 
+      console.log(res.data['notificationsList'])
+
       setNotifList(notifList)
       setInviteList(requestList)
+      setIsAdmin(res.data['isAdmin'])
     })
 
     // notifRef.current.addEventListener('click', (e) => {
@@ -242,11 +254,15 @@ function Topbar(prop) {
 
         <div className="topbarRight">
           <div className="topbarIcons">
-          <div className="topbarIconItem">
-              <AiOutlineMail className="icons13"
-              onClick={() =>
-                setOpenModal4(true)} />
-            </div>
+            {
+              isAdmin && 
+              <div className="topbarIconItem">
+                <AiOutlineMail className="icons13"
+                onClick={() =>
+                  setOpenModal4(true)} />
+              </div>
+            }
+            
             <div className="topbarIconItem">
               <BsPlusCircle className="icons12"
                 onClick={(e) => { setOpenModal3(!openModal3); e.stopPropagation() }} />
@@ -285,7 +301,7 @@ function Topbar(prop) {
                               <ul className="notifications-2">
                                 {
                                   notifList.map(notif => (
-                                    <li className="notificationslist">
+                                    <li className="notificationslist" onClick={() => goToPost(notif.type, notif.onPostID)}>
                                       <img src={notif.imageVal} alt="" className='profile-pic' />
                                       <div className="notif-text">{notif.info}</div>
                                     </li>

@@ -254,11 +254,12 @@ class GetPost(APIView):
             "comments" : commentList,
         }
 
-        if postVal['projectID'] != "":
-            projVal = proj_col.find_one({'_id': ObjectId(postVal['projectID'])})
-            if userID == projVal['projectAdminID']:
-                postData['isAdmin'] = True
-        else:
+        try:
+            if postVal['projectID'] != "":
+                projVal = proj_col.find_one({'_id': ObjectId(postVal['projectID'])})
+                if userID == projVal['projectAdminID']:
+                    postData['isAdmin'] = True
+        except:
             postData['isAdmin'] = True
 
         if 'remixPostID' in postVal:

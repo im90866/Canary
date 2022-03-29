@@ -109,10 +109,15 @@ class GetNotifications(APIView):
             
             inviteList.append(val)
 
+        isAdmin = False
+        if 'isAdmin' in userVal:
+            isAdmin = True
+
         print(userVal['username'])
 
         return Response({
             'success': 'Notifications succesfully recieved',
             'notificationsList' : notifList,
-            'inviteList': inviteList
+            'inviteList': inviteList,
+            'isAdmin': isAdmin
         })
