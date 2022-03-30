@@ -48,6 +48,7 @@ import BlockedAcc from './newcomponents/BlockedAccount/BlockedAcc';
 import Feed2 from './newcomponents/Feed2/Feed2';
 import Chats1 from './newcomponents/Chats1/Chats1';
 import Summary from './newcomponents/Summary/Summary';
+import Loading from './newcomponents/Loading/Loading';
 
 function App() {
 
@@ -162,6 +163,7 @@ function App() {
                             <Route path="/moderator" element={<Moderator />} />
                             <Route path="/blockedacc" element={<BlockedAcc />} />
                             <Route path="/summary" element={<Summary />} />
+                            <Route path="/loading" element={<Loading />} />
                            
                         </Routes>
                     </>
@@ -173,6 +175,7 @@ function App() {
                             <Route path="/home" element={protectOther(<Home />)} />
                             <Route path="/forgotpassword" element={<Fp />} />
                             <Route path="/codeconfirmation" element={<Modal6 />} />
+                          
                         </Routes>
                     </>
             }
