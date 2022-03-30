@@ -39,6 +39,21 @@ class GetProfilePicture(APIView):
             'imageString': imageString,
         })
 
+class GetFollowers(APIView):
+    permission_classes = (permissions.AllowAny, )
+
+    def get(self, request, userID, format=None):
+        FS = gridfs.GridFS(CLIENT_DATABASE)
+
+        user_col = CLIENT_DATABASE['userInfo']
+
+        followCount = len(user_col.find_one({'_id': ObjectId(userID)})['followedBy'])
+
+        return Response({
+            'success': 'Obtained follower count',
+            'followCount': followCount,
+        })
+
 class GetProfileFeed(APIView):
     permission_classes = (permissions.AllowAny, )
 

@@ -412,3 +412,42 @@ class Notification():
             }
 
         return model
+
+class Report():
+    _senderID = ""
+    _senderName = ""
+    _createdAt = ""
+    _info = ""
+    _onPostID = ""
+    _onProfileID = ""
+    _type = ""
+
+    def __init__(self, data):
+        self._senderID = data['senderID']
+        self._senderName = data['senderName']
+        self._createdAt = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+
+        self._info = data['info']
+        self._type = data['type']
+
+        if data['type'] == 'post':
+            self._onPostID = data['onPostID']
+        elif data['type'] == 'profile':
+            self._onProfileID = data['onProfileID']
+        
+
+    def getModel(self):
+        model = {
+            'senderID': self._senderID, 
+            'senderName': self._senderName,
+            'createdAt' : self._createdAt,
+            'info': self._info,
+            'type': self._type,
+        }
+
+        if self._type == 'post':
+            model['onPostID'] = self._onPostID
+        elif self._type == 'profile':
+            model['onProfileID'] = self._onProfileID
+
+        return model

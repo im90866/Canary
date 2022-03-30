@@ -12,6 +12,7 @@ from .Views.other_workspace_views import *
 from .Views.topbar_views import *
 from .Views.post_views import *
 from .Views.group_chat_views import *
+from .Views.moderator_views import *
 
 urlpatterns = [
     # Auth Views
@@ -75,6 +76,7 @@ urlpatterns = [
     path('getProfileFeed/<str:userID>', GetProfileFeed.as_view()),
     path('getUserID/<str:username>', GetUserID.as_view()),
     path('getUsername/<str:userID>', GetUsername.as_view()),
+    path('getFollowers/<str:userID>', GetFollowers.as_view()),
     path('followUser/', FollowUser.as_view()),
     path('blockUser/', BlockUser.as_view()),
     path('isBlocked/', IsBlocked.as_view()),
@@ -91,6 +93,10 @@ urlpatterns = [
     path('uploadUserInfo/', UploadUserInfo.as_view()),
     path('checkUsername/<str:username>', UsernameExistCheck.as_view()),
     path('checkEmail/<str:email>', EmailExistCheck.as_view()),
+
+    # Moderator Views
+    path('getReports/', GetReports.as_view()),
+    path('report/', ReportView.as_view()),
 
     # debug functions
     #path('backStuff/', views.getBack()),

@@ -14,6 +14,7 @@ function Profile(prop) {
   const [username, setUsername] = useState("")
   const [PFP, setPFP] = useState("")
   const [images, setImages] = useState([])
+  const [followers, setFollowers] = useState(0)
 
   const goToPost = (postID) => {
     navigate('/post/' + postID)
@@ -50,6 +51,10 @@ function Profile(prop) {
     else {
       setImages(cache['profilePosts'])
     } 
+
+    axios.get('http://localhost:8000/getFollowers/'+ getCookie('userID')).then((res) => {
+      setFollowers(res.data['followCount'])
+    });
   }, [])
 
   return (
@@ -65,6 +70,11 @@ function Profile(prop) {
         </div>
 
         <h1 className="profile-user">{username}</h1>
+        <div className="follower-info">
+              <h1 className='follow-numbers'>{followers}</h1>
+              <h1 className='followers'>Followers</h1>
+          </div>
+          
         <Link to="/settings"><button className="editp">Edit Profile</button></Link>
       
         

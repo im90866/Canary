@@ -80,7 +80,10 @@ function Profileothers() {
 
     axios.get('http://localhost:8000/getUsername/'+ userID).then((res) => {
       setUsername(res.data['username'])
-      setFollowers(res.data['followers'])
+    });
+
+    axios.get('http://localhost:8000/getFollowers/'+ userID).then((res) => {
+      setFollowers(res.data['followCount'])
     });
 
     axios.get("http://localhost:8000/getProfilePicture/" + userID).then((res) => {
@@ -142,7 +145,7 @@ function Profileothers() {
             ))} 
           </div> 
     
-          {openModal2 && <Modal11 closeModal={setOpenModal2} />}  
+          {openModal2 && <Modal11 userID={userID} closeModal={setOpenModal2} />}  
           {openModal && <Modal10 userID={userID} setBlocked={setBlocked} closeModal={setOpenModal} />}  
         </div>
     
@@ -183,7 +186,7 @@ function Profileothers() {
                 <p className='follow-acc'>Unblock to view their profile</p>
             </div>
    
-            {openModal2 && <Modal11 closeModal={setOpenModal2} />}  
+            {openModal2 && <Modal11 userID={userID}  closeModal={setOpenModal2} />}  
             {openModal && <Modal17 userID={userID} setBlocked={setBlocked} closeModal={setOpenModal} />}  
           </div>
 

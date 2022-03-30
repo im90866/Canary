@@ -67,7 +67,7 @@ export default function Sidebar(prop) {
             <li className="sidebarListItem">
               <NavLink to="/summary">
                 <MdOutlineSummarize className="sidebarIcon" />
-                <span className="sidebarListItemText">Report</span>
+                <span className="sidebarListItemText">Summary</span>
               </NavLink>
             </li>
 

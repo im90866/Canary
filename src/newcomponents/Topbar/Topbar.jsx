@@ -261,7 +261,7 @@ function Topbar(prop) {
               <div className="topbarIconItem">
                 <AiOutlineMail className="icons13"
                 onClick={() =>
-                  setOpenModal4(true)} />
+                  setOpenModal4(!openModal4)} />
               </div>
             }
             
