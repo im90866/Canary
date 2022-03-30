@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Modal3 from '../Modal3/Modal3'
 import axios from 'axios';
 import Modal6 from '../Modal6/Modal6';
+import Modal18 from '../Modal18/Modal18';
 
 function SignUp(props) {
   const navigate = useNavigate()
@@ -17,6 +18,9 @@ function SignUp(props) {
   const [submitted, setSubmitted] = useState(false)
   const [validate, setValidate] = useState(false)
   const [openModal, setOpenModal] = useState(false);
+
+  const [waitModal, setWaitModal] = useState(false)
+
   const handleUserNameInputChange = (e) => {
     setUsername(e.target.value)
   }
@@ -32,12 +36,14 @@ function SignUp(props) {
 
     // ADD CODE FOR ERROR CHECKING HERE
     if (username && password && email) {
+      setWaitModal(true)
       axios.post("http://localhost:8000/signup/", {
         'username': String(username),
         'password': String(password),
         'email': String(email),
       }).then((res) => {
         if (res.data["success"]) {
+          setWaitModal(false)
           window.sessionStorage.setItem("username", username);
           window.sessionStorage.setItem("password", password);
           window.sessionStorage.setItem("email", email);
@@ -99,6 +105,7 @@ function SignUp(props) {
         </form>
       </div>
       {openModal && <Modal6 username={username} email={email} password={password} closeModal={setOpenModal} />}
+      {waitModal && <Modal18 />}
     </div>
   )
 }

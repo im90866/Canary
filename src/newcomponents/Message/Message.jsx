@@ -34,7 +34,7 @@ export default function Message(props) {
       else
         setImage(senderImage)
     }
-  }, [])
+  }, [ownImage])
 
   return (
     <div>

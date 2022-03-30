@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import Modal18 from '../Modal18/Modal18'
 
 import "./Modal6.css"
 
@@ -8,6 +9,8 @@ function Modal6(props) {
   const [username, setUsername] = useState(props.username)
   const [password, setPassword] = useState(props.password)
   const [email, setEmail] = useState(props.email)
+
+  const [waitModal, setWaitModal] = useState(false)
 
   const closeModal = props.closeModal
 
@@ -78,12 +81,14 @@ function Modal6(props) {
   }
 
   const resendCode = () => {
+    setWaitModal(true)
     axios.post("http://localhost:8000/resendCode/", {
           'username': window.sessionStorage.getItem("username"),
           'password': window.sessionStorage.getItem("password"),
           'email': window.sessionStorage.getItem("email"),
     }).then((res) => {
         if(res.data["success"]) { 
+          setWaitModal(false)
           clearTimer(getDeadTime());
         }
         else  
@@ -162,9 +167,18 @@ function Modal6(props) {
               pattern="[0-9]"  
             />
           </div>
-          <div className="timers">
-            <h3 className="timerbefore">Time Remaining: {timer}</h3>
-          </div>
+          {
+            !waitModal
+            ?
+            <div className="timers">
+              <h3 className="timerbefore">Time Remaining: {timer}</h3>
+            </div>
+            :
+            <div className="timers">
+              <h3 className="timerbefore">Time Remaining: {'00:00:00'}</h3>
+            </div>
+          }
+          
 
           <h4 className='resend'>
             Didn't receive the code yet?
@@ -178,6 +192,7 @@ function Modal6(props) {
           </div>
         </div>
       </div>
+      {waitModal && <Modal18 />}
     </div>
   )
 }

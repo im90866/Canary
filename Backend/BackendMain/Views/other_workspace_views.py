@@ -139,6 +139,42 @@ class InteractRequest(APIView):
                 'success': 'Successfully interacted with request',
         })
 
+class RemoveUser(APIView):
+    permission_classes = (permissions.AllowAny, )
+
+    def post(self, request, format=None):
+        data = self.request.data
+
+        user_col = CLIENT_DATABASE['userInfo']
+        proj_col = CLIENT_DATABASE['projectData']
+
+        username = user_col.find_one({'_id': ObjectId(data['userID'])})['username']
+
+        proj_col.update_one({
+            '_id': ObjectId(data['projectID'])
+        }, {
+            '$pull': {
+                'projectMembers': {
+                    'id': data['userID'],
+                    'username': username
+                }
+            }
+        })
+
+        user_col.update_one({
+            '_id': ObjectId(data['userID'])
+        }, {
+            '$pull': {
+                'otherProjectID': data['projectID'],
+            }
+        })
+
+        return Response({
+                'success': 'Successfully removed user',
+        })
+
+
+
 class GetProjectMembers(APIView):
     permission_classes = (permissions.AllowAny, )
 
@@ -160,4 +196,58 @@ class GetProjectMembers(APIView):
                 'success': 'Obtained project members',
                 'memberList': memberList,
                 'adminID': projectVal['projectAdminID']
+        })
+
+class SearchProfilesInvite(APIView):
+    permission_classes = (permissions.AllowAny, )
+
+    def get(self, request, value, projectID, format=None):
+        data = self.request.data
+        FS = gridfs.GridFS(CLIENT_DATABASE)
+
+        user_col = CLIENT_DATABASE['userInfo']
+        proj_col = CLIENT_DATABASE['projectData']
+
+        projectVal = proj_col.find_one({'_id': ObjectId(projectID)})
+        memberVal = projectVal['projectMembers']
+
+        query = str(value) + '.*'
+
+        regx = re.compile(query, re.IGNORECASE)
+        query = user_col.find({"username": regx})
+        query_results = []
+
+        counter = 0
+        for x in query:
+            if counter > 10:
+                break
+            
+            
+            newUserID = json.loads(json_util.dumps(x['_id']))['$oid']
+
+            check = False
+            for member in memberVal:
+                if newUserID in member['id']:
+                    check = True
+                    break
+            
+            if check:
+                continue
+            
+            print(newUserID)
+            print(memberVal)
+            print("")
+            
+            userDict = {
+                'userID': newUserID,
+                'username': x['username'],
+                'profilePictureID': FS.get(x['profilePictureID'])
+            }
+            query_results.append(userDict)
+
+            counter += 1
+
+        return Response({
+            'success': 'Results found',
+            'results' : query_results
         })

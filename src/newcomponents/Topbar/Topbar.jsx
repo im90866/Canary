@@ -88,6 +88,7 @@ function Topbar(prop) {
     }
 
     axios.post("http://localhost:8000/interactInvite/", request).then((res) => {
+      setOpenModal(false)
     })
 
   }
@@ -100,6 +101,7 @@ function Topbar(prop) {
     }
 
     axios.post("http://localhost:8000/interactInvite/", request).then((res) => {
+      setOpenModal(false)
     })
   }
 
@@ -143,11 +145,11 @@ function Topbar(prop) {
         setInviteList(requestList)
         setIsAdmin(res.data['isAdmin'])
 
-      axios.get("http://localhost:8000/isAdmin/" + getCookie('userID'))
-      .then((res) => {
-        console.log(res.data['isAdmin'])
-        setIsAdmin(res.data['isAdmin'])
-      })
+        axios.get("http://localhost:8000/isAdmin/" + getCookie('userID'))
+        .then((res) => {
+          console.log(res.data['isAdmin'])
+          setIsAdmin(res.data['isAdmin'])
+        })
     })
 
     // notifRef.current.addEventListener('click', (e) => {

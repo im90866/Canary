@@ -39,7 +39,7 @@ function Modal17(props) {
          
          <div className="block-title">
              <h1 className="block-tt">Unblock User?</h1>
-             <p className='block-pp'>Unblocking Kyle,you can message, follows and comment. You can  view each other’s profiles.</p>
+             <p className='block-pp'>Unblocking this user, you can message, follows and comment. You can view each other’s profiles.</p>
          </div>
         
          <div className="div-blockbtns1">

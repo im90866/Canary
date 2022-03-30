@@ -46,8 +46,10 @@ urlpatterns = [
 
     # Project Team Views
     path('inviteUser/', SendRequest.as_view()),
+    path('removeUser/', RemoveUser.as_view()),
     path('interactInvite/', InteractRequest.as_view()),
     path('getProjectMembers/<str:projectID>', GetProjectMembers().as_view()),
+    path('searchProfilesInvite/<str:value>/<str:projectID>', SearchProfilesInvite.as_view()),
 
     # Group Chat Views
     path('getChannels/<str:projectID>/<str:userID>', GetChannels.as_view()),

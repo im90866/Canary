@@ -152,7 +152,7 @@ class ResendCode(APIView):
         tempVal['expireAt'] = datetime.utcnow()
         tempVal['signCode'] = signCode
 
-        temp_user_col.create_index('expireAt', expireAfterSeconds=65)
+        temp_user_col.create_index('expireAt', expireAfterSeconds=60*3)
         temp_user_col.insert_one(tempVal)
 
         print(tempVal)

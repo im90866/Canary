@@ -28,7 +28,7 @@ function ProjectSettings() {
     if (searchField == "")
       setSearchRes([])
     else {
-      const response = await axios.get("http://localhost:8000/search/" + searchField)
+      const response = await axios.get("http://localhost:8000/searchProfilesInvite/" + searchField + '/' + projectId)
         .then((res) => {
           setIsSearching(false)
           if (res.data["success"]) {
@@ -55,6 +55,26 @@ function ProjectSettings() {
     }
     await axios.post("http://localhost:8000/inviteUser/", request).then((res) => {
       if (res.data["success"]) {
+        
+      }
+      else {
+      }
+    })
+  }
+
+  const removeUser = async (userID) => {
+    const request = {
+      'userID': userID,
+      'projectID': projectId
+    }
+    await axios.post("http://localhost:8000/removeUser/", request).then((res) => {
+      if (res.data["success"]) {
+        for(let i = 0; i < memberList.length; ++i) {
+          if(memberList[i]['id'] == userID)
+            memberList.splice(i, 1)
+            let val = memberList.slice()
+            setMemberList(val)
+          }
       }
       else {
       }
@@ -168,7 +188,7 @@ function ProjectSettings() {
                 {
                   isAdmin 
                     && member['id'] != getCookie('userID')
-                    && <button className='remove-mem1'>Remove</button>
+                    && <button className='remove-mem1' onClick={() => removeUser(member['id'])}> Remove</button>
                 }
                 
                 </div>

@@ -87,6 +87,10 @@ function Chats() {
   }
 
   const handleMessageChange = (e) => {
+    if(e.nativeEvent.inputType === "insertLineBreak") {
+      sendMessage()
+      return;
+    }
     setTextBoxVal(e.target.value)
   }
 
