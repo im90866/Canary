@@ -98,7 +98,6 @@ function Project(prop) {
     }
     getAll();
     if (openModal) {
-      document.getElementById('projectss').style.filter = 'blur(5px) grayscale(0%)'
     } else {
       document.getElementById('projectss').style.filter = 'blur(0px) grayscale(0%)'
     }

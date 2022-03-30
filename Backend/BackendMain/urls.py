@@ -57,6 +57,7 @@ urlpatterns = [
 
     # Home Views
     path('getFeed/<str:userID>', GetHomePosts.as_view()),
+    path('getCategory/<str:userID>/<str:type>', GetCategory.as_view()),
     #path('getIndivPosts/<str:postID>/<str:userID>', GetIndividualPosts.as_view()),
     path('search/<str:value>', SearchProfiles.as_view()),
     path('getNotifications/<str:userID>', GetNotifications.as_view()),
@@ -97,6 +98,8 @@ urlpatterns = [
     # Moderator Views
     path('getReports/', GetReports.as_view()),
     path('report/', ReportView.as_view()),
+    path('getSummary/', GetSummary.as_view()),
+    path('isAdmin/<str:userID>', IsAdmin.as_view()),
 
     # debug functions
     #path('backStuff/', views.getBack()),

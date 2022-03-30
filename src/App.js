@@ -152,7 +152,7 @@ function App() {
                             <Route path="/explore" element={<Explore />} />
 
                             <Route path="/post/:id" element={<Postbig />} />
-                            <Route path="/feed2" element={<Feed2 />} />
+                            <Route path="/home/:category" element={<Feed2 />} />
 
                             <Route path="/resetpassword" element={<Resetpassword />} />
                             <Route path="/privacy" element={<Cardsix />} />

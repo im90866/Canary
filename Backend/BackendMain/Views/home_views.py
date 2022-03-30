@@ -64,6 +64,7 @@ class GetHomePosts(APIView):
         meta_col = CLIENT_DATABASE['imageData']
 
         FS = gridfs.GridFS(CLIENT_DATABASE)
+
         print(userID)
         postCount = 0
         followPost = []
@@ -94,6 +95,49 @@ class GetHomePosts(APIView):
             'discoverPosts' : discoverList,
             'hotPosts': hotList,
             'followingPosts': followingList
+        })
+
+class GetCategory(APIView):
+    permission_classes = (permissions.AllowAny, )
+
+    def get(self, request, userID, type, format=None):
+        data = self.request.data
+
+        user_col = CLIENT_DATABASE['userInfo']
+        post_col = CLIENT_DATABASE['postData']
+        meta_col = CLIENT_DATABASE['imageData']
+
+        FS = gridfs.GridFS(CLIENT_DATABASE)
+
+        postResult = []
+        postCursor = []
+
+        LIMIT = 16
+
+        if type == 'discover': 
+            postResult = post_col.aggregate([{'$sample': {'size': LIMIT}}])
+        elif type == 'hot':
+            postResult = post_col.find().sort('likes', -1).limit(LIMIT)
+        elif type == 'following':
+            postCount = 0
+            following = user_col.find_one({'_id': ObjectId(userID)})['following']
+
+            if following != None:
+                for user in following:
+                    if postCount > LIMIT:
+                        break
+                    posts = user_col.find_one({'_id': ObjectId(user)})['postID']
+                    for post in posts:
+                        if postCount > LIMIT:
+                            break
+                        postVal = post_col.find_one({'_id': ObjectId(post)})
+                        postResult.append(postVal)
+                        postCount += 1
+
+        postResult = getPostData(postResult)
+        return Response({
+            'success': 'Category posts recieved',
+            'postList' : postResult,
         })
 
 def getPostData(postVal):

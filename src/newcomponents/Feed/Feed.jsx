@@ -1,17 +1,26 @@
 import React, { useEffect, useState } from 'react'
 import "./Feed.css"
 import Post from '../Post/Post'
-
+import { useNavigate } from 'react-router-dom';
 import { AiOutlineArrowRight } from "react-icons/ai";
 import axios from 'axios'
 
 function Feed(prop) {
+  const navigate = useNavigate()
+
   const cache = prop.cache
   const setCache = prop.setCache
 
   const [discoverPosts, setDiscoverPosts] = useState([])
   const [hotPosts, setHotPosts] = useState([])
   const [followingPosts, setFollowingPosts] = useState([])
+
+  const goToCategory = (category) => {
+    if(category == 'hot')
+      navigate('/home/popular')
+    else
+    navigate('/home/' + category) 
+  }
 
   useEffect(() => {
     if(!('homePosts' in cache)) {
@@ -26,6 +35,7 @@ function Feed(prop) {
                 cache['discoverPosts'] = res.data['discoverPosts']
                 cache['hotPosts'] = res.data['hotPosts']
                 cache['followingPosts'] = res.data['followingPosts']
+                cache['homePosts'] = true
 
                 console.log(res.data['followingPosts'])
 
@@ -91,7 +101,7 @@ function Feed(prop) {
     <div className="feed-container">
       {/* <CreatePost/> */}
       <div className="explore-title">
-        <h1 className='etitle'>Discover New Works <AiOutlineArrowRight className='arrow' /></h1>
+        <h1 className='etitle'>Discover New Works <AiOutlineArrowRight className='arrow' onClick={() => goToCategory('discover')}/></h1>
       </div>
       <div className="wrapper1">
         {
@@ -102,7 +112,8 @@ function Feed(prop) {
       </div>
 
       <div className="explore-title">
-        <h1 className='etitle'>Popular Posts right now <AiOutlineArrowRight className='arrow' /></h1>
+        <h1 className='etitle'>Popular Posts Right Now <AiOutlineArrowRight className='arrow' 
+            onClick={() => goToCategory('popular')}/></h1>
       </div>
       <div className="wrapper1">
         {
@@ -116,7 +127,8 @@ function Feed(prop) {
         followingPosts.length > 0 &&
         <>
           <div className="explore-title">
-            <h1 className='etitle'>From Profiles You Follow <AiOutlineArrowRight className='arrow' /></h1>
+            <h1 className='etitle'>From Profiles You Follow <AiOutlineArrowRight className='arrow' 
+            onClick={() => goToCategory('following')}/></h1>
           </div>
           <div className="wrapper1">
 

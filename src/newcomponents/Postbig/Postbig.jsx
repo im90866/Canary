@@ -169,7 +169,6 @@ function Postbig({ closeModal }) {
     })
 
     if (openModal1 || openModal || openModal2) {
-      document.getElementById('bodyyy').style.filter = 'blur(5px) grayscale(0%)'
       if(threedots)
         setThreeDots(false)
     } else {

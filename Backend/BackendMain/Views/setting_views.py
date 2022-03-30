@@ -128,7 +128,7 @@ class ChangeProfilePicture(APIView):
         oldImageID = user_col.find_one({'_id': ObjectId(data['userID'])})['profilePictureID']
 
         imageID = FS.put(data['imageString'], encoding='utf-8')
-        if(str(oldImageID) != '6228f291957de3501a1e7fd7'):
+        if(str(oldImageID) != '6244450c9676cebd6d7906a7'):
             FS.delete(ObjectId(oldImageID))
 
         user_col.update_one({

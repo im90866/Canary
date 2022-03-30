@@ -54,14 +54,14 @@ class SignupView(APIView):
 
             tempVal = {**user_info, **mergeVal}
 
-            temp_user_col.create_index('expireAt', expireAfterSeconds=65)
+            temp_user_col.create_index('expireAt', expireAfterSeconds=60*3)
             temp_user_col.insert_one(tempVal)
 
             print(tempVal)
 
             # send code to email
             body = 'You\'re almost there!\n To finish setting up your account, enter the following code:\n\t'
-            # body = body + signCode + '\nThe following code will expire on '+ datetime.utcnow().strftime("%B %-d, %Y %-I:%M:%S %p") + 'UTC'
+            body = body + signCode + '\nThe following code will expire on '+ datetime.utcnow().strftime("%B %-d, %Y %-I:%M:%S %p") + 'UTC'
             body = body + '\n\nIf the code does not work, please request a new verification code.'
 
             send_mail(

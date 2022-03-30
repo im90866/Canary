@@ -133,15 +133,21 @@ function Topbar(prop) {
     else
       setPFP(cache['topbarProfilePicture'])
 
-    axios.get("http://localhost:8000/getNotifications/" + String(getCookie('userID'))).then((res) => {
-      let notifList = res.data['notificationsList'].slice()
-      let requestList = res.data['inviteList'].slice()
+      axios.get("http://localhost:8000/getNotifications/" + String(getCookie('userID'))).then((res) => {
+        let notifList = res.data['notificationsList'].slice()
+        let requestList = res.data['inviteList'].slice()
 
-      console.log(res.data['notificationsList'])
+        console.log(res.data['notificationsList'])
 
-      setNotifList(notifList)
-      setInviteList(requestList)
-      setIsAdmin(res.data['isAdmin'])
+        setNotifList(notifList)
+        setInviteList(requestList)
+        setIsAdmin(res.data['isAdmin'])
+
+      axios.get("http://localhost:8000/isAdmin/" + getCookie('userID'))
+      .then((res) => {
+        console.log(res.data['isAdmin'])
+        setIsAdmin(res.data['isAdmin'])
+      })
     })
 
     // notifRef.current.addEventListener('click', (e) => {
@@ -165,7 +171,7 @@ function Topbar(prop) {
     })
 
     if (openModal3) {
-      document.body.style.filter = 'blur(5px) grayscale(0%)'
+      
     } else {
       document.body.style.filter = 'blur(0px) grayscale(0%)'
     }
@@ -204,7 +210,7 @@ function Topbar(prop) {
           <div className="searchbar">
             <FaSearch className="searchIcon" />
             <input
-              placeholder="Search for friend, post or video"
+              placeholder="Search other users"
               className="searchInput"
               value={searchField}
               onKeyUp={() => search()}

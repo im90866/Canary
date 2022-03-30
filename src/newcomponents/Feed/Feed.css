@@ -4,7 +4,7 @@
     margin-left: 60px;
     width: 100%;
 
-  height: 100vh;
+    height: 100vh;
 }
 .etitle{
     position: relative;
@@ -17,9 +17,17 @@
 .arrow{
     position: relative;
     top:5px;
-    left:20px;
-
+    left:4px;
+    color: rgb(54, 54, 54);
+    transition: 0.1s;
 } 
+.arrow:hover{
+    transition: 0.3s;
+    color: rgb(27, 27, 27);
+    left:7px
+}
+
+
 @media (max-width: 800px){
     .etitle{
         position: relative;

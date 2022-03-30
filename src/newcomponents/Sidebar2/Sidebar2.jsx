@@ -20,11 +20,24 @@ function Sidebar2(prop) {
   const [projectId, setProjectId] = useState()
   const [sub, setSub] = useState(false)
 
+  const [active, setActive] = useState({
+    'home': "sidebarListItem",
+    'project': "sidebarListItem",
+    'chats': "sidebarListItem",
+    'settings': "sidebarListItem"
+  })
+
   const logout = () => {
     eraseCookie('username')
     eraseCookie('userID')
     setCache({})
     navigate('/')
+    window.location.reload();
+    window.location.reload();
+  }
+
+  const goTo = (loc) => {
+    navigate(loc)
   }
 
   const getName = () => {
@@ -46,20 +59,15 @@ function Sidebar2(prop) {
       <div className="sidebarWrapper">
         <ul className="sidebarList">
 
-          <li className="sidebarListItem">
-            <NavLink to="/home" activeStyle={{ backgroundColor: '#88e' }}>
+            <li className={active['home']} onClick={() => goTo('/home')}>
               <AiOutlineHome className="sidebarIcon" />
               <span className="sidebarListItemText">Home</span>
-            </NavLink>
-          </li>
+            </li>
 
-
-          <li className="sidebarListItem">
-            <Link to="/project">
+            <li className="sidebarListItem" onClick={() => goTo('/project')}>
               <IoCreateOutline className="sidebarIcon" />
               <span className="sidebarListItemText">Project</span>
-            </Link>
-          </li>
+            </li>
 
           <li className="sidebarListItem" onClick={() => setSub(!sub)}>
 
@@ -103,30 +111,24 @@ function Sidebar2(prop) {
             }
           </li>
 
-          <li className="sidebarListItem">
-            <Link to="/">
-              <RiChatSmile2Line className="sidebarIcon" />
-              <span className="sidebarListItemText">Chats</span>
-            </Link>
+          <li className="sidebarListItem" onClick={() => goTo('/chats')}>
+                <RiChatSmile2Line className="sidebarIcon" />
+                <span className="sidebarListItemText">Chats</span>
           </li>
-          
 
-          <li className="sidebarListItem">
-            <Link to="/settings">
-              <IoSettingsOutline className="sidebarIcon" />
-              <span className="sidebarListItemText">Settings</span>
-            </Link>
+          <li className="sidebarListItem" onClick={() => goTo('/settings')}>
+                <IoSettingsOutline className="sidebarIcon" />
+                <span className="sidebarListItemText">Settings</span>
           </li>
-          <li className="sidebarListItem">
-              <NavLink to="/summary">
-                <MdOutlineSummarize className="sidebarIcon" />
-                <span className="sidebarListItemText">Summary</span>
-              </NavLink>
-            </li>
+
+          <li className="sidebarListItem" onClick={() => goTo('/summary')}>
+              <MdOutlineSummarize className="sidebarIcon" />
+              <span className="sidebarListItemText">Summary</span>
+          </li>
           
           <li className="sidebarListItem">
             <Link to="/">
-              < IoLogOutOutline className="sidebarIcon" />
+              < IoLogOutOutline className="sidebarIcon" onClick={() => logout()}/>
               <span className="sidebarListItemText">Signout</span>
             </Link>
           </li>

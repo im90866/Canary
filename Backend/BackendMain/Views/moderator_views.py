@@ -83,3 +83,46 @@ class ReportView(APIView):
             'success': 'Report added',
         })
 
+class GetSummary(APIView):
+    permission_classes = (permissions.AllowAny, )
+
+    def get(self, request, format=None):
+        user_col = CLIENT_DATABASE['userInfo']
+        post_col = CLIENT_DATABASE['postData']
+        proj_col = CLIENT_DATABASE['projectData']
+
+        usersCount = user_col.count_documents({})
+        postCount = post_col.count_documents({})
+        projCount = proj_col.count_documents({})
+
+        remixCount = post_col.count_documents({'remixPostID': {
+            '$exists': True
+        }})
+
+        return Response({
+            'success': 'Got summary report',
+            'usersCount': usersCount,
+            'postCount': postCount,
+            'projCount': projCount,
+            'remixCount': remixCount
+        })
+
+class IsAdmin(APIView):
+    permission_classes = (permissions.AllowAny, )
+
+    def get(self, request, userID, format=None):
+        user_col = CLIENT_DATABASE['userInfo']
+
+        if 'isAdmin' in user_col.find_one({'_id': ObjectId(userID)}):
+            return Response({
+                'success': 'Got is admin',
+                'isAdmin': True
+            })
+        else:
+            return Response({
+                'success': 'Got is admin',
+                'isAdmin': False
+            })
+
+
+

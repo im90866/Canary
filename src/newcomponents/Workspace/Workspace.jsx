@@ -289,7 +289,6 @@ function Workspace(prop) {
     })
 
     if (openDropdown || openModal3 || openModalRename || openModal) {
-      document.getElementById('workspace-body').style.filter = 'blur(5px) grayscale(0%)'
     } else {
       document.getElementById('workspace-body').style.filter = 'blur(0px) grayscale(0%)'
     }

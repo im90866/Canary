@@ -7,6 +7,10 @@ function Modal10(props) {
   const userID = props.userID
   const setBlocked = props.setBlocked
 
+  const close = () => {
+    closeModal(false)
+  }
+
   const blockAcc = async () => {
     const req = {
       'userID': getCookie('userID'),
@@ -43,7 +47,7 @@ function Modal10(props) {
          </div>
         
          <div className="div-blockbtns1">
-             <button className="bbtn1">Cancel</button>
+             <button className="bbtn1" onClick={close}>Cancel</button>
              <button className="bbtn1" onClick={blockAcc}>Block</button>
          </div>
         </div>
