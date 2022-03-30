@@ -3,12 +3,14 @@ import {IoArrowBackSharp  } from "react-icons/io5";
 import Post from '../Post/Post';
 import { AiFillLike } from "react-icons/ai";
 import"./Feed2.css"
+import { Link,} from 'react-router-dom';
 function Feed2() {
   return (
     <div>
            <body className="profilecc">
+           <div className="feed-container2">
            <div className="explore-title">
-         <h1 className='etitle1'>  <IoArrowBackSharp className='back1-arrow' />Discover New Works </h1>
+         <h1 className='etitle1'>  <Link to="/home"><IoArrowBackSharp className='back1-arrow' /></Link>Discover New Works </h1>
       </div>
       <div className="wrapper1">
     
@@ -142,7 +144,7 @@ function Feed2() {
         </div>
       </div>
     </div> 
-  
+  </div>
 
       </div>
            </body>

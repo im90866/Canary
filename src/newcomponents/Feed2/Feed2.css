@@ -1,11 +1,22 @@
 .etitle1{
     font-weight: 500;
     position: relative;
-    top:100px;
-    left: -250px;
+    top:70px;
+    left: 120px;
 }
 .back1-arrow{
     position: relative;
     left: -10px;
     top:5px;
+}
+a .back1-arrow{
+    color: black;
+}
+.feed-container2{
+    flex: 10;
+
+    margin-left: 170px;
+    width: 100%;
+
+  height: 100vh;
 }
