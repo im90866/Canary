@@ -110,6 +110,13 @@ border-radius: 40px;
         top:-30px;
         left:15px;
     }
-
+    .create-title9{
+        font-size: 25px;
+        position: relative;
+        top:5px;
+        font-size: 20px;
+        left: 130px;
+        font-weight: 500;
+    }
     
 }

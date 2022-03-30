@@ -163,7 +163,7 @@ left: -5px;
         background-color: #fff;
         border-radius: 5px;
         position: relative;
-        top:100px;
+        top:10px;
         left: -5px;
     
         
@@ -180,22 +180,45 @@ left: -5px;
     }
     .hero-btn{
         position: relative;
-  width: 150px;
-  height: 30px;
-       left: 60px;
-      top:15px;
+  width: 80px;
+  height: 40px;
+       left: -5px;
+      top:25px;
     }
     .title{
-        font-size: 15px;
+        font-size: 18px;
         font-weight: 400;
         position: relative;
-        left: 20px;
+        left: 5px;
         white-space: nowrap;
         text-overflow: clip;
+        top:20px;
+        cursor: pointer;
+        color: #8d8d8d;
+        transition: 0.2s;
+        user-select: none; 
     }
     .project-list{
         position: relative;
         left: 35px;
     }
-  
+    .title-active{
+        font-size: 18px;
+        font-weight: 500;
+        position: relative;
+        left: 20px;
+        white-space: nowrap;
+        text-overflow: clip;
+        top:20px;
+        cursor: pointer;
+        color: #080808;
+        transition: 0.1s;
+        user-select: none; 
+    }
+    .separator{
+        font-size: 18px;
+        position: relative;
+        top:20px;
+        left: 15px;
+    }
 }

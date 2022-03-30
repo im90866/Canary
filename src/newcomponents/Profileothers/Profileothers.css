@@ -200,7 +200,7 @@ font-weight: 500;
     .follower-info{
         position: relative;
         top:10px;
-        left: -95px;
+        left: -75px;
     }
     .wrapper2{
         flex-direction: column;

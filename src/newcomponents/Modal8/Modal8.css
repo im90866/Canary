@@ -56,6 +56,15 @@
 @media (max-width: 900px){
     .modalContainer8{
         position: relative;
-        left: -120px;
+        left: 60px;
+    }
+    .create-title8{
+        font-size: 25px;
+        position: relative;
+        top:-60px;
+        font-size: 20px;
+        left: 45px;
+        font-weight: 500;
+        width: 100px;
     }
 }
