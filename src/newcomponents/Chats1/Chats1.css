@@ -47,3 +47,64 @@
     position: relative;
     top:-150px;
 }
+@media (max-width: 900px){
+    .messenger{
+        flex-direction: column;
+    }
+    .chat-menuwrapper {
+        position: relative;
+        top: 280px;
+        left: 10px;
+    }
+    .chat-boxwrapper1 {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: relative;
+        background-color: #fff;
+        width: 300px;
+        height: 500px;
+        overflow-y: scroll;
+        border-radius: 5px;
+        left: 10px;
+        top: 100px;
+    }
+    .chatbox-name{
+        width: 300px;
+        position: relative;
+        left: 8px;
+    }
+    .chatbar{
+        position: relative;
+        left: -20px;
+    }
+    .chatBoxBottom {
+      position: relative;
+      left: -5px;
+    }
+    .circle-icon{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+        height: 50px;
+        font-weight: 500;
+        position: relative;
+        left: 100px;
+        top:300px;
+    
+    }
+    .sendp{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        top:-70px;
+    }
+    .send-icon{
+        font-size: 40px;
+        position: relative;
+        top:160px;
+        left: 100px;
+    }
+}

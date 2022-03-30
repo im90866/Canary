@@ -301,7 +301,7 @@ margin-left:-120px;
         background-color: #fff;
         position: relative;
         left: 150px;
-        top:50px;
+        top:-50px;
     }
     .remix-btn{
         width: 150px;
