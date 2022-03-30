@@ -49,6 +49,7 @@ import Feed2 from './newcomponents/Feed2/Feed2';
 import Chats1 from './newcomponents/Chats1/Chats1';
 import Summary from './newcomponents/Summary/Summary';
 import Loading from './newcomponents/Loading/Loading';
+import Error1 from './newcomponents/Error/Error1';
 
 function App() {
 
@@ -164,6 +165,7 @@ function App() {
                             <Route path="/blockedacc" element={<BlockedAcc />} />
                             <Route path="/summary" element={<Summary />} />
                             <Route path="/loading" element={<Loading />} />
+                            <Route path="/error" element={<Error1 />} />
                            
                         </Routes>
                     </>
