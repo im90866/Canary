@@ -16,6 +16,10 @@ export default function Sidebar(prop) {
 
   const cache = prop.cache
   const setCache = prop.setCache
+  const showSidebar = prop.showSidebar
+  const setShowSidebar = prop.setShowSidebar
+
+  console.log("sidebar" + prop.showSidebar)
   
   const [isAdmin, setIsAdmin] = useState("")
 
@@ -45,37 +49,37 @@ export default function Sidebar(prop) {
         console.log(res.data['isAdmin'])
         setIsAdmin(res.data['isAdmin'])
       })
-  }, [])
+  }, [showSidebar])
 
 
   return (
     <>
-      <div className="sidebar">
+      <div className="sidebar" onClick={e => e.stopPropagation()}>
         <div className="sidebarWrapper">
           <ul className="sidebarList">
-            <li className={active['home']} onClick={() => goTo('/home')}>
+            <li className={active['home']} onClick={() => {goTo('/home'); if(showSidebar) setShowSidebar(false)}}>
                 <AiOutlineHome className="sidebarIcon" />
                 <span className="sidebarListItemText">Home</span>
             </li>
 
-            <li className="sidebarListItem" onClick={() => goTo('/project')}>
+            <li className="sidebarListItem" onClick={() => {goTo('/project'); if(showSidebar) setShowSidebar(false)}}>
                 <IoCreateOutline className="sidebarIcon" />
                 <span className="sidebarListItemText">Project</span>
             </li>
 
-            <li className="sidebarListItem" onClick={() => goTo('/chats')}>
+            <li className="sidebarListItem" onClick={() => {goTo('/chats'); if(showSidebar) setShowSidebar(false)}}>
                 <RiChatSmile2Line className="sidebarIcon" />
                 <span className="sidebarListItemText">Chats</span>
             </li>
 
-            <li className="sidebarListItem" onClick={() => goTo('/settings')}>
+            <li className="sidebarListItem" onClick={() => {goTo('/settings'); ; if(showSidebar) setShowSidebar(false)}}>
                 <IoSettingsOutline className="sidebarIcon" />
                 <span className="sidebarListItemText">Settings</span>
             </li>
 
             {
               isAdmin && 
-              <li className="sidebarListItem" onClick={() => goTo('/summary')}>
+              <li className="sidebarListItem" onClick={() => {goTo('/summary'); if(showSidebar) setShowSidebar(false)}}>
                 <MdOutlineSummarize className="sidebarIcon" />
                 <span className="sidebarListItemText">Summary</span>
             </li>

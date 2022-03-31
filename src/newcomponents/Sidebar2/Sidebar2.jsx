@@ -16,6 +16,8 @@ function Sidebar2(prop) {
 
   const cache = prop.cache
   const setCache = prop.setCache
+  const showSidebar = prop.showSidebar
+  const setShowSidebar = prop.setShowSidebar
 
   const [projectId, setProjectId] = useState()
   const [sub, setSub] = useState(false)
@@ -52,19 +54,19 @@ function Sidebar2(prop) {
   useEffect(() => {
     window.sessionStorage.getItem("currentProjectName")
     window.sessionStorage.getItem("currentProjectId")
-  }, [])
+  }, [showSidebar])
 
   return (
-    <div className="sidebar2">
+    <div className="sidebar2" onClick={e => e.stopPropagation()}>
       <div className="sidebarWrapper">
         <ul className="sidebarList">
 
-            <li className={active['home']} onClick={() => goTo('/home')}>
+            <li className={active['home']} onClick={() => {goTo('/home'); if(showSidebar) setShowSidebar(false)}}>
               <AiOutlineHome className="sidebarIcon" />
               <span className="sidebarListItemText">Home</span>
             </li>
 
-            <li className="sidebarListItem" onClick={() => goTo('/project')}>
+            <li className="sidebarListItem" onClick={() => {goTo('/project'); if(showSidebar) setShowSidebar(false)}}>
               <IoCreateOutline className="sidebarIcon" />
               <span className="sidebarListItemText">Project</span>
             </li>
@@ -85,23 +87,23 @@ function Sidebar2(prop) {
                 ?
                 <ul className="sidebarlistsub">
                   <li className="sidebarListItemsub">
-                    <Link to={"/"+ window.sessionStorage.getItem("currentProjectId") +"/workspace/"}>
+                    <Link to={"/"+ window.sessionStorage.getItem("currentProjectId") +"/workspace/"} onClick={() => {if(showSidebar) setShowSidebar(false)}}>
                       <span className="sidebarListItemTextsub1">Workspace</span>
                     </Link>
                   </li>
                   <li className="sidebarListItemsub">
-                    <Link to={"/" + window.sessionStorage.getItem("currentProjectId") +"/projectmembers"}>
+                    <Link to={"/" + window.sessionStorage.getItem("currentProjectId") +"/projectmembers"} onClick={() => {if(showSidebar) setShowSidebar(false)}}>
                       <span className="sidebarListItemTextsub2">Members</span>
                     </Link>
                   </li>
                   <li className="sidebarListItemsub">
-                    <Link to={"/" + window.sessionStorage.getItem("currentProjectId") +"/teamchats"}>
+                    <Link to={"/" + window.sessionStorage.getItem("currentProjectId") +"/teamchats"} onClick={() => {if(showSidebar) setShowSidebar(false)}}>
 
                       <span className="sidebarListItemTextsub3">Team Chat</span>
                     </Link>
                   </li>
                   <li className="sidebarListItemsub">
-                    <Link to={"/" + window.sessionStorage.getItem("currentProjectId") +"/projectsettings"}>
+                    <Link to={"/" + window.sessionStorage.getItem("currentProjectId") +"/projectsettings"} onClick={() => {if(showSidebar) setShowSidebar(false)}}>
                       <span className="sidebarListItemTextsub4">Project Settings</span>
                     </Link>
                   </li>
@@ -111,17 +113,17 @@ function Sidebar2(prop) {
             }
           </li>
 
-          <li className="sidebarListItem" onClick={() => goTo('/chats')}>
+          <li className="sidebarListItem" onClick={() => {goTo('/chats'); if(showSidebar) setShowSidebar(false)}}>
                 <RiChatSmile2Line className="sidebarIcon" />
                 <span className="sidebarListItemText">Chats</span>
           </li>
 
-          <li className="sidebarListItem" onClick={() => goTo('/settings')}>
+          <li className="sidebarListItem" onClick={() => {goTo('/settings'); if(showSidebar) setShowSidebar(false)}}>
                 <IoSettingsOutline className="sidebarIcon" />
                 <span className="sidebarListItemText">Settings</span>
           </li>
 
-          <li className="sidebarListItem" onClick={() => goTo('/summary')}>
+          <li className="sidebarListItem" onClick={() => {goTo('/summary'); if(showSidebar) setShowSidebar(false)}}>
               <MdOutlineSummarize className="sidebarIcon" />
               <span className="sidebarListItemText">Summary</span>
           </li>

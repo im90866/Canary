@@ -194,7 +194,7 @@ function Topbar(prop) {
     else
       setCheck(false)
 
-  }, [location.pathname, openModal3, openModal])
+  }, [location.pathname, openModal3, openModal, showSidebar])
 
 
   return (
@@ -205,7 +205,7 @@ function Topbar(prop) {
           {
             isMobile
               ?
-              <GoThreeBars className="threeBars" onClick={() => setShowSidebar(!showSidebar)} />
+              <GoThreeBars className="threeBars" onClick={(e) => {setShowSidebar(!showSidebar); e.stopPropagation()}} />
               :
               <span className="logo"> <Link to="/home">Canary</Link></span>
           }
@@ -360,7 +360,7 @@ function Topbar(prop) {
                   </div>
                 }
               </div>
-              <span className="topbarIconBadge">1</span>
+              {/* <span className="topbarIconBadge">1</span> */}
             </div>
 
             <div className="topbarIconItem">
@@ -390,17 +390,24 @@ function Topbar(prop) {
               }
             </>
             :
-            <Sidebar2 cache={cache} setCache={setCache} />
+            <Sidebar2 showSidebar={showSidebar} cache={cache} setCache={setCache} />
           :
           showSidebar
             ?
             !check
               ?
               <>
-                <Sidebar />
+                <Sidebar
+                
+                showSidebar={showSidebar}
+                setShowSidebar={setShowSidebar}
+                />
               </>
               :
-              <Sidebar2 />
+              <Sidebar2 
+              showSidebar={showSidebar}
+              setShowSidebar={setShowSidebar}
+              />
             :
             null
       }
