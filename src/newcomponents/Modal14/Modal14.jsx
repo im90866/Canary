@@ -6,22 +6,22 @@ function Modal14(props) {
 
   return (
     <div onClick={(e) => e.stopPropagation()}>
-          <div className="modalBackground" id='modalBackground'>
-       
+      <div className="modalBackground" id='modalBackground'>
+        <div className='modalContainer14'>
           <div className="titleCloseBtn14">
             <button className='cross14'
               onClick={() => {
                 closeModal(false);
               }}>
               x
-            </button> 
+            </button>
           </div>
-        
-        <div className="img-workspacee">
+
+          <div className="img-workspacee">
             <img src={imageVal} alt="" className='wimg1' />
+          </div>
         </div>
-        </div>
-    
+      </div>
     </div>
   )
 }

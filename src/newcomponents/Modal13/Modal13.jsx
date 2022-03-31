@@ -53,7 +53,7 @@ function Modal13(props) {
           <div className="title13">
             <h1 className='create-title13'>New Channel</h1>
           </div>
-          <div className="body">
+          {/* <div className="body"> */}
             <label for="pname" className='p13name'>Enter Channel Name</label>
             <input 
               type="text" 
@@ -69,7 +69,7 @@ function Modal13(props) {
               </button> */}
               <button className="folderbtnsssss1" onClick={addChannel}>Create Channel</button>
             </div>
-          </div>         
+          {/* </div>          */}
         </div>
       </div>
     </div>

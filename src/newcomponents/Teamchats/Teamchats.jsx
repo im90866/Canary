@@ -133,11 +133,6 @@ function Teamchats() {
         setOpenModal4(false)
     })
 
-    if (openModal4) {
-      document.getElementById('chatscc').style.filter = 'blur(5px) grayscale(0%)'
-    } else {
-      document.getElementById('chatscc').style.filter = 'blur(0px) grayscale(0%)'
-    }
 
   }, [messageList, openModal4])
 
