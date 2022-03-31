@@ -40,7 +40,7 @@ function Modal(props) {
   }, [])
 
   return (
-  
+
     <div>
       <div className="modalBackground" id='modalBackground'>
         <div className="modalContainer">
@@ -50,28 +50,32 @@ function Modal(props) {
                 closeModal(false);
               }}>
               x
-            </button> 
+            </button>
           </div>
           <div className="title">
             <h1 className='create-title'>New Project</h1>
           </div>
-          <div className="body">
-            <label for="pname" className='p1name'>Enter Project Name</label>
-            <input type="text" 
-                  className='change-text101'  
-                  name="Project Name" 
-                  placeholder='Project Name'
-                  onChange={event => setProjectName(event.target.value)}
-            /><br></br>
+          <br></br>
+          {/* <div className="body"> */}
+          <label for="pname" className='p1name'>Enter Project Name</label>
+          <input type="text"
+            className='change-text101'
+            name="Project Name"
+            placeholder='Project Name'
+            onChange={event => setProjectName(event.target.value)}
+          />
+          {/* <br></br> */}
 
-            <div className="div">
-              {/* <button className='folder-btn' onClick={() => {addProject({ "projectName" : projectName }); 
+          <div className="div">
+            {/* <button className='folder-btn' onClick={() => {addProject({ "projectName" : projectName }); 
                   closeModal(false)}}>Create Project
               </button> */}
-              <button className="folderbtnsssss"  onClick={() => {addProject({ "projectName" : projectName }); 
-                  closeModal(false)}}>Create Project</button>
-            </div>
-          </div>         
+            <button className="folderbtnsssss" onClick={() => {
+              addProject({ "projectName": projectName });
+              closeModal(false)
+            }}>Create Project</button>
+          </div>
+          {/* </div>          */}
         </div>
       </div>
     </div>

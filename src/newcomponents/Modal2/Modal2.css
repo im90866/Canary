@@ -1,6 +1,7 @@
 .modalBackground2 {
     position: fixed; 
     box-shadow: 1000px 0px 0px 4000px rgba(0, 0, 0, 0.10) ;
+    z-index: 9999;
 }
 .modalContainer2 {
     width: 350px;

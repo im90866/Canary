@@ -3,14 +3,18 @@
 margin-top: -550px;
 z-index: 9999;
 position: fixed;
+box-shadow: 1000px 0px 0px 4000px rgb(0 0 0 / 10%);
+}
 
+.div{
+  margin: auto;
 }
   .modalContainer {
     width: 280px;
     height: 210px;
     border-radius: 12px;
     background-color: #Ffff;
-    box-shadow: 1000px 0px 0px 4000px rgba(0, 0, 0, 0.5) ;
+    box-shadow: 1000px 0px 0px 4000px rgb(0 0 0 / 50%);
     display: flex;
     flex-direction: column;
     padding: 25px;
@@ -241,7 +245,7 @@ position: fixed;
     font-size: 14px;
  position: relative;
  top:-60px;
- left: -40px;
+ /* left: -40px; */
   }
 
 .post-img-cropper1 {
@@ -261,7 +265,7 @@ position: fixed;
     height: 500px;
     border-radius: 12px;
     background-color: #Ffff;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    box-shadow: 1000px 0px 0px 4000px rgb(0 0 0 / 50%);
     display: flex;
     flex-direction: column;
     padding: 25px;

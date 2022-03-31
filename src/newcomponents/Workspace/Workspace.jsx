@@ -420,7 +420,7 @@ function Workspace(prop) {
                           ?
                           <div class="dropdown-content" id='dropdown-content'>
                             <button className="dropdown-text" onClick={(e) => { setImageId(image.imageID); setPostImageVal(image); setOpenModal(true); e.stopPropagation() }}>Post</button>
-                            <button className="dropdown-text" onClick={() => { setImageId(image.imageID); setOpenModalRename(true); setModalVal("Rename"); }}>Rename</button>
+                            <button className="dropdown-text" onClick={(e) => { setImageId(image.imageID); setOpenModalRename(true); setModalVal("Rename"); e.stopPropagation() }}>Rename</button>
                             <button className="dropdown-text" onClick={() => deleteImage(image.imageID)}>Delete</button>
                             <a className="dropdown-text1" href={image.imageVal} download>Download</a>
                           </div>

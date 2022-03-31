@@ -1,7 +1,7 @@
 import React from 'react'
 import "../Modal/Modal.css"
 import axios from 'axios'
-import { useState} from 'react';
+import { useState } from 'react';
 
 function Modal5(prop) {
   const imageID = prop.image.imageID
@@ -23,7 +23,7 @@ function Modal5(prop) {
 
     console.log("HOOOHHAAA")
     await axios.post("http://localhost:8000/postImage/", req).then((res) => {
-     console.log(res)
+      console.log(res)
     })
 
   }
@@ -34,41 +34,39 @@ function Modal5(prop) {
 
 
   return (
-  
+
     <div onClick={e => e.stopPropagation()}>
       <div className="modalBackground">
         <div className="modalContaine3">
-          
+
           <div className="titleCloseBtn1">
             <button className='cross'
               onClick={() => {
                 closeModal(false);
               }}>
               x
-            </button> 
+            </button>
           </div>
 
           <div className="post-img-cropper1">
-            <img src={imageVal} alt=""  className='post-img'/>
+            <img src={imageVal} alt="" className='post-img' />
           </div>
 
-          <input 
-            type="text" 
-            placeholder='Enter a caption' 
-            className='change-text15' 
+          <input
+            type="text"
+            placeholder='Enter a caption'
+            className='change-text15'
             value={caption}
             onChange={handleCaptionChange}
           />
-              
-          <div className="body">
-            
 
-            <div className="div">
-              <button className='folder-btn6' onClick={() => { 
-                  postImage(imageID);closeModal(false)}}>Post
-              </button>
-            </div>
-          </div>         
+
+          <div className="div">
+            <button className='folder-btn6' onClick={() => {
+              postImage(imageID); closeModal(false)
+            }}>Post
+            </button>
+          </div>
         </div>
       </div>
     </div>

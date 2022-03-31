@@ -61,11 +61,11 @@ function Team() {
         setOpenModal5(false)
     })
 
-    if (openModal5) {
-      document.getElementById('teamscc').style.filter = 'blur(5px) grayscale(0%)'
-    } else {
-      document.getElementById('teamscc').style.filter = 'blur(0px) grayscale(0%)'
-    }
+    // if (openModal5) {
+    //   document.getElementById('teamscc').style.filter = 'blur(5px) grayscale(0%)'
+    // } else {
+    //   document.getElementById('teamscc').style.filter = 'blur(0px) grayscale(0%)'
+    // }
   }, [openModal5])
 
   return (
