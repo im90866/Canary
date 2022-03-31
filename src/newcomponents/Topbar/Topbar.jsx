@@ -108,14 +108,14 @@ function Topbar(prop) {
   const openClose = () => {
     if (!openModal)
       setOpenModal(true)
-    else{
+    else {
       setOpenModal(false)
       setShowReq(false)
     }
   }
 
   const goToPost = (type, postID) => {
-    if(type == 'comment' || type == 'like') {
+    if (type == 'comment' || type == 'like') {
       setOpenModal(false)
       navigate('/post/' + postID)
     }
@@ -170,6 +170,8 @@ function Topbar(prop) {
         setOpenModal(false)
       if (openModal3)
         setOpenModal3(false)
+      if (openModal4)
+        setOpenModal4(false)
     })
 
     if (openModal3) {
@@ -265,21 +267,30 @@ function Topbar(prop) {
         <div className="topbarRight">
           <div className="topbarIcons">
             {
-              isAdmin && 
+              isAdmin &&
               <div className="topbarIconItem">
                 <AiOutlineMail className="icons13"
-                onClick={() =>
-                  setOpenModal4(!openModal4)} />
+                  onClick={(e) => {
+                    setOpenModal4(!openModal4);
+                    e.stopPropagation()
+                    if (openModal)
+                      setOpenModal(false)
+                  }} />
               </div>
             }
-            
+
             <div className="topbarIconItem">
               <BsPlusCircle className="icons12"
                 onClick={(e) => { setOpenModal3(!openModal3); e.stopPropagation() }} />
             </div>
             <div className="topbarIconItem">
               <IoIosNotificationsOutline className="noti-icon"
-                onClick={(e) => { openClose(); e.stopPropagation() }}
+                onClick={(e) => {
+                  openClose();
+                  e.stopPropagation()
+                  if (openModal4)
+                    setOpenModal4(false)
+                }}
               />
               <div ref={notifRef}>
                 {
@@ -357,7 +368,7 @@ function Topbar(prop) {
 
           </div>
         </div>
-  
+
       </div>
       {
         !isMobile

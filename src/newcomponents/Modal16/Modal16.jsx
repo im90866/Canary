@@ -19,7 +19,7 @@ function Modal16(props) {
   }, [])
 
   return (
-    <div>
+    <div onClick={e => e.stopPropagation()}>
       <div className="modalBackground" id='modalBackground'>
         <div className="modalContainer16">
           <div className="titleCloseBtn">
@@ -28,7 +28,7 @@ function Modal16(props) {
                 closeModal(false);
               }}>
               x
-            </button> 
+            </button>
           </div>
 
           <div className="title13">

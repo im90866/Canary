@@ -1,8 +1,8 @@
 import React from "react";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import SignUp from '../SignUp/SignUp';
 
-import { Link,useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Login.css'
 
 import axios from "axios";
@@ -44,11 +44,19 @@ function Login() {
           }
           else
             console.log("Error: " + res.data["error"])
+          document.getElementById('password-error1').style.display = "flex"
         })
     }
 
     setSubmitted(true);
   }
+
+  useEffect(() => {
+    
+
+    
+  }, [values.username, values.password])
+
   return (
     <div>
 
@@ -57,12 +65,37 @@ function Login() {
           <h1 className='app-name'>Canary</h1>
 
           <input type="text" placeholder="Username" onChange={handleUserNameInputChange} value={values.username} className="username" />
-          {submitted && !values.username ? <span id="user-name-error">Please enter your username</span> : null}
-          <input type="password" placeholder="Password" className="password" onChange={handlePasswordInputChange}
-            value={values.password} />
-          {submitted && !values.password ? <span id="password-error">Please enter your password</span> : null}
-          <h5 className="forgot"><Link to ="/forgotpassword">Forgot your password?</Link></h5>
-          <button  className="signin" type="submit">Sign In</button>
+          {
+          submitted && !values.username 
+          ? 
+          <span style={{ color: 'red' }} id="user-name-error">Please enter your username</span> 
+          : 
+          null
+          }
+          {/* <span style={{ color: 'red' }} id="user-name-error1">Username does not exist!</span>  */}
+          <input
+            type="password"
+            placeholder="Password"
+            className="password"
+            onChange={handlePasswordInputChange}
+            value={values.password}
+            onKeyDown={() => {
+              document.getElementById('password-error1').style.display = 'none'
+            }}
+          />
+          {
+            submitted && !values.password
+              ?
+              <span style={{ color: 'red' }} id="password-error">Please enter your password</span>
+              :
+              null}
+          <span style={{ color: 'red', display: 'none' }} id="password-error1">You've entered wrong password</span>
+          <h5 className="forgot">
+            <Link to="/forgotpassword">
+              Forgot your password?
+            </Link>
+          </h5>
+          <button className="signin" type="submit">Sign In</button>
         </form>
       </div>
 
