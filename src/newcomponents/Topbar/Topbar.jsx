@@ -135,17 +135,17 @@ function Topbar(prop) {
     else
       setPFP(cache['topbarProfilePicture'])
 
-      axios.get("http://localhost:8000/getNotifications/" + String(getCookie('userID'))).then((res) => {
-        let notifList = res.data['notificationsList'].slice()
-        let requestList = res.data['inviteList'].slice()
+    axios.get("http://localhost:8000/getNotifications/" + String(getCookie('userID'))).then((res) => {
+      let notifList = res.data['notificationsList'].slice()
+      let requestList = res.data['inviteList'].slice()
 
-        console.log(res.data['notificationsList'])
+      console.log(res.data['notificationsList'])
 
-        setNotifList(notifList)
-        setInviteList(requestList)
-        setIsAdmin(res.data['isAdmin'])
+      setNotifList(notifList)
+      setInviteList(requestList)
+      setIsAdmin(res.data['isAdmin'])
 
-        axios.get("http://localhost:8000/isAdmin/" + getCookie('userID'))
+      axios.get("http://localhost:8000/isAdmin/" + getCookie('userID'))
         .then((res) => {
           console.log(res.data['isAdmin'])
           setIsAdmin(res.data['isAdmin'])
@@ -172,10 +172,13 @@ function Topbar(prop) {
         setOpenModal3(false)
       if (openModal4)
         setOpenModal4(false)
+      if (showSidebar)
+        setShowSidebar(false)
+
     })
 
     if (openModal3) {
-      
+
     } else {
       document.body.style.filter = 'blur(0px) grayscale(0%)'
     }

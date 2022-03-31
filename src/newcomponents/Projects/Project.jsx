@@ -134,14 +134,16 @@ function Project(prop) {
                   // Use this but clickable
                   // <h1 className='title'>Your Projects</h1>
                 }
-                <button
-                  className='hero-btn'
-                  onClick={
-                    (e) => {
-                      setOpenModal(true); e.stopPropagation()
-                    }}>
-                  New Project
-                </button>
+                <div>
+                  <button
+                    className='hero-btn'
+                    onClick={
+                      (e) => {
+                        setOpenModal(true); e.stopPropagation()
+                      }}>
+                    New Project
+                  </button>
+                </div>
               </div>
             </div>
           </div>

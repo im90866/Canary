@@ -71,3 +71,9 @@ padding-right: 0px;
   font-size: 18px;
   margin-top: 10px;
 }
+
+@media (max-width: 900px){
+  .sidebar {
+    box-shadow: 1000px 0px 0px 4000px rgb(0 0 0 / 50%);
+  }
+}

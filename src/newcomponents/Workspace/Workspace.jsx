@@ -294,7 +294,7 @@ function Workspace(prop) {
       document.getElementById('workspace-body').style.filter = 'blur(0px) grayscale(0%)'
     }
 
-  }, [folderPath, showImg, showFolder, openDropdown, openModal3, openModalRename, openModal])
+  }, [folderPath, showImg, showFolder, openDropdown, openModal3, openModalRename, openModal, images, folders])
 
   return (
     <div>
