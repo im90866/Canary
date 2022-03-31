@@ -49,8 +49,11 @@ function SignUp(props) {
           window.sessionStorage.setItem("email", email);
           navigate('/codeconfirmation')
         }
-        else
+        else {
+          setWaitModal(false)
           console.log("Error " + res.data["error"])
+          document.getElementById('user-name-error1').style.display = 'flex'
+        }
       })
     }
 
@@ -66,6 +69,17 @@ function SignUp(props) {
       password !== "" &&
       username.length >= 5
     )
+
+    if (username !== "" && username.length < 5)
+      document.getElementById('user-name-error2').style.display = 'flex'
+    else
+      document.getElementById('user-name-error2').style.display = 'none'
+
+    if (password !== "" && password.length < 8)
+      document.getElementById('password-error1').style.display = 'flex'
+    else
+      document.getElementById('password-error1').style.display = 'none'
+
   }, [username, password, email])
 
   return (
@@ -78,15 +92,12 @@ function SignUp(props) {
           {
             submitted && !username
               ?
-              username.length < 5
-                ?
-                <span id="user-name-error" style={{ color: 'red' }}>Username must be atleast 5 characters</span>
-                :
-                <span id="user-name-error" style={{ color: 'red' }}>Please enter your username</span>
+              <span id="user-name-error" style={{ color: 'red' }}>Please enter your username</span>
               :
               null
           }
-
+          <span id="user-name-error2" style={{ color: 'red', display: 'none' }}>Username must be atleast 5 characters</span>
+          <span id="user-name-error1" style={{ color: 'red', display: 'none' }}>Username Already Exists!</span>
           <input type="email" placeholder="Email" onChange={handleEmailInputChange} className="email" value={email} />
 
           {
@@ -100,7 +111,15 @@ function SignUp(props) {
           <input type="password" placeholder="Password" className="password" onChange={handlePasswordInputChange}
             value={password} />
 
-          {submitted && !password ? <span id="password-error" style={{ color: 'red' }}>Please enter your password</span> : null}
+          {
+            submitted && !password
+              ?
+              <span id="password-error" style={{ color: 'red' }}>Please enter your password</span>
+              :
+              null
+          }
+          <span id="password-error1" style={{ color: 'red', display: 'none' }}>Password must be atleast 8 characters</span>
+
           <button className='signup' type="submit" >Sign Up</button>
         </form>
       </div>
