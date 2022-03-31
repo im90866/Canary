@@ -17,6 +17,7 @@ import Modal5_1 from '../Modal5/Modal5_1';
 import { BiArrowBack } from "react-icons/bi";
 import { FaPython } from 'react-icons/fa'
 import Modal14 from '../Modal14/Modal14'
+import { show } from 'react-modal/lib/helpers/ariaAppHider'
 
 function Workspace(prop) {
   const cache = prop.cache
@@ -364,6 +365,8 @@ function Workspace(prop) {
                               state: !showFolder.state
                             });
                             e.stopPropagation()
+                            if (showImg.state)
+                              setShowImg(showImg.state = false)
                           }
                         }
                       />
@@ -371,8 +374,24 @@ function Workspace(prop) {
                         showFolder.folder === folder.folderID && showFolder.state
                           ?
                           <div class="dropdown-content">
-                            <button class="dropdown-text" onClick={(e) => { setOpenModalRename(true); setModalVal("Rename"); setFolderId(folder.folderID); e.stopPropagation() }}>Rename</button>
-                            <button class="dropdown-text" onClick={() => deleteFolder(folder.folderID)}>Delete</button>
+                            <button
+                              class="dropdown-text"
+                              onClick={(e) => {
+                                setOpenModalRename(true);
+                                setModalVal("Rename");
+                                setFolderId(folder.folderID);
+                                e.stopPropagation()
+                                setShowFolder(showFolder.state = false)
+
+                              }}>
+                              Rename
+                            </button>
+                            <button
+                              class="dropdown-text"
+                              onClick={() =>
+                                deleteFolder(folder.folderID)
+                              }>Delete
+                            </button>
                           </div>
                           :
                           null
@@ -411,6 +430,8 @@ function Workspace(prop) {
                           (e) => {
                             setShowImg({ image: image.imageID, state: !showImg.state });
                             e.stopPropagation()
+                            if (showFolder.state)
+                              setShowFolder(showFolder.state = false)
                           }
                         }
                       />
@@ -419,9 +440,35 @@ function Workspace(prop) {
                         showImg.image === image.imageID && showImg.state
                           ?
                           <div class="dropdown-content" id='dropdown-content'>
-                            <button className="dropdown-text" onClick={(e) => { setImageId(image.imageID); setPostImageVal(image); setOpenModal(true); e.stopPropagation() }}>Post</button>
-                            <button className="dropdown-text" onClick={(e) => { setImageId(image.imageID); setOpenModalRename(true); setModalVal("Rename"); e.stopPropagation() }}>Rename</button>
-                            <button className="dropdown-text" onClick={() => deleteImage(image.imageID)}>Delete</button>
+                            <button
+                              className="dropdown-text"
+                              onClick={(e) => {
+                                setImageId(image.imageID);
+                                setPostImageVal(image);
+                                setOpenModal(true);
+                                e.stopPropagation();
+                                setShowImg(showImg.state = false)
+                              }}>
+                              Post
+                            </button>
+                            <button
+                              className="dropdown-text"
+                              onClick={(e) => {
+                                setImageId(image.imageID);
+                                setOpenModalRename(true);
+                                setModalVal("Rename");
+                                e.stopPropagation();
+                                setShowImg(showImg.state = false)
+                              }}>
+                              Rename
+                            </button>
+                            <button
+                              className="dropdown-text"
+                              onClick={() =>
+                                deleteImage(image.imageID)
+                              }>
+                              Delete
+                            </button>
                             <a className="dropdown-text1" href={image.imageVal} download>Download</a>
                           </div>
                           :
